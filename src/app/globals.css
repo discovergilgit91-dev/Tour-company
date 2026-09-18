@@ -4,19 +4,17 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  --color-brand-dark: #0e1512;
-  --color-brand-dark-alt: #141d19;
-  --color-brand-cream: #f4f1ea;
-  --color-brand-accent: #c8893d;
-  --color-brand-accent-dark: #a86f2f;
-  --color-brand-muted: #9ba39c;
+  --color-brand-dark: #14231f;
+  --color-brand-cream: #f6f1e7;
+  --color-brand-accent: #1f6a4c;
+  --color-brand-accent-dark: #16503a;
+  --color-brand-muted: #8a8377;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-brand-dark: var(--color-brand-dark);
-  --color-brand-dark-alt: var(--color-brand-dark-alt);
   --color-brand-cream: var(--color-brand-cream);
   --color-brand-accent: var(--color-brand-accent);
   --color-brand-accent-dark: var(--color-brand-accent-dark);

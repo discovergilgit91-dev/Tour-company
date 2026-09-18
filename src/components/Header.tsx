@@ -1,207 +1,267 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
-const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "Destinations", href: "/destinations" },
-  { label: "Tours & Events", href: "/tours" },
-  { label: "Experiences", href: "/experiences" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
+const navLinks = [
+  { label: 'Destinations', href: '/destinations' },
+  { label: 'Our Story', href: '/about' },
+  { label: 'Tours & Events', href: '/tours' },
+  { label: 'Reviews', href: '/reviews' },
+  { label: 'Contact', href: '/contact' },
+]
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const [prevPathname, setPrevPathname] = useState(pathname)
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40)
+    }
 
-  useEffect(() => {
-    document.body.style.overflow = isMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMenuOpen]);
+    window.addEventListener('scroll', onScroll)
+
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname)
+    setOpen(false)
+  }
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-colors duration-300 ${
-        isScrolled
-          ? "bg-brand-dark/95 shadow-lg shadow-black/20 backdrop-blur-sm"
-          : "bg-brand-dark"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
+        scrolled
+          ? 'bg-[#F6F1E7]/95 backdrop-blur-lg shadow-[0_8px_30px_-14px_rgba(20,35,31,0.22)] border-b border-[#14231F]/10'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-        <Logo />
-
-        <nav className="hidden items-center gap-9 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="group relative text-sm font-medium tracking-wide text-brand-cream/85 transition-colors hover:text-brand-cream"
-            >
-              {link.label}
-              <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-brand-accent transition-all duration-300 group-hover:w-full" />
-            </Link>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-4 lg:flex">
-          <button
-            type="button"
-            aria-label="Search"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream/15 text-brand-cream/80 transition-colors hover:border-brand-accent hover:text-brand-accent"
-          >
-            <SearchIcon />
-          </button>
-          <Link
-            href="/tours"
-            className="inline-flex items-center gap-2 rounded-full bg-brand-accent px-5 py-2.5 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-accent-dark"
-          >
-            Plan Your Trip
-            <ArrowIcon />
-          </Link>
-        </div>
-
-        <button
-          type="button"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen((open) => !open)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-brand-cream/15 text-brand-cream lg:hidden"
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div
+          className={`flex items-center justify-between transition-all duration-500 ease-in-out ${
+            scrolled
+              ? 'h-14 sm:h-16 md:h-[72px]'
+              : 'h-16 sm:h-20 md:h-24'
+          }`}
         >
-          {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
-        </button>
+
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex items-center gap-2.5 sm:gap-3.5 group min-w-0"
+          >
+            <div
+              className={`shrink-0 relative flex items-center justify-center transition-all duration-500 ease-in-out group-hover:scale-105 ${
+                scrolled
+                  ? 'w-12 h-12 sm:w-14 sm:h-14'
+                  : 'w-14 h-14 sm:w-16 sm:h-16'
+              }`}
+            >
+              <Image
+                src="/Images/tours/logo.png"
+                alt="Discover Gilgit logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            <div className="flex flex-col justify-center min-w-0">
+              <span
+                className={`text-[17px] sm:text-[21px] md:text-[23px] font-bold tracking-tight leading-none truncate transition-colors duration-300 ${
+                  scrolled
+                    ? 'text-[#14231F]'
+                    : 'text-white'
+                }`}
+              >
+                Discover
+                <span className="text-[#1F6A4C]">
+                  Gilgit
+                </span>
+              </span>
+
+              <span
+                className={`block text-[9px] sm:text-[10px] font-semibold tracking-[0.28em] uppercase overflow-hidden transition-all duration-500 ease-in-out ${
+                  scrolled
+                    ? 'text-[#8A8377]'
+                    : 'text-white/75'
+                } ${
+                  scrolled
+                    ? 'max-h-0 opacity-0 mt-0'
+                    : 'max-h-4 opacity-100 mt-1'
+                }`}
+              >
+                Gilgit-Baltistan
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+            {navLinks.map((link) => {
+              const active = pathname === link.href
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`group relative px-3.5 xl:px-4 py-2 text-[13px] xl:text-[13.5px] font-medium transition-colors duration-300 ease-out whitespace-nowrap ${
+                    scrolled
+                      ? active
+                        ? 'text-[#1F6A4C]'
+                        : 'text-[#14231F]/65 hover:text-[#14231F]'
+                      : active
+                        ? 'text-white'
+                        : 'text-white/85 hover:text-white'
+                  }`}
+                >
+                  {link.label}
+
+                  <span
+                    className={`pointer-events-none absolute left-3.5 right-3.5 -bottom-0.5 h-[2px] origin-left rounded-full transition-transform duration-300 ease-out ${
+                      scrolled
+                        ? 'bg-[#1F6A4C]'
+                        : 'bg-white'
+                    } ${
+                      active
+                        ? 'scale-x-100'
+                        : 'scale-x-0 group-hover:scale-x-100'
+                    }`}
+                  />
+                </Link>
+              )
+            })}
+          </nav>
+
+          {/* Desktop Auth Buttons */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2 shrink-0">
+            <Link
+              href="/sign-in"
+              className={`text-[13px] xl:text-[13.5px] font-medium px-3.5 xl:px-4 py-2.5 rounded-full transition-all duration-300 ease-out whitespace-nowrap ${
+                scrolled
+                  ? 'text-[#14231F]/80 hover:text-[#14231F] hover:bg-[#14231F]/[0.06]'
+                  : 'text-white/90 hover:text-white hover:bg-white/10'
+              }`}
+            >
+              Sign In
+            </Link>
+
+            <Link
+              href="/sign-up"
+              className="text-[13px] xl:text-[13.5px] font-semibold text-white bg-[#1F6A4C] px-4 xl:px-5 py-2.5 rounded-full shadow-[0_2px_8px_-2px_rgba(31,106,76,0.4)] transition-all duration-300 ease-out hover:bg-[#16503A] hover:shadow-[0_10px_24px_-4px_rgba(31,106,76,0.6)] hover:-translate-y-[2px] hover:scale-[1.03] active:scale-[0.97] active:translate-y-0 whitespace-nowrap"
+            >
+              Sign Up
+            </Link>
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            onClick={() => setOpen(!open)}
+            className={`lg:hidden relative flex items-center justify-center w-10 h-10 rounded-full transition-colors duration-300 ease-out shrink-0 ${
+              scrolled
+                ? 'hover:bg-[#14231F]/[0.06]'
+                : 'hover:bg-white/10'
+            }`}
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            <div className="flex flex-col gap-[5px] items-center justify-center w-5">
+              <span
+                className={`w-5 h-[1.5px] rounded-full transition-all duration-300 ${
+                  scrolled ? 'bg-[#14231F]' : 'bg-white'
+                } ${
+                  open
+                    ? 'rotate-45 translate-y-[6.5px]'
+                    : ''
+                }`}
+              />
+
+              <span
+                className={`w-5 h-[1.5px] rounded-full transition-all duration-300 ${
+                  scrolled ? 'bg-[#14231F]' : 'bg-white'
+                } ${
+                  open ? 'opacity-0' : ''
+                }`}
+              />
+
+              <span
+                className={`w-5 h-[1.5px] rounded-full transition-all duration-300 ${
+                  scrolled ? 'bg-[#14231F]' : 'bg-white'
+                } ${
+                  open
+                    ? '-rotate-45 -translate-y-[6.5px]'
+                    : ''
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
+      {/* Mobile Navigation */}
       <div
-        className={`grid overflow-hidden border-t border-brand-cream/10 bg-brand-dark transition-[grid-template-rows] duration-300 ease-in-out lg:hidden ${
-          isMenuOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out bg-[#F6F1E7] border-t border-[#14231F]/10 ${
+          open
+            ? 'max-h-[500px] opacity-100'
+            : 'max-h-0 opacity-0 border-t-0'
         }`}
       >
-        <div className="overflow-hidden">
-          <nav className="flex flex-col gap-1 px-6 py-4">
-            {NAV_LINKS.map((link) => (
+        <div className="px-4 sm:px-6 py-5 flex flex-col gap-1">
+          {navLinks.map((link, i) => {
+            const active = pathname === link.href
+
+            return (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="rounded-lg px-3 py-3 text-base font-medium text-brand-cream/85 transition-colors hover:bg-brand-cream/5 hover:text-brand-cream"
+                className={`group flex items-center justify-between text-[15px] font-medium px-3.5 py-3 rounded-xl transition-colors duration-300 ease-out ${
+                  active
+                    ? 'bg-[#1F6A4C] text-white'
+                    : 'text-[#14231F] hover:bg-[#14231F]/[0.05]'
+                }`}
+                style={{
+                  transitionDelay: open
+                    ? `${i * 30}ms`
+                    : '0ms',
+                }}
               >
                 {link.label}
+
+                <span
+                  className={`transition-transform duration-300 ease-out group-hover:translate-x-1 ${
+                    active
+                      ? 'text-white/70'
+                      : 'text-[#14231F]/30'
+                  }`}
+                >
+                  →
+                </span>
               </Link>
-            ))}
+            )
+          })}
+
+          <div className="flex items-center gap-2 mt-3 pt-4 border-t border-[#14231F]/10">
             <Link
-              href="/tours"
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-3 inline-flex items-center justify-center gap-2 rounded-full bg-brand-accent px-5 py-3 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-accent-dark"
+              href="/sign-in"
+              className="flex-1 text-center text-[14px] font-medium text-[#14231F] px-4 py-3 rounded-xl border border-[#14231F]/15 transition-all duration-300 ease-out hover:bg-[#14231F]/[0.05] active:scale-[0.97]"
             >
-              Plan Your Trip
-              <ArrowIcon />
+              Sign In
             </Link>
-          </nav>
+
+            <Link
+              href="/sign-up"
+              className="flex-1 text-center text-[14px] font-semibold text-white bg-[#1F6A4C] px-4 py-3 rounded-xl transition-all duration-300 ease-out hover:bg-[#16503A] hover:shadow-[0_6px_16px_-4px_rgba(31,106,76,0.5)] active:scale-[0.97]"
+            >
+              Sign Up
+            </Link>
+          </div>
         </div>
       </div>
     </header>
-  );
-}
-
-function Logo() {
-  return (
-    <Link href="/" className="flex items-center gap-3">
-      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent/15">
-        <MountainIcon />
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="font-serif text-lg tracking-wide text-brand-cream">
-          Gilgit Baltistan
-        </span>
-        <span className="text-[11px] font-medium tracking-[0.25em] text-brand-accent">
-          TOURS &amp; TRAVEL
-        </span>
-      </span>
-    </Link>
-  );
-}
-
-function MountainIcon() {
-  return (
-    <svg
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      className="text-brand-accent"
-    >
-      <path
-        d="M3 19L9.5 8L13 14L15.5 10L21 19H3Z"
-        stroke="currentColor"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-      <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
-    </svg>
-  );
-}
-
-function SearchIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-      <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="1.8" />
-      <path
-        d="M21 21L16.65 16.65"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function ArrowIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M5 12H19M19 12L13 6M19 12L13 18"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function MenuIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M4 7H20M4 12H20M4 17H20"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
-}
-
-function CloseIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M6 6L18 18M18 6L6 18"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+  )
 }
