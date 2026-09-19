@@ -182,16 +182,15 @@ export default function FeaturedDestinations({
   destinations?: Destination[];
 }) {
   return (
-    <section
-      id="destinations"
-      className="relative overflow-hidden bg-cream px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
-    >
+    /* No horizontal padding on the section: it lives inside the container below,
+       exactly like Header.tsx and Hero.tsx (max-w-6xl + px-4 sm:px-6). */
+    <section className="relative overflow-hidden bg-cream py-20 sm:py-24 lg:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl">
+      <div className="relative mx-auto w-full max-w-6xl px-4 sm:px-6">
         <div className="mb-12 flex flex-col justify-between gap-8 lg:mb-14 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
