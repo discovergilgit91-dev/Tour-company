@@ -100,7 +100,7 @@ export default function Footer() {
         className="pointer-events-none absolute -bottom-40 -left-40 h-[350px] w-[350px] rounded-full bg-gold/[0.04] blur-3xl"
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-12 sm:px-10 sm:py-14 lg:px-16">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-[1.25fr_1fr_1fr] md:gap-8">
           {/* BRAND */}
           <div className="border-b border-cream/[0.08] pb-9 sm:col-span-2 md:col-span-1 md:border-b-0 md:border-r md:pb-0 md:pr-8">
