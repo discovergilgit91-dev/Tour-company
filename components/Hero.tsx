@@ -194,9 +194,15 @@ export default function Hero() {
   const currentSlide = SLIDES[active];
 
   return (
-    <section className="relative bg-forest pb-10 sm:pb-8 md:pb-6">
+    /*
+      The bottom padding reserves room for the lower half of the search bar.
+      It uses the page colour (bg-cream) instead of bg-forest so there is no dark strip:
+      the bar sits 50% on the image and 50% on the page background.
+      If the section after the hero is not cream, change bg-cream to match it.
+    */
+    <section className="relative bg-cream pb-32 sm:pb-10 md:pb-8">
       <div className="relative min-h-[76svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
-        <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 z-0 overflow-hidden bg-forest">
           {SLIDES.map((slide, i) => (
             <div
               key={slide.src}
@@ -218,7 +224,7 @@ export default function Hero() {
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pb-40 pt-28 sm:min-h-[82svh] sm:px-10 sm:pb-16 sm:pt-32 md:min-h-[86svh] md:pb-20 md:pt-36 lg:px-16">
+        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-4 pb-40 pt-28 sm:min-h-[82svh] sm:px-6 sm:pb-16 sm:pt-32 md:min-h-[86svh] md:pb-20 md:pt-36">
           <div key={active} className="hero-content max-w-3xl motion-reduce:animate-none">
             <div className="hero-badge">
               <span className="inline-block rounded-full bg-cream/95 px-3 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:px-4 sm:text-xs">
@@ -267,11 +273,10 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2">
-          <div className="mx-auto max-w-6xl px-5 sm:px-10 lg:px-16">
-            <div className="max-w-3xl">
-              <SearchBar />
-            </div>
+        {/* Search bar: bottom-0 + translate-y-1/2 = exactly 50% on the image, 50% below it */}
+        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2 px-4 sm:px-6">
+          <div className="mx-auto max-w-6xl">
+            <SearchBar />
           </div>
         </div>
       </div>
