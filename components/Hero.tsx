@@ -267,9 +267,11 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2 px-5 sm:px-10 lg:px-16">
-          <div className="mx-auto max-w-6xl">
-            <SearchBar />
+        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2">
+          <div className="mx-auto max-w-6xl px-5 sm:px-10 lg:px-16">
+            <div className="max-w-3xl">
+              <SearchBar />
+            </div>
           </div>
         </div>
       </div>
