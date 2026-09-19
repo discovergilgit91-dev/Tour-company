@@ -26,7 +26,12 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-10 lg:px-16">
+      {/*
+        Same container as the Hero text: max-w-6xl + px-4 (mobile) / px-6 (sm and up).
+        Keep these two values identical in Hero.tsx and Header.tsx so the logo and
+        the hero text always share the same left edge.
+      */}
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
         <Logo />
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -58,14 +63,15 @@ export default function Header() {
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="flex h-10 w-10 items-center justify-center rounded-full text-cream lg:hidden"
+          className="-mr-2 flex h-10 w-10 items-center justify-center rounded-full text-cream lg:hidden"
         >
           <MenuIcon open={open} />
         </button>
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-cream/10 bg-forest px-5 py-4 sm:px-10 lg:hidden">
+        /* nav padding (px-2 / sm:px-4) + link padding (px-2) = 16px / 24px, same as the header container */
+        <nav className="flex flex-col gap-1 border-t border-cream/10 bg-forest px-2 py-4 sm:px-4 lg:hidden">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
