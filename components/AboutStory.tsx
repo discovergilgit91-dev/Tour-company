@@ -10,13 +10,19 @@ const STATS = [
 
 export default function AboutStory() {
   return (
-    <section id="our-story" className="relative overflow-hidden bg-night px-5 py-20 text-cream sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+    /* No horizontal padding on the section: it lives inside the container below,
+       exactly like Header, Hero and FeaturedDestinations (max-w-6xl + px-4 sm:px-6).
+       Vertical padding is the same as FeaturedDestinations too. */
+    <section
+      id="our-story"
+      className="relative overflow-hidden bg-night py-20 text-cream sm:py-24 lg:py-28"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-green/10 blur-3xl"
       />
 
-      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
         <div className="relative order-2 aspect-[4/5] w-full overflow-hidden rounded-[28px] lg:order-1">
           <Image
             src="/Images/about/our-story.jpg"
