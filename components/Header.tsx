@@ -26,7 +26,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-10 lg:px-16">
         <Logo />
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -65,7 +65,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-cream/10 bg-forest px-5 py-4 lg:hidden">
+        <nav className="flex flex-col gap-1 border-t border-cream/10 bg-forest px-5 py-4 sm:px-10 lg:hidden">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
