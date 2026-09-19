@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Work_Sans } from "next/font/google";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import "./globals.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -21,14 +21,10 @@ export const metadata: Metadata = {
   description: "Guided journeys through Gilgit-Baltistan",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${fraunces.variable} ${workSans.variable}`}>
-      <body className="font-[family-name:var(--font-work-sans)]">
+      <body className="bg-cream font-sans text-forest">
         <Header />
         {children}
         <Footer />
