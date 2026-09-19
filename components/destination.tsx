@@ -182,7 +182,10 @@ export default function FeaturedDestinations({
   destinations?: Destination[];
 }) {
   return (
-    <section className="relative overflow-hidden bg-cream px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+    <section
+      id="destinations"
+      className="relative overflow-hidden bg-cream px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"

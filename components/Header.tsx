@@ -1,24 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./ui/Logo";
 import { LinkButton } from "./ui/Button";
 import { MenuIcon } from "./ui/icons";
-
-const NAV_LINKS = [
-  { href: "/destinations", label: "Destinations" },
-  { href: "/about", label: "Our Story" },
-  { href: "/tours", label: "Upcoming Tours & Events" },
-  { href: "/reviews", label: "Reviews" },
-  { href: "/contact", label: "Contact" },
-];
+import { NAV_LINKS } from "@/lib/nav";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-forest/90 text-cream backdrop-blur-md">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 text-cream transition-colors duration-300 ${
+        scrolled || open
+          ? "bg-forest/90 backdrop-blur-md shadow-[0_4px_20px_rgba(7,23,25,0.15)]"
+          : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-6 lg:px-8">
         <Logo />
 
