@@ -13,7 +13,7 @@ const TOURS = [
     title: "Blossoms of Hunza",
     subtitle: "Spring Tour",
     date: "25 May – 29 May, 2024",
-    image: "/Images/tours/hunza-spring.jpg",
+    image: "/Images/tours/hunza-spring.png",
   },
   {
     id: "rakaposhi-trek",
@@ -22,7 +22,7 @@ const TOURS = [
     title: "Rakaposhi Base Camp Trek",
     subtitle: "",
     date: "10 Jun – 16 Jun, 2024",
-    image: "/Images/tours/rakaposhi-trek.jpg",
+    image: "/Images/tours/rakaposhi.png",
   },
   {
     id: "altit-baltit",
@@ -31,20 +31,21 @@ const TOURS = [
     title: "Cultural Heritage Tour",
     subtitle: "",
     date: "05 Jul – 08 Jul, 2024",
-    image: "/Images/tours/altit-baltit.jpg",
+    image: "/Images/tours/culture-hunza.png",
   },
   {
-    id: "shigar-camping",
+    // 4th card: Nanga Parbat (was "Shigar Valley Camping Experience")
+    id: "nanga-parbat-camping",
     duration: "3 DAYS",
-    location: "SHIGAR VALLEY",
-    title: "Shigar Valley Camping Experience",
+    location: "DIAMER – NANGA PARBAT",
+    title: "Nanga Parbat Camping Experience",
     subtitle: "",
     date: "20 Jul – 22 Jul, 2024",
-    image: "/Images/tours/shigar-camping.jpg",
+    image: "/Images/tours/night.png",
   },
 ];
 
-const HERO_IMAGE = "/Images/hero/upcoming-hero.jpg";
+const HERO_IMAGE = "/Images/tours/Attabad-Lake.webp";
 
 function IconClock({ size = 16 }: { size?: number }) {
   return (
@@ -281,114 +282,130 @@ export default function UpcomingTours() {
   const progress = ((activePage + 1) / pageCount) * 100;
 
   return (
+    /* No horizontal padding on the section: it lives in the container below,
+       exactly like Header, Hero, FeaturedDestinations and AboutStory
+       (max-w-6xl + px-4 sm:px-6). Vertical padding matches them too. */
     <section
       id="tours"
-      className="relative w-full overflow-hidden bg-cream px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
+      className="relative isolate w-full overflow-hidden bg-cream py-20 sm:py-24 lg:py-28"
     >
-      <div className="pointer-events-none absolute right-0 top-0 hidden h-[340px] w-[58%] select-none lg:block">
-        <Image src={HERO_IMAGE} alt="" fill priority sizes="60vw" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/70 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-cream to-transparent" />
-      </div>
-
-      <ArtContours className="pointer-events-none absolute right-[34%] top-0 hidden h-[320px] w-[34%] text-gold/20 lg:block" />
-
-      <div className="relative mx-auto w-full max-w-6xl">
-        <div className="mb-10 flex flex-col gap-8 sm:mb-12 lg:mb-14 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-xl">
-            <div className="mb-6 flex items-center gap-4">
-              <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-forest">
-                Upcoming
-              </span>
-              <span className="h-px w-8 bg-forest/35" />
-              <span className="text-forest/70">
-                <IconPeaks size={30} />
-              </span>
-            </div>
-
-            <h2 className="font-serif text-[46px] leading-[1.04] tracking-[-0.01em] text-forest sm:text-[56px] lg:text-[62px]">
-              Upcoming Tours
-              <br />
-              &amp; Events
-            </h2>
-
-            <p className="mt-6 max-w-[26rem] font-sans text-[15px] leading-[1.75] text-muted">
-              Explore the unmatched beauty of Gilgit Baltistan with our carefully planned tours
-              and experiences.
-            </p>
+      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
+        {/* Inner wrapper has no padding, so the absolute image/contours below
+            are positioned against the CONTENT edge (same edge as the cards). */}
+        <div className="relative">
+          {/* Top-right Attabad Lake image — right edge aligned with the last card */}
+          <div className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-[320px] w-[56%] select-none overflow-hidden rounded-[18px] lg:block">
+            <Image
+              src={HERO_IMAGE}
+              alt=""
+              fill
+              priority
+              quality={90}
+              sizes="(min-width: 1152px) 620px, 56vw"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/70 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-cream to-transparent" />
           </div>
 
-          <div className="flex items-start gap-4 lg:mt-24 lg:pr-[18%]">
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-forest text-white">
-              <CompassIcon size={20} />
-            </span>
-            <div>
-              <p className="max-w-[190px] font-sans text-[15px] leading-[1.5] text-forest">
-                Extraordinary Journeys in the Land of Giants
+          <ArtContours className="pointer-events-none absolute right-[38%] top-0 -z-10 hidden h-[320px] w-[36%] text-gold/20 lg:block" />
+
+          <div className="mb-10 flex flex-col gap-8 sm:mb-12 lg:mb-14 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-xl">
+              <div className="mb-6 flex items-center gap-4">
+                <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-forest">
+                  Upcoming
+                </span>
+                <span className="h-px w-8 bg-forest/35" />
+                <span className="text-forest/70">
+                  <IconPeaks size={30} />
+                </span>
+              </div>
+
+              <h2 className="font-serif text-[46px] leading-[1.04] tracking-[-0.01em] text-forest sm:text-[56px] lg:text-[62px]">
+                Upcoming Tours
+                <br />
+                &amp; Events
+              </h2>
+
+              <p className="mt-6 max-w-[26rem] font-sans text-[15px] leading-[1.75] text-muted">
+                Explore the unmatched beauty of Gilgit Baltistan with our carefully planned tours
+                and experiences.
               </p>
-              <span className="mt-4 block h-px w-10 bg-gold" />
+            </div>
+
+            <div className="flex items-start gap-4 lg:mt-24 lg:pr-[18%]">
+              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-forest text-white">
+                <CompassIcon size={20} />
+              </span>
+              <div>
+                <p className="max-w-[190px] font-sans text-[15px] leading-[1.5] text-forest">
+                  Extraordinary Journeys in the Land of Giants
+                </p>
+                <span className="mt-4 block h-px w-10 bg-gold" />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div
-          ref={trackRef}
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          style={{ scrollBehavior: "smooth" }}
-        >
-          {TOURS.map((tour) => (
+          <div
+            ref={trackRef}
+            className="flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollBehavior: "smooth" }}
+          >
+            {TOURS.map((tour) => (
+              <div
+                key={tour.id}
+                data-tour-card
+                className="w-full shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]"
+              >
+                <TourCard tour={tour} />
+              </div>
+            ))}
+
             <div
-              key={tour.id}
               data-tour-card
               className="w-full shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]"
             >
-              <TourCard tour={tour} />
+              <ComingSoonCard />
             </div>
-          ))}
-
-          <div
-            data-tour-card
-            className="w-full shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]"
-          >
-            <ComingSoonCard />
           </div>
-        </div>
 
-        <div className="mt-10 flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
-          <div className="flex shrink-0 items-center gap-3">
-            <IconButton
-              variant="outline"
-              onClick={() => scrollToPage(activePage - 1)}
-              disabled={activePage === 0}
-              aria-label="Previous tours"
-            >
-              <span className="rotate-180">
+          <div className="mt-10 flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+            <div className="flex shrink-0 items-center gap-3">
+              <IconButton
+                variant="outline"
+                onClick={() => scrollToPage(activePage - 1)}
+                disabled={activePage === 0}
+                aria-label="Previous tours"
+              >
+                <span className="rotate-180">
+                  <ArrowIcon size={17} />
+                </span>
+              </IconButton>
+
+              <IconButton
+                onClick={() => scrollToPage(activePage + 1)}
+                disabled={activePage >= pageCount - 1}
+                aria-label="Next tours"
+              >
                 <ArrowIcon size={17} />
+              </IconButton>
+            </div>
+
+            <div className="relative h-px flex-1 bg-forest/12">
+              <span
+                className="absolute left-0 top-0 h-px bg-forest transition-[width] duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+
+            <LinkButton href="/tours" variant="dark" className="group shrink-0 gap-4 rounded-[10px] text-[12px] uppercase tracking-[0.12em]">
+              <span>View all tours &amp; events</span>
+              <span className="text-forest/70">
+                <IconPeaks size={28} />
               </span>
-            </IconButton>
-
-            <IconButton
-              onClick={() => scrollToPage(activePage + 1)}
-              disabled={activePage >= pageCount - 1}
-              aria-label="Next tours"
-            >
-              <ArrowIcon size={17} />
-            </IconButton>
+            </LinkButton>
           </div>
-
-          <div className="relative h-px flex-1 bg-forest/12">
-            <span
-              className="absolute left-0 top-0 h-px bg-forest transition-[width] duration-500 ease-out"
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-
-          <LinkButton href="/tours" variant="dark" className="group shrink-0 gap-4 rounded-[10px] text-[12px] uppercase tracking-[0.12em]">
-            <span>View all tours &amp; events</span>
-            <span className="text-forest/70">
-              <IconPeaks size={28} />
-            </span>
-          </LinkButton>
         </div>
       </div>
 
