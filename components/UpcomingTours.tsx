@@ -283,7 +283,7 @@ export default function UpcomingTours() {
   return (
     <section
       id="tours"
-      className="relative w-full overflow-hidden bg-cream px-5 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24"
+      className="relative w-full overflow-hidden bg-cream px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
     >
       <div className="pointer-events-none absolute right-0 top-0 hidden h-[340px] w-[58%] select-none lg:block">
         <Image src={HERO_IMAGE} alt="" fill priority sizes="60vw" className="object-cover" />
@@ -293,7 +293,7 @@ export default function UpcomingTours() {
 
       <ArtContours className="pointer-events-none absolute right-[34%] top-0 hidden h-[320px] w-[34%] text-gold/20 lg:block" />
 
-      <div className="relative mx-auto w-full max-w-[1240px]">
+      <div className="relative mx-auto w-full max-w-6xl">
         <div className="mb-10 flex flex-col gap-8 sm:mb-12 lg:mb-14 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-xl">
             <div className="mb-6 flex items-center gap-4">
