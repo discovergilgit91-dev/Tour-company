@@ -1,7 +1,10 @@
 import { supabase } from "@/lib/supabase";
 import Hero from "@/components/Hero";
 import FeaturedDestinations from "@/components/destination";
+import AboutStory from "@/components/AboutStory";
 import UpcomingTours from "@/components/UpcomingTours";
+import Testimonials from "@/components/Testimonials";
+import ContactSection from "@/components/ContactSection";
 
 type Tour = {
   id: number;
@@ -29,13 +32,13 @@ export default async function Home() {
     <main className="min-h-screen bg-cream">
       <Hero />
       <FeaturedDestinations />
+      <AboutStory />
       <UpcomingTours />
 
-      <section className="bg-cream">
-        <div className="mx-auto w-full max-w-6xl px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
-          {error ? (
-            <p className="text-sm text-red-600">Unable to load tours at the moment.</p>
-          ) : tours && tours.length > 0 ? (
+      {!error && tours && tours.length > 0 ? (
+        <section className="bg-cream">
+          <div className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-10 sm:pb-24 lg:px-16 lg:pb-28">
+            <h3 className="mb-8 font-serif text-2xl text-forest">More tours from our team</h3>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {tours.map((tour) => (
                 <article key={tour.id} className="overflow-hidden rounded-[28px] bg-white shadow-sm">
@@ -63,9 +66,12 @@ export default async function Home() {
                 </article>
               ))}
             </div>
-          ) : null}
-        </div>
-      </section>
+          </div>
+        </section>
+      ) : null}
+
+      <Testimonials />
+      <ContactSection />
     </main>
   );
 }

@@ -24,6 +24,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Offsets anchor-scrolled sections so the fixed header never covers
+   their heading. */
+[id] {
+  scroll-margin-top: 88px;
+}
+
 body {
   margin: 0;
 }

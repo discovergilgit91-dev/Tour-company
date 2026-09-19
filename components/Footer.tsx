@@ -1,14 +1,7 @@
 import Link from "next/link";
 import { Logo, PeakMark } from "./ui/Logo";
 import { ArrowIcon, CompassIcon } from "./ui/icons";
-
-const EXPLORE_LINKS = [
-  { href: "/destinations", label: "Destinations" },
-  { href: "/about", label: "Our Story" },
-  { href: "/tours", label: "Upcoming Tours & Events" },
-  { href: "/reviews", label: "Reviews" },
-  { href: "/contact", label: "Contact" },
-];
+import { NAV_LINKS as EXPLORE_LINKS } from "@/lib/nav";
 
 const ACCOUNT_LINKS = [
   { href: "/sign-in", label: "Sign In" },

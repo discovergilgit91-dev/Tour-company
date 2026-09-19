@@ -281,7 +281,10 @@ export default function UpcomingTours() {
   const progress = ((activePage + 1) / pageCount) * 100;
 
   return (
-    <section className="relative w-full overflow-hidden bg-cream px-5 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24">
+    <section
+      id="tours"
+      className="relative w-full overflow-hidden bg-cream px-5 py-16 sm:px-10 sm:py-20 lg:px-14 lg:py-24"
+    >
       <div className="pointer-events-none absolute right-0 top-0 hidden h-[340px] w-[58%] select-none lg:block">
         <Image src={HERO_IMAGE} alt="" fill priority sizes="60vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/70 to-transparent" />

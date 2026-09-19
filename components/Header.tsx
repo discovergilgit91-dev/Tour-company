@@ -5,14 +5,7 @@ import Link from "next/link";
 import { Logo } from "./ui/Logo";
 import { LinkButton } from "./ui/Button";
 import { MenuIcon } from "./ui/icons";
-
-const NAV_LINKS = [
-  { href: "/destinations", label: "Destinations" },
-  { href: "/about", label: "Our Story" },
-  { href: "/tours", label: "Upcoming Tours & Events" },
-  { href: "/reviews", label: "Reviews" },
-  { href: "/contact", label: "Contact" },
-];
+import { NAV_LINKS } from "@/lib/nav";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
