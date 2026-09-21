@@ -309,7 +309,7 @@ export default function UpcomingTours() {
             <h2 className="font-serif text-[46px] leading-[1.04] tracking-[-0.01em] text-forest sm:text-[56px] lg:text-[62px]">
               Upcoming Tours
               <br />
-              &amp; Events
+              <span className="text-green">&amp; Events</span>
             </h2>
 
             <p className="mt-6 max-w-[26rem] font-sans text-[15px] leading-[1.75] text-muted">

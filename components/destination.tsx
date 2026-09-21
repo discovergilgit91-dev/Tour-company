@@ -170,13 +170,15 @@ function DestinationCard({
 
 export default function FeaturedDestinations({
   eyebrow = "Featured destinations",
-  heading = "Places that stay with you",
+  heading = "Places that stay",
+  headingAccent = "with you",
   ctaLabel = "View all lands",
   ctaHref = "/destinations",
   destinations = DEFAULT_DESTINATIONS,
 }: {
   eyebrow?: string;
   heading?: string;
+  headingAccent?: string;
   ctaLabel?: string;
   ctaHref?: string;
   destinations?: Destination[];
@@ -201,6 +203,8 @@ export default function FeaturedDestinations({
 
             <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
               {heading}
+              <br />
+              <span className="text-green">{headingAccent}</span>
             </h2>
 
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">

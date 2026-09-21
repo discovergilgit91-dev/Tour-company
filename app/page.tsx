@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import Hero from "@/components/Hero";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import FeaturedDestinations from "@/components/destination";
 import AboutStory from "@/components/AboutStory";
 import UpcomingTours from "@/components/UpcomingTours";
@@ -31,6 +32,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-cream">
       <Hero />
+      <WhyChooseUs />
       <FeaturedDestinations />
       <AboutStory />
       <UpcomingTours />

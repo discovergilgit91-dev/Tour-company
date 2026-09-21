@@ -70,7 +70,9 @@ export default function Testimonials() {
             </div>
 
             <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
-              Trusted by travelers
+              Trusted
+              <br />
+              <span className="text-green">by travelers</span>
             </h2>
           </div>
 
