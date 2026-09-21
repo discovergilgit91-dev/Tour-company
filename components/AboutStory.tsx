@@ -10,7 +10,7 @@ const STATS = [
 
 export default function AboutStory() {
   return (
-    <section id="our-story" className="relative overflow-hidden bg-night px-5 py-20 text-cream sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+    <section id="our-story" className="relative overflow-hidden bg-night px-5 py-20 text-cream sm:px-6 sm:py-24 lg:px-8 lg:py-28">
       <div
         aria-hidden
         className="pointer-events-none absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-green/10 blur-3xl"
