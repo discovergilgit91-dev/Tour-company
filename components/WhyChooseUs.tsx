@@ -90,8 +90,8 @@ const REASONS: Reason[] = [
   {
     id: "authentic",
     Icon: IconHeritage,
-    image: "/Images/tours/culture-hunza.png",
-    place: "Hunza Valley",
+    image: "/Images/tours/baltit-fort.png",
+    place: "Baltit Fort",
     title: "Authentic Local Experiences",
     description:
       "Experience Gilgit-Baltistan through local culture, traditions, hidden gems, and authentic experiences.",
@@ -108,7 +108,7 @@ const REASONS: Reason[] = [
   {
     id: "guidance",
     Icon: IconShieldCheck,
-    image: "/Images/tours/rakaposhi.png",
+    image: "/Images/tours/rakaposhi-trek.jpg",
     place: "Rakaposhi",
     title: "Trusted Local Guidance",
     description:
