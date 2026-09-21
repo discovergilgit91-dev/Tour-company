@@ -52,7 +52,7 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/15 text-cream/55 transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
+      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cream/15 text-cream/55 transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
     >
       {children}
     </a>
@@ -63,18 +63,20 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="group flex items-center justify-between gap-4 text-[11px] text-cream/60 transition-colors hover:text-cream"
+      className="group flex items-center justify-between gap-4 text-[11px] leading-none text-cream/60 transition-colors hover:text-cream"
     >
       <span>{children}</span>
-      <ArrowIcon />
+      <span className="flex shrink-0 items-center">
+        <ArrowIcon />
+      </span>
     </Link>
   );
 }
 
 function FooterColumn({ title, links }: { title: string; links: typeof EXPLORE_LINKS }) {
   return (
-    <div>
-      <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
+    <div className="w-full max-w-[210px]">
+      <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold leading-none text-gold">
         {title}
       </h3>
       <ul className="mt-5 space-y-3.5">
@@ -101,65 +103,78 @@ export default function Footer() {
       />
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-12 sm:px-10 sm:py-14 lg:px-16">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-[1.25fr_1fr_1fr] md:gap-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-[1.25fr_1fr_1fr] md:gap-8 lg:gap-12">
           {/* BRAND */}
           <div className="border-b border-cream/[0.08] pb-9 sm:col-span-2 md:col-span-1 md:border-b-0 md:border-r md:pb-0 md:pr-8">
-            <Logo />
+            <div className="max-w-[300px]">
+              <Logo />
 
-            <p className="mt-5 max-w-[285px] text-[12px] leading-[1.8] text-cream/50">
-              Guided journeys through the valleys, rivers, villages, and peaks of
-              Gilgit-Baltistan.
-            </p>
+              <p className="mt-5 text-[12px] leading-[1.8] text-cream/50">
+                Guided journeys through the valleys, rivers, villages, and peaks of
+                Gilgit-Baltistan.
+              </p>
 
-            <div className="mt-6 flex w-full max-w-[302px] items-center gap-3 rounded-xl border border-cream/[0.09] bg-cream/[0.025] px-3.5 py-3">
-              <CompassIcon />
-              <div className="min-w-0">
-                <p className="text-[8px] font-semibold uppercase tracking-[0.22em] text-gold">
-                  Our Home
-                </p>
-                <p className="mt-1 truncate text-[11px] text-cream/60">
-                  Gilgit-Baltistan, Pakistan
-                </p>
+              <div className="mt-6 flex w-full items-center gap-3 rounded-xl border border-cream/[0.09] bg-cream/[0.025] px-3.5 py-3">
+                <span className="flex shrink-0 items-center">
+                  <CompassIcon />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[8px] font-semibold uppercase tracking-[0.22em] text-gold">
+                    Our Home
+                  </p>
+                  <p className="mt-1 truncate text-[11px] text-cream/60">
+                    Gilgit-Baltistan, Pakistan
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className="mt-6 flex items-center gap-2.5">
-              <SocialIcon href="#" label="Instagram">
-                <InstagramIcon />
-              </SocialIcon>
-              <SocialIcon href="#" label="Facebook">
-                <FacebookIcon />
-              </SocialIcon>
-              <SocialIcon href="#" label="WhatsApp">
-                <WhatsAppIcon />
-              </SocialIcon>
+              <div className="mt-6 flex items-center gap-2.5">
+                <SocialIcon href="#" label="Instagram">
+                  <InstagramIcon />
+                </SocialIcon>
+                <SocialIcon href="#" label="Facebook">
+                  <FacebookIcon />
+                </SocialIcon>
+                <SocialIcon href="#" label="WhatsApp">
+                  <WhatsAppIcon />
+                </SocialIcon>
+              </div>
             </div>
           </div>
 
+          {/* EXPLORE */}
           <FooterColumn title="Explore" links={EXPLORE_LINKS} />
 
-          <div>
+          {/* ACCOUNT */}
+          <div className="w-full max-w-[210px]">
             <FooterColumn title="Account" links={ACCOUNT_LINKS} />
 
             <Link
               href="/tours"
-              className="mt-8 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
+              className="mt-8 inline-flex items-center gap-2.5 text-[11px] font-medium leading-none text-gold transition-colors hover:text-gold/80"
             >
-              <PeakMark />
+              <span className="flex shrink-0 items-center">
+                <PeakMark />
+              </span>
               <span>Plan your journey</span>
-              <ArrowIcon />
+              <span className="flex shrink-0 items-center">
+                <ArrowIcon />
+              </span>
             </Link>
           </div>
         </div>
 
+        {/* BOTTOM BAR */}
         <div className="mt-10 border-t border-cream/[0.08] pt-5 sm:mt-11">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2.5 text-[9px] text-cream/35">
-              <CompassIcon />
+          <div className="flex flex-col gap-3 text-left sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-2.5 text-[9px] leading-none text-cream/35">
+              <span className="flex shrink-0 items-center">
+                <CompassIcon />
+              </span>
               <span>35.9° N, 74.3° E — Gilgit-Baltistan</span>
             </div>
 
-            <p className="text-[9px] text-cream/35 sm:text-right">
+            <p className="text-[9px] leading-none text-cream/35 sm:text-right">
               © {new Date().getFullYear()} Discover Gilgit. All rights reserved.
             </p>
           </div>
