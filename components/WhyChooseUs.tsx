@@ -90,16 +90,16 @@ const REASONS: Reason[] = [
   {
     id: "authentic",
     Icon: IconHeritage,
-    image: "/Images/tours/baltit-fort.png",
+    image: "/Images/tours/local-food.png",
     place: "Baltit Fort",
     title: "Authentic Local Experiences",
     description:
-      "Experience Gilgit-Baltistan through local culture, traditions, hidden gems, and authentic experiences.",
+      "Experience Gilgit-Baltistan through local culture, traditions-food, hidden gems, and authentic experiences.",
   },
   {
     id: "hidden-gems",
     Icon: IconGem,
-    image: "/Images/tours/passu-cones.jpg",
+    image: "/Images/tours/hidden-gems.png",
     place: "Passu Cones",
     title: "Explore Hidden Gems",
     description:
@@ -108,7 +108,7 @@ const REASONS: Reason[] = [
   {
     id: "guidance",
     Icon: IconShieldCheck,
-    image: "/Images/tours/rakaposhi-trek.jpg",
+    image: "/Images/tours/local-guidance.png",
     place: "Rakaposhi",
     title: "Trusted Local Guidance",
     description:
@@ -254,15 +254,19 @@ export default function WhyChooseUs() {
   const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
 
   return (
-    /* Same container as Header, Hero and every other section:
-       max-w-6xl + px-4 sm:px-6, with no horizontal padding on the section itself. */
-    <section id="why-choose-us" className="relative overflow-hidden bg-cream py-20 sm:py-24 lg:py-28">
+    /* Same container as UpcomingTours:
+       horizontal padding lives on the section (px-5 sm:px-6 lg:px-8),
+       the inner wrapper is just max-w-6xl, and vertical padding is py-16 sm:py-20 lg:py-24. */
+    <section
+      id="why-choose-us"
+      className="relative w-full overflow-hidden bg-cream px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+    >
       <div
         aria-hidden
         className="pointer-events-none absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-gold/5 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-6xl">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
