@@ -117,7 +117,7 @@ const REASONS: Reason[] = [
   {
     id: "adventure",
     Icon: IconMountainSun,
-    image: "/Images/tours/adventure.jpg",
+    image: "/Images/tours/adventures.png",
     place: "Nanga Parbat",
     title: "Adventure & Nature",
     description:
