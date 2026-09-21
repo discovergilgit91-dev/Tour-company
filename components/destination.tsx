@@ -186,7 +186,7 @@ export default function FeaturedDestinations({
   return (
     <section
       id="destinations"
-      className="relative overflow-hidden bg-cream px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
+      className="relative overflow-hidden bg-cream px-5 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
     >
       <div
         aria-hidden
