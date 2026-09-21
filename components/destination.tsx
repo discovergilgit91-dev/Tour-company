@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon } from "./ui/icons";
 
@@ -12,7 +13,12 @@ type Destination = {
   image: string;
   tag: string;
   href: string;
-  span: string;
+  /** Approximate elevation shown under the photo */
+  altitude: string;
+  /** Optional CSS object-position for the photo crop, e.g. "50% 30%" */
+  focus?: string;
+  /** No longer used by the layout — kept so existing callers still type-check */
+  span?: string;
 };
 
 const DEFAULT_DESTINATIONS: Destination[] = [
@@ -23,7 +29,7 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     image: "/Images/tours/passu-cones.jpg",
     tag: "Discover Hunza",
     href: "/destinations/hunza-valley",
-    span: "lg:col-span-7",
+    altitude: "2,500 m",
   },
   {
     id: "deosai",
@@ -33,7 +39,7 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     image: "/Images/tours/deosai-plains.png",
     tag: "Explore Deosai",
     href: "/destinations/deosai-plains",
-    span: "lg:col-span-5",
+    altitude: "4,114 m",
   },
   {
     id: "skardu",
@@ -42,7 +48,7 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     image: "/Images/tours/cold-desert.png",
     tag: "Discover Skardu",
     href: "/destinations/skardu-katpana",
-    span: "lg:col-span-5",
+    altitude: "2,230 m",
   },
   {
     id: "fairy-meadows",
@@ -51,16 +57,9 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     image: "/Images/tours/nanga-parbat.png",
     tag: "Discover Fairy Meadows",
     href: "/destinations/fairy-meadows",
-    span: "lg:col-span-7",
+    altitude: "3,300 m",
   },
 ];
-
-const DESTINATION_NUMBERS: Record<string, string> = {
-  hunza: "01",
-  deosai: "02",
-  skardu: "03",
-  "fairy-meadows": "04",
-};
 
 function useRevealOnScroll<T extends HTMLElement>() {
   const ref = useRef<T | null>(null);
@@ -69,6 +68,11 @@ function useRevealOnScroll<T extends HTMLElement>() {
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setVisible(true);
+      return;
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -89,81 +93,68 @@ function useRevealOnScroll<T extends HTMLElement>() {
 
 function DestinationCard({
   destination,
-  className = "",
+  index,
   delay = 0,
 }: {
   destination: Destination;
-  className?: string;
+  index: number;
   delay?: number;
 }) {
-  const { name, blurb, image, tag, href } = destination;
+  const { name, blurb, image, tag, href, altitude, focus } = destination;
   const { ref, visible } = useRevealOnScroll<HTMLAnchorElement>();
+  const number = String(index + 1).padStart(2, "0");
 
   return (
     <Link
       ref={ref}
       href={href}
-      style={visible ? { animationDelay: `${delay}ms` } : undefined}
+      style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
       className={[
-        "destination-card group relative isolate block min-h-[330px] overflow-hidden rounded-[28px] outline-none",
-        "transition-all duration-700 ease-out hover:-translate-y-2 hover:shadow-[0_30px_70px_rgba(20,35,31,0.25)]",
+        "group block rounded-[22px] outline-none",
         "focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream",
-        "sm:min-h-[370px] md:min-h-[390px] lg:min-h-[410px]",
-        visible ? "destination-card-visible" : "",
-        className,
+        "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
+        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
       ].join(" ")}
     >
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        <img
+      {/* photo — clean, just a round button in the corner */}
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-forest">
+        <Image
           src={image}
           alt={name}
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+          fill
+          quality={85}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+          style={focus ? { objectPosition: focus } : undefined}
+          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
         />
-      </div>
 
-      <div
-        aria-hidden
-        className="absolute inset-0 z-[1] bg-gradient-to-t from-forest/95 via-forest/35 to-transparent opacity-90 transition-all duration-700 group-hover:via-forest/20"
-      />
-
-      <div className="absolute left-6 top-6 z-10 sm:left-7 sm:top-7">
-        <span className="inline-flex items-center rounded-full border border-cream/20 bg-cream/10 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-cream backdrop-blur-md transition-all duration-500 group-hover:bg-cream/20">
-          Pakistan
+        <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-cream text-forest shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green group-hover:text-white">
+          <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
+            <ArrowIcon size={16} />
+          </span>
         </span>
       </div>
 
-      <div className="absolute right-6 top-6 z-10 font-serif text-sm text-cream/60 transition-all duration-500 group-hover:text-cream sm:right-7 sm:top-7">
-        {DESTINATION_NUMBERS[destination.id]}
-      </div>
-
-      <div className="absolute inset-x-0 bottom-0 z-10 p-6 transition-transform duration-700 ease-out group-hover:-translate-y-1 sm:p-8">
-        <div className="max-w-xl">
-          <h3 className="font-serif text-3xl leading-[1.05] tracking-tight text-cream sm:text-4xl">
-            {name}
-          </h3>
-
-          <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-cream/75 transition-all duration-500 group-hover:text-cream/90">
-            {blurb}
-          </p>
-
-          <div className="mt-5 flex items-center gap-3">
-            <span className="text-xs font-semibold uppercase tracking-[0.12em] text-gold transition-colors duration-300 group-hover:text-cream">
-              {tag}
-            </span>
-
-            <span className="flex h-7 w-7 items-center justify-center rounded-full border border-cream/25 bg-cream/10 text-cream backdrop-blur-sm transition-all duration-500 group-hover:translate-x-2 group-hover:border-cream/60 group-hover:bg-cream group-hover:text-forest">
-              <ArrowIcon size={13} />
-            </span>
-          </div>
+      {/* caption: number + elevation, a hairline that turns green on hover, then the text */}
+      <div className="mt-4">
+        <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+          <span>{number}</span>
+          <span className="flex items-center gap-1.5">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-green">
+              <path d="M2 20 9.5 7l4 6.5L16 10l6 10H2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+            </svg>
+            {altitude}
+          </span>
         </div>
-      </div>
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-20 rounded-[28px] border border-cream/0 transition-all duration-700 group-hover:border-cream/25"
-      />
+        <div className="relative mt-3 h-px bg-forest/10">
+          <span className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-green transition-transform duration-500 ease-out group-hover:scale-x-100" />
+        </div>
+
+        <h3 className="mt-4 font-serif text-2xl leading-tight tracking-tight text-forest">{name}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{blurb}</p>
+        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
+      </div>
     </Link>
   );
 }
@@ -222,13 +213,13 @@ export default function FeaturedDestinations({
           </LinkButton>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {destinations.map((destination, index) => (
             <DestinationCard
               key={destination.id}
               destination={destination}
-              className={destination.span}
-              delay={index * 140}
+              index={index}
+              delay={index * 120}
             />
           ))}
         </div>
