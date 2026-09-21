@@ -90,7 +90,7 @@ const REASONS: Reason[] = [
   {
     id: "authentic",
     Icon: IconHeritage,
-    image: "/Images/tours/local-food.png",
+    image: "/Images/tours/baltit-fort.png",
     place: "Baltit Fort",
     title: "Authentic Local Experiences",
     description:
@@ -99,7 +99,7 @@ const REASONS: Reason[] = [
   {
     id: "hidden-gems",
     Icon: IconGem,
-    image: "/Images/tours/hidden-gems.png",
+    image: "/Images/tours/passu-cones.jpg",
     place: "Passu Cones",
     title: "Explore Hidden Gems",
     description:
@@ -108,7 +108,7 @@ const REASONS: Reason[] = [
   {
     id: "guidance",
     Icon: IconShieldCheck,
-    image: "/Images/tours/local-guidance.png",
+    image: "/Images/tours/rakaposhi-trek.jpg",
     place: "Rakaposhi",
     title: "Trusted Local Guidance",
     description:
