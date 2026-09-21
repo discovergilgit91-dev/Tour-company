@@ -254,19 +254,20 @@ export default function WhyChooseUs() {
   const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
 
   return (
-    /* Same container as UpcomingTours:
-       horizontal padding lives on the section (px-5 sm:px-6 lg:px-8),
-       the inner wrapper is just max-w-6xl, and vertical padding is py-16 sm:py-20 lg:py-24. */
+    /* Horizontal padding lives on this same div as max-w-6xl (not on the
+       section), matching Header/Hero/UpcomingTours exactly, so content
+       here lines up with the logo/Sign Up edges instead of the wider
+       "centered max-w-6xl inside a padded section" box. */
     <section
       id="why-choose-us"
-      className="relative w-full overflow-hidden bg-cream px-5 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24"
+      className="relative w-full overflow-hidden bg-cream py-16 sm:py-20 lg:py-24"
     >
       <div
         aria-hidden
         className="pointer-events-none absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-gold/5 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl">
+      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
