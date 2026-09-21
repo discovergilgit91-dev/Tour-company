@@ -13,7 +13,7 @@ const TOURS = [
     title: "Blossoms of Hunza",
     subtitle: "Spring Tour",
     date: "25 May – 29 May, 2024",
-    image: "/Images/tours/hunza-spring.jpg",
+    image: "/Images/tours/hunza-spring.png",
   },
   {
     id: "rakaposhi-trek",
@@ -22,7 +22,7 @@ const TOURS = [
     title: "Rakaposhi Base Camp Trek",
     subtitle: "",
     date: "10 Jun – 16 Jun, 2024",
-    image: "/Images/tours/rakaposhi-trek.jpg",
+    image: "/Images/tours/rakaposhi.png",
   },
   {
     id: "altit-baltit",
@@ -31,7 +31,7 @@ const TOURS = [
     title: "Cultural Heritage Tour",
     subtitle: "",
     date: "05 Jul – 08 Jul, 2024",
-    image: "/Images/tours/altit-baltit.jpg",
+    image: "/Images/tours/culture-hunza.png",
   },
   {
     id: "nanga-parbat-camping",
@@ -44,7 +44,7 @@ const TOURS = [
   },
 ];
 
-const HERO_IMAGE = "/Images/hero/upcoming-hero.jpg";
+const HERO_IMAGE = "/images/tours/moutain.png";
 
 function IconClock({ size = 16 }: { size?: number }) {
   return (
