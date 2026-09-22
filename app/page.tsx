@@ -3,9 +3,9 @@ import Hero from "@/components/Hero";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import FeaturedDestinations from "@/components/destination";
 import AboutStory from "@/components/AboutStory";
-import TravelPartner from "@/components/TravelPartner";
 import UpcomingTours from "@/components/UpcomingTours";
 import Testimonials from "@/components/Testimonials";
+import PartnerSection from "@/components/PartnerSection";
 import ContactSection from "@/components/ContactSection";
 
 type Tour = {
@@ -36,7 +36,6 @@ export default async function Home() {
       <WhyChooseUs />
       <FeaturedDestinations />
       <AboutStory />
-      <TravelPartner />
       <UpcomingTours />
 
       {!error && tours && tours.length > 0 ? (
@@ -75,6 +74,7 @@ export default async function Home() {
       ) : null}
 
       <Testimonials />
+      <PartnerSection />
       <ContactSection />
     </main>
   );

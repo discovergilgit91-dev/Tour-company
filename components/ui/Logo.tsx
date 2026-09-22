@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function PeakMark({ className = "" }: { className?: string }) {
@@ -26,10 +27,23 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-2.5 font-serif text-[22px] font-semibold tracking-[-0.02em] transition-opacity hover:opacity-80 ${className}`}
+      aria-label="Discover Gilgit — home"
+      className={`inline-flex shrink-0 items-center transition-opacity hover:opacity-80 ${className}`}
     >
-      <PeakMark />
-      Discover Gilgit
+      {/* A cream badge — not a bare image — so the mark reads as a
+          deliberate emblem (with shadow + edge) instead of a small,
+          washed-out square floating over the hero photo or dark footer. */}
+      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-cream p-1.5 shadow-[0_10px_24px_-10px_rgba(7,23,25,0.5)] ring-1 ring-black/5 sm:h-14 sm:w-14">
+        <Image
+          src="/Images/tours/company-logo.png"
+          alt="Discover Gilgit"
+          fill
+          priority
+          quality={90}
+          sizes="56px"
+          className="object-contain"
+        />
+      </span>
     </Link>
   );
 }
