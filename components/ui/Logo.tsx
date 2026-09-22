@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function PeakMark({ className = "" }: { className?: string }) {
@@ -26,10 +27,24 @@ export function Logo({ className = "" }: { className?: string }) {
   return (
     <Link
       href="/"
-      className={`inline-flex items-center gap-2.5 font-serif text-[22px] font-semibold tracking-[-0.02em] transition-opacity hover:opacity-80 ${className}`}
+      aria-label="Discover Gilgit — home"
+      className={`inline-flex shrink-0 items-center transition-opacity hover:opacity-80 ${className}`}
     >
-      <PeakMark />
-      Discover Gilgit
+      {/* Fixed box + object-contain so the logo scales without distorting no
+          matter the source file's aspect ratio, and object-left keeps its
+          own left edge flush with the container edge (same as every other
+          section) instead of centering inside the box. */}
+      <span className="relative h-8 w-32 sm:h-9 sm:w-36">
+        <Image
+          src="/Images/tours/company-logo.png"
+          alt="Discover Gilgit"
+          fill
+          priority
+          quality={90}
+          sizes="144px"
+          className="object-contain object-left"
+        />
+      </span>
     </Link>
   );
 }
