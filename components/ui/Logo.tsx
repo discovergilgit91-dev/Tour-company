@@ -18,7 +18,12 @@ export function PeakMark({ className = "" }: { className?: string }) {
         strokeWidth="1.6"
         strokeLinejoin="round"
       />
-      <path d="M11 6L16 15L13 18.5L6.5 18.5L11 6Z" className="fill-gold" fillOpacity="0.9" />
+
+      <path
+        d="M11 6L16 15L13 18.5L6.5 18.5L11 6Z"
+        className="fill-gold"
+        fillOpacity="0.9"
+      />
     </svg>
   );
 }
@@ -35,7 +40,7 @@ export function Logo({
     <Link
       href="/"
       aria-label="Discover Gilgit — home"
-      className={`inline-flex shrink-0 items-center transition-opacity hover:opacity-80 ${className}`}
+      className={`group inline-flex shrink-0 items-center ${className}`}
     >
       {/* No background behind the mark at all — just the artwork itself.
           A drop-shadow (follows the logo's own silhouette, not a box)
@@ -46,13 +51,13 @@ export function Logo({
         }`}
       >
         <Image
-          src="/Images/tours/company-logo.png"
-          alt="Discover Gilgit"
+          src="/Images/tours/logo.png"
+          alt="Discover Gilgit-Baltistan"
           fill
           priority
           quality={90}
           sizes={compact ? "56px" : "80px"}
-          className="object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]"
+          className="object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
         />
       </span>
     </Link>
