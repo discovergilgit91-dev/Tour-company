@@ -30,19 +30,18 @@ export function Logo({ className = "" }: { className?: string }) {
       aria-label="Discover Gilgit — home"
       className={`inline-flex shrink-0 items-center transition-opacity hover:opacity-80 ${className}`}
     >
-      {/* Fixed box + object-contain so the logo scales without distorting no
-          matter the source file's aspect ratio, and object-left keeps its
-          own left edge flush with the container edge (same as every other
-          section) instead of centering inside the box. */}
-      <span className="relative h-8 w-32 sm:h-9 sm:w-36">
+      {/* A cream badge — not a bare image — so the mark reads as a
+          deliberate emblem (with shadow + edge) instead of a small,
+          washed-out square floating over the hero photo or dark footer. */}
+      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-cream p-1.5 shadow-[0_10px_24px_-10px_rgba(7,23,25,0.5)] ring-1 ring-black/5 sm:h-14 sm:w-14">
         <Image
           src="/Images/tours/company-logo.png"
           alt="Discover Gilgit"
           fill
           priority
           quality={90}
-          sizes="144px"
-          className="object-contain object-left"
+          sizes="56px"
+          className="object-contain"
         />
       </span>
     </Link>
