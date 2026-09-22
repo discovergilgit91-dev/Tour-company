@@ -37,14 +37,12 @@ export function Logo({
       aria-label="Discover Gilgit — home"
       className={`inline-flex shrink-0 items-center transition-opacity hover:opacity-80 ${className}`}
     >
-      {/* A soft, tonal circle — not a stark white box — in the site's own
-          night/gold palette, so it reads as one mark whether it's sitting
-          on the transparent header over the hero photo or the solid
-          forest bar once scrolled, instead of a mismatched white square
-          dropped on top of either. */}
+      {/* No background behind the mark at all — just the artwork itself.
+          A drop-shadow (follows the logo's own silhouette, not a box)
+          keeps it legible over the hero photo and the scrolled bar alike. */}
       <span
-        className={`relative flex shrink-0 items-center justify-center rounded-full bg-night/25 ring-1 ring-gold/25 backdrop-blur-sm transition-all duration-300 ${
-          compact ? "h-10 w-10 p-1.5 sm:h-11 sm:w-11" : "h-16 w-16 p-2 sm:h-20 sm:w-20"
+        className={`relative shrink-0 transition-all duration-300 ${
+          compact ? "h-12 w-12 sm:h-14 sm:w-14" : "h-16 w-16 sm:h-20 sm:w-20"
         }`}
       >
         <Image
@@ -53,7 +51,7 @@ export function Logo({
           fill
           priority
           quality={90}
-          sizes={compact ? "44px" : "80px"}
+          sizes={compact ? "56px" : "80px"}
           className="object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)]"
         />
       </span>
