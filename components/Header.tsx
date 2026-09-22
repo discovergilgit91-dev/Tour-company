@@ -22,7 +22,7 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 text-cream transition-colors duration-300 ${
         scrolled || open
-          ? "bg-forest/90 backdrop-blur-md shadow-[0_4px_20px_rgba(7,23,25,0.15)]"
+          ? "bg-night/90 backdrop-blur-md shadow-[0_4px_20px_rgba(7,23,25,0.15)]"
           : "bg-transparent"
       }`}
     >
@@ -69,7 +69,7 @@ export default function Header() {
       </div>
 
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-cream/10 bg-forest px-5 py-4 lg:hidden">
+        <nav className="flex flex-col gap-1 border-t border-cream/10 bg-night px-5 py-4 lg:hidden">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
