@@ -287,7 +287,7 @@ export default function UpcomingTours() {
        content lines up edge-to-edge with the rest of the page. */
     <section
       id="tours"
-      className="relative isolate w-full overflow-hidden bg-cream py-16 sm:py-20 lg:py-24"
+      className="relative isolate w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12"
     >
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         {/* Decorative image/contours are positioned against this wrapper's

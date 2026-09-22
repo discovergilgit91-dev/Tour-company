@@ -28,32 +28,38 @@ export function PeakMark({ className = "" }: { className?: string }) {
   );
 }
 
-export function Logo({ className = "" }: { className?: string }) {
+export function Logo({
+  className = "",
+  compact = false,
+}: {
+  className?: string;
+  /** Smaller mark for the scrolled header, so the bar doesn't grow taller than it needs to. */
+  compact?: boolean;
+}) {
   return (
     <Link
       href="/"
       aria-label="Discover Gilgit — home"
       className={`group inline-flex shrink-0 items-center ${className}`}
     >
-      {/* Transparent Logo */}
-      <div className="relative h-[90px] w-[90px] sm:h-[100px] sm:w-[100px]">
+      {/* No background behind the mark at all — just the artwork itself.
+          A drop-shadow (follows the logo's own silhouette, not a box)
+          keeps it legible over the hero photo and the scrolled bar alike. */}
+      <span
+        className={`relative shrink-0 transition-all duration-300 ${
+          compact ? "h-12 w-12 sm:h-14 sm:w-14" : "h-16 w-16 sm:h-20 sm:w-20"
+        }`}
+      >
         <Image
           src="/Images/tours/logo.png"
           alt="Discover Gilgit-Baltistan"
           fill
           priority
-          quality={100}
-          sizes="100px"
-          className="
-            object-contain
-            drop-shadow-[0_5px_15px_rgba(0,0,0,0.4)]
-            transition-all
-            duration-300
-            group-hover:scale-105
-            group-hover:drop-shadow-[0_7px_20px_rgba(0,0,0,0.5)]
-          "
+          quality={90}
+          sizes={compact ? "56px" : "80px"}
+          className="object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
         />
-      </div>
+      </span>
     </Link>
   );
 }

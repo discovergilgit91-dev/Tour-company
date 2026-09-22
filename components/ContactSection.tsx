@@ -16,7 +16,7 @@ export default function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-forest py-20 text-cream sm:py-24 lg:py-28">
+    <section id="contact" className="relative overflow-hidden bg-forest pb-20 pt-10 text-cream sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-14">
       <div className="relative mx-auto grid w-full max-w-6xl grid-cols-1 gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <div>
           <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/60">

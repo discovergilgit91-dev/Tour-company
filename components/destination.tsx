@@ -177,10 +177,12 @@ export default function FeaturedDestinations({
   return (
     /* Same structure as WhyChooseUs / UpcomingTours / Header / Hero:
        no horizontal padding on the section — it lives on the max-w-6xl wrapper
-       (px-5 sm:px-6 lg:px-8), and vertical padding is py-16 sm:py-20 lg:py-24. */
+       (px-5 sm:px-6 lg:px-8). Bottom padding matches the shared py-16 sm:py-20
+       lg:py-24 rhythm; top padding is trimmed so sections don't stack extra
+       dead space below the header. */
     <section
       id="destinations"
-      className="relative w-full overflow-hidden bg-cream py-16 sm:py-20 lg:py-24"
+      className="relative w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12"
     >
       <div
         aria-hidden
