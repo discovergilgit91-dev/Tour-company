@@ -5,6 +5,7 @@ import FeaturedDestinations from "@/components/destination";
 import AboutStory from "@/components/AboutStory";
 import UpcomingTours from "@/components/UpcomingTours";
 import Testimonials from "@/components/Testimonials";
+import PartnerSection from "@/components/PartnerSection";
 import ContactSection from "@/components/ContactSection";
 
 type Tour = {
@@ -73,6 +74,7 @@ export default async function Home() {
       ) : null}
 
       <Testimonials />
+      <PartnerSection />
       <ContactSection />
     </main>
   );
