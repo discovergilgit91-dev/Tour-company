@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import FeaturedDestinations from "@/components/destination";
 import AboutStory from "@/components/AboutStory";
+import TravelPartner from "@/components/TravelPartner";
 import UpcomingTours from "@/components/UpcomingTours";
 import Testimonials from "@/components/Testimonials";
 import ContactSection from "@/components/ContactSection";
@@ -35,6 +36,7 @@ export default async function Home() {
       <WhyChooseUs />
       <FeaturedDestinations />
       <AboutStory />
+      <TravelPartner />
       <UpcomingTours />
 
       {!error && tours && tours.length > 0 ? (
