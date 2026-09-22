@@ -33,14 +33,14 @@ export function Logo({ className = "" }: { className?: string }) {
       {/* A cream badge — not a bare image — so the mark reads as a
           deliberate emblem (with shadow + edge) instead of a small,
           washed-out square floating over the hero photo or dark footer. */}
-      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-cream p-1.5 shadow-[0_10px_24px_-10px_rgba(7,23,25,0.5)] ring-1 ring-black/5 sm:h-14 sm:w-14">
+      <span className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-cream p-2 shadow-[0_14px_30px_-12px_rgba(7,23,25,0.55)] ring-1 ring-black/5 sm:h-[72px] sm:w-[72px]">
         <Image
           src="/Images/tours/company-logo.png"
           alt="Discover Gilgit"
           fill
           priority
           quality={90}
-          sizes="56px"
+          sizes="72px"
           className="object-contain"
         />
       </span>
