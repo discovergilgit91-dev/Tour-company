@@ -173,9 +173,9 @@ function ComingSoonCard() {
 
 export default function PartnerSection({
   eyebrow = "In Collaboration With",
-  heading = "Better together",
-  headingAccent = "with our partners",
-  description = "We team up with organizations who share our belief in showing Gilgit-Baltistan the way locals live it.",
+  heading = "Let's build something",
+  headingAccent = "together",
+  description = "We're open to collaborating with travel platforms, publishers, and tourism partners who want to bring Gilgit-Baltistan to a wider audience reach out and let's talk.",
   partners = DEFAULT_PARTNERS,
 }: {
   eyebrow?: string;
