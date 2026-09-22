@@ -60,7 +60,7 @@ function StarRow({ rating }: { rating: number }) {
 
 export default function Testimonials() {
   return (
-    <section id="reviews" className="relative overflow-hidden bg-cream py-20 sm:py-24 lg:py-28">
+    <section id="reviews" className="relative overflow-hidden bg-cream pb-20 pt-10 sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-14">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <div className="mb-12 flex flex-col items-start justify-between gap-8 lg:mb-14 lg:flex-row lg:items-end">
           <div className="max-w-2xl">

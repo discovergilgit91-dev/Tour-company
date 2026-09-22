@@ -187,8 +187,9 @@ export default function PartnerSection({
   return (
     // Same structure as FeaturedDestinations / WhyChooseUs / UpcomingTours:
     // no horizontal padding on the section — it lives on the max-w-6xl
-    // wrapper (px-5 sm:px-6 lg:px-8), vertical padding is py-16 sm:py-20 lg:py-24.
-    <section id="partners" className="relative w-full overflow-hidden bg-cream py-16 sm:py-20 lg:py-24">
+    // wrapper (px-5 sm:px-6 lg:px-8). Bottom padding matches the shared
+    // py-16 sm:py-20 lg:py-24 rhythm; top padding is trimmed.
+    <section id="partners" className="relative w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">

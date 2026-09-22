@@ -118,7 +118,7 @@ export default function AboutStory() {
   });
 
   return (
-    <section id="our-story" className="relative overflow-hidden bg-night py-20 text-cream sm:py-24 lg:py-28">
+    <section id="our-story" className="relative overflow-hidden bg-night pb-20 pt-10 text-cream sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-14">
       {/* background: glow + faint topographic lines */}
       <div
         aria-hidden
