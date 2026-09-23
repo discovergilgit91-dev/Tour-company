@@ -86,7 +86,7 @@ export function DestinationCard({
       href={href}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
       className={[
-        "group block rounded-[22px] outline-none",
+        "group flex h-full flex-col rounded-[22px] outline-none",
         "focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream",
         "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
@@ -97,7 +97,7 @@ export function DestinationCard({
           the whole grid; "featured" only adds a badge and a ring, never a
           different size. */}
       <div
-        className={`relative aspect-[4/5] overflow-hidden rounded-[22px] bg-forest ${
+        className={`relative aspect-[4/5] shrink-0 overflow-hidden rounded-[22px] bg-forest ${
           featured ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
@@ -128,8 +128,11 @@ export function DestinationCard({
         </span>
       </div>
 
-      {/* caption: number + elevation, a hairline that turns green on hover, then the text */}
-      <div className="mt-4">
+      {/* caption: number + elevation, a hairline that turns green on hover, then the text.
+          Flex column filling the grid-stretched card height, with the tag pushed to the
+          bottom via mt-auto — keeps "DISCOVER X" aligned across a row regardless of how
+          many lines the blurb wraps to. */}
+      <div className="mt-4 flex flex-1 flex-col">
         <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
           <span>{number}</span>
           <span className="flex items-center gap-1.5">
@@ -146,7 +149,7 @@ export function DestinationCard({
 
         <h3 className="mt-4 font-serif text-2xl leading-tight tracking-tight text-forest">{name}</h3>
         <p className="mt-2 text-sm leading-relaxed text-muted">{blurb}</p>
-        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
+        <p className="mt-auto pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
     </Link>
   );
