@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import { type Destination } from "@/components/DestinationCard";
 import LandsExplorer from "@/components/LandsExplorer";
+import RouteMapSection from "@/components/RouteMapSection";
 
 export const metadata: Metadata = {
   title: "All Lands — Discover Gilgit",
@@ -361,6 +362,8 @@ export default function LandsPage() {
           because the sidebar tracks scroll position to highlight the
           active region. */}
       <LandsExplorer destinations={LANDS} regions={REGIONS} />
+
+      <RouteMapSection />
     </main>
   );
 }
