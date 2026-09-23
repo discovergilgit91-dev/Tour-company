@@ -75,6 +75,24 @@ const LANDS: Destination[] = [
     href: "/destinations/khunjerab-pass",
     altitude: "4,700 m",
   },
+  {
+    id: "borith-lake",
+    slug: "borith-lake",
+    name: "Borith Lake",
+    blurb: "A saline lake above Hussaini, ringed by willow and sea buckthorn, with views up to the Passu glaciers.",
+    tag: "Discover Borith Lake",
+    href: "/destinations/borith-lake",
+    altitude: "2,600 m",
+  },
+  {
+    id: "shimshal-valley",
+    slug: "shimshal-valley",
+    name: "Shimshal Valley",
+    blurb: "One of the most remote settlements in the Karakoram, reached by a cliffside road above the Shimshal River.",
+    tag: "Discover Shimshal Valley",
+    href: "/destinations/shimshal-valley",
+    altitude: "3,100 m",
+  },
   // ---- Nagar Valley: five named places across the valley ----
   {
     id: "rakaposhi-base-camp",
@@ -233,7 +251,16 @@ const REGIONS = [
     id: "hunza",
     label: "Hunza Valley",
     note: "Orchards, forts, and the valley's iconic skyline",
-    ids: ["karimabad", "baltit-fort", "altit-fort", "attabad-lake", "passu-cones", "khunjerab-pass"],
+    ids: [
+      "karimabad",
+      "baltit-fort",
+      "altit-fort",
+      "attabad-lake",
+      "passu-cones",
+      "khunjerab-pass",
+      "borith-lake",
+      "shimshal-valley",
+    ],
   },
   {
     id: "nagar",
