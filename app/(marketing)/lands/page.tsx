@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import { DestinationCard, type Destination } from "@/components/DestinationCard";
+import { type Destination } from "@/components/DestinationCard";
+import LandsExplorer from "@/components/LandsExplorer";
 
 export const metadata: Metadata = {
   title: "All Lands — Discover Gilgit",
@@ -122,8 +123,6 @@ const LANDS: Destination[] = [
   },
 ];
 
-const BY_ID = new Map(LANDS.map((d) => [d.id, d]));
-
 const REGIONS = [
   {
     id: "hunza-nagar",
@@ -167,24 +166,7 @@ function ring(cx: number, cy: number, r: number, seed: number, squash = 1) {
 }
 const CONTOURS = Array.from({ length: 8 }, (_, i) => ring(560, 260, 30 + (260 * i) / 7, 1.2 + i * 0.4, 0.8));
 
-// Flagship card for the whole page — gets the larger, horizontal "Featured"
-// treatment (see DestinationCard) and spans 2 grid columns. Its region's
-// column count is bumped by 1 below so that span (2) plus the rest of the
-// region's cards (1 each) always fill the row exactly, with no empty gap.
-const FEATURED_ID = "hunza-valley";
-
-// Static, literal class strings so Tailwind's build-time scanner can find
-// them (it can't see through a dynamically-built `lg:grid-cols-${n}`).
-const GRID_COLS: Record<number, string> = {
-  2: "sm:grid-cols-2 lg:grid-cols-2",
-  3: "sm:grid-cols-2 lg:grid-cols-3",
-  4: "sm:grid-cols-2 lg:grid-cols-4",
-  5: "sm:grid-cols-2 lg:grid-cols-5",
-};
-
 export default function LandsPage() {
-  let cardIndex = 0;
-
   return (
     <main className="min-h-screen bg-cream">
       <Hero
@@ -232,76 +214,15 @@ export default function LandsPage() {
               reveal the beauty, culture, and wild landscapes of Gilgit-Baltistan.
             </p>
           </div>
-
-          {/* jump-to-region nav — a small in-page table of contents */}
-          <div className="mt-8 flex flex-wrap items-center gap-2.5">
-            {REGIONS.map((region) => (
-              <a
-                key={region.id}
-                href={`#${region.id}`}
-                className="group inline-flex items-center gap-2 rounded-full border border-forest/15 bg-white px-4 py-2 text-xs font-semibold text-forest transition-colors duration-300 hover:border-green/50 hover:bg-green hover:text-white"
-              >
-                {region.label}
-                <span className="text-muted transition-colors group-hover:text-white/80">
-                  {region.ids.length.toString().padStart(2, "0")}
-                </span>
-              </a>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Region-by-region grid — same card, same rhythm as the homepage teaser, organized like a proper travel directory instead of one flat grid. */}
-      {REGIONS.map((region, regionIndex) => (
-        <section
-          key={region.id}
-          id={region.id}
-          className={`relative w-full bg-cream ${
-            regionIndex === REGIONS.length - 1 ? "pb-16 pt-10 sm:pb-20 sm:pt-12 lg:pb-24 lg:pt-14" : "pb-10 pt-10 sm:pb-12 sm:pt-12 lg:pb-14 lg:pt-14"
-          }`}
-        >
-          <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-            <div className="mb-8 flex items-end justify-between gap-4 border-b border-forest/10 pb-4 lg:mb-10">
-              <div>
-                <span className="font-serif text-lg text-green">
-                  {String(regionIndex + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-1 font-serif text-2xl leading-tight tracking-tight text-forest sm:text-3xl">
-                  {region.label}
-                </h3>
-              </div>
-              <p className="hidden text-right text-xs uppercase tracking-[0.12em] text-muted sm:block">
-                {region.note}
-              </p>
-            </div>
-
-            {(() => {
-              const hasFeatured = region.ids.includes(FEATURED_ID);
-              const totalCols = region.ids.length + (hasFeatured ? 1 : 0);
-              const gridColsClass = GRID_COLS[totalCols] ?? GRID_COLS[4];
-
-              return (
-                <div className={`grid grid-cols-1 gap-x-5 gap-y-12 ${gridColsClass}`}>
-                  {region.ids.map((id) => {
-                    const destination = BY_ID.get(id);
-                    if (!destination) return null;
-                    const thisIndex = cardIndex++;
-                    return (
-                      <DestinationCard
-                        key={destination.id}
-                        destination={destination}
-                        index={thisIndex}
-                        delay={(thisIndex % 4) * 90}
-                        featured={id === FEATURED_ID}
-                      />
-                    );
-                  })}
-                </div>
-              );
-            })()}
-          </div>
-        </section>
-      ))}
+      {/* Left sidebar (sticky region nav + quick facts) alongside the
+          region-by-region grid — same card, same rhythm as the homepage
+          teaser, organized like a proper travel directory. Client component
+          because the sidebar tracks scroll position to highlight the
+          active region. */}
+      <LandsExplorer destinations={LANDS} regions={REGIONS} />
     </main>
   );
 }
