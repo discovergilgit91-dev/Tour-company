@@ -158,115 +158,49 @@ export function DestinationCard({
 
 /* ---------------------------------------------------------------------
    Route map section — the Rawalpindi-to-Khunjerab tourist map paired
-   with a creative itinerary timeline. Lives here rather than its own
-   file since it shares useRevealOnScroll with the cards above.
+   with a compact, horizontally-scrolling itinerary strip. Lives here
+   rather than its own file since it shares useRevealOnScroll with the
+   cards above.
    --------------------------------------------------------------------- */
 
 const ROUTE_STOPS: { name: string; note: string; km: number }[] = [
-  {
-    name: "Islamabad / Rawalpindi",
-    note: "Where the journey begins, on the edge of the Potohar plateau.",
-    km: 0,
-  },
-  {
-    name: "Abbottabad",
-    note: "The road starts to climb as the plains give way to pine-covered hills.",
-    km: 120,
-  },
-  {
-    name: "Naran & Babusar Top",
-    note: "Over the Kaghan valley's high alpine pass, above 4,000 metres.",
-    km: 130,
-  },
-  {
-    name: "Chilas",
-    note: "The route joins the Karakoram Highway, tracing the Indus gorge.",
-    km: 110,
-  },
-  {
-    name: "Jaglot — Three Mountain Junction",
-    note: "Where the Himalaya, Karakoram, and Hindu Kush meet in view of each other.",
-    km: 95,
-  },
-  {
-    name: "Gilgit",
-    note: "The region's hub, at the confluence of the Gilgit and Hunza rivers.",
-    km: 25,
-  },
-  {
-    name: "Karimabad, Hunza",
-    note: "Terraced orchards and forts beneath Rakaposhi and Ultar Sar.",
-    km: 100,
-  },
-  {
-    name: "Attabad Lake",
-    note: "A brilliant turquoise lake, crossed by boat beneath the highway.",
-    km: 35,
-  },
-  {
-    name: "Passu & Borith Lake",
-    note: "Cathedral peaks above the valley, and a quiet saline lake beyond Hussaini.",
-    km: 20,
-  },
-  {
-    name: "Sost",
-    note: "The last town before the border — customs, fuel, and a final night.",
-    km: 20,
-  },
-  {
-    name: "Khunjerab Pass",
-    note: "The highest paved border crossing on earth, at 4,700 metres.",
-    km: 85,
-  },
+  { name: "Islamabad", note: "The journey begins", km: 0 },
+  { name: "Abbottabad", note: "Pine hills, first climb", km: 120 },
+  { name: "Naran & Babusar Top", note: "4,000 m alpine pass", km: 130 },
+  { name: "Chilas", note: "Joins the Karakoram Highway", km: 110 },
+  { name: "Jaglot", note: "Three mountain ranges meet", km: 95 },
+  { name: "Gilgit", note: "River-side regional hub", km: 25 },
+  { name: "Karimabad, Hunza", note: "Orchards beneath Rakaposhi", km: 100 },
+  { name: "Attabad Lake", note: "Turquoise water by boat", km: 35 },
+  { name: "Passu & Borith Lake", note: "Cathedral peaks, still water", km: 20 },
+  { name: "Sost", note: "Last stop before the border", km: 20 },
+  { name: "Khunjerab Pass", note: "Highest crossing on earth", km: 85 },
 ];
 
 const TOTAL_KM = ROUTE_STOPS.reduce((sum, stop) => sum + stop.km, 0);
 
-const LEGEND = [
-  { label: "Main road", swatch: "bg-forest" },
-  { label: "Link road", swatch: "bg-green" },
-  { label: "Motorway", swatch: "bg-red-500" },
-  { label: "Lake / waterfall", swatch: "bg-sky-500" },
+const HIGHLIGHTS = [
+  "Every ecosystem in the north, on one road",
+  "Guided support at each stop along the way",
+  "From 500 m plains to the 4,700 m pass",
 ];
 
-function TimelineRow({
-  index,
-  stop,
-  isLast,
-}: {
-  index: number;
-  stop: (typeof ROUTE_STOPS)[number];
-  isLast: boolean;
-}) {
-  const { ref, visible } = useRevealOnScroll<HTMLLIElement>();
+function StopChip({ index, stop }: { index: number; stop: (typeof ROUTE_STOPS)[number] }) {
   const number = String(index + 1).padStart(2, "0");
 
   return (
-    <li
-      ref={ref}
-      style={{ transitionDelay: visible ? `${(index % 6) * 80}ms` : "0ms" }}
-      className={`relative flex gap-5 pb-10 transition-[opacity,transform] duration-700 ease-out last:pb-0 motion-reduce:transition-none ${
-        visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-      }`}
-    >
-      {/* connecting line + dot */}
-      <div className="relative flex w-9 shrink-0 flex-col items-center">
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-night text-[11px] font-semibold text-gold">
+    <li className="group flex w-[168px] shrink-0 snap-start flex-col gap-4 rounded-2xl border border-cream/10 bg-cream/[0.03] p-4 transition-colors duration-300 hover:border-gold/30 hover:bg-cream/[0.06] sm:w-[188px]">
+      <div className="flex items-center justify-between">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 text-[11px] font-semibold text-gold">
           {number}
         </span>
-        {!isLast && <span className="mt-1 w-px flex-1 bg-cream/15" />}
+        {index > 0 && (
+          <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/35">+{stop.km} km</span>
+        )}
       </div>
-
-      <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-          <h4 className="font-serif text-xl leading-tight text-cream sm:text-[22px]">{stop.name}</h4>
-          {index > 0 && (
-            <span className="whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
-              +{stop.km} km
-            </span>
-          )}
-        </div>
-        <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/60">{stop.note}</p>
+      <div>
+        <h4 className="font-serif text-base leading-snug text-cream">{stop.name}</h4>
+        <p className="mt-1 text-xs leading-snug text-cream/50">{stop.note}</p>
       </div>
     </li>
   );
@@ -274,9 +208,14 @@ function TimelineRow({
 
 export function RouteMapSection() {
   const { ref: mapRef, visible: mapVisible } = useRevealOnScroll<HTMLDivElement>();
+  const scrollRef = useRef<HTMLUListElement>(null);
+
+  function scrollStrip(delta: number) {
+    scrollRef.current?.scrollBy({ left: delta, behavior: "smooth" });
+  }
 
   return (
-    <section id="route-map" className="relative overflow-hidden bg-night py-16 sm:py-20 lg:py-28">
+    <section id="route-map" className="relative overflow-hidden bg-night py-16 sm:py-20 lg:py-24">
       {/* faint road-line texture in the background */}
       <svg
         aria-hidden
@@ -294,49 +233,18 @@ export function RouteMapSection() {
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        {/* header */}
-        <div className="mb-12 max-w-2xl lg:mb-16">
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
-            <CompassIcon size={16} />
-            Plan your route
-          </div>
-          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl">
-            Islamabad to <span className="text-gold">Khunjerab Pass</span>
-          </h2>
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-cream/60 sm:text-base">
-            One road, eleven landmarks, and every ecosystem in the north — from the Potohar plains to
-            the highest paved border crossing on earth. Here&rsquo;s the classic Karakoram Highway
-            route our tours are built around.
-          </p>
-
-          <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
-            <div>
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Distance</dt>
-              <dd className="mt-1 font-serif text-2xl text-cream">~{TOTAL_KM.toLocaleString()} km</dd>
-            </div>
-            <div>
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Landmarks</dt>
-              <dd className="mt-1 font-serif text-2xl text-cream">{ROUTE_STOPS.length}</dd>
-            </div>
-            <div>
-              <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Highest point</dt>
-              <dd className="mt-1 font-serif text-2xl text-cream">4,700 m</dd>
-            </div>
-          </dl>
-        </div>
-
-        {/* map + timeline */}
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,420px)_1fr] lg:gap-16">
-          {/* map card, sticky on desktop */}
+        {/* header + map + highlights */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,300px)_1fr] lg:items-center lg:gap-14">
+          {/* map card */}
           <div
             ref={mapRef}
             style={{ transitionDelay: mapVisible ? "80ms" : "0ms" }}
-            className={`lg:sticky lg:top-28 lg:self-start transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
+            className={`order-2 mx-auto w-full max-w-[300px] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:order-1 lg:mx-0 ${
               mapVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            <div className="relative overflow-hidden rounded-[26px] border border-cream/10 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]">
-              <span className="absolute left-4 top-4 z-10 inline-flex items-center gap-1.5 rounded-full border border-cream/20 bg-night/70 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm">
+            <div className="relative overflow-hidden rounded-[22px] border border-cream/10 shadow-[0_24px_50px_-16px_rgba(0,0,0,0.6)]">
+              <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-cream/20 bg-night/70 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm">
                 Tourist map
               </span>
               <div className="relative aspect-[3/4] w-full bg-forest">
@@ -345,40 +253,97 @@ export function RouteMapSection() {
                   alt="Tourist map of the Karakoram Highway route from Rawalpindi to Khunjerab Pass, Gilgit-Baltistan"
                   fill
                   quality={90}
-                  sizes="(min-width: 1024px) 420px, 100vw"
+                  sizes="300px"
                   className="object-cover object-top"
                 />
               </div>
             </div>
-
-            {/* legend strip, echoing the map's own legend */}
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 rounded-2xl border border-cream/10 bg-cream/[0.03] px-5 py-4">
-              {LEGEND.map((item) => (
-                <div key={item.label} className="flex items-center gap-2 text-xs text-cream/60">
-                  <span className={`h-1.5 w-4 rounded-full ${item.swatch}`} />
-                  {item.label}
-                </div>
-              ))}
-            </div>
-
-            <LinkButton
-              href="/#contact"
-              variant="outline"
-              className="group mt-5 w-full justify-center gap-2 text-[11px] uppercase tracking-[0.12em]"
-            >
-              Plan this route with us
-              <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
-                <ArrowIcon size={13} />
-              </span>
-            </LinkButton>
           </div>
 
-          {/* itinerary timeline */}
-          <ol className="relative">
+          {/* header + highlights + stats */}
+          <div className="order-1 lg:order-2">
+            <div className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+              <CompassIcon size={16} />
+              Plan your route
+            </div>
+            <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
+              Islamabad to <span className="text-gold">Khunjerab Pass</span>
+            </h2>
+
+            <ul className="mt-5 space-y-2">
+              {HIGHLIGHTS.map((line) => (
+                <li key={line} className="flex items-start gap-2.5 text-sm leading-relaxed text-cream/60">
+                  <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
+                  {line}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cream/40">Distance</p>
+                <p className="mt-0.5 font-serif text-xl text-cream">~{TOTAL_KM.toLocaleString()} km</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cream/40">Landmarks</p>
+                <p className="mt-0.5 font-serif text-xl text-cream">{ROUTE_STOPS.length}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cream/40">Highest</p>
+                <p className="mt-0.5 font-serif text-xl text-cream">4,700 m</p>
+              </div>
+
+              <LinkButton
+                href="/#contact"
+                variant="outline"
+                className="group ml-auto gap-2 text-[11px] uppercase tracking-[0.12em]"
+              >
+                Plan this route
+                <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
+                  <ArrowIcon size={13} />
+                </span>
+              </LinkButton>
+            </div>
+          </div>
+        </div>
+
+        {/* itinerary strip — horizontal scroll instead of a long vertical list */}
+        <div className="relative mt-12 lg:mt-14">
+          <div className="mb-4 flex items-center justify-between">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/40">
+              The full itinerary
+            </p>
+            <div className="hidden gap-2 sm:flex">
+              <button
+                type="button"
+                onClick={() => scrollStrip(-220)}
+                aria-label="Scroll to previous stops"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/15 text-cream/60 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
+              >
+                <span className="rotate-180">
+                  <ArrowIcon size={13} />
+                </span>
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollStrip(220)}
+                aria-label="Scroll to next stops"
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/15 text-cream/60 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
+              >
+                <ArrowIcon size={13} />
+              </button>
+            </div>
+          </div>
+
+          <ul
+            ref={scrollRef}
+            className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{ maskImage: "linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent)" }}
+          >
             {ROUTE_STOPS.map((stop, index) => (
-              <TimelineRow key={stop.name} index={index} stop={stop} isLast={index === ROUTE_STOPS.length - 1} />
+              <StopChip key={stop.name} index={index} stop={stop} />
             ))}
-          </ol>
+          </ul>
         </div>
       </div>
     </section>
