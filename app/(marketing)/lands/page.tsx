@@ -96,15 +96,6 @@ const LANDS: Destination[] = [
     altitude: "2,700 m",
   },
   {
-    id: "nagar-fort",
-    slug: "nagar-fort",
-    name: "Nagar Fort",
-    blurb: "The former palace of the Mirs of Nagar, a quieter counterpart to Hunza's forts across the river.",
-    tag: "Discover Nagar Fort",
-    href: "/destinations/nagar-fort",
-    altitude: "2,500 m",
-  },
-  {
     id: "rush-lake",
     slug: "rush-lake",
     name: "Rush Lake",
@@ -239,7 +230,7 @@ const REGIONS = [
     id: "nagar",
     label: "Nagar Valley",
     note: "Glaciers, high pastures, and the road to Rakaposhi",
-    ids: ["rakaposhi-base-camp", "hopar-glacier", "nagar-fort", "rush-lake", "minapin-glacier"],
+    ids: ["rakaposhi-base-camp", "hopar-glacier", "rush-lake", "minapin-glacier"],
   },
   {
     id: "gilgit-ghizer",
