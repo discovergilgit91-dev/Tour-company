@@ -12,13 +12,9 @@ export type Region = {
   ids: string[];
 };
 
-// Flagship card for the whole page — gets the larger, horizontal "Featured"
-// treatment (see DestinationCard) and spans 2 grid columns. For small
-// regions (2-3 items) its region's column count is bumped by 1 so that
-// span (2) plus the rest of the region's cards (1 each) fill the row
-// exactly, with no empty gap. Capped at 4 columns for larger regions —
-// there, a partial trailing row (e.g. 3-of-4) reads as normal grid
-// wrapping rather than an awkward single-row gap.
+// Flagship card for the whole page — gets a "Featured" badge and ring
+// (see DestinationCard), but the exact same size/grid cell as every
+// other card, so all photos in the grid stay perfectly aligned.
 const FEATURED_ID = "karimabad";
 
 // Static, literal class strings so Tailwind's build-time scanner can find
@@ -137,8 +133,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
         {/* ---------------- right: region sections ---------------- */}
         <div>
           {regions.map((region, regionIndex) => {
-            const hasFeatured = region.ids.includes(FEATURED_ID);
-            const totalCols = Math.min(region.ids.length + (hasFeatured ? 1 : 0), 4);
+            const totalCols = Math.min(region.ids.length, 4);
             const gridColsClass = GRID_COLS[totalCols] ?? GRID_COLS[4];
 
             return (
