@@ -90,13 +90,16 @@ export function DestinationCard({
         "focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream",
         "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-        featured ? "sm:col-span-2 sm:flex sm:items-center sm:gap-7 lg:gap-10" : "",
+        featured ? "sm:col-span-2" : "",
       ].join(" ")}
     >
-      {/* photo — clean, just a round button in the corner */}
+      {/* photo — a wide banner for the featured card (full width of its
+          2-column span, so the caption below always has the full row's
+          width to breathe in, never a cramped side column), a plain
+          portrait crop otherwise. */}
       <div
         className={`relative overflow-hidden rounded-[22px] bg-forest ${
-          featured ? "aspect-[4/5] sm:aspect-[6/7] sm:w-1/2 sm:shrink-0" : "aspect-[4/5]"
+          featured ? "aspect-[16/10] sm:aspect-[21/9]" : "aspect-[4/5]"
         }`}
       >
         {image ? (
@@ -107,7 +110,7 @@ export function DestinationCard({
             quality={85}
             sizes={
               featured
-                ? "(min-width: 1024px) 45vw, (min-width: 640px) 50vw, 100vw"
+                ? "(min-width: 1024px) 50vw, 100vw"
                 : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             }
             style={focus ? { objectPosition: focus } : undefined}
@@ -131,7 +134,7 @@ export function DestinationCard({
       </div>
 
       {/* caption: number + elevation, a hairline that turns green on hover, then the text */}
-      <div className={featured ? "mt-4 sm:mt-0 sm:flex-1" : "mt-4"}>
+      <div className="mt-4">
         <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
           <span>{number}</span>
           <span className="flex items-center gap-1.5">
@@ -153,7 +156,7 @@ export function DestinationCard({
         >
           {name}
         </h3>
-        <p className={`mt-2 leading-relaxed text-muted ${featured ? "max-w-md text-sm sm:text-base" : "text-sm"}`}>
+        <p className={`mt-2 leading-relaxed text-muted ${featured ? "max-w-2xl text-sm sm:text-base" : "text-sm"}`}>
           {blurb}
         </p>
         <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
