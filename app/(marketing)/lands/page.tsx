@@ -181,6 +181,15 @@ const LANDS: Destination[] = [
     altitude: "4,114 m",
   },
   {
+    id: "kachura-lake",
+    slug: "kachura-lake",
+    name: "Kachura Lake",
+    blurb: "A still turquoise lake near Skardu, its glassy water mirroring the pine forest and cliffs around it.",
+    tag: "Discover Kachura Lake",
+    href: "/destinations/kachura-lake",
+    altitude: "2,500 m",
+  },
+  {
     id: "fairy-meadows",
     slug: "fairy-meadows",
     name: "Fairy Meadows",
@@ -242,7 +251,7 @@ const REGIONS = [
     id: "baltistan",
     label: "Baltistan",
     note: "Deserts, plains, and stone forts",
-    ids: ["skardu-katpana", "shigar-valley", "deosai-plains"],
+    ids: ["skardu-katpana", "shigar-valley", "deosai-plains", "kachura-lake"],
   },
   {
     id: "diamer-astore",
