@@ -68,10 +68,13 @@ export function DestinationCard({
   destination,
   index,
   delay = 0,
+  featured = false,
 }: {
   destination: Destination;
   index: number;
   delay?: number;
+  /** Magazine-style lead card: spans two grid columns and lays out horizontally at sm+. Stacks like a normal card on mobile. */
+  featured?: boolean;
 }) {
   const { name, blurb, image, tag, href, altitude, focus } = destination;
   const { ref, visible } = useRevealOnScroll<HTMLAnchorElement>();
@@ -87,22 +90,37 @@ export function DestinationCard({
         "focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream",
         "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
+        featured ? "sm:col-span-2 sm:flex sm:items-center sm:gap-7 lg:gap-10" : "",
       ].join(" ")}
     >
       {/* photo — clean, just a round button in the corner */}
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-forest">
+      <div
+        className={`relative overflow-hidden rounded-[22px] bg-forest ${
+          featured ? "aspect-[4/5] sm:aspect-[6/7] sm:w-1/2 sm:shrink-0" : "aspect-[4/5]"
+        }`}
+      >
         {image ? (
           <Image
             src={image}
             alt={name}
             fill
             quality={85}
-            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            sizes={
+              featured
+                ? "(min-width: 1024px) 45vw, (min-width: 640px) 50vw, 100vw"
+                : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+            }
             style={focus ? { objectPosition: focus } : undefined}
             className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
           />
         ) : (
           <PhotoPlaceholder />
+        )}
+
+        {featured && (
+          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-cream/25 bg-night/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm">
+            Featured
+          </span>
         )}
 
         <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-cream text-forest shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green group-hover:text-white">
@@ -113,7 +131,7 @@ export function DestinationCard({
       </div>
 
       {/* caption: number + elevation, a hairline that turns green on hover, then the text */}
-      <div className="mt-4">
+      <div className={featured ? "mt-4 sm:mt-0 sm:flex-1" : "mt-4"}>
         <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
           <span>{number}</span>
           <span className="flex items-center gap-1.5">
@@ -128,8 +146,16 @@ export function DestinationCard({
           <span className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-green transition-transform duration-500 ease-out group-hover:scale-x-100" />
         </div>
 
-        <h3 className="mt-4 font-serif text-2xl leading-tight tracking-tight text-forest">{name}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{blurb}</p>
+        <h3
+          className={`mt-4 font-serif leading-tight tracking-tight text-forest ${
+            featured ? "text-3xl sm:text-4xl" : "text-2xl"
+          }`}
+        >
+          {name}
+        </h3>
+        <p className={`mt-2 leading-relaxed text-muted ${featured ? "max-w-md text-sm sm:text-base" : "text-sm"}`}>
+          {blurb}
+        </p>
         <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
     </Link>
