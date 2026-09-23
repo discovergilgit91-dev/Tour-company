@@ -208,6 +208,24 @@ const LANDS: Destination[] = [
     href: "/destinations/rama-lake",
     altitude: "3,300 m",
   },
+  {
+    id: "harmosh-valley",
+    slug: "harmosh-valley",
+    name: "Harmosh Valley",
+    blurb: "A remote glacial valley below Haramosh Peak, reached through pine forest and high pasture far from the highway.",
+    tag: "Discover Harmosh Valley",
+    href: "/destinations/harmosh-valley",
+    altitude: "3,100 m",
+  },
+  {
+    id: "rupal-valley",
+    slug: "rupal-valley",
+    name: "Rupal Valley",
+    blurb: "Gateway to Nanga Parbat's Rupal Face, one of the tallest mountain walls on earth, deep in Astore district.",
+    tag: "Discover Rupal Valley",
+    href: "/destinations/rupal-valley",
+    altitude: "3,200 m",
+  },
 ];
 
 const REGIONS = [
@@ -236,10 +254,10 @@ const REGIONS = [
     ids: ["skardu-katpana", "shigar-valley", "deosai-plains"],
   },
   {
-    id: "nanga-parbat",
-    label: "Nanga Parbat",
-    note: "Meadows and lakes beneath the Killer Mountain",
-    ids: ["fairy-meadows", "rama-lake"],
+    id: "diamer-astore",
+    label: "Diamer & Astore",
+    note: "Meadows, valleys, and lakes beneath the Killer Mountain",
+    ids: ["fairy-meadows", "rama-lake", "harmosh-valley", "rupal-valley"],
   },
 ];
 
