@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import { DestinationCard, type Destination } from "@/components/DestinationCard";
+import { type Destination } from "@/components/DestinationCard";
+import LandsExplorer from "@/components/LandsExplorer";
 
 export const metadata: Metadata = {
   title: "All Lands — Discover Gilgit",
   description:
-    "Explore every destination across Gilgit-Baltistan — from the orchards of Hunza to the quiet valleys of Ghizer.",
+    "Explore every destination across Gilgit-Baltistan, region by region — from the orchards of Hunza to the quiet valleys of Ghizer.",
 };
 
 // Structured with a `slug` on every entry so individual /destinations/[slug]
@@ -25,34 +26,14 @@ const LANDS: Destination[] = [
     altitude: "2,500 m",
   },
   {
-    id: "deosai-plains",
-    slug: "deosai-plains",
-    name: "Deosai Plains",
-    blurb: "The Land of Giants — vast alpine plains where wild landscapes stretch beneath an endless sky.",
-    image: "/Images/tours/deosai-plains.png",
-    tag: "Discover Deosai Plains",
-    href: "/destinations/deosai-plains",
-    altitude: "4,114 m",
-  },
-  {
-    id: "skardu-katpana",
-    slug: "skardu-katpana",
-    name: "Skardu & Katpana",
-    blurb: "Cold desert dunes beside turquoise lakes, surrounded by dramatic mountain scenery.",
-    image: "/Images/tours/cold-desert.png",
-    tag: "Discover Skardu & Katpana",
-    href: "/destinations/skardu-katpana",
-    altitude: "2,230 m",
-  },
-  {
-    id: "fairy-meadows",
-    slug: "fairy-meadows",
-    name: "Fairy Meadows",
-    blurb: "Alpine meadows at the foot of Nanga Parbat, wrapped in pine forest and morning mist.",
-    image: "/Images/tours/Fairy-meadows.png",
-    tag: "Discover Fairy Meadows",
-    href: "/destinations/fairy-meadows",
-    altitude: "3,300 m",
+    id: "nagar-valley",
+    slug: "nagar-valley",
+    name: "Nagar Valley",
+    blurb: "Glaciers, orchards, and towering peaks create a landscape rich in natural beauty and mountain culture.",
+    image: "/Images/tours/rakaposhi-trek.jpg",
+    tag: "Discover Nagar Valley",
+    href: "/destinations/nagar-valley",
+    altitude: "2,440 m",
   },
   {
     id: "ghizer-valley",
@@ -74,24 +55,32 @@ const LANDS: Destination[] = [
     altitude: "2,500 m",
   },
   {
-    id: "nagar-valley",
-    slug: "nagar-valley",
-    name: "Nagar Valley",
-    blurb: "Glaciers, orchards, and towering peaks create a landscape rich in natural beauty and mountain culture.",
-    image: "/Images/tours/rakaposhi-trek.jpg",
-    tag: "Discover Nagar Valley",
-    href: "/destinations/nagar-valley",
-    altitude: "2,440 m",
+    id: "phander-valley",
+    slug: "phander-valley",
+    name: "Phander Valley",
+    blurb: "A hidden valley of lakes and orchards in Ghizer, where still turquoise water sits beneath quiet peaks.",
+    tag: "Discover Phander Valley",
+    href: "/destinations/phander-valley",
+    altitude: "2,900 m",
   },
   {
-    id: "astore-valley",
-    slug: "astore-valley",
-    name: "Astore Valley",
-    blurb:
-      "Remote mountain landscapes, lush valleys, and winding roads leading toward some of the region's most beautiful wilderness.",
-    tag: "Discover Astore Valley",
-    href: "/destinations/astore-valley",
-    altitude: "2,600 m",
+    id: "naltar-valley",
+    slug: "naltar-valley",
+    name: "Naltar Valley",
+    blurb: "Pine forests and a chain of colourful alpine lakes make Naltar one of the north's most vivid landscapes.",
+    tag: "Discover Naltar Valley",
+    href: "/destinations/naltar-valley",
+    altitude: "2,800 m",
+  },
+  {
+    id: "skardu-katpana",
+    slug: "skardu-katpana",
+    name: "Skardu & Katpana",
+    blurb: "Cold desert dunes beside turquoise lakes, surrounded by dramatic mountain scenery.",
+    image: "/Images/tours/cold-desert.png",
+    tag: "Discover Skardu & Katpana",
+    href: "/destinations/skardu-katpana",
+    altitude: "2,230 m",
   },
   {
     id: "shigar-valley",
@@ -104,15 +93,78 @@ const LANDS: Destination[] = [
     altitude: "2,290 m",
   },
   {
-    id: "diamer",
-    slug: "diamer",
-    name: "Diamer",
-    blurb: "A rugged mountain region of deep valleys, ancient routes, and dramatic mountain landscapes.",
-    tag: "Discover Diamer",
-    href: "/destinations/diamer",
-    altitude: "1,250 m",
+    id: "deosai-plains",
+    slug: "deosai-plains",
+    name: "Deosai Plains",
+    blurb: "The Land of Giants — vast alpine plains where wild landscapes stretch beneath an endless sky.",
+    image: "/Images/tours/deosai-plains.png",
+    tag: "Discover Deosai Plains",
+    href: "/destinations/deosai-plains",
+    altitude: "4,114 m",
+  },
+  {
+    id: "fairy-meadows",
+    slug: "fairy-meadows",
+    name: "Fairy Meadows",
+    blurb: "Alpine meadows at the foot of Nanga Parbat, wrapped in pine forest and morning mist.",
+    image: "/Images/tours/Fairy-meadows.png",
+    tag: "Discover Fairy Meadows",
+    href: "/destinations/fairy-meadows",
+    altitude: "3,300 m",
+  },
+  {
+    id: "rama-lake",
+    slug: "rama-lake",
+    name: "Rama Lake",
+    blurb: "A still alpine lake ringed by pine forest, framed by uninterrupted views of Nanga Parbat rising above.",
+    tag: "Discover Rama Lake",
+    href: "/destinations/rama-lake",
+    altitude: "3,300 m",
   },
 ];
+
+const REGIONS = [
+  {
+    id: "hunza-nagar",
+    label: "Hunza & Nagar",
+    note: "The Karakoram's orchard valleys",
+    ids: ["hunza-valley", "nagar-valley"],
+  },
+  {
+    id: "gilgit-ghizer",
+    label: "Gilgit & Ghizer",
+    note: "Rivers, lakes, and quiet villages",
+    ids: ["ghizer-valley", "yasin-valley", "phander-valley", "naltar-valley"],
+  },
+  {
+    id: "baltistan",
+    label: "Baltistan",
+    note: "Deserts, plains, and stone forts",
+    ids: ["skardu-katpana", "shigar-valley", "deosai-plains"],
+  },
+  {
+    id: "nanga-parbat",
+    label: "Nanga Parbat",
+    note: "Meadows and lakes beneath the Killer Mountain",
+    ids: ["fairy-meadows", "rama-lake"],
+  },
+];
+
+/* ---- faint topographic contour lines behind the intro (same technique as AboutStory) ---- */
+function ring(cx: number, cy: number, r: number, seed: number, squash = 1) {
+  const points: string[] = [];
+  const steps = 60;
+  for (let i = 0; i < steps; i++) {
+    const t = (i / steps) * Math.PI * 2;
+    const wobble =
+      1 + 0.16 * Math.sin(3 * t + seed) + 0.09 * Math.sin(5 * t + seed * 1.7) + 0.05 * Math.sin(9 * t + seed * 0.6);
+    const x = cx + Math.cos(t) * r * wobble;
+    const y = cy + Math.sin(t) * r * wobble * squash;
+    points.push(`${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`);
+  }
+  return `${points.join(" ")}Z`;
+}
+const CONTOURS = Array.from({ length: 8 }, (_, i) => ring(560, 260, 30 + (260 * i) / 7, 1.2 + i * 0.4, 0.8));
 
 export default function LandsPage() {
   return (
@@ -125,15 +177,24 @@ export default function LandsPage() {
         imageAlt="Rakaposhi peak rising above the Karakoram"
       />
 
-      {/* Same structure/rhythm as FeaturedDestinations on the homepage:
-          no horizontal padding on the section — it lives on the max-w-6xl
-          wrapper (px-5 sm:px-6 lg:px-8), bottom padding matches the shared
-          py-16 sm:py-20 lg:py-24 rhythm, top padding trimmed under the hero. */}
-      <section className="relative w-full overflow-hidden bg-cream pb-16 pt-12 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
+      {/* Intro — same rhythm as FeaturedDestinations on the homepage */}
+      <section className="relative w-full overflow-hidden bg-cream pb-8 pt-12 sm:pt-14 lg:pt-16">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
+          className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
         />
+        <svg
+          aria-hidden
+          viewBox="0 0 900 500"
+          preserveAspectRatio="xMaxYMin slice"
+          className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-2/3 text-forest/[0.035] lg:block"
+        >
+          <g fill="none" stroke="currentColor" strokeWidth="1">
+            {CONTOURS.map((d, i) => (
+              <path key={i} d={d} />
+            ))}
+          </g>
+        </svg>
 
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
@@ -153,14 +214,15 @@ export default function LandsPage() {
               reveal the beauty, culture, and wild landscapes of Gilgit-Baltistan.
             </p>
           </div>
-
-          <div className="mt-12 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
-            {LANDS.map((destination, index) => (
-              <DestinationCard key={destination.id} destination={destination} index={index} delay={index * 90} />
-            ))}
-          </div>
         </div>
       </section>
+
+      {/* Left sidebar (sticky region nav + quick facts) alongside the
+          region-by-region grid — same card, same rhythm as the homepage
+          teaser, organized like a proper travel directory. Client component
+          because the sidebar tracks scroll position to highlight the
+          active region. */}
+      <LandsExplorer destinations={LANDS} regions={REGIONS} />
     </main>
   );
 }
