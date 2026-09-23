@@ -73,7 +73,7 @@ export function DestinationCard({
   destination: Destination;
   index: number;
   delay?: number;
-  /** Magazine-style lead card: spans two grid columns and lays out horizontally at sm+. Stacks like a normal card on mobile. */
+  /** Marks the card with a "Featured" badge and a gold ring. Same size and grid cell as every other card — only the badge/ring set it apart, so every photo in the grid stays perfectly aligned. */
   featured?: boolean;
 }) {
   const { name, blurb, image, tag, href, altitude, focus } = destination;
@@ -90,16 +90,15 @@ export function DestinationCard({
         "focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream",
         "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
-        featured ? "sm:col-span-2" : "",
       ].join(" ")}
     >
-      {/* photo — a wide banner for the featured card (full width of its
-          2-column span, so the caption below always has the full row's
-          width to breathe in, never a cramped side column), a plain
-          portrait crop otherwise. */}
+      {/* photo — every card uses the exact same box (aspect-[4/5], same
+          rounded corners) so widths and heights line up perfectly across
+          the whole grid; "featured" only adds a badge and a ring, never a
+          different size. */}
       <div
-        className={`relative overflow-hidden rounded-[22px] bg-forest ${
-          featured ? "aspect-[16/10] sm:aspect-[21/9]" : "aspect-[4/5]"
+        className={`relative aspect-[4/5] overflow-hidden rounded-[22px] bg-forest ${
+          featured ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
         {image ? (
@@ -108,11 +107,7 @@ export function DestinationCard({
             alt={name}
             fill
             quality={85}
-            sizes={
-              featured
-                ? "(min-width: 1024px) 50vw, 100vw"
-                : "(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-            }
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             style={focus ? { objectPosition: focus } : undefined}
             className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
           />
@@ -149,16 +144,8 @@ export function DestinationCard({
           <span className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-green transition-transform duration-500 ease-out group-hover:scale-x-100" />
         </div>
 
-        <h3
-          className={`mt-4 font-serif leading-tight tracking-tight text-forest ${
-            featured ? "text-3xl sm:text-4xl" : "text-2xl"
-          }`}
-        >
-          {name}
-        </h3>
-        <p className={`mt-2 leading-relaxed text-muted ${featured ? "max-w-2xl text-sm sm:text-base" : "text-sm"}`}>
-          {blurb}
-        </p>
+        <h3 className="mt-4 font-serif text-2xl leading-tight tracking-tight text-forest">{name}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted">{blurb}</p>
         <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
     </Link>
