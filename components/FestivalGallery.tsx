@@ -279,33 +279,19 @@ export default function FestivalGallery() {
       {/* ---------------- Header + Filters + Grid ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream pb-16 pt-12 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <LinkButton
-              href="/tours/gilgit-cultural-festival"
-              variant="dark"
-              className="group mb-8 gap-2 text-[11px] uppercase tracking-[0.12em]"
-            >
-              <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
-                <ArrowIcon size={13} />
-              </span>
-              Back to the Festival
-            </LinkButton>
-
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-              <span className="h-px w-8 bg-muted/60" />
-              Festival gallery
-            </div>
-            <h1 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
-              Moments, colors <span className="text-green">and culture</span>
-            </h1>
-            <p className="mt-5 text-sm leading-relaxed text-muted sm:text-base">
-              Every dance, dish, and handmade craft from the Gilgit-Baltistan Cultural Festival — browse by category
-              or take it all in.
-            </p>
-          </div>
+          <LinkButton
+            href="/tours/gilgit-cultural-festival"
+            variant="dark"
+            className="group gap-2 text-[11px] uppercase tracking-[0.12em]"
+          >
+            <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
+              <ArrowIcon size={13} />
+            </span>
+            Back to the Festival
+          </LinkButton>
 
           {/* filter pills */}
-          <div className="mt-10 flex flex-wrap gap-2">
+          <div className="mt-8 flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => setActiveCategory(null)}
