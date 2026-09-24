@@ -98,6 +98,15 @@ const SPRING_STATS = [
   { value: "12", label: "Max Group Size" },
 ];
 
+const PHOTO_HIGHLIGHTS = [
+  { caption: "Baltit Fort at Golden Hour", tag: "Karimabad", from: "from-amber-300/70", to: "to-forest" },
+  { caption: "Blossom-Lined Terraces", tag: "Old Karimabad", from: "from-rose-300/70", to: "to-forest" },
+  { caption: "Duikar Valley Panorama", tag: "Duikar Viewpoint", from: "from-teal-300/70", to: "to-forest" },
+  { caption: "Riverside Orchard Walk", tag: "Altit", from: "from-emerald-300/70", to: "to-forest" },
+  { caption: "Tea with a Local Family", tag: "Altit Orchards", from: "from-orange-300/70", to: "to-forest" },
+  { caption: "Rakaposhi at Dusk", tag: "Karimabad", from: "from-purple-300/70", to: "to-forest" },
+];
+
 /* ---------------------------------------------------------------------
    Decorative motifs — no photography exists for this tour yet, so every
    visual here is an honest, clearly-decorative vector rather than a
@@ -157,6 +166,26 @@ function PeaksMotif({ className = "" }: { className?: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.4"
+      />
+    </svg>
+  );
+}
+
+/** Tile-friendly mountain zigzag (fills a whole card, unlike PeaksMotif's wide banner shape). */
+function PeakZigzagMotif({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMax slice" className={className} aria-hidden="true">
+      <path
+        d="M-10 78 14 50l12 16 14-24 14 22 12-12 20 26 16-14 22 20"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+      />
+      <path
+        d="M-10 90 16 62l13 17 15-25 15 23 13-13 21 27 17-15 23 21"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
       />
     </svg>
   );
@@ -382,15 +411,32 @@ export default function HunzaSpringTour() {
 
               {/* Why Spring in Hunza — stat strip */}
               <Reveal delay={100}>
-                <div className="relative mt-8 grid grid-cols-2 gap-x-6 gap-y-7 rounded-[22px] border border-forest/10 bg-white p-6 sm:grid-cols-4 sm:p-7">
-                  {SPRING_STATS.map((stat) => (
-                    <div key={stat.label}>
-                      <p className="font-serif text-3xl text-forest sm:text-4xl">{stat.value}</p>
-                      <p className="mt-1.5 min-h-[32px] text-xs uppercase leading-snug tracking-[0.08em] text-muted">
-                        {stat.label}
+                <div className="relative mt-8 rounded-[22px] border border-forest/10 bg-white p-6 sm:p-7">
+                  <div className="flex flex-col gap-3 border-b border-forest/8 pb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-green">
+                        Why spring in Hunza
                       </p>
+                      <h3 className="mt-1.5 font-serif text-xl text-forest sm:text-2xl">
+                        A short season, timed perfectly
+                      </h3>
                     </div>
-                  ))}
+                    <p className="max-w-xs text-xs leading-relaxed text-muted">
+                      The bloom lasts only a few weeks each year — this itinerary is built entirely around
+                      catching it at its best.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-7 pt-6 sm:grid-cols-4">
+                    {SPRING_STATS.map((stat) => (
+                      <div key={stat.label}>
+                        <p className="font-serif text-3xl text-forest sm:text-4xl">{stat.value}</p>
+                        <p className="mt-1.5 min-h-[32px] text-xs uppercase leading-snug tracking-[0.08em] text-muted">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </Reveal>
 
@@ -483,6 +529,49 @@ export default function HunzaSpringTour() {
                 <TripOverviewCard />
               </Reveal>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- Photo Highlights ---------------- */}
+      <section className="relative w-full overflow-hidden bg-cream pb-16 sm:pb-20 lg:pb-24">
+        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <Reveal>
+            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+              <span className="h-px w-8 bg-muted/60" />
+              Scenes from the trip
+            </div>
+            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+              Photo <span className="text-green">highlights</span>
+            </h2>
+            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+              A first look at the forts, orchards, and viewpoints on this route — full galleries are added
+              as each group returns from the trail.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:mt-12">
+            {PHOTO_HIGHLIGHTS.map((photo, index) => {
+              const Motif = index % 2 === 0 ? PeakZigzagMotif : BlossomBranch;
+              return (
+                <Reveal key={photo.caption} delay={(index % 6) * 80}>
+                  <div className="group relative aspect-[4/5] overflow-hidden rounded-[18px]">
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
+                    >
+                      <Motif className="absolute inset-0 h-full w-full p-10 text-cream/20" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
+                    <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
+                      {photo.tag}
+                    </span>
+                    <span className="absolute inset-x-3 bottom-3 font-serif text-sm leading-snug text-cream sm:text-base">
+                      {photo.caption}
+                    </span>
+                  </div>
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
