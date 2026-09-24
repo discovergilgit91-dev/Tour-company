@@ -55,11 +55,54 @@ const HIGHLIGHTS = [
 ];
 
 const CULTURES = [
-  { name: "Shina", tagline: "Grace in Every Step", from: "from-rose-400/70", to: "to-forest" },
-  { name: "Balti", tagline: "Strength in Unity", from: "from-teal-400/70", to: "to-forest" },
-  { name: "Burushaski", tagline: "Roots in the Mountains", from: "from-orange-400/70", to: "to-forest" },
-  { name: "Wakhi", tagline: "Pride in Simplicity", from: "from-purple-400/70", to: "to-forest" },
-  { name: "Khowar", tagline: "Spirit of the Valleys", from: "from-amber-400/70", to: "to-forest" },
+  {
+    name: "Shina",
+    tagline: "Grace in Every Step",
+    fact: "The most widely spoken language across Gilgit-Baltistan.",
+    from: "from-rose-400/70",
+    to: "to-forest",
+  },
+  {
+    name: "Balti",
+    tagline: "Strength in Unity",
+    fact: "Rooted in Tibetan heritage, spoken throughout Baltistan.",
+    from: "from-teal-400/70",
+    to: "to-forest",
+  },
+  {
+    name: "Burushaski",
+    tagline: "Roots in the Mountains",
+    fact: "A language isolate found nowhere else on Earth.",
+    from: "from-orange-400/70",
+    to: "to-forest",
+  },
+  {
+    name: "Wakhi",
+    tagline: "Pride in Simplicity",
+    fact: "Spoken in the high valleys along the Pamir corridor.",
+    from: "from-purple-400/70",
+    to: "to-forest",
+  },
+  {
+    name: "Khowar",
+    tagline: "Spirit of the Valleys",
+    fact: "The voice of Chitral and the region's western valleys.",
+    from: "from-amber-400/70",
+    to: "to-forest",
+  },
+];
+
+const CULTURE_STATS = [
+  { value: "5", label: "Languages celebrated" },
+  { value: "100+", label: "Years of tradition" },
+  { value: "3", label: "Days of festivities" },
+  { value: "1", label: "Shared home" },
+];
+
+const FESTIVAL_STATS = [
+  { value: "2015", label: "Festival established" },
+  { value: "15K+", label: "Visitors each year" },
+  { value: "5", label: "Communities represented" },
 ];
 
 const MORE_HIGHLIGHTS = [
@@ -247,20 +290,36 @@ export default function FestivalPage() {
               </div>
             </Reveal>
 
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              {CULTURES.map((culture, index) => (
-                <Reveal key={culture.name} delay={index * 90}>
-                  <div className="group">
-                    <div
-                      className={`relative aspect-[3/4] overflow-hidden rounded-[18px] bg-gradient-to-br ${culture.from} ${culture.to} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
-                    >
-                      <SunMotif className="absolute inset-0 h-full w-full p-6 text-cream/25" />
+            <div>
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+                {CULTURES.map((culture, index) => (
+                  <Reveal key={culture.name} delay={index * 90}>
+                    <div className="group">
+                      <div
+                        className={`relative aspect-[3/4] overflow-hidden rounded-[18px] bg-gradient-to-br ${culture.from} ${culture.to} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
+                      >
+                        <SunMotif className="absolute inset-0 h-full w-full p-6 text-cream/25" />
+                      </div>
+                      <h3 className="mt-3 font-serif text-lg text-forest">{culture.name}</h3>
+                      <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.06em] text-green">
+                        {culture.tagline}
+                      </p>
+                      <p className="mt-1.5 text-xs leading-relaxed text-muted">{culture.fact}</p>
                     </div>
-                    <h3 className="mt-3 font-serif text-lg text-forest">{culture.name}</h3>
-                    <p className="mt-0.5 text-xs text-muted">{culture.tagline}</p>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                ))}
+              </div>
+
+              <Reveal delay={200}>
+                <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 rounded-[22px] border border-forest/10 bg-white p-6 sm:grid-cols-4 sm:p-7">
+                  {CULTURE_STATS.map((stat) => (
+                    <div key={stat.label}>
+                      <p className="font-serif text-3xl text-forest sm:text-4xl">{stat.value}</p>
+                      <p className="mt-1 text-xs uppercase tracking-[0.08em] text-muted">{stat.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -318,6 +377,25 @@ export default function FestivalPage() {
                   <ArrowIcon size={14} />
                 </span>
               </LinkButton>
+
+              <div className="mt-10 grid grid-cols-3 gap-6 border-t border-cream/10 pt-8">
+                {FESTIVAL_STATS.map((stat) => (
+                  <div key={stat.label}>
+                    <p className="font-serif text-3xl text-gold sm:text-4xl">{stat.value}</p>
+                    <p className="mt-1.5 text-xs leading-snug text-cream/50">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <blockquote className="mt-10 border-l-2 border-gold/40 pl-5">
+                <p className="font-serif text-lg italic leading-relaxed text-cream/80">
+                  &ldquo;Every language sung, every dish shared, every dance performed — it all says the same
+                  thing: we belong to each other.&rdquo;
+                </p>
+                <cite className="mt-3 block text-xs not-italic uppercase tracking-[0.1em] text-cream/40">
+                  Festival Organizing Committee
+                </cite>
+              </blockquote>
             </Reveal>
 
             <Reveal delay={180}>
