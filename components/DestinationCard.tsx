@@ -148,7 +148,9 @@ export function DestinationCard({
           <span className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-green transition-transform duration-500 ease-out group-hover:scale-x-100" />
         </div>
 
-        <h3 className="mt-4 font-serif text-2xl leading-tight tracking-tight text-forest">{name}</h3>
+        <h3 className="mt-4 line-clamp-2 min-h-[60px] font-serif text-2xl leading-tight tracking-tight text-forest">
+          {name}
+        </h3>
         <p className="mt-2 text-sm leading-relaxed text-muted">{blurb}</p>
         <p className="mt-auto pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
