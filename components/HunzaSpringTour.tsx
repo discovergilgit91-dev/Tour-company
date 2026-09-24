@@ -90,11 +90,44 @@ const GUIDES = [
   },
 ];
 
+function BloomIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.4" fill="currentColor" />
+      {Array.from({ length: 5 }, (_, i) => {
+        const angle = (i / 5) * Math.PI * 2 - Math.PI / 2;
+        const cx = 12 + Math.cos(angle) * 5.6;
+        const cy = 12 + Math.sin(angle) * 5.6;
+        return <circle key={i} cx={cx} cy={cy} r="3" stroke="currentColor" strokeWidth="1.4" />;
+      })}
+    </svg>
+  );
+}
+
+function PeakIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 18.5 9 8l3.5 5.5L15 10l6 8.5H3Z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path d="M9 8 10.5 10.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function OrchardIcon({ size = 17 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 21v-7.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="12" cy="9" r="6" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M12 3v3.2M8.2 5.4l1.4 2M15.8 5.4l-1.4 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 const SPRING_STATS = [
-  { value: "2–3 Wks", label: "Peak Bloom Window" },
-  { value: "8,500 ft", label: "Valley Elevation" },
-  { value: "400+ Yrs", label: "Orchard Heritage" },
-  { value: "12", label: "Max Group Size" },
+  { value: "2–3 Wks", label: "Peak Bloom Window", icon: BloomIcon },
+  { value: "8,500 ft", label: "Valley Elevation", icon: PeakIcon },
+  { value: "400+ Yrs", label: "Orchard Heritage", icon: OrchardIcon },
+  { value: "12", label: "Max Group Size", icon: UsersIcon },
 ];
 
 const PHOTO_HIGHLIGHTS = [
@@ -601,17 +634,23 @@ export default function HunzaSpringTour() {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-x-6 gap-y-7 pt-6 sm:grid-cols-4">
-                    {SPRING_STATS.map((stat) => (
-                      <div key={stat.label}>
-                        <p className="whitespace-nowrap font-serif text-2xl text-forest sm:text-4xl">
-                          {stat.value}
-                        </p>
-                        <p className="mt-1.5 min-h-[32px] text-xs uppercase leading-snug tracking-[0.08em] text-muted">
-                          {stat.label}
-                        </p>
-                      </div>
-                    ))}
+                  <div className="grid grid-cols-2 gap-x-6 gap-y-8 pt-7 sm:grid-cols-4 sm:divide-x sm:divide-forest/8">
+                    {SPRING_STATS.map((stat) => {
+                      const Icon = stat.icon;
+                      return (
+                        <div key={stat.label} className="group sm:pl-6 sm:first:pl-0">
+                          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green/[0.08] text-green transition-colors duration-300 group-hover:bg-green group-hover:text-white">
+                            <Icon size={17} />
+                          </span>
+                          <p className="mt-3 whitespace-nowrap font-serif text-2xl text-forest sm:text-4xl">
+                            {stat.value}
+                          </p>
+                          <p className="mt-1.5 min-h-[32px] text-xs uppercase leading-snug tracking-[0.08em] text-muted">
+                            {stat.label}
+                          </p>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </Reveal>
