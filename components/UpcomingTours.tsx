@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IconButton, LinkButton } from "./ui/Button";
-import { ArrowIcon, CompassIcon } from "./ui/icons";
+import { ArrowIcon, CalendarIcon, ClockIcon, CompassIcon, PinIcon } from "./ui/icons";
 
 const TOURS = [
   {
@@ -12,8 +12,8 @@ const TOURS = [
     location: "HUNZA VALLEY",
     title: "Blossoms of Hunza",
     subtitle: "Spring Tour",
-    date: "25 May – 29 May, 2024",
-    image: "/Images/tours/hunza-spring.png",
+    date: "25 May – 29 May, 2027",
+    image: "/Images/tours/hunza-spring.jpg",
   },
   {
     id: "rakaposhi-trek",
@@ -21,8 +21,8 @@ const TOURS = [
     location: "NAGAR – HOPAR – PASSU",
     title: "Rakaposhi Base Camp Trek",
     subtitle: "",
-    date: "10 Jun – 16 Jun, 2024",
-    image: "/Images/tours/rakaposhi.png",
+    date: "10 Jun – 16 Jun, 2027",
+    image: "/Images/tours/rakaposhi-trek.jpg",
   },
   {
     id: "altit-baltit",
@@ -30,8 +30,8 @@ const TOURS = [
     location: "ALTIT – BALTIT",
     title: "Cultural Heritage Tour",
     subtitle: "",
-    date: "05 Jul – 08 Jul, 2024",
-    image: "/Images/tours/culture-hunza.png",
+    date: "05 Jul – 08 Jul, 2027",
+    image: "/Images/tours/altit-baltit.jpg",
   },
   {
     id: "nanga-parbat-camping",
@@ -39,39 +39,12 @@ const TOURS = [
     location: "DIAMER – NANGA PARBAT",
     title: "Nanga Parbat Camping Experience",
     subtitle: "",
-    date: "20 Jul – 22 Jul, 2024",
-    image: "/Images/tours/nanga-parbat.png",
+    date: "20 Jul – 22 Jul, 2027",
+    image: undefined as string | undefined,
   },
 ];
 
-const HERO_IMAGE = "/images/tours/moutain.png";
-
-function IconClock({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="8.5" stroke="currentColor" strokeWidth="1.6" />
-      <path d="M12 7.5v4.8l3.2 1.9" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function IconMapPin({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M19 10.5c0 5.2-7 10-7 10s-7-4.8-7-10a7 7 0 1 1 14 0Z" fill="currentColor" />
-      <circle cx="12" cy="10.3" r="2.4" className="fill-forest" />
-    </svg>
-  );
-}
-
-function IconCalendar({ size = 16 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3.75" y="5" width="16.5" height="15" rx="3" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M8 3.2v3.6M16 3.2v3.6M3.75 9.6h16.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>
-  );
-}
+const HERO_IMAGE = "/Images/tours/hunza-valley.png";
 
 function IconPeaks({ size = 30 }: { size?: number }) {
   return (
@@ -144,28 +117,41 @@ function ArtContours({ className }: { className?: string }) {
   );
 }
 
+function TourPhotoPlaceholder() {
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-forest to-night text-cream/50">
+      <IconPeaks size={30} />
+      <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+    </div>
+  );
+}
+
 function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
   return (
     <article className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] sm:h-[500px]">
       <div className="relative flex-1 overflow-hidden">
-        <Image
-          src={tour.image}
-          alt={tour.title}
-          fill
-          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
-          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
-        />
+        {tour.image ? (
+          <Image
+            src={tour.image}
+            alt={tour.title}
+            fill
+            sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
+            className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+          />
+        ) : (
+          <TourPhotoPlaceholder />
+        )}
 
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
 
         <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-forest/90 px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-white backdrop-blur-sm">
-          <IconClock size={14} />
+          <ClockIcon size={14} />
           {tour.duration}
         </div>
 
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
-            <IconMapPin size={15} />
+            <PinIcon size={15} />
             <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
               {tour.location}
             </span>
@@ -183,7 +169,7 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
 
       <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
         <div className="flex min-w-0 items-center gap-2.5 text-forest">
-          <IconCalendar size={16} />
+          <CalendarIcon size={16} />
           <span className="truncate font-sans text-[13px]">{tour.date}</span>
         </div>
 
@@ -199,7 +185,7 @@ function ComingSoonCard() {
   return (
     <article className="relative flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-forest p-7 text-white sm:h-[500px]">
       <div className="mb-9 flex h-14 w-14 items-center justify-center rounded-full bg-white/[0.07] text-white/85">
-        <IconCalendar size={24} />
+        <CalendarIcon size={24} />
       </div>
 
       <h3 className="relative z-10 max-w-[220px] font-serif text-[26px] leading-[1.2]">

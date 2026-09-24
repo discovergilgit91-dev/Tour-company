@@ -228,15 +228,17 @@ export default function Hero({
   // homepage's rotating carousel — used by pages like /lands. Falls back to
   // the homepage's DEFAULT_SLIDES whenever nothing custom is passed, so
   // `<Hero />` with no props (the homepage's call) is byte-for-byte the
-  // same experience as before this component took props.
-  const isCustom = !slides && Boolean(title && image);
+  // same experience as before this component took props. `image` is
+  // optional within custom mode — omit it for a decorative gradient
+  // background instead of a photo, for pages that don't have one yet.
+  const isCustom = !slides && Boolean(title);
 
   const resolvedSlides: HeroSlide[] =
     slides ??
     (isCustom
       ? [
           {
-            src: image as string,
+            src: image ?? "",
             alt: imageAlt ?? (title as string),
             badge: eyebrow ?? "",
             titleLine1: title as string,
@@ -270,18 +272,42 @@ export default function Hero({
         <div className="absolute inset-0 z-0 overflow-hidden">
           {resolvedSlides.map((slide, i) => (
             <div
-              key={slide.src}
+              key={`${slide.src}-${i}`}
               className={`hero-slide absolute inset-0 opacity-0 motion-reduce:scale-100 ${
                 i === active ? "hero-slide--active motion-reduce:animate-none" : ""
               }`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={slide.src}
-                alt={slide.alt}
-                loading={i === 0 ? "eager" : "lazy"}
-                className="h-full w-full object-cover"
-              />
+              {slide.src ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="h-full w-full bg-gradient-to-br from-forest via-night to-forest" aria-hidden="true">
+                  <svg
+                    viewBox="0 0 800 500"
+                    preserveAspectRatio="xMidYMax slice"
+                    className="h-full w-full text-cream/[0.04]"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M-40 420 80 260l70 90 90-140 90 130 80-70 120 160 100-90 140 170"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M-40 470 100 320l90 100 100-150 100 140 90-80 130 170 110-100 150 180"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                </div>
+              )}
             </div>
           ))}
 
