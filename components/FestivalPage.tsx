@@ -86,10 +86,10 @@ const MORE_HIGHLIGHTS = [
 ];
 
 const GALLERY_TILES = [
-  { from: "from-green-dark", to: "to-night" },
-  { from: "from-forest", to: "to-night" },
-  { from: "from-green-dark", to: "to-forest" },
-  { from: "from-night", to: "to-forest" },
+  { caption: "Traditional Dance", from: "from-rose-400/40", to: "to-night" },
+  { caption: "Local Cuisine", from: "from-teal-400/40", to: "to-night" },
+  { caption: "Handicrafts Market", from: "from-orange-400/40", to: "to-forest" },
+  { caption: "Community Spirit", from: "from-purple-400/40", to: "to-forest" },
 ];
 
 const TESTIMONIALS = [
@@ -233,11 +233,13 @@ export default function FestivalPage() {
                 language, dress, dance and way of life.
               </p>
 
-              <div className="mt-8 grid grid-cols-4 gap-4 lg:grid-cols-2">
+              <div className="mt-8 space-y-4">
                 {HIGHLIGHTS.map(({ icon: Icon, label }) => (
-                  <div key={label} className="text-forest/70">
-                    <Icon size={22} />
-                    <p className="mt-2 text-[11px] font-semibold uppercase leading-snug tracking-[0.06em] text-muted">
+                  <div key={label} className="flex items-center gap-3.5">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest/[0.06] text-forest">
+                      <Icon size={19} />
+                    </span>
+                    <p className="text-[11px] font-semibold uppercase leading-snug tracking-[0.1em] text-muted">
                       {label}
                     </p>
                   </div>
@@ -269,7 +271,7 @@ export default function FestivalPage() {
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr_320px] lg:gap-12">
             <Reveal>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] bg-gradient-to-br from-green-dark to-night lg:aspect-auto lg:h-full">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] border border-cream/10 bg-gradient-to-br from-green-dark to-night shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] lg:aspect-auto lg:h-full">
                 <svg
                   viewBox="0 0 500 600"
                   preserveAspectRatio="xMidYMid slice"
@@ -289,6 +291,10 @@ export default function FestivalPage() {
                     strokeWidth="1.5"
                   />
                 </svg>
+                <SunMotif className="absolute inset-0 h-full w-full p-16 text-gold/10" />
+                <span className="absolute left-5 top-5 inline-flex items-center rounded-full border border-cream/15 bg-night/60 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-cream/70 backdrop-blur-sm">
+                  Photo coming soon
+                </span>
               </div>
             </Reveal>
 
@@ -360,11 +366,17 @@ export default function FestivalPage() {
 
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:mt-12">
             {GALLERY_TILES.map((tile, index) => (
-              <Reveal key={index} delay={index * 90}>
-                <div
-                  className={`relative aspect-square overflow-hidden rounded-[18px] bg-gradient-to-br ${tile.from} ${tile.to}`}
-                >
-                  <SunMotif className="absolute inset-0 h-full w-full p-8 text-cream/15" />
+              <Reveal key={tile.caption} delay={index * 90}>
+                <div className="group relative aspect-square overflow-hidden rounded-[18px]">
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${tile.from} ${tile.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
+                  >
+                    <SunMotif className="absolute inset-0 h-full w-full p-8 text-cream/15" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-transparent to-transparent" />
+                  <span className="absolute inset-x-4 bottom-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/85">
+                    {tile.caption}
+                  </span>
                 </div>
               </Reveal>
             ))}
