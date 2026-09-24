@@ -356,7 +356,7 @@ function TripOverviewCard({ tour }: { tour: TourDetail }) {
           </span>
         </div>
 
-        <LinkButton href="/#contact" variant="primary" className="group mt-5 w-full gap-2">
+        <LinkButton href={`/book?tour=${tour.slug}`} variant="primary" className="group mt-5 w-full gap-2">
           Reserve Your Spot
           <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
             <ArrowIcon size={14} />
@@ -618,7 +618,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{tour.ctaText}</p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <LinkButton href="/#contact" variant="primary" className="group gap-2">
+              <LinkButton href={`/book?tour=${tour.slug}`} variant="primary" className="group gap-2">
                 Reserve Your Spot
                 <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                   <ArrowIcon size={14} />
