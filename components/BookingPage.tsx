@@ -399,7 +399,7 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                     Happy to answer questions by phone, WhatsApp, or email before you commit to a reservation.
                   </p>
 
-                  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                  <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
                     {CONTACT_DETAILS.map(({ label, value, Icon }) => (
                       <div key={label} className="flex items-start gap-3">
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream/[0.07] text-gold">
