@@ -106,26 +106,10 @@ const FESTIVAL_STATS = [
 ];
 
 const MORE_HIGHLIGHTS = [
-  {
-    icon: MusicIcon,
-    title: "Live Cultural Performances",
-    description: "Music, dance, and traditional arts from across the region.",
-  },
-  {
-    icon: CuisineIcon,
-    title: "Authentic Local Food",
-    description: "Taste the flavors of Gilgit-Baltistan in one place.",
-  },
-  {
-    icon: HandicraftIcon,
-    title: "Handicrafts & Artisan Market",
-    description: "Support local artisans and take home a piece of heritage.",
-  },
-  {
-    icon: ExhibitionIcon,
-    title: "Cultural Exhibitions",
-    description: "Explore the history, lifestyle, and traditions of our communities.",
-  },
+  { icon: MusicIcon, title: "Live Cultural Performances" },
+  { icon: CuisineIcon, title: "Authentic Local Food" },
+  { icon: HandicraftIcon, title: "Handicrafts & Artisan Market" },
+  { icon: ExhibitionIcon, title: "Cultural Exhibitions" },
 ];
 
 const GALLERY_TILES = [
@@ -399,19 +383,18 @@ export default function FestivalPage() {
             </Reveal>
 
             <Reveal delay={180}>
-              <div className="space-y-5">
-                {MORE_HIGHLIGHTS.map(({ icon: Icon, title, description }) => (
-                  <div key={title} className="flex items-start gap-3.5">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream/[0.06] text-gold">
-                      <Icon size={18} />
+              <div className="space-y-3">
+                {MORE_HIGHLIGHTS.map(({ icon: Icon, title }) => (
+                  <div key={title} className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream/[0.06] text-gold">
+                      <Icon size={16} />
                     </span>
-                    <div>
-                      <h3 className="font-serif text-base text-cream">{title}</h3>
-                      <p className="mt-1 text-xs leading-relaxed text-cream/55">{description}</p>
-                    </div>
+                    <h3 className="font-serif text-sm leading-snug text-cream">{title}</h3>
                   </div>
                 ))}
+              </div>
 
+              <div className="mt-5">
                 <EventDetailsCard />
               </div>
             </Reveal>
