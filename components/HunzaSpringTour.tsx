@@ -186,8 +186,8 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 function TourHero() {
   return (
     <section className="relative bg-forest pb-10 sm:pb-8 md:pb-6">
-      <div className="relative min-h-[76svh] w-full overflow-hidden sm:min-h-[82svh] md:min-h-[86svh]">
-        <div className="absolute inset-0 z-0">
+      <div className="relative min-h-[76svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
+        <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="h-full w-full bg-gradient-to-br from-rose-950/40 via-forest to-night" />
           <div
             aria-hidden
@@ -358,7 +358,9 @@ export default function HunzaSpringTour() {
       <section className="relative w-full overflow-hidden bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_340px] lg:gap-14">
-            <div>
+            <div className="relative">
+              <BlossomBranch className="pointer-events-none absolute -right-6 -top-10 hidden h-32 w-48 text-rose-300 opacity-25 lg:block" />
+
               {/* About */}
               <Reveal>
                 <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
@@ -380,11 +382,13 @@ export default function HunzaSpringTour() {
 
               {/* Why Spring in Hunza — stat strip */}
               <Reveal delay={100}>
-                <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 rounded-[22px] border border-forest/10 bg-white p-6 sm:grid-cols-4 sm:p-7">
+                <div className="relative mt-8 grid grid-cols-2 gap-x-6 gap-y-7 rounded-[22px] border border-forest/10 bg-white p-6 sm:grid-cols-4 sm:p-7">
                   {SPRING_STATS.map((stat) => (
                     <div key={stat.label}>
                       <p className="font-serif text-3xl text-forest sm:text-4xl">{stat.value}</p>
-                      <p className="mt-1 text-xs uppercase tracking-[0.08em] text-muted">{stat.label}</p>
+                      <p className="mt-1.5 min-h-[32px] text-xs uppercase leading-snug tracking-[0.08em] text-muted">
+                        {stat.label}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -407,10 +411,10 @@ export default function HunzaSpringTour() {
                   </p>
                 </Reveal>
 
-                <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
                   {GUIDES.map((guide, index) => (
                     <Reveal key={guide.name} delay={index * 90}>
-                      <div className="flex gap-4 rounded-[18px] border border-forest/10 bg-white p-5">
+                      <div className="flex h-full gap-4 rounded-[18px] border border-forest/10 bg-white p-5 shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_28px_-8px_rgba(18,36,28,0.16)]">
                         <div
                           className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${guide.from} ${guide.to} font-serif text-lg text-white`}
                         >
@@ -421,10 +425,12 @@ export default function HunzaSpringTour() {
                         </div>
                         <div className="min-w-0">
                           <h3 className="font-serif text-lg text-forest">{guide.name}</h3>
-                          <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.06em] text-green">
+                          <p className="mt-0.5 min-h-[32px] text-xs font-semibold uppercase leading-snug tracking-[0.06em] text-green">
                             {guide.role}
                           </p>
-                          <p className="mt-2 text-xs leading-relaxed text-muted">{guide.bio}</p>
+                          <p className="mt-2 line-clamp-3 min-h-[54px] text-xs leading-relaxed text-muted">
+                            {guide.bio}
+                          </p>
                         </div>
                       </div>
                     </Reveal>
@@ -447,13 +453,18 @@ export default function HunzaSpringTour() {
                 <div className="mt-8 divide-y divide-forest/8 border-t border-forest/8">
                   {ITINERARY.map((day, index) => (
                     <Reveal key={day.day} delay={index * 70}>
-                      <div className="grid grid-cols-1 gap-2 py-5 sm:grid-cols-[110px_1fr] sm:gap-6">
-                        <div>
-                          <p className="font-serif text-lg text-forest">{day.day}</p>
-                          <span className="mt-1 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-green">
-                            <PinIcon size={11} />
-                            {day.tag}
+                      <div className="grid grid-cols-1 gap-4 rounded-2xl py-6 transition-colors duration-300 hover:bg-forest/[0.025] sm:-mx-4 sm:grid-cols-[110px_1fr] sm:gap-6 sm:px-4">
+                        <div className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-2.5">
+                          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-forest font-serif text-base text-cream">
+                            {index + 1}
                           </span>
+                          <div>
+                            <p className="font-serif text-sm text-forest sm:text-base">{day.day}</p>
+                            <span className="mt-0.5 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-green">
+                              <PinIcon size={11} />
+                              {day.tag}
+                            </span>
+                          </div>
                         </div>
                         <div>
                           <h3 className="font-serif text-base text-forest sm:text-lg">{day.title}</h3>
