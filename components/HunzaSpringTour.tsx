@@ -383,8 +383,13 @@ export default function HunzaSpringTour() {
     <main className="bg-cream">
       <TourHero />
 
-      {/* ---------------- About + Guides + Itinerary (main) / Trip Overview (sidebar) ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+      {/* ---------------- About + Guides + Itinerary (main) / Trip Overview (sidebar) ----------------
+           No overflow-hidden here: it would silence position:sticky on the
+           Trip Overview sidebar (a hidden ancestor with clipped overflow
+           breaks sticky positioning). Nothing in this section needs
+           clipping — the decorative blossom accent's slight bleed is fine
+           inside the section's own padding. */}
+      <section className="relative w-full bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_340px] lg:gap-14">
             <div className="relative">
@@ -412,16 +417,16 @@ export default function HunzaSpringTour() {
               {/* Why Spring in Hunza — stat strip */}
               <Reveal delay={100}>
                 <div className="relative mt-8 rounded-[22px] border border-forest/10 bg-white p-6 sm:p-7">
-                  <div className="flex flex-col gap-3 border-b border-forest/8 pb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-                    <div>
+                  <div className="flex flex-col gap-5 border-b border-forest/8 pb-6 sm:flex-row sm:items-center sm:gap-8">
+                    <div className="sm:flex-1">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-green">
                         Why spring in Hunza
                       </p>
-                      <h3 className="mt-1.5 font-serif text-xl text-forest sm:text-2xl">
+                      <h3 className="mt-1.5 font-serif text-xl leading-tight text-forest sm:text-2xl">
                         A short season, timed perfectly
                       </h3>
                     </div>
-                    <p className="max-w-xs text-xs leading-relaxed text-muted">
+                    <p className="text-sm leading-relaxed text-muted sm:max-w-[220px] sm:shrink-0 sm:border-l sm:border-forest/10 sm:pl-8">
                       The bloom lasts only a few weeks each year — this itinerary is built entirely around
                       catching it at its best.
                     </p>
@@ -523,11 +528,17 @@ export default function HunzaSpringTour() {
               </div>
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:sticky lg:top-24 lg:self-start">
-              <Reveal delay={120}>
-                <TripOverviewCard />
-              </Reveal>
+            {/* Sidebar — this outer cell stretches to match the main column's
+                full height (CSS Grid's default align-items: stretch), so the
+                inner sticky wrapper has room to stay pinned in view while the
+                guides and itinerary scroll past, instead of scrolling away
+                after only a short distance and leaving the column empty. */}
+            <div>
+              <div className="lg:sticky lg:top-24">
+                <Reveal delay={120}>
+                  <TripOverviewCard />
+                </Reveal>
+              </div>
             </div>
           </div>
         </div>
