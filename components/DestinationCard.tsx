@@ -130,9 +130,9 @@ export function DestinationCard({
       </div>
 
       {/* caption: number + elevation, a hairline that turns green on hover, then the text.
-          Flex column filling the grid-stretched card height, with the tag pushed to the
-          bottom via mt-auto — keeps "DISCOVER X" aligned across a row regardless of how
-          many lines the blurb wraps to. */}
+          The name and blurb are both clamped to a fixed height (see below), so every card's
+          content above the tag is identical — the tag can sit at a plain fixed offset and
+          still start on the same line as its neighbors, whether it wraps to one line or two. */}
       <div className="mt-4 flex flex-1 flex-col">
         <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
           <span>{number}</span>
@@ -152,7 +152,7 @@ export function DestinationCard({
           {name}
         </h3>
         <p className="mt-2 line-clamp-4 min-h-24 text-sm leading-relaxed text-muted">{blurb}</p>
-        <p className="mt-auto pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
+        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
     </Link>
   );
