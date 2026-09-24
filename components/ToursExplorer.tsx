@@ -1,0 +1,308 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import { LinkButton } from "./ui/Button";
+import { ArrowIcon, CalendarIcon, ClockIcon, PinIcon } from "./ui/icons";
+import { useRevealOnScroll } from "./DestinationCard";
+
+export type Tour = {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle?: string;
+  /** Display string shown on the card, e.g. "Nagar – Hopar – Passu" */
+  location: string;
+  /** Coarser bucket used for filtering, matching the /lands region taxonomy */
+  region: string;
+  category: string;
+  /** Trip length in days */
+  duration: number;
+  dateRange: string;
+  /** Starting price in USD */
+  price: number;
+  image?: string;
+  href: string;
+};
+
+const DURATION_BUCKETS = [
+  { label: "1–3 Days", test: (d: number) => d <= 3 },
+  { label: "4–6 Days", test: (d: number) => d >= 4 && d <= 6 },
+  { label: "7+ Days", test: (d: number) => d >= 7 },
+];
+
+const PRICE_BUCKETS = [
+  { label: "Under $350", test: (p: number) => p < 350 },
+  { label: "$350 – $600", test: (p: number) => p >= 350 && p <= 600 },
+  { label: "$600+", test: (p: number) => p > 600 },
+];
+
+function FilterGroup({
+  label,
+  options,
+  active,
+  onToggle,
+}: {
+  label: string;
+  options: string[];
+  active: string[];
+  onToggle: (value: string) => void;
+}) {
+  if (options.length === 0) return null;
+
+  return (
+    <div className="border-t border-forest/10 pt-5 first:border-t-0 first:pt-0">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {options.map((option) => {
+          const isActive = active.includes(option);
+          return (
+            <button
+              key={option}
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => onToggle(option)}
+              className={`inline-flex items-center rounded-full border px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 ${
+                isActive
+                  ? "border-green/30 bg-green/10 text-forest"
+                  : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
+              }`}
+            >
+              {option}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function PhotoPlaceholder() {
+  return (
+    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-forest to-night text-cream/50">
+      <svg width="28" height="18" viewBox="0 0 50 30" fill="none" aria-hidden="true">
+        <path d="M2 27 17 6l8 11 6-7 15 17H2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+      </svg>
+      <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+    </div>
+  );
+}
+
+function TourCard({ tour, index }: { tour: Tour; index: number }) {
+  const { ref, visible } = useRevealOnScroll<HTMLAnchorElement>();
+
+  return (
+    <Link
+      ref={ref}
+      href={tour.href}
+      style={{ transitionDelay: visible ? `${(index % 6) * 80}ms` : "0ms" }}
+      className={`group flex h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      }`}
+    >
+      <div className="relative flex-1 overflow-hidden">
+        {tour.image ? (
+          <Image
+            src={tour.image}
+            alt={tour.title}
+            fill
+            sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+            className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+          />
+        ) : (
+          <PhotoPlaceholder />
+        )}
+
+        <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
+
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-forest/90 px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-white backdrop-blur-sm">
+          <ClockIcon size={14} />
+          {tour.duration} {tour.duration === 1 ? "DAY" : "DAYS"}
+        </div>
+
+        <div className="absolute right-4 top-4 inline-flex items-center rounded-full bg-gold px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-forest">
+          From ${tour.price}
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 p-5">
+          <div className="mb-2.5 flex items-center gap-2 text-white">
+            <PinIcon size={15} />
+            <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
+              {tour.location}
+            </span>
+          </div>
+
+          <h3 className="font-serif text-[23px] leading-[1.15] text-white">{tour.title}</h3>
+
+          {tour.subtitle && <p className="mt-1 font-sans text-[14px] text-white/85">{tour.subtitle}</p>}
+        </div>
+      </div>
+
+      <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
+        <div className="flex min-w-0 items-center gap-2.5 text-forest">
+          <CalendarIcon size={16} />
+          <span className="truncate font-sans text-[13px]">{tour.dateRange}</span>
+        </div>
+
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+          <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
+            <ArrowIcon size={16} />
+          </span>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+export default function ToursExplorer({ tours }: { tours: Tour[] }) {
+  const [regions, setRegions] = useState<string[]>([]);
+  const [durations, setDurations] = useState<string[]>([]);
+  const [prices, setPrices] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+
+  const regionOptions = useMemo(() => Array.from(new Set(tours.map((t) => t.region))), [tours]);
+  const categoryOptions = useMemo(() => Array.from(new Set(tours.map((t) => t.category))), [tours]);
+
+  function toggle(value: string, list: string[], setList: (v: string[]) => void) {
+    setList(list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
+  }
+
+  const filtered = useMemo(() => {
+    return tours.filter((tour) => {
+      if (regions.length && !regions.includes(tour.region)) return false;
+      if (categories.length && !categories.includes(tour.category)) return false;
+      if (durations.length) {
+        const matches = durations.some((label) => DURATION_BUCKETS.find((b) => b.label === label)?.test(tour.duration));
+        if (!matches) return false;
+      }
+      if (prices.length) {
+        const matches = prices.some((label) => PRICE_BUCKETS.find((b) => b.label === label)?.test(tour.price));
+        if (!matches) return false;
+      }
+      return true;
+    });
+  }, [tours, regions, categories, durations, prices]);
+
+  const stats = useMemo(() => {
+    const cheapest = tours.reduce((a, b) => (b.price < a.price ? b : a));
+    const longest = tours.reduce((a, b) => (b.duration > a.duration ? b : a));
+    return { total: tours.length, regionCount: regionOptions.length, cheapest, longest };
+  }, [tours, regionOptions]);
+
+  const activeCount = regions.length + durations.length + prices.length + categories.length;
+
+  function clearAll() {
+    setRegions([]);
+    setDurations([]);
+    setPrices([]);
+    setCategories([]);
+  }
+
+  return (
+    <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8 lg:pb-24 lg:pt-14">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr] lg:gap-14">
+        {/* ---------------- left sidebar: filters + quick facts ---------------- */}
+        <aside className="lg:sticky lg:top-28 lg:self-start">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Filter tours</p>
+            {activeCount > 0 && (
+              <button
+                type="button"
+                onClick={clearAll}
+                className="text-[11px] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
+              >
+                Clear ({activeCount})
+              </button>
+            )}
+          </div>
+
+          <div className="mt-4 space-y-5 rounded-2xl border border-forest/10 bg-white p-5">
+            <FilterGroup label="Region" options={regionOptions} active={regions} onToggle={(v) => toggle(v, regions, setRegions)} />
+            <FilterGroup
+              label="Duration"
+              options={DURATION_BUCKETS.map((b) => b.label)}
+              active={durations}
+              onToggle={(v) => toggle(v, durations, setDurations)}
+            />
+            <FilterGroup
+              label="Budget"
+              options={PRICE_BUCKETS.map((b) => b.label)}
+              active={prices}
+              onToggle={(v) => toggle(v, prices, setPrices)}
+            />
+            <FilterGroup label="Trip type" options={categoryOptions} active={categories} onToggle={(v) => toggle(v, categories, setCategories)} />
+          </div>
+
+          <div className="mt-6 rounded-2xl border border-forest/10 bg-white p-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">At a glance</p>
+            <dl className="mt-4 space-y-3 text-sm">
+              <div className="flex items-center justify-between gap-3">
+                <dt className="text-muted">Tours &amp; events</dt>
+                <dd className="font-semibold text-forest">{stats.total}</dd>
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <dt className="text-muted">Regions</dt>
+                <dd className="font-semibold text-forest">{stats.regionCount}</dd>
+              </div>
+              <div className="flex items-center justify-between gap-3 border-t border-forest/10 pt-3">
+                <dt className="text-muted">Most affordable</dt>
+                <dd className="text-right font-semibold text-forest">
+                  {stats.cheapest.title}
+                  <span className="block text-xs font-normal text-muted">From ${stats.cheapest.price}</span>
+                </dd>
+              </div>
+              <div className="flex items-center justify-between gap-3">
+                <dt className="text-muted">Longest trip</dt>
+                <dd className="text-right font-semibold text-forest">
+                  {stats.longest.title}
+                  <span className="block text-xs font-normal text-muted">{stats.longest.duration} days</span>
+                </dd>
+              </div>
+            </dl>
+          </div>
+
+          <LinkButton
+            href="/#contact"
+            variant="dark"
+            className="group mt-5 w-full justify-center gap-2 text-[11px] uppercase tracking-[0.12em]"
+          >
+            Need a custom itinerary?
+            <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
+              <ArrowIcon size={13} />
+            </span>
+          </LinkButton>
+        </aside>
+
+        {/* ---------------- right: filtered grid ---------------- */}
+        <div>
+          <div className="mb-6 flex items-center justify-between gap-4 border-b border-forest/10 pb-4">
+            <p className="text-sm text-muted">
+              Showing <span className="font-semibold text-forest">{filtered.length}</span> of {tours.length} tours
+            </p>
+          </div>
+
+          {filtered.length > 0 ? (
+            <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((tour, index) => (
+                <TourCard key={tour.id} tour={tour} index={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed border-forest/15 bg-white/60 px-6 py-16 text-center">
+              <p className="font-serif text-xl text-forest">No tours match those filters</p>
+              <p className="mt-2 text-sm text-muted">Try clearing a filter or two to see more journeys.</p>
+              <button
+                type="button"
+                onClick={clearAll}
+                className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
