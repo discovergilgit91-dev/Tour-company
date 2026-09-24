@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IconButton, LinkButton } from "./ui/Button";
 import { ArrowIcon, CalendarIcon, ClockIcon, CompassIcon, PinIcon } from "./ui/icons";
@@ -128,7 +129,10 @@ function TourPhotoPlaceholder() {
 
 function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
   return (
-    <article className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] sm:h-[500px]">
+    <Link
+      href={`/tours/${tour.id}`}
+      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
+    >
       <div className="relative flex-1 overflow-hidden">
         {tour.image ? (
           <Image
@@ -173,11 +177,13 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
           <span className="truncate font-sans text-[13px]">{tour.date}</span>
         </div>
 
-        <IconButton aria-label={`View ${tour.title}`} className="h-10 w-10">
-          <ArrowIcon size={17} />
-        </IconButton>
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+          <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
+            <ArrowIcon size={17} />
+          </span>
+        </span>
       </div>
-    </article>
+    </Link>
   );
 }
 
