@@ -271,18 +271,20 @@ function ComingSoonCard({ tour, index }: { tour: Tour; index: number }) {
       ref={ref}
       data-coming-card
       style={{ transitionDelay: visible ? `${(index % 4) * 90}ms` : "0ms" }}
-      className={`w-full shrink-0 snap-start transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)] ${
+      className={`flex h-full w-full shrink-0 snap-start flex-col transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)] ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[18px]">
+      <div className="relative aspect-[4/3] shrink-0 overflow-hidden rounded-[18px]">
         <MountainBackdrop />
         <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-cream/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-forest">
           Coming Soon
         </span>
       </div>
-      <h3 className="mt-4 font-serif text-lg leading-tight text-forest">{tour.title}</h3>
-      <p className="mt-1.5 text-sm leading-relaxed text-muted">{tour.location}</p>
+      <div className="mt-4 flex flex-1 flex-col">
+        <h3 className="line-clamp-2 min-h-[46px] font-serif text-lg leading-tight text-forest">{tour.title}</h3>
+        <p className="mt-auto pt-1.5 text-sm leading-relaxed text-muted">{tour.location}</p>
+      </div>
     </div>
   );
 }
