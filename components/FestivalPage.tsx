@@ -213,21 +213,21 @@ function EventDetailsCard() {
   }
 
   return (
-    <div className="rounded-[22px] border border-cream/10 bg-night p-6">
-      <dl className="space-y-5">
+    <div className="rounded-[22px] border border-cream/10 bg-night p-5">
+      <dl className="space-y-4">
         <div>
           <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Event Dates</dt>
-          <dd className="mt-1.5 font-serif text-lg text-cream">12 Aug – 14 Aug, 2027</dd>
+          <dd className="mt-1 font-serif text-lg text-cream">12 Aug – 14 Aug, 2027</dd>
           <dd className="mt-0.5 text-xs text-cream/50">3 Days of Culture, Music &amp; Celebration</dd>
         </div>
-        <div className="border-t border-cream/10 pt-5">
+        <div className="border-t border-cream/10 pt-4">
           <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Location</dt>
-          <dd className="mt-1.5 font-serif text-lg text-cream">Gilgit City</dd>
+          <dd className="mt-1 font-serif text-lg text-cream">Gilgit City</dd>
           <dd className="mt-0.5 text-xs text-cream/50">Gilgit-Baltistan, Pakistan</dd>
         </div>
-        <div className="border-t border-cream/10 pt-5">
+        <div className="border-t border-cream/10 pt-4">
           <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Organized By</dt>
-          <dd className="mt-1.5 font-serif text-lg text-cream">Gilgit-Baltistan Cultural Council</dd>
+          <dd className="mt-1 font-serif text-lg text-cream">Gilgit-Baltistan Cultural Council</dd>
           <dd className="mt-0.5 text-xs text-cream/50">Preserving Heritage, Inspiring Unity</dd>
         </div>
       </dl>
@@ -235,7 +235,7 @@ function EventDetailsCard() {
       <button
         type="button"
         onClick={handleAddToCalendar}
-        className="group mt-6 flex w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-6px_rgba(201,161,90,0.5)] active:translate-y-0 active:scale-[0.97]"
+        className="group mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-6px_rgba(201,161,90,0.5)] active:translate-y-0 active:scale-[0.97]"
       >
         <CalendarIcon size={16} />
         Add to Calendar
@@ -326,7 +326,7 @@ export default function FestivalPage() {
       </section>
 
       {/* ---------------- More Than a Festival ---------------- */}
-      <section className="relative w-full overflow-hidden bg-night py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full overflow-hidden bg-night py-14 sm:py-16 lg:py-20">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr_320px] lg:gap-12">
             <Reveal>
@@ -378,7 +378,7 @@ export default function FestivalPage() {
                 </span>
               </LinkButton>
 
-              <div className="mt-10 grid grid-cols-3 gap-6 border-t border-cream/10 pt-8">
+              <div className="mt-8 grid grid-cols-3 gap-5 border-t border-cream/10 pt-6">
                 {FESTIVAL_STATS.map((stat) => (
                   <div key={stat.label}>
                     <p className="font-serif text-3xl text-gold sm:text-4xl">{stat.value}</p>
@@ -387,19 +387,19 @@ export default function FestivalPage() {
                 ))}
               </div>
 
-              <blockquote className="mt-10 border-l-2 border-gold/40 pl-5">
-                <p className="font-serif text-lg italic leading-relaxed text-cream/80">
+              <blockquote className="mt-6 border-l-2 border-gold/40 pl-5">
+                <p className="font-serif text-base italic leading-relaxed text-cream/80">
                   &ldquo;Every language sung, every dish shared, every dance performed — it all says the same
                   thing: we belong to each other.&rdquo;
                 </p>
-                <cite className="mt-3 block text-xs not-italic uppercase tracking-[0.1em] text-cream/40">
+                <cite className="mt-2 block text-xs not-italic uppercase tracking-[0.1em] text-cream/40">
                   Festival Organizing Committee
                 </cite>
               </blockquote>
             </Reveal>
 
             <Reveal delay={180}>
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {MORE_HIGHLIGHTS.map(({ icon: Icon, title, description }) => (
                   <div key={title} className="flex items-start gap-3.5">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cream/[0.06] text-gold">
