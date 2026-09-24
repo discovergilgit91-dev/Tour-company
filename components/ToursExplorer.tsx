@@ -433,10 +433,56 @@ const ADVANTAGES = [
   { icon: GroupIcon, title: "Small Groups", description: "More connection, less crowd." },
 ];
 
+function AdvantageCard({
+  icon: Icon,
+  title,
+  description,
+  index,
+}: {
+  icon: (typeof ADVANTAGES)[number]["icon"];
+  title: string;
+  description: string;
+  index: number;
+}) {
+  const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
+  const number = String(index + 1).padStart(2, "0");
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: visible ? `${index * 100}ms` : "0ms" }}
+      className={`group relative overflow-hidden rounded-[22px] border border-forest/10 bg-white p-7 shadow-[0_2px_18px_rgba(18,36,28,0.05)] transition-[opacity,transform,box-shadow,border-color] duration-700 ease-out hover:-translate-y-1.5 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(18,36,28,0.18)] motion-reduce:transition-none ${
+        visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      }`}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -right-2 -top-4 font-serif text-7xl leading-none text-forest/[0.04] transition-colors duration-500 group-hover:text-gold/10"
+      >
+        {number}
+      </span>
+
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-full bg-forest text-white ring-4 ring-cream transition-colors duration-500 group-hover:bg-green">
+        <Icon size={22} />
+      </span>
+
+      <h3 className="relative mt-5 font-serif text-xl leading-tight text-forest">{title}</h3>
+      <p className="relative mt-2 text-sm leading-relaxed text-muted">{description}</p>
+
+      <span className="relative mt-5 block h-px w-8 bg-forest/15 transition-all duration-500 ease-out group-hover:w-12 group-hover:bg-gold" />
+    </div>
+  );
+}
+
 function WhyTravelWithUs() {
   return (
     <section className="relative w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-green/5 blur-3xl"
+      />
+
+      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <div className="max-w-xl">
           <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
             <span className="h-px w-8 bg-muted/60" />
@@ -447,15 +493,12 @@ function WhyTravelWithUs() {
           </h2>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 lg:gap-10">
-          {ADVANTAGES.map(({ icon: Icon, title, description }) => (
-            <div key={title}>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest text-white">
-                <Icon size={20} />
-              </span>
-              <h3 className="mt-4 font-serif text-xl leading-tight text-forest">{title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
-            </div>
+        <div className="relative mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 lg:gap-7">
+          {/* connecting "trail" between the four pillars, echoing the route map elsewhere on this page */}
+          <div className="pointer-events-none absolute left-[13%] right-[13%] top-14 hidden h-px border-t border-dashed border-forest/15 lg:block" />
+
+          {ADVANTAGES.map((advantage, index) => (
+            <AdvantageCard key={advantage.title} {...advantage} index={index} />
           ))}
         </div>
       </div>
