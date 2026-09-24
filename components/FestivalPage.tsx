@@ -416,7 +416,11 @@ export default function FestivalPage() {
                   Moments, colors <span className="text-green">and culture</span>
                 </h2>
               </div>
-              <LinkButton href="/#contact" variant="dark" className="group gap-2 text-[11px] uppercase tracking-[0.12em]">
+              <LinkButton
+                href="/tours/gilgit-cultural-festival/gallery"
+                variant="dark"
+                className="group gap-2 text-[11px] uppercase tracking-[0.12em]"
+              >
                 View All Photos
                 <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                   <ArrowIcon size={13} />
