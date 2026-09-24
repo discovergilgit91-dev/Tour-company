@@ -155,7 +155,7 @@ function VideoModal({ label, onClose }: { label: string; onClose: () => void }) 
   );
 }
 
-function SearchBar() {
+export function SearchBar() {
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState("");
   const [travelers, setTravelers] = useState("2 Adults");
