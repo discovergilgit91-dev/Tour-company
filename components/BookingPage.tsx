@@ -1,9 +1,19 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
-import { ArrowIcon, CheckIcon, ClockIcon, ShieldCheckIcon, UsersIcon } from "./ui/icons";
+import {
+  ArrowIcon,
+  ChevronDownIcon,
+  CheckIcon,
+  ClockIcon,
+  MailIcon,
+  PhoneIcon,
+  PinIcon,
+  ShieldCheckIcon,
+  UsersIcon,
+} from "./ui/icons";
 import { PeaksMotif, MOTIF_COMPONENTS } from "./tours/motifs";
 import { useRevealOnScroll } from "./DestinationCard";
 import type { TourDetail } from "@/lib/tourDetails";
@@ -37,6 +47,40 @@ const INCLUDED = [
 ];
 
 const NOT_INCLUDED = ["International flights", "Travel insurance", "Personal expenses & souvenirs"];
+
+const BOOKING_FAQS = [
+  {
+    question: "When will I hear back?",
+    answer:
+      "A local trip planner reviews every request personally and replies within one working day, usually sooner.",
+  },
+  {
+    question: "Is a deposit required to submit this?",
+    answer:
+      "No — no payment is taken through this form. Once your spot is confirmed, we'll arrange a deposit and payment plan directly with you.",
+  },
+  {
+    question: "Can I change the number of travellers later?",
+    answer:
+      "Yes. Mention it when your trip planner follows up and we'll adjust availability and pricing together before anything is confirmed.",
+  },
+  {
+    question: "What's the cancellation policy?",
+    answer:
+      "Full terms are shared once your booking is confirmed, but most departures allow free cancellation up to 30 days before the trip starts.",
+  },
+  {
+    question: "Can I request a different departure date?",
+    answer:
+      "Group departures run on the fixed dates listed for each trip. Note your preferred timing in special requests and we'll flag upcoming alternatives.",
+  },
+];
+
+const CONTACT_DETAILS = [
+  { label: "Email", value: "hello@discovergilgit.com", Icon: MailIcon },
+  { label: "Phone", value: "+92 355 123 4567", Icon: PhoneIcon },
+  { label: "Office", value: "Jutial Road, Gilgit, Gilgit-Baltistan", Icon: PinIcon },
+];
 
 const TRUST_POINTS = [
   {
@@ -72,6 +116,7 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
   const router = useRouter();
   const [travelers, setTravelers] = useState(2);
   const [submitted, setSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const maxTravelers = tour ? extractMaxTravelers(tour.groupSize) : 10;
   const pricePerPerson = tour ? extractPrice(tour.price) : 0;
@@ -145,7 +190,8 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:gap-14">
             {/* Form column */}
-            <Reveal>
+            <div>
+              <Reveal>
               {submitted ? (
                 <div className="flex min-h-[420px] flex-col items-center justify-center rounded-[22px] border border-forest/10 bg-white p-10 text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)]">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
@@ -294,7 +340,83 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                   </div>
                 </form>
               )}
-            </Reveal>
+              </Reveal>
+
+              {/* Booking FAQ */}
+              <Reveal delay={80}>
+                <div className="mt-10 rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-8">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                    Common questions
+                  </p>
+                  <h3 className="mt-1.5 font-serif text-2xl text-forest">Before you submit</h3>
+
+                  <div className="mt-6 divide-y divide-forest/8 border-t border-forest/8">
+                    {BOOKING_FAQS.map((faq, index) => {
+                      const isOpen = openFaq === index;
+                      return (
+                        <div key={faq.question}>
+                          <button
+                            type="button"
+                            onClick={() => setOpenFaq(isOpen ? null : index)}
+                            aria-expanded={isOpen}
+                            className="flex w-full items-center justify-between gap-4 py-4 text-left"
+                          >
+                            <span className="font-serif text-base text-forest sm:text-lg">{faq.question}</span>
+                            <span
+                              className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-forest transition-all duration-300 ${
+                                isOpen ? "rotate-180 bg-forest text-cream" : "bg-forest/[0.06]"
+                              }`}
+                            >
+                              <ChevronDownIcon size={14} />
+                            </span>
+                          </button>
+                          <div
+                            className={`grid transition-all duration-300 ease-out ${
+                              isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                            }`}
+                          >
+                            <div className="overflow-hidden">
+                              <p className="pb-4 pr-10 text-sm leading-relaxed text-muted">{faq.answer}</p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </Reveal>
+
+              {/* Prefer to talk to someone? */}
+              <Reveal delay={140}>
+                <div className="mt-6 rounded-[22px] border border-forest/10 bg-forest p-6 sm:p-8">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+                    Prefer to talk it through?
+                  </p>
+                  <h3 className="mt-1.5 font-serif text-xl text-cream sm:text-2xl">
+                    Reach a local trip planner directly
+                  </h3>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/65">
+                    Happy to answer questions by phone, WhatsApp, or email before you commit to a reservation.
+                  </p>
+
+                  <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-3">
+                    {CONTACT_DETAILS.map(({ label, value, Icon }) => (
+                      <div key={label} className="flex items-start gap-3">
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream/[0.07] text-gold">
+                          <Icon size={16} />
+                        </span>
+                        <div className="min-w-0">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/50">
+                            {label}
+                          </p>
+                          <p className="mt-0.5 text-sm leading-snug text-cream/85">{value}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </Reveal>
+            </div>
 
             {/* Sidebar */}
             <div>
