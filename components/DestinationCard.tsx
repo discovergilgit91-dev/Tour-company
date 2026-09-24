@@ -151,7 +151,7 @@ export function DestinationCard({
         <h3 className="mt-4 line-clamp-2 min-h-[60px] font-serif text-2xl leading-tight tracking-tight text-forest">
           {name}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{blurb}</p>
+        <p className="mt-2 line-clamp-4 min-h-24 text-sm leading-relaxed text-muted">{blurb}</p>
         <p className="mt-auto pt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
     </Link>
