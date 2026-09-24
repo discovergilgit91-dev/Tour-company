@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import jsPDF from "jspdf";
 import { LinkButton } from "./ui/Button";
-import { SearchBar } from "./Hero";
 import { ArrowIcon, ClockIcon, PinIcon, UsersIcon, GaugeIcon, DownloadIcon } from "./ui/icons";
 import { useRevealOnScroll } from "./DestinationCard";
 
@@ -207,14 +206,14 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 }
 
 /* ---------------------------------------------------------------------
-   Hero — same structural rhythm and search-bar overlap as the shared
-   Hero component, but with a bespoke spring-blossom decorative
-   background (no photography exists for this tour yet) and a trip
-   facts strip in place of a generic secondary CTA.
+   Hero — same structural rhythm as the shared Hero component, but with
+   a bespoke spring-blossom decorative background (no photography
+   exists for this tour yet) and a trip facts strip in place of a
+   generic secondary CTA.
    --------------------------------------------------------------------- */
 function TourHero() {
   return (
-    <section className="relative bg-forest pb-10 sm:pb-8 md:pb-6">
+    <section className="relative bg-forest">
       <div className="relative min-h-[76svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <div className="h-full w-full bg-gradient-to-br from-rose-950/40 via-forest to-night" />
@@ -232,7 +231,7 @@ function TourHero() {
           <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-forest/20" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pt-28 pb-40 sm:min-h-[82svh] sm:px-6 sm:pb-16 sm:pt-32 md:min-h-[86svh] md:pb-20 md:pt-36 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[82svh] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[86svh] md:pb-24 md:pt-36 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
               SPRING SPECIAL · HUNZA VALLEY
@@ -281,12 +280,6 @@ function TourHero() {
             </div>
           </div>
         </div>
-
-        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2 px-5 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl">
-            <SearchBar />
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -294,31 +287,207 @@ function TourHero() {
 
 /* ---------------------------------------------------------------------
    Sidebar — trip overview card with a real, working "Download
-   Itinerary" feature (a plain-text file built from ITINERARY), the
-   same honest-working-feature approach used elsewhere on the site.
+   Itinerary" feature: a branded, multi-section PDF (not a plain text
+   dump) built with jsPDF, covering trip facts, the overview, guides,
+   and the full day-by-day itinerary.
    --------------------------------------------------------------------- */
+const PDF_COLORS = {
+  forest: [20, 35, 31] as const,
+  night: [7, 23, 25] as const,
+  green: [31, 106, 76] as const,
+  gold: [201, 161, 90] as const,
+  cream: [246, 241, 231] as const,
+  muted: [107, 118, 113] as const,
+  body: [45, 55, 51] as const,
+};
+
 function TripOverviewCard() {
   function handleDownloadItinerary() {
-    const lines = [
-      `${TRIP.title} — ${TRIP.tagline}`,
-      TRIP.dateRange,
-      `${TRIP.duration}  ·  ${TRIP.route}  ·  ${TRIP.groupSize}  ·  ${TRIP.level}`,
-      "",
-      "ITINERARY",
-      "---------",
-      ...ITINERARY.flatMap((day) => [`${day.day} — ${day.title} (${day.tag})`, day.description, ""]),
-      "Discover Gilgit — Blossoms of Hunza",
-    ];
+    const doc = new jsPDF({ unit: "mm", format: "a4" });
+    const pageWidth = 210;
+    const pageHeight = 297;
+    const marginX = 18;
+    const contentWidth = pageWidth - marginX * 2;
+    let y = 0;
 
-    const blob = new Blob([lines.join("\n")], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "blossoms-of-hunza-itinerary.txt";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    const setColor = (fn: "setTextColor" | "setFillColor" | "setDrawColor", c: readonly [number, number, number]) =>
+      doc[fn](c[0], c[1], c[2]);
+
+    // jsPDF's built-in fonts only support WinAnsi/Latin-1, so "→" renders
+    // as garbage glyphs — swap it for plain ASCII wherever PDF text is built.
+    const pdfSafe = (s: string) => s.replace(/→/g, "to");
+
+    function ensureSpace(needed: number) {
+      if (y + needed > pageHeight - 22) {
+        doc.addPage();
+        y = 22;
+      }
+    }
+
+    // ---- Header band ----
+    setColor("setFillColor", PDF_COLORS.forest);
+    doc.rect(0, 0, pageWidth, 46, "F");
+
+    setColor("setTextColor", PDF_COLORS.cream);
+    doc.setFont("times", "bold");
+    doc.setFontSize(23);
+    doc.text(TRIP.title, marginX, 20);
+
+    setColor("setTextColor", PDF_COLORS.gold);
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(10);
+    doc.text(TRIP.tagline.toUpperCase(), marginX, 28);
+
+    setColor("setTextColor", [225, 222, 214]);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.text(TRIP.dateRange, marginX, 38);
+    doc.text(`Starting from ${TRIP.price} / person`, pageWidth - marginX, 38, { align: "right" });
+
+    y = 60;
+
+    // ---- Trip facts row ----
+    const facts: [string, string][] = [
+      ["Duration", TRIP.duration],
+      ["Route", pdfSafe(TRIP.route)],
+      ["Group Size", TRIP.groupSize],
+      ["Physical Level", TRIP.level],
+    ];
+    const colWidth = contentWidth / facts.length;
+    let maxFactLines = 1;
+    facts.forEach(([label, value], i) => {
+      const x = marginX + i * colWidth;
+      setColor("setTextColor", PDF_COLORS.muted);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7.5);
+      doc.text(label.toUpperCase(), x, y);
+
+      setColor("setTextColor", PDF_COLORS.forest);
+      doc.setFont("times", "bold");
+      doc.setFontSize(12.5);
+      // Wrap within the column (minus a little breathing room) instead of
+      // overflowing into the next column when a value is long, e.g. "Route".
+      const valueLines: string[] = doc.splitTextToSize(value, colWidth - 6);
+      doc.text(valueLines, x, y + 7);
+      maxFactLines = Math.max(maxFactLines, valueLines.length);
+    });
+
+    y += 10 + maxFactLines * 6;
+    setColor("setDrawColor", [225, 219, 205]);
+    doc.setLineWidth(0.3);
+    doc.line(marginX, y, pageWidth - marginX, y);
+    y += 11;
+
+    // ---- About ----
+    setColor("setTextColor", PDF_COLORS.forest);
+    doc.setFont("times", "bold");
+    doc.setFontSize(14);
+    doc.text("About This Journey", marginX, y);
+    y += 7;
+
+    setColor("setTextColor", PDF_COLORS.body);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(9.5);
+    const aboutLines: string[] = doc.splitTextToSize(
+      "For two or three weeks each spring, the terraced orchards of Hunza Valley turn white and pink " +
+        "beneath the snow line of Rakaposhi and Ultar Sar. This five-day journey times every stop to that " +
+        "brief, extraordinary window — walking trails, forts, and family orchards at the exact moment the " +
+        "valley is in full bloom.",
+      contentWidth
+    );
+    doc.text(aboutLines, marginX, y);
+    y += aboutLines.length * 4.6 + 12;
+
+    // ---- Guides ----
+    setColor("setTextColor", PDF_COLORS.forest);
+    doc.setFont("times", "bold");
+    doc.setFontSize(14);
+    doc.text("Your Local Guides", marginX, y);
+    y += 8;
+
+    GUIDES.forEach((guide) => {
+      ensureSpace(14);
+      setColor("setFillColor", PDF_COLORS.green);
+      doc.circle(marginX + 3, y - 1, 3, "F");
+      setColor("setTextColor", PDF_COLORS.cream);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7);
+      doc.text(
+        guide.name
+          .split(" ")
+          .map((w) => w[0])
+          .join(""),
+        marginX + 3,
+        y - 1,
+        { align: "center", baseline: "middle" }
+      );
+
+      setColor("setTextColor", PDF_COLORS.forest);
+      doc.setFont("times", "bold");
+      doc.setFontSize(10.5);
+      doc.text(guide.name, marginX + 10, y);
+
+      setColor("setTextColor", PDF_COLORS.green);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7.5);
+      doc.text(guide.role.toUpperCase(), marginX + 10, y + 4.5);
+
+      y += 11;
+    });
+
+    y += 3;
+
+    // ---- Itinerary ----
+    ensureSpace(18);
+    setColor("setTextColor", PDF_COLORS.forest);
+    doc.setFont("times", "bold");
+    doc.setFontSize(14);
+    doc.text("Five-Day Itinerary", marginX, y);
+    y += 10;
+
+    ITINERARY.forEach((day, index) => {
+      const descLines: string[] = doc.splitTextToSize(day.description, contentWidth - 13);
+      ensureSpace(11 + descLines.length * 4.4 + 7);
+
+      setColor("setFillColor", PDF_COLORS.forest);
+      doc.circle(marginX + 3.2, y, 3.2, "F");
+      setColor("setTextColor", PDF_COLORS.cream);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7.5);
+      doc.text(String(index + 1), marginX + 3.2, y, { align: "center", baseline: "middle" });
+
+      setColor("setTextColor", PDF_COLORS.forest);
+      doc.setFont("times", "bold");
+      doc.setFontSize(11.5);
+      doc.text(`${day.day} — ${pdfSafe(day.title)}`, marginX + 11, y + 1);
+
+      setColor("setTextColor", PDF_COLORS.green);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(7);
+      doc.text(day.tag.toUpperCase(), marginX + 11, y + 6);
+
+      setColor("setTextColor", PDF_COLORS.body);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.text(descLines, marginX + 11, y + 11.5);
+
+      y += 11.5 + descLines.length * 4.4 + 7;
+    });
+
+    // ---- Footer on every page ----
+    const pageCount = doc.getNumberOfPages();
+    for (let p = 1; p <= pageCount; p++) {
+      doc.setPage(p);
+      setColor("setDrawColor", [225, 219, 205]);
+      doc.line(marginX, pageHeight - 16, pageWidth - marginX, pageHeight - 16);
+      setColor("setTextColor", PDF_COLORS.muted);
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(8);
+      doc.text("Discover Gilgit — Blossoms of Hunza", marginX, pageHeight - 10);
+      doc.text(`Page ${p} of ${pageCount}`, pageWidth - marginX, pageHeight - 10, { align: "right" });
+    }
+
+    doc.save("blossoms-of-hunza-itinerary.pdf");
   }
 
   return (
@@ -435,7 +604,9 @@ export default function HunzaSpringTour() {
                   <div className="grid grid-cols-2 gap-x-6 gap-y-7 pt-6 sm:grid-cols-4">
                     {SPRING_STATS.map((stat) => (
                       <div key={stat.label}>
-                        <p className="font-serif text-3xl text-forest sm:text-4xl">{stat.value}</p>
+                        <p className="whitespace-nowrap font-serif text-2xl text-forest sm:text-4xl">
+                          {stat.value}
+                        </p>
                         <p className="mt-1.5 min-h-[32px] text-xs uppercase leading-snug tracking-[0.08em] text-muted">
                           {stat.label}
                         </p>
