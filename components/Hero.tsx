@@ -82,9 +82,78 @@ export type HeroProps = {
   primaryCta?: HeroCta | null;
   /** Defaults to the homepage's "Watch film" button. Pass `null` to hide it. */
   secondaryCta?: HeroCta | null;
+  /** A single self-contained "watch video" button — opens a lightbox within Hero itself,
+      no wiring required from the calling page. Typically used instead of primary/secondaryCta. */
+  videoCta?: { label: string } | null;
   /** Defaults to shown for the multi-slide carousel, hidden for a single static hero. */
   showSearch?: boolean;
 };
+
+function PlayIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.6" />
+      <path d="M10 8.5 15.5 12 10 15.5V8.5Z" fill="currentColor" />
+    </svg>
+  );
+}
+
+function VideoModal({ label, onClose }: { label: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={label}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-night/80 p-5 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <div
+        className="relative w-full max-w-3xl overflow-hidden rounded-[22px] border border-cream/10 bg-forest shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close video"
+          className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-cream/10 text-cream transition-colors duration-300 hover:bg-cream hover:text-forest"
+        >
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 5l14 14M19 5 5 19" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          </svg>
+        </button>
+
+        <div className="relative flex aspect-video w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-green-dark via-forest to-night">
+          <svg
+            viewBox="0 0 800 400"
+            preserveAspectRatio="xMidYMax slice"
+            className="pointer-events-none absolute inset-0 h-full w-full text-cream/[0.05]"
+            aria-hidden="true"
+          >
+            <path
+              d="M-40 340 80 200l70 90 90-140 90 130 80-70 120 160 100-90 140 170"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            />
+          </svg>
+          <span className="relative flex h-16 w-16 items-center justify-center rounded-full bg-cream/10 text-cream">
+            <PlayIcon size={26} />
+          </span>
+          <p className="relative font-serif text-xl text-cream">{label}</p>
+          <p className="relative text-sm text-cream/60">Video coming soon</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function SearchBar() {
   const [destination, setDestination] = useState("");
@@ -222,6 +291,7 @@ export default function Hero({
   imageAlt,
   primaryCta,
   secondaryCta,
+  videoCta,
   showSearch,
 }: HeroProps) {
   // A single static slide (eyebrow/title/description/image) instead of the
@@ -253,6 +323,7 @@ export default function Hero({
   const resolvedSecondaryCta = secondaryCta !== undefined ? secondaryCta : isCustom ? null : DEFAULT_SECONDARY_CTA;
 
   const [active, setActive] = useState(0);
+  const [videoOpen, setVideoOpen] = useState(false);
 
   useEffect(() => {
     if (resolvedSlides.length <= 1) return;
@@ -345,7 +416,7 @@ export default function Hero({
               </div>
             )}
 
-            {(resolvedPrimaryCta || resolvedSecondaryCta) && (
+            {(resolvedPrimaryCta || resolvedSecondaryCta || videoCta) && (
               <div className="hero-buttons mt-4 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
                 {resolvedPrimaryCta && (
                   <LinkButton href={resolvedPrimaryCta.href} variant="primary" className="group">
@@ -357,6 +428,16 @@ export default function Hero({
                   <LinkButton href={resolvedSecondaryCta.href} variant="outline">
                     {resolvedSecondaryCta.label}
                   </LinkButton>
+                )}
+                {videoCta && (
+                  <button
+                    type="button"
+                    onClick={() => setVideoOpen(true)}
+                    className="group inline-flex items-center justify-center gap-2.5 rounded-full border border-cream/40 px-6 py-3 font-sans text-sm font-semibold text-cream transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-cream hover:bg-cream hover:text-forest active:translate-y-0 active:scale-[0.97]"
+                  >
+                    <PlayIcon size={17} />
+                    {videoCta.label}
+                  </button>
                 )}
               </div>
             )}
@@ -386,6 +467,8 @@ export default function Hero({
           </div>
         )}
       </div>
+
+      {videoCta && videoOpen && <VideoModal label={videoCta.label} onClose={() => setVideoOpen(false)} />}
     </section>
   );
 }
