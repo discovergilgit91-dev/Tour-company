@@ -386,7 +386,13 @@ export default function Hero({
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pb-40 pt-28 sm:min-h-[82svh] sm:px-6 sm:pb-16 sm:pt-32 md:min-h-[86svh] md:pb-20 md:pt-36 lg:px-8">
+        <div
+          className={`relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pt-28 sm:min-h-[82svh] sm:px-6 sm:pt-32 md:min-h-[86svh] md:pt-36 lg:px-8 ${
+            showSearchBar
+              ? "pb-40 sm:pb-16 md:pb-20"
+              : "pb-16 sm:pb-20 md:pb-24"
+          }`}
+        >
           <div key={active} className="hero-content max-w-3xl motion-reduce:animate-none">
             {currentSlide.badge && (
               <div className="hero-badge">
@@ -396,7 +402,7 @@ export default function Hero({
               </div>
             )}
 
-            <div className="overflow-hidden">
+            <div className="mt-4 overflow-hidden sm:mt-5">
               <h1 className="hero-heading font-serif text-[26px] font-semibold leading-[1.15] tracking-tight sm:text-4xl md:text-5xl lg:text-[60px]">
                 <span className="text-cream">{currentSlide.titleLine1}</span>
                 {currentSlide.titleLine2 && (
@@ -410,14 +416,14 @@ export default function Hero({
 
             {currentSlide.description && (
               <div className="overflow-hidden">
-                <p className="hero-description mt-3 max-w-xl text-[12.5px] leading-snug text-cream/85 sm:mt-5 sm:text-base sm:leading-relaxed md:text-lg">
+                <p className="hero-description mt-4 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:mt-5 sm:text-base md:text-lg">
                   {currentSlide.description}
                 </p>
               </div>
             )}
 
             {(resolvedPrimaryCta || resolvedSecondaryCta || videoCta) && (
-              <div className="hero-buttons mt-4 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
+              <div className="hero-buttons mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
                 {resolvedPrimaryCta && (
                   <LinkButton href={resolvedPrimaryCta.href} variant="primary" className="group">
                     {resolvedPrimaryCta.label}
