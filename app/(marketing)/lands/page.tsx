@@ -33,7 +33,7 @@ export default function LandsPage() {
         eyebrow="EXPLORE THE NORTH"
         title="Every journey begins somewhere extraordinary."
         description="Discover the valleys, plains, lakes, and mountain landscapes that make northern Pakistan unforgettable."
-        image="/Images/tours/upcoming-journey.png"
+        image="/Images/tours/Journeys.png"
         imageAlt="A collage of northern Pakistan's valleys, suspension bridges, and lakes"
       />
 
