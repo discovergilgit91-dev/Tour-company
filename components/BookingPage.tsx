@@ -401,7 +401,7 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
 
                   <div className="mt-6 flex flex-wrap gap-x-10 gap-y-5">
                     {CONTACT_DETAILS.map(({ label, value, Icon }) => (
-                      <div key={label} className="flex min-w-[220px] flex-1 items-start gap-3">
+                      <div key={label} className="flex min-w-[220px] shrink-0 grow items-start gap-3">
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream/[0.07] text-gold">
                           <Icon size={16} />
                         </span>
