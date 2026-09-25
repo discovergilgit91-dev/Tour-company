@@ -483,8 +483,8 @@ function ClosingCta() {
                 <ArrowIcon size={14} />
               </span>
             </LinkButton>
-            <LinkButton href="/#contact" variant="outline">
-              Contact Us
+            <LinkButton href="/plan-your-trip" variant="outline">
+              Plan Your Trip
             </LinkButton>
           </div>
         </div>

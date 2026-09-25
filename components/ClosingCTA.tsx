@@ -7,8 +7,8 @@ import { ArrowIcon } from "./ui/icons";
    inline contact form. Keeps id="contact" so every "/#contact" link
    already scattered across the site (tour pages, destination cards,
    the tours explorer) still lands somewhere real; the actual contact
-   channel is now the "Contact Us" button below and the details already
-   in the footer.
+   channel is now the footer's phone/email/office details, alongside
+   the "Plan Your Trip" button below.
    --------------------------------------------------------------------- */
 
 const BASE_BUTTON =
@@ -50,12 +50,12 @@ export default function ClosingCTA() {
                   <ArrowIcon size={14} />
                 </span>
               </Link>
-              <a
-                href="mailto:hello@discovergilgit.com"
+              <Link
+                href="/plan-your-trip"
                 className={`${BASE_BUTTON} border border-cream/40 text-cream hover:border-cream hover:bg-cream hover:text-forest`}
               >
-                Contact Us
-              </a>
+                Plan Your Trip
+              </Link>
             </div>
           </div>
         </div>
