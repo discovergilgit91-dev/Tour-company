@@ -219,6 +219,7 @@ export default function AboutStory() {
                 inView ? "w-8" : "w-0"
               }`}
             />
+            <PeakMark className="h-4 w-4 text-gold" />
             Our story
           </div>
 
