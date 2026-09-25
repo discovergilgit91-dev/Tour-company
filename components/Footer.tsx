@@ -1,11 +1,20 @@
 import Link from "next/link";
 import { Logo, PeakMark } from "./ui/Logo";
-import { ArrowIcon, CompassIcon } from "./ui/icons";
-import { NAV_LINKS as EXPLORE_LINKS } from "@/lib/nav";
+import { ArrowIcon, CompassIcon, MailIcon, PhoneIcon, PinIcon } from "./ui/icons";
+import { NAV_LINKS } from "@/lib/nav";
 
-const ACCOUNT_LINKS = [
+type FooterLinkItem = { href: string; label: string };
+
+const ACCOUNT_LINKS: FooterLinkItem[] = [
   { href: "/sign-in", label: "Sign In" },
   { href: "/sign-up", label: "Sign Up" },
+  { href: "/book", label: "Book a Trip" },
+];
+
+const CONTACT_DETAILS = [
+  { label: "Email", value: "hello@discovergilgit.com", href: "mailto:hello@discovergilgit.com", Icon: MailIcon },
+  { label: "Phone", value: "+92 355 123 4567", href: "tel:+923551234567", Icon: PhoneIcon },
+  { label: "Office", value: "Jutial Road, Gilgit, Gilgit-Baltistan", href: undefined, Icon: PinIcon },
 ];
 
 function InstagramIcon() {
@@ -71,9 +80,17 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   );
 }
 
-function FooterColumn({ title, links }: { title: string; links: typeof EXPLORE_LINKS }) {
+function FooterColumn({
+  title,
+  links,
+  className = "",
+}: {
+  title: string;
+  links: FooterLinkItem[];
+  className?: string;
+}) {
   return (
-    <div>
+    <div className={className}>
       <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
         {title}
       </h3>
@@ -89,6 +106,16 @@ function FooterColumn({ title, links }: { title: string; links: typeof EXPLORE_L
 }
 
 export default function Footer() {
+  // The footer renders on every page, but NAV_LINKS' hash hrefs (e.g.
+  // "#destinations") only resolve to something on the homepage itself —
+  // elsewhere they'd just tack the hash onto the current URL. Prefixing
+  // with "/" sends them to the homepage first, then to the anchor, so
+  // every Explore link works from anywhere on the site.
+  const exploreLinks: FooterLinkItem[] = NAV_LINKS.map((link) => ({
+    ...link,
+    href: link.href.startsWith("#") ? `/${link.href}` : link.href,
+  }));
+
   return (
     <footer className="relative overflow-hidden bg-night text-cream">
       <div
@@ -101,12 +128,12 @@ export default function Footer() {
       />
 
       {/* Same container as every section above (WhyChooseUs, AboutStory, UpcomingTours, ...):
-          max-w-6xl + px-5 sm:px-6 lg:px-8. The old max-w-[930px] lg:px-0 made the footer
-          narrower than the sections, so its left and right edges did not line up. */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 sm:py-14 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-[1.25fr_1fr_1fr] md:gap-8">
+          max-w-6xl + px-5 sm:px-6 lg:px-8, so the footer's edges line up with
+          the rest of the page at every width. */}
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* BRAND */}
-          <div className="border-b border-cream/[0.08] pb-9 sm:col-span-2 md:col-span-1 md:border-b-0 md:border-r md:pb-0 md:pr-8">
+          <div className="border-b border-cream/[0.08] pb-9 sm:col-span-2 lg:col-span-1 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
             <Logo />
 
             <p className="mt-5 max-w-[285px] text-[12px] leading-[1.8] text-cream/50">
@@ -139,14 +166,41 @@ export default function Footer() {
             </div>
           </div>
 
-          <FooterColumn title="Explore" links={EXPLORE_LINKS} />
+          <FooterColumn title="Explore" links={exploreLinks} />
+          <FooterColumn title="Account" links={ACCOUNT_LINKS} />
 
-          <div>
-            <FooterColumn title="Account" links={ACCOUNT_LINKS} />
+          {/* CONTACT */}
+          <div className="sm:col-span-2 lg:col-span-1">
+            <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
+              Contact
+            </h3>
+
+            <ul className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1">
+              {CONTACT_DETAILS.map(({ label, value, href, Icon }) => (
+                <li key={label} className="flex items-start gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cream/15 text-cream/55">
+                    <Icon size={14} />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-cream/40">{label}</p>
+                    {href ? (
+                      <a
+                        href={href}
+                        className="mt-0.5 block break-words text-[12px] leading-snug text-cream/70 transition-colors hover:text-cream"
+                      >
+                        {value}
+                      </a>
+                    ) : (
+                      <p className="mt-0.5 text-[12px] leading-snug text-cream/70">{value}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
 
             <Link
               href="/plan-your-trip"
-              className="mt-8 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
+              className="mt-6 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
             >
               <PeakMark />
               <span>Plan your journey</span>
