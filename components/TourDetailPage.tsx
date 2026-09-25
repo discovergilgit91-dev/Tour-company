@@ -7,6 +7,7 @@ import { useRevealOnScroll } from "./DestinationCard";
 import { PeaksMotif, PeakZigzagMotif, MOTIF_COMPONENTS } from "./tours/motifs";
 import { STAT_ICON_COMPONENTS } from "./tours/statIcons";
 import CompleteExperience from "./CompleteExperience";
+import TestimonialSection from "./TestimonialSection";
 import type { TourDetail } from "@/lib/tourDetails";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -590,22 +591,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
       <CompleteExperience />
 
       {/* ---------------- Pull quote ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-20 sm:py-24 lg:py-28">
-        <div
-          aria-hidden
-          className={`pointer-events-none absolute -right-32 top-0 h-[420px] w-[420px] rounded-full ${tour.theme.blob} blur-3xl`}
-        />
-        <div className="relative mx-auto w-full max-w-3xl px-5 text-center sm:px-6 lg:px-8">
-          <svg width="32" height="24" viewBox="0 0 32 24" fill="none" className="mx-auto text-gold/60" aria-hidden="true">
-            <path
-              d="M0 24V14.4Q0 7.2 4.2 3.6 8.4 0 14.4 0v4.8Q10.8 4.8 8.4 7.2 6 9.6 6 14.4h8.4V24ZM17.6 24V14.4q0-7.2 4.2-10.8Q26 0 32 0v4.8q-3.6 0-6 2.4-2.4 2.4-2.4 7.2h8.4V24Z"
-              fill="currentColor"
-            />
-          </svg>
-          <p className="mt-6 font-serif text-2xl leading-snug text-cream sm:text-3xl">{tour.quote}</p>
-          <p className="mt-5 text-sm uppercase tracking-[0.14em] text-cream/50">— {tour.quoteAuthor}</p>
-        </div>
-      </section>
+      <TestimonialSection testimonials={[{ quote: tour.quote, author: tour.quoteAuthor }]} />
 
       {/* ---------------- Closing CTA ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream py-16 text-center sm:py-20">
