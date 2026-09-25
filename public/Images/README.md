@@ -7,6 +7,13 @@ components already reference:
 public/Images/
 ├── hero/
 │   └── upcoming-hero.jpg        used by UpcomingTours.tsx
+├── services/
+│   ├── transportation.jpg       CompleteExperience — Transportation
+│   ├── stay.jpg                 CompleteExperience — Stay
+│   ├── food.jpg                 CompleteExperience — Local Food
+│   ├── guides.jpg               CompleteExperience — Guided Experiences
+│   ├── activities.jpg           CompleteExperience — Activities
+│   └── support.jpg              CompleteExperience — Complete Support
 └── tours/
     ├── hunza-spring.jpg         Blossoms of Hunza (UpcomingTours)
     ├── rakaposhi-trek.jpg       Rakaposhi Base Camp Trek (UpcomingTours)
@@ -24,6 +31,7 @@ public/Images/
 ```
 
 Every file above is currently a generated placeholder (a branded
-forest/gold graphic with the tour name on it) so the site renders with no
-broken images. Replace each one with a real photo of the same name and
-same folder to swap it in — no code changes needed.
+forest/gold graphic — the tour name for `tours/`, a line-art motif for
+`services/`) so the site renders with no broken images. Replace each one
+with a real photo of the same name and same folder to swap it in — no
+code changes needed.

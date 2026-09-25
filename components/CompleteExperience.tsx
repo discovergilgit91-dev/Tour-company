@@ -1,13 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useRevealOnScroll } from "./DestinationCard";
 
 /* ---------------------------------------------------------------------
    Reusable "Complete Experience" section — dropped into both tour and
    event detail pages (see TourDetailPage.tsx / FestivalPage.tsx) so the
    six-service promise stays identical and in one place instead of being
-   copy-pasted per page. Self-contained: its own icons and mountain
-   motif, no props required.
+   copy-pasted per page. Self-contained: its own icons, photos and
+   mountain motif, no props required.
    --------------------------------------------------------------------- */
 
 function TransportIcon({ size = 22 }: { size?: number }) {
@@ -115,31 +116,37 @@ function MountainBanner({ className = "" }: { className?: string }) {
 const SERVICES = [
   {
     Icon: TransportIcon,
+    image: "/Images/services/transportation.jpg",
     title: "Transportation",
     description: "Private transfers and 4x4s for every mountain road, door to door.",
   },
   {
     Icon: StayIcon,
+    image: "/Images/services/stay.jpg",
     title: "Stay",
     description: "Handpicked guesthouses and heritage stays at every altitude.",
   },
   {
     Icon: FoodIcon,
+    image: "/Images/services/food.jpg",
     title: "Local Food",
     description: "Fresh, home-style meals rooted in Gilgit-Baltistan's own kitchens.",
   },
   {
     Icon: GuideIcon,
+    image: "/Images/services/guides.jpg",
     title: "Guided Experiences",
     description: "Local guides who know every valley, pass, and story worth telling.",
   },
   {
     Icon: ActivitiesIcon,
+    image: "/Images/services/activities.jpg",
     title: "Activities",
     description: "Treks, safaris, and cultural visits, paced around your group.",
   },
   {
     Icon: SupportIcon,
+    image: "/Images/services/support.jpg",
     title: "Complete Support",
     description: "One team, one point of contact, from booking to the final drive home.",
   },
@@ -193,17 +200,29 @@ export default function CompleteExperience() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:mt-14 lg:grid-cols-6">
-          {SERVICES.map(({ Icon, title, description }, index) => (
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-7">
+          {SERVICES.map(({ Icon, image, title, description }, index) => (
             <Reveal key={title} delay={(index % 6) * 70}>
-              <div className="group flex h-full flex-col items-center rounded-[18px] border border-cream/10 bg-cream/[0.04] p-5 text-center transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:bg-cream/[0.06] hover:shadow-[0_16px_32px_-12px_rgba(0,0,0,0.4)]">
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold transition-colors duration-300 group-hover:bg-gold group-hover:text-forest">
-                  <Icon size={21} />
-                </span>
-                <h3 className="mt-4 font-serif text-[15px] leading-snug text-cream sm:text-base">{title}</h3>
-                <p className="mt-2 min-h-[52px] text-xs leading-relaxed text-cream/60 sm:text-[13px]">
-                  {description}
-                </p>
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-cream/10 bg-cream/[0.03] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(0,0,0,0.5)]">
+                <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
+                  <Image
+                    src={image}
+                    alt={title}
+                    fill
+                    quality={85}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/10 to-transparent" />
+                </div>
+
+                <div className="relative flex flex-1 flex-col px-5 pb-6 pt-9 text-left">
+                  <span className="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-forest text-gold shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)] transition-colors duration-300 group-hover:bg-gold group-hover:text-forest">
+                    <Icon size={20} />
+                  </span>
+                  <h3 className="font-serif text-lg leading-snug text-cream">{title}</h3>
+                  <p className="mt-2 text-[13px] leading-relaxed text-cream/60">{description}</p>
+                </div>
               </div>
             </Reveal>
           ))}
