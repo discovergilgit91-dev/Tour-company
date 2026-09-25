@@ -603,7 +603,7 @@ export default function PlanYourTripPage() {
               <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
                 Real people. Real experiences. Hear how our journeys have made a difference.
               </p>
-              <LinkButton href="/#reviews" variant="primary" className="group mt-7 gap-2">
+              <LinkButton href="/traveler-stories" variant="primary" className="group mt-7 gap-2">
                 Read More Stories
                 <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                   <ArrowIcon size={14} />

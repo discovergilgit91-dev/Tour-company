@@ -6,9 +6,12 @@ components already reference:
 ```
 public/Images/
 ├── avatars/
-│   ├── sarah-khan.jpg           PlanYourTripPage — traveler stories
-│   ├── ali-raza.jpg             PlanYourTripPage — traveler stories
-│   └── ayesha-malik.jpg         PlanYourTripPage — traveler stories
+│   ├── sarah-khan.jpg           Traveler stories — Sarah Khan
+│   ├── ali-raza.jpg             Traveler stories — Ali Raza
+│   ├── ayesha-malik.jpg         Traveler stories — Ayesha Malik
+│   ├── ayesha-khan.jpg          Traveler stories — Ayesha Khan
+│   ├── daniel-reyes.jpg         Traveler stories — Daniel Reyes
+│   └── meera-nair.jpg           Traveler stories — Meera Nair
 ├── hero/
 │   └── upcoming-hero.jpg        used by UpcomingTours.tsx
 ├── services/
