@@ -20,7 +20,7 @@ const TOURS: Tour[] = [
     duration: 5,
     dateRange: "25 May – 29 May, 2027",
     price: 450,
-    image: "/Images/tours/hunza-spring.jpg",
+    image: "/Images/tours/hunza-blossom.png",
     href: "/tours/hunza-spring",
   },
   {
@@ -59,6 +59,7 @@ const TOURS: Tour[] = [
     duration: 3,
     dateRange: "20 Jul – 22 Jul, 2027",
     price: 310,
+    image: "/Images/tours/meadows.png",
     href: "/tours/nanga-parbat-camping",
   },
   {
@@ -83,6 +84,7 @@ const TOURS: Tour[] = [
     duration: 4,
     dateRange: "14 Aug – 17 Aug, 2027",
     price: 420,
+    image: "/Images/tours/Fairy-meadows.png",
     href: "/tours/fairy-meadows-trek",
   },
   {
@@ -95,6 +97,7 @@ const TOURS: Tour[] = [
     duration: 3,
     dateRange: "22 Aug – 24 Aug, 2027",
     price: 340,
+    image: "/Images/tours/deosai.png",
     href: "/tours/deosai-wildlife-safari",
   },
   {
@@ -107,6 +110,7 @@ const TOURS: Tour[] = [
     duration: 5,
     dateRange: "05 Sep – 09 Sep, 2027",
     price: 500,
+    image: "/Images/tours/Kaptana-desert.png",
     href: "/tours/skardu-cold-desert",
   },
   {
@@ -119,6 +123,7 @@ const TOURS: Tour[] = [
     duration: 4,
     dateRange: "18 Sep – 21 Sep, 2027",
     price: 380,
+    image: "/Images/tours/shigar-fort.png",
     href: "/tours/shigar-heritage-trail",
   },
   {
@@ -131,6 +136,7 @@ const TOURS: Tour[] = [
     duration: 3,
     dateRange: "01 Oct – 03 Oct, 2027",
     price: 300,
+    image: "/Images/tours/attabad-lake.png",
     href: "/tours/attabad-karimabad-escape",
   },
   {
@@ -143,6 +149,7 @@ const TOURS: Tour[] = [
     duration: 2,
     dateRange: "12 Oct – 13 Oct, 2027",
     price: 260,
+    image: "/Images/tours/khunjerab.png",
     href: "/tours/khunjerab-border-expedition",
   },
   {

@@ -15,6 +15,8 @@ export default function GilgitCulturalFestivalPage() {
         eyebrow="FEATURED EVENT"
         title="Gilgit-Baltistan Cultural Festival"
         description="Immerse yourself in the vibrant culture, music, and traditional food of Gilgit-Baltistan — a celebration of our heritage and community spirit."
+        image="/Images/tours/sword-dance.png"
+        imageAlt="Dancers in traditional dress performing at the Gilgit-Baltistan Cultural Festival"
         primaryCta={null}
         secondaryCta={null}
         videoCta={{ label: "Watch Festival Highlights" }}
