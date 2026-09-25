@@ -130,10 +130,15 @@ export default function Footer() {
       {/* Same container as every section above (WhyChooseUs, AboutStory, UpcomingTours, ...):
           max-w-6xl + px-5 sm:px-6 lg:px-8, so the footer's edges line up with
           the rest of the page at every width. */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-14 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-10 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+        {/* Brand gets its own full-width row at every breakpoint below
+            desktop (sm:grid-cols-3 + sm:col-span-3), with Explore/Account/
+            Contact sharing the row below it — two rows instead of the four
+            stacking one-per-row the way a plain sm:grid-cols-2 would leave
+            Brand and Contact (the two widest blocks) each alone on a row. */}
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 lg:grid-cols-4">
           {/* BRAND */}
-          <div className="border-b border-cream/[0.08] pb-9 sm:col-span-2 lg:col-span-1 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
+          <div className="border-b border-cream/[0.08] pb-9 sm:col-span-3 lg:col-span-1 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
             <Logo />
 
             <p className="mt-5 max-w-[285px] text-[12px] leading-[1.8] text-cream/50">
@@ -170,12 +175,12 @@ export default function Footer() {
           <FooterColumn title="Account" links={ACCOUNT_LINKS} />
 
           {/* CONTACT */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          <div>
             <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
               Contact
             </h3>
 
-            <ul className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-3 lg:grid-cols-1">
+            <ul className="mt-5 space-y-4">
               {CONTACT_DETAILS.map(({ label, value, href, Icon }) => (
                 <li key={label} className="flex items-start gap-3">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cream/15 text-cream/55">
@@ -209,7 +214,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-cream/[0.08] pt-5 sm:mt-11">
+        <div className="mt-9 border-t border-cream/[0.08] pt-5 sm:mt-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2.5 text-[9px] text-cream/35">
               <CompassIcon />
