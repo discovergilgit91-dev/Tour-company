@@ -295,7 +295,7 @@ export default function AboutStory() {
           </div>
 
           <div className={`mt-10 ${reveal(1100).className}`} style={reveal(1100).style}>
-            <LinkButton href="#contact" variant="outline" className="group">
+            <LinkButton href="/plan-your-trip" variant="outline" className="group">
               <PeakMark className="text-cream" />
               Plan your journey
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">→</span>

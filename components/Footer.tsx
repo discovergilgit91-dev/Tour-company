@@ -145,7 +145,7 @@ export default function Footer() {
             <FooterColumn title="Account" links={ACCOUNT_LINKS} />
 
             <Link
-              href="/tours"
+              href="/plan-your-trip"
               className="mt-8 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
             >
               <PeakMark />
