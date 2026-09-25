@@ -4,6 +4,7 @@ import { useState } from "react";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CalendarIcon } from "./ui/icons";
 import { useRevealOnScroll } from "./DestinationCard";
+import CompleteExperience from "./CompleteExperience";
 
 /* ---------------------------------------------------------------------
    Small line-icons in the established stroke style, specific to this page.
@@ -448,6 +449,8 @@ export default function FestivalPage() {
           </div>
         </div>
       </section>
+
+      <CompleteExperience />
 
       {/* ---------------- Testimonial ---------------- */}
       <section className="relative w-full overflow-hidden bg-forest py-20 sm:py-24 lg:py-28">

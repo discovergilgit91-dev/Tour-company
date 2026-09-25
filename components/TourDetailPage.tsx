@@ -6,6 +6,7 @@ import { ArrowIcon, ClockIcon, PinIcon, UsersIcon, GaugeIcon, DownloadIcon } fro
 import { useRevealOnScroll } from "./DestinationCard";
 import { PeaksMotif, PeakZigzagMotif, MOTIF_COMPONENTS } from "./tours/motifs";
 import { STAT_ICON_COMPONENTS } from "./tours/statIcons";
+import CompleteExperience from "./CompleteExperience";
 import type { TourDetail } from "@/lib/tourDetails";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -585,6 +586,8 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
           </div>
         </div>
       </section>
+
+      <CompleteExperience />
 
       {/* ---------------- Pull quote ---------------- */}
       <section className="relative w-full overflow-hidden bg-forest py-20 sm:py-24 lg:py-28">
