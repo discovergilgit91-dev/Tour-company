@@ -12,7 +12,7 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     blurb: "Terraced orchards, ancient forts, and snow-capped peaks framing a valley of legend.",
     image: "/Images/tours/passu-cones.jpg",
     tag: "Discover Hunza",
-    href: "/destinations/hunza-valley",
+    href: "/destinations/karimabad",
     altitude: "2,500 m",
   },
   {
