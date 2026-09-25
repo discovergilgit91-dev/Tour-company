@@ -29,7 +29,7 @@ export default function FeaturedEvent() {
             visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
-          <div className="relative aspect-[16/10] lg:aspect-auto">
+          <div className="relative aspect-[16/10]">
             <Image
               src="/Images/tours/culture.png"
               alt="Traditional dance, dress, and music at the Gilgit-Baltistan Cultural Festival"
