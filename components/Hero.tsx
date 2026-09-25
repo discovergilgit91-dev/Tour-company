@@ -464,15 +464,19 @@ export default function Hero({
             )}
           </div>
         </div>
-
-        {showSearchBar && (
-          <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2 px-5 sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-6xl">
-              <SearchBar />
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Straddles the section's true bottom edge (photo + the extra pb-10/8/6
+          buffer below it), not the inner min-h wrapper's edge — anchoring to
+          the wrapper left most of the bar sitting inside the still-dark
+          buffer instead of overlapping 50/50 onto the section that follows. */}
+      {showSearchBar && (
+        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2 px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-6xl">
+            <SearchBar />
+          </div>
+        </div>
+      )}
 
       {videoCta && videoOpen && <VideoModal label={videoCta.label} onClose={() => setVideoOpen(false)} />}
     </section>

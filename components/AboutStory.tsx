@@ -118,7 +118,7 @@ export default function AboutStory() {
   });
 
   return (
-    <section id="our-story" className="relative overflow-hidden bg-night pb-20 pt-10 text-cream sm:pb-24 sm:pt-12 lg:pb-28 lg:pt-14">
+    <section id="our-story" className="relative overflow-hidden bg-night pb-10 pt-10 text-cream sm:pb-12 sm:pt-12 lg:pb-14 lg:pt-14">
       {/* background: glow + faint topographic lines */}
       <div
         aria-hidden
@@ -156,7 +156,7 @@ export default function AboutStory() {
 
           {/* the photo: revealed like a curtain, with a slow settle-in zoom */}
           <div
-            className={`relative aspect-[4/5] w-full overflow-hidden rounded-[28px] transition-[clip-path] duration-[1400ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
+            className={`relative aspect-[4/3] w-full overflow-hidden rounded-[28px] transition-[clip-path] duration-[1400ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
               inView ? "[clip-path:inset(0_0_0_0)]" : "[clip-path:inset(100%_0_0_0)]"
             }`}
           >
@@ -277,7 +277,7 @@ export default function AboutStory() {
           </div>
 
           {/* stats count up, and a gold line draws across the top */}
-          <div className="relative mt-10 grid grid-cols-3 gap-6 border-t border-cream/10 pt-8">
+          <div className="relative mt-8 grid grid-cols-3 gap-6 border-t border-cream/10 pt-6">
             <span
               aria-hidden
               className={`absolute -top-px left-0 h-px bg-gradient-to-r from-gold to-transparent transition-[width] duration-[1600ms] ease-out motion-reduce:transition-none ${
@@ -295,7 +295,7 @@ export default function AboutStory() {
             ))}
           </div>
 
-          <div className={`mt-10 ${reveal(1100).className}`} style={reveal(1100).style}>
+          <div className={`mt-8 ${reveal(1100).className}`} style={reveal(1100).style}>
             <LinkButton href="/plan-your-trip" variant="outline" className="group">
               <PeakMark className="text-cream" />
               Plan your journey
