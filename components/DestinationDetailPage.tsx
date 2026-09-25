@@ -9,7 +9,15 @@ import TestimonialSection from "./TestimonialSection";
 import type { Region } from "@/lib/destinations";
 import type { DestinationDetailContent } from "@/lib/destinationDetails";
 
-function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
   const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
   return (
     <div
@@ -17,7 +25,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
       className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-      }`}
+      } ${className}`}
     >
       {children}
     </div>
@@ -240,8 +248,8 @@ export default function DestinationDetailPage({
 
           <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:mt-12">
             {destination.image && (
-              <Reveal>
-                <div className="group relative aspect-[4/5] overflow-hidden rounded-[18px] sm:col-span-2 sm:aspect-[8/5]">
+              <Reveal className="col-span-2">
+                <div className="group relative aspect-[16/11] overflow-hidden rounded-[18px] sm:aspect-[8/5]">
                   <Image
                     src={destination.image}
                     alt={destination.name}
@@ -251,34 +259,48 @@ export default function DestinationDetailPage({
                     style={destination.focus ? { objectPosition: destination.focus } : undefined}
                     className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
-                  <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
+                  <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-night/5 to-transparent" />
+                  <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gold/95 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-forest">
+                    <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 2 14.9 8.9 22 9.5 16.7 14.1 18.2 21 12 17.3 5.8 21 7.3 14.1 2 9.5 9.1 8.9 12 2Z" />
+                    </svg>
                     Featured
                   </span>
-                  <span className="absolute inset-x-3 bottom-3 font-serif text-base leading-snug text-cream sm:text-lg">
+                  <span className="absolute inset-x-4 bottom-4 font-serif text-lg leading-snug text-cream sm:text-xl">
                     {destination.name}
                   </span>
                 </div>
               </Reveal>
             )}
-            {content.gallery.map((photo, index) => (
-              <Reveal key={photo.caption} delay={(index % 4) * 80}>
-                <div className="group relative aspect-[4/5] overflow-hidden rounded-[18px]">
+            {content.gallery.map((photo, index) => {
+              const isWide = Boolean(destination.image) && index >= 2;
+              return (
+                <Reveal
+                  key={photo.caption}
+                  delay={(index % 4) * 80}
+                  className={isWide ? "sm:col-span-2" : undefined}
+                >
                   <div
-                    className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
+                    className={`group relative overflow-hidden rounded-[18px] ${
+                      isWide ? "aspect-[4/5] sm:aspect-[8/5]" : "aspect-[4/5]"
+                    }`}
                   >
-                    <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full p-4 text-cream/15" />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
+                    >
+                      <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full p-4 text-cream/15" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
+                    <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
+                      {photo.tag}
+                    </span>
+                    <span className="absolute inset-x-3 bottom-3 font-serif text-sm leading-snug text-cream sm:text-base">
+                      {photo.caption}
+                    </span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
-                  <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
-                    {photo.tag}
-                  </span>
-                  <span className="absolute inset-x-3 bottom-3 font-serif text-sm leading-snug text-cream sm:text-base">
-                    {photo.caption}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
