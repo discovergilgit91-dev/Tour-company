@@ -6,6 +6,17 @@ import { useEffect, useRef, useState } from "react";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CompassIcon } from "./ui/icons";
 
+export type LandCategory = "valleys" | "mountains" | "lakes" | "cultural" | "national-parks" | "trekking";
+
+export const LAND_CATEGORY_LABELS: Record<LandCategory, string> = {
+  valleys: "Valleys",
+  mountains: "Mountains",
+  lakes: "Lakes",
+  cultural: "Cultural Sites",
+  "national-parks": "National Parks",
+  trekking: "Trekking",
+};
+
 export type Destination = {
   id: string;
   name: string;
@@ -22,6 +33,10 @@ export type Destination = {
   slug?: string;
   /** No longer used by the layout — kept so existing callers still type-check */
   span?: string;
+  /** Powers the category filter on /lands. Optional so existing callers still type-check. */
+  category?: LandCategory;
+  /** Short corner-pill label, e.g. "Most Popular" or "High Altitude" — omit for no badge. */
+  badge?: string;
 };
 
 export function useRevealOnScroll<T extends HTMLElement>() {
@@ -77,9 +92,10 @@ export function DestinationCard({
   /** Marks the card with a "Featured" badge and a gold ring. Same size and grid cell as every other card — only the badge/ring set it apart, so every photo in the grid stays perfectly aligned. */
   featured?: boolean;
 }) {
-  const { name, blurb, image, tag, href, altitude, focus } = destination;
+  const { name, blurb, image, tag, href, altitude, focus, badge } = destination;
   const { ref, visible } = useRevealOnScroll<HTMLAnchorElement>();
   const number = String(index + 1).padStart(2, "0");
+  const badgeLabel = featured ? "Featured" : badge;
 
   return (
     <Link
@@ -116,9 +132,15 @@ export function DestinationCard({
           <PhotoPlaceholder />
         )}
 
-        {featured && (
-          <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-cream/25 bg-night/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm">
-            Featured
+        {badgeLabel && (
+          <span
+            className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] ${
+              featured
+                ? "border border-cream/25 bg-night/40 text-cream backdrop-blur-sm"
+                : "bg-gold text-forest shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
+            }`}
+          >
+            {badgeLabel}
           </span>
         )}
 
