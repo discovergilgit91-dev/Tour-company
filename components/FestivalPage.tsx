@@ -356,10 +356,10 @@ export default function FestivalPage() {
                 </span>
               </LinkButton>
 
-              <div className="mt-8 grid grid-cols-3 gap-5 border-t border-cream/10 pt-6">
+              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-5 border-t border-cream/10 pt-6">
                 {FESTIVAL_STATS.map((stat) => (
-                  <div key={stat.label}>
-                    <p className="font-serif text-3xl text-gold sm:text-4xl">{stat.value}</p>
+                  <div key={stat.label} className="min-w-[90px] shrink-0 grow">
+                    <p className="whitespace-nowrap font-serif text-3xl text-gold sm:text-4xl">{stat.value}</p>
                     <p className="mt-1.5 text-xs leading-snug text-cream/50">{stat.label}</p>
                   </div>
                 ))}

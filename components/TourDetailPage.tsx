@@ -430,11 +430,11 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-x-6 gap-y-8 pt-7 sm:grid-cols-4 sm:divide-x sm:divide-forest/8">
+                  <div className="flex flex-wrap gap-x-8 gap-y-8 pt-7">
                     {tour.stats.map((stat) => {
                       const Icon = STAT_ICON_COMPONENTS[stat.iconId];
                       return (
-                        <div key={stat.label} className="group sm:pl-6 sm:first:pl-0">
+                        <div key={stat.label} className="group min-w-[130px] shrink-0 grow">
                           <span
                             className={`flex h-10 w-10 items-center justify-center rounded-full ${tour.theme.statIconBg} ${tour.theme.statIconText} ${tour.theme.statIconHoverBg} transition-colors duration-300 group-hover:text-white`}
                           >
