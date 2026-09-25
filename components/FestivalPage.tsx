@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CalendarIcon } from "./ui/icons";
 import { useRevealOnScroll } from "./DestinationCard";
 import CompleteExperience from "./CompleteExperience";
+import TestimonialSection from "./TestimonialSection";
 
 /* ---------------------------------------------------------------------
    Small line-icons in the established stroke style, specific to this page.
@@ -233,13 +233,6 @@ function EventDetailsCard() {
 }
 
 export default function FestivalPage() {
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
-  const testimonial = TESTIMONIALS[testimonialIndex];
-
-  function changeTestimonial(delta: number) {
-    setTestimonialIndex((i) => (i + delta + TESTIMONIALS.length) % TESTIMONIALS.length);
-  }
-
   return (
     <main className="bg-cream">
       {/* ---------------- Five Cultures, One Celebration ---------------- */}
@@ -453,58 +446,7 @@ export default function FestivalPage() {
       <CompleteExperience />
 
       {/* ---------------- Testimonial ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-20 sm:py-24 lg:py-28">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-32 top-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-3xl"
-        />
-        <div className="relative mx-auto w-full max-w-3xl px-5 text-center sm:px-6 lg:px-8">
-          <svg width="32" height="24" viewBox="0 0 32 24" fill="none" className="mx-auto text-gold/60" aria-hidden="true">
-            <path
-              d="M0 24V14.4Q0 7.2 4.2 3.6 8.4 0 14.4 0v4.8Q10.8 4.8 8.4 7.2 6 9.6 6 14.4h8.4V24ZM17.6 24V14.4q0-7.2 4.2-10.8Q26 0 32 0v4.8q-3.6 0-6 2.4-2.4 2.4-2.4 7.2h8.4V24Z"
-              fill="currentColor"
-            />
-          </svg>
-
-          <p className="mt-6 font-serif text-2xl leading-snug text-cream sm:text-3xl">{testimonial.quote}</p>
-          <p className="mt-5 text-sm uppercase tracking-[0.14em] text-cream/50">— {testimonial.author}</p>
-
-          <div className="mt-10 flex items-center justify-center gap-4">
-            <button
-              type="button"
-              onClick={() => changeTestimonial(-1)}
-              aria-label="Previous testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream transition-colors duration-300 hover:bg-cream hover:text-forest"
-            >
-              <span className="rotate-180">
-                <ArrowIcon size={16} />
-              </span>
-            </button>
-
-            <div className="flex items-center gap-2">
-              {TESTIMONIALS.map((t, i) => (
-                <button
-                  key={t.author}
-                  aria-label={`Show testimonial ${i + 1}`}
-                  onClick={() => setTestimonialIndex(i)}
-                  className={`h-1.5 rounded-full transition-all duration-300 ease-out ${
-                    i === testimonialIndex ? "w-6 bg-gold" : "w-1.5 bg-cream/30 hover:bg-cream/60"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => changeTestimonial(1)}
-              aria-label="Next testimonial"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-cream text-forest transition-colors duration-300 hover:bg-green hover:text-white"
-            >
-              <ArrowIcon size={16} />
-            </button>
-          </div>
-        </div>
-      </section>
+      <TestimonialSection testimonials={TESTIMONIALS} eyebrow="What visitors say" />
 
       {/* ---------------- Closing CTA ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream py-16 text-center sm:py-20">
