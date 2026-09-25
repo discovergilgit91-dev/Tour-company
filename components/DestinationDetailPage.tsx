@@ -50,13 +50,23 @@ export default function DestinationDetailPage({
       {/* ---------------- Hero ---------------- */}
       <section className="relative bg-forest">
         <div className="relative min-h-[62svh] w-full sm:min-h-[68svh] md:min-h-[72svh]">
-          {/* Always the clean generated gradient — never a photo directly behind this
-              heading. The tour placeholder photos have their own baked-in title text
-              (see public/Images/README.md), which would collide with the heading here;
-              any real photo for this destination is surfaced instead as the lead tile
-              in the "Photo highlights" gallery below. */}
+          {/* A shared, generic journeys photo (no baked-in text, unlike the
+              per-destination tour placeholders in public/Images/README.md, which
+              would collide with the heading below) — the same photo for every
+              destination, not this one specifically. Any real photo for this
+              destination is still surfaced as the lead tile in the "Photo
+              highlights" gallery further down the page. */}
           <div className="absolute inset-0 z-0 overflow-hidden">
-            <div className="h-full w-full bg-gradient-to-br from-green-dark via-forest to-night" />
+            <Image
+              src="/Images/tours/upcoming-journey.png"
+              alt=""
+              fill
+              priority
+              quality={85}
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-green-dark/85 via-forest/80 to-night/90" />
             <PeaksMotif className="absolute inset-x-0 bottom-0 h-[45%] w-full text-cream/[0.05]" />
           </div>
 
