@@ -5,6 +5,10 @@ components already reference:
 
 ```
 public/Images/
+├── avatars/
+│   ├── sarah-khan.jpg           PlanYourTripPage — traveler stories
+│   ├── ali-raza.jpg             PlanYourTripPage — traveler stories
+│   └── ayesha-malik.jpg         PlanYourTripPage — traveler stories
 ├── hero/
 │   └── upcoming-hero.jpg        used by UpcomingTours.tsx
 ├── services/
@@ -32,6 +36,7 @@ public/Images/
 
 Every file above is currently a generated placeholder (a branded
 forest/gold graphic — the tour name for `tours/`, a line-art motif for
-`services/`) so the site renders with no broken images. Replace each one
-with a real photo of the same name and same folder to swap it in — no
-code changes needed.
+`services/`, a monogram for `avatars/`) so the site renders with no
+broken images or fabricated customer photos. Replace each one with a
+real photo of the same name and same folder to swap it in — no code
+changes needed.
