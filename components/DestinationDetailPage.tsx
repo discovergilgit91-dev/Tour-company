@@ -58,7 +58,7 @@ export default function DestinationDetailPage({
               highlights" gallery further down the page. */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
-              src="/Images/tours/upcoming-journey.png"
+              src="/Images/tours/Journeys.png"
               alt=""
               fill
               priority
