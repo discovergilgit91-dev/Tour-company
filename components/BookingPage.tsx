@@ -399,9 +399,9 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                     Happy to answer questions by phone, WhatsApp, or email before you commit to a reservation.
                   </p>
 
-                  <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+                  <div className="mt-6 flex flex-wrap gap-x-10 gap-y-5">
                     {CONTACT_DETAILS.map(({ label, value, Icon }) => (
-                      <div key={label} className="flex items-start gap-3">
+                      <div key={label} className="flex min-w-[220px] flex-1 items-start gap-3">
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream/[0.07] text-gold">
                           <Icon size={16} />
                         </span>
@@ -409,7 +409,7 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                           <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/50">
                             {label}
                           </p>
-                          <p className="mt-0.5 text-sm leading-snug text-cream/85">{value}</p>
+                          <p className="mt-0.5 whitespace-nowrap text-sm leading-snug text-cream/85">{value}</p>
                         </div>
                       </div>
                     ))}
