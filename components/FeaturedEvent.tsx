@@ -1,36 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CalendarIcon, PinIcon } from "./ui/icons";
 import { useRevealOnScroll } from "./DestinationCard";
-
-/* ---------------------------------------------------------------------
-   Featured Event — a single highlight banner for the flagship event on
-   the calendar. Shared between the tours/events explorer and the
-   homepage, so the two stay in sync instead of drifting copies.
-   --------------------------------------------------------------------- */
-
-/** Honest generated backdrop — no real photo exists for this event yet. */
-function MountainBackdrop({ className = "" }: { className?: string }) {
-  return (
-    <div className={`absolute inset-0 bg-gradient-to-br from-green-dark via-forest to-night ${className}`}>
-      <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMax slice" className="h-full w-full text-cream/[0.06]">
-        <path
-          d="M-20 210 40 130l35 45 45-70 45 65 40-35 60 80 50-45 70 90"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.6"
-        />
-        <path
-          d="M-20 235 50 160l45 50 50-75 50 70 45-40 65 85 55-50 75 95"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.2"
-        />
-      </svg>
-    </div>
-  );
-}
 
 const FEATURED_EVENT = {
   month: "Aug",
@@ -57,7 +30,15 @@ export default function FeaturedEvent() {
           }`}
         >
           <div className="relative aspect-[16/10] lg:aspect-auto">
-            <MountainBackdrop />
+            <Image
+              src="/Images/tours/culture.jpg"
+              alt="Traditional dance, dress, and music at the Gilgit-Baltistan Cultural Festival"
+              fill
+              quality={85}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/10 to-transparent" />
             <span className="absolute left-5 top-5 flex flex-col items-center rounded-2xl bg-cream px-4 py-2.5 leading-none shadow-lg">
               <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-green">
                 {FEATURED_EVENT.month}

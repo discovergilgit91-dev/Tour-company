@@ -31,7 +31,7 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     name: "Skardu & Katpana",
     slug: "skardu-katpana",
     blurb: "Cold desert dunes beside turquoise lakes, gateway to the world's highest peaks.",
-    image: "/Images/tours/cold-desert.png",
+    image: "/Images/tours/sarfaranga-desert.png",
     tag: "Discover Skardu",
     href: "/destinations/skardu-katpana",
     altitude: "2,230 m",
