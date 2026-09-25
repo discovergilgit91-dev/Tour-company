@@ -4,9 +4,10 @@ import WhyChooseUs from "@/components/WhyChooseUs";
 import FeaturedDestinations from "@/components/destination";
 import AboutStory from "@/components/AboutStory";
 import UpcomingTours from "@/components/UpcomingTours";
-import Testimonials from "@/components/Testimonials";
+import FeaturedEvent from "@/components/FeaturedEvent";
+import TravelerReviewsSection, { DEFAULT_REVIEWS } from "@/components/TravelerReviewsSection";
 import PartnerSection from "@/components/PartnerSection";
-import ContactSection from "@/components/ContactSection";
+import ClosingCTA from "@/components/ClosingCTA";
 
 type Tour = {
   id: number;
@@ -37,6 +38,7 @@ export default async function Home() {
       <FeaturedDestinations />
       <AboutStory />
       <UpcomingTours />
+      <FeaturedEvent />
 
       {!error && tours && tours.length > 0 ? (
         <section className="bg-cream">
@@ -73,9 +75,9 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <Testimonials />
+      <TravelerReviewsSection id="reviews" reviews={DEFAULT_REVIEWS} />
       <PartnerSection />
-      <ContactSection />
+      <ClosingCTA />
     </main>
   );
 }

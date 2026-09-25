@@ -13,7 +13,8 @@ public/Images/
 │   ├── daniel-reyes.jpg         Traveler stories — Daniel Reyes
 │   └── meera-nair.jpg           Traveler stories — Meera Nair
 ├── hero/
-│   └── upcoming-hero.jpg        used by UpcomingTours.tsx
+│   ├── upcoming-hero.jpg        used by UpcomingTours.tsx
+│   └── closing-cta.jpg          ClosingCTA — homepage closing banner
 ├── services/
 │   ├── transportation.jpg       CompleteExperience — Transportation
 │   ├── stay.jpg                 CompleteExperience — Stay
@@ -39,7 +40,8 @@ public/Images/
 
 Every file above is currently a generated placeholder (a branded
 forest/gold graphic — the tour name for `tours/`, a line-art motif for
-`services/`, a monogram for `avatars/`) so the site renders with no
-broken images or fabricated customer photos. Replace each one with a
-real photo of the same name and same folder to swap it in — no code
-changes needed.
+`services/`, a monogram for `avatars/`, a plain textured gradient for
+`closing-cta.jpg` since real heading/subtitle text sits on top of it)
+so the site renders with no broken images or fabricated customer
+photos. Replace each one with a real photo of the same name and same
+folder to swap it in — no code changes needed.
