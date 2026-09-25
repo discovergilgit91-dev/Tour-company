@@ -26,6 +26,8 @@ const LANDS: Destination[] = [
     tag: "Discover Karimabad",
     href: "/destinations/karimabad",
     altitude: "2,200 m",
+    category: "valleys",
+    badge: "Most Popular",
   },
   {
     id: "baltit-fort",
@@ -36,6 +38,8 @@ const LANDS: Destination[] = [
     tag: "Discover Baltit Fort",
     href: "/destinations/baltit-fort",
     altitude: "2,220 m",
+    category: "cultural",
+    badge: "Cultural Heritage",
   },
   {
     id: "altit-fort",
@@ -46,6 +50,7 @@ const LANDS: Destination[] = [
     tag: "Discover Altit Fort",
     href: "/destinations/altit-fort",
     altitude: "2,100 m",
+    category: "cultural",
   },
   {
     id: "attabad-lake",
@@ -55,6 +60,8 @@ const LANDS: Destination[] = [
     tag: "Discover Attabad Lake",
     href: "/destinations/attabad-lake",
     altitude: "2,560 m",
+    category: "lakes",
+    badge: "Lake",
   },
   {
     id: "passu-cones",
@@ -65,6 +72,7 @@ const LANDS: Destination[] = [
     tag: "Discover Passu Cones",
     href: "/destinations/passu-cones",
     altitude: "2,400 m",
+    category: "mountains",
   },
   {
     id: "khunjerab-pass",
@@ -74,6 +82,8 @@ const LANDS: Destination[] = [
     tag: "Discover Khunjerab Pass",
     href: "/destinations/khunjerab-pass",
     altitude: "4,700 m",
+    category: "national-parks",
+    badge: "High Altitude",
   },
   {
     id: "borith-lake",
@@ -83,6 +93,7 @@ const LANDS: Destination[] = [
     tag: "Discover Borith Lake",
     href: "/destinations/borith-lake",
     altitude: "2,600 m",
+    category: "lakes",
   },
   {
     id: "shimshal-valley",
@@ -92,6 +103,8 @@ const LANDS: Destination[] = [
     tag: "Discover Shimshal Valley",
     href: "/destinations/shimshal-valley",
     altitude: "3,100 m",
+    category: "valleys",
+    badge: "Remote",
   },
   // ---- Nagar Valley: five named places across the valley ----
   {
@@ -103,6 +116,8 @@ const LANDS: Destination[] = [
     tag: "Discover Rakaposhi Base Camp",
     href: "/destinations/rakaposhi-base-camp",
     altitude: "3,200 m",
+    category: "trekking",
+    badge: "Adventure",
   },
   {
     id: "hopar-glacier",
@@ -112,6 +127,7 @@ const LANDS: Destination[] = [
     tag: "Discover Hopar Glacier",
     href: "/destinations/hopar-glacier",
     altitude: "2,700 m",
+    category: "mountains",
   },
   {
     id: "rush-lake",
@@ -121,6 +137,8 @@ const LANDS: Destination[] = [
     tag: "Discover Rush Lake",
     href: "/destinations/rush-lake",
     altitude: "4,694 m",
+    category: "trekking",
+    badge: "High Altitude",
   },
   {
     id: "minapin-glacier",
@@ -130,6 +148,7 @@ const LANDS: Destination[] = [
     tag: "Discover Minapin Glacier",
     href: "/destinations/minapin-glacier",
     altitude: "2,800 m",
+    category: "trekking",
   },
   {
     id: "ghizer-valley",
@@ -140,6 +159,7 @@ const LANDS: Destination[] = [
     tag: "Discover Ghizer Valley",
     href: "/destinations/ghizer-valley",
     altitude: "2,150 m",
+    category: "valleys",
   },
   {
     id: "yasin-valley",
@@ -149,6 +169,7 @@ const LANDS: Destination[] = [
     tag: "Discover Yasin Valley",
     href: "/destinations/yasin-valley",
     altitude: "2,500 m",
+    category: "valleys",
   },
   {
     id: "phander-valley",
@@ -158,6 +179,7 @@ const LANDS: Destination[] = [
     tag: "Discover Phander Valley",
     href: "/destinations/phander-valley",
     altitude: "2,900 m",
+    category: "lakes",
   },
   {
     id: "naltar-valley",
@@ -167,6 +189,8 @@ const LANDS: Destination[] = [
     tag: "Discover Naltar Valley",
     href: "/destinations/naltar-valley",
     altitude: "2,800 m",
+    category: "valleys",
+    badge: "Seasonal",
   },
   {
     id: "skardu-katpana",
@@ -177,6 +201,7 @@ const LANDS: Destination[] = [
     tag: "Discover Skardu & Katpana",
     href: "/destinations/skardu-katpana",
     altitude: "2,230 m",
+    category: "mountains",
   },
   {
     id: "shigar-valley",
@@ -187,6 +212,7 @@ const LANDS: Destination[] = [
     tag: "Discover Shigar Valley",
     href: "/destinations/shigar-valley",
     altitude: "2,290 m",
+    category: "cultural",
   },
   {
     id: "deosai-plains",
@@ -197,6 +223,8 @@ const LANDS: Destination[] = [
     tag: "Discover Deosai Plains",
     href: "/destinations/deosai-plains",
     altitude: "4,114 m",
+    category: "national-parks",
+    badge: "Wildlife",
   },
   {
     id: "kachura-lake",
@@ -206,6 +234,7 @@ const LANDS: Destination[] = [
     tag: "Discover Kachura Lake",
     href: "/destinations/kachura-lake",
     altitude: "2,500 m",
+    category: "lakes",
   },
   {
     id: "fairy-meadows",
@@ -216,6 +245,7 @@ const LANDS: Destination[] = [
     tag: "Discover Fairy Meadows",
     href: "/destinations/fairy-meadows",
     altitude: "3,300 m",
+    category: "trekking",
   },
   {
     id: "rama-lake",
@@ -225,6 +255,7 @@ const LANDS: Destination[] = [
     tag: "Discover Rama Lake",
     href: "/destinations/rama-lake",
     altitude: "3,300 m",
+    category: "lakes",
   },
   {
     id: "harmosh-valley",
@@ -234,6 +265,7 @@ const LANDS: Destination[] = [
     tag: "Discover Harmosh Valley",
     href: "/destinations/harmosh-valley",
     altitude: "3,100 m",
+    category: "trekking",
   },
   {
     id: "rupal-valley",
@@ -243,6 +275,7 @@ const LANDS: Destination[] = [
     tag: "Discover Rupal Valley",
     href: "/destinations/rupal-valley",
     altitude: "3,200 m",
+    category: "mountains",
   },
 ];
 
@@ -311,8 +344,8 @@ export default function LandsPage() {
         eyebrow="EXPLORE THE NORTH"
         title="Every journey begins somewhere extraordinary."
         description="Discover the valleys, plains, lakes, and mountain landscapes that make northern Pakistan unforgettable."
-        image="/Images/tours/rakaposhi-trek.jpg"
-        imageAlt="Rakaposhi peak rising above the Karakoram"
+        image="/Images/hero/lands-hero.jpg"
+        imageAlt=""
       />
 
       {/* Intro — same rhythm as FeaturedDestinations on the homepage */}
