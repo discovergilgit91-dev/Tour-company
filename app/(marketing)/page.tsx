@@ -76,8 +76,8 @@ export default async function Home() {
       ) : null}
 
       <TravelerReviewsSection id="reviews" reviews={DEFAULT_REVIEWS} />
-      <PartnerSection />
       <ClosingCTA />
+      <PartnerSection />
     </main>
   );
 }
