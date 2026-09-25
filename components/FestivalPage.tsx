@@ -470,8 +470,8 @@ export default function FestivalPage() {
                   <ArrowIcon size={14} />
                 </span>
               </LinkButton>
-              <LinkButton href="/#contact" variant="dark">
-                Contact Us
+              <LinkButton href="/plan-your-trip" variant="dark">
+                Plan Your Trip
               </LinkButton>
             </div>
           </Reveal>
