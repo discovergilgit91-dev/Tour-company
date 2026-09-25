@@ -58,7 +58,7 @@ const STORIES = [
     quote:
       "The entire trip was beyond our expectations. The guides were amazing and Gilgit-Baltistan is truly magical!",
     rating: 5,
-    photo: "/Images/tours/hunza-spring.jpg",
+    photo: "/Images/tours/hunza-blossom.png",
     avatar: "/Images/avatars/sarah-khan.jpg",
   },
   {

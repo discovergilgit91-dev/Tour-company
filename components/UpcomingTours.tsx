@@ -14,7 +14,7 @@ const TOURS = [
     title: "Blossoms of Hunza",
     subtitle: "Spring Tour",
     date: "25 May – 29 May, 2027",
-    image: "/Images/tours/hunza-spring.jpg",
+    image: "/Images/tours/hunza-blossom.png",
   },
   {
     id: "rakaposhi-trek",
