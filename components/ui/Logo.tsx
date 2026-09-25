@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export function PeakMark({ className = "" }: { className?: string }) {
@@ -44,20 +43,18 @@ export function Logo({
     >
       {/* No background behind the mark at all — just the artwork itself.
           A drop-shadow (follows the logo's own silhouette, not a box)
-          keeps it legible over the hero photo and the scrolled bar alike. */}
+          keeps it legible over the hero photo and the scrolled bar alike.
+          Reuses the PeakMark vector mark (defined above) instead of a
+          raster image, so it also adapts to the header's cream/forest
+          color swap for free via currentColor, the same way the nav
+          links and Sign In text already do. */}
       <span
-        className={`relative shrink-0 transition-all duration-300 ${
+        className={`relative flex shrink-0 items-center justify-center transition-all duration-300 ${
           compact ? "h-12 w-12 sm:h-14 sm:w-14" : "h-16 w-16 sm:h-20 sm:w-20"
         }`}
       >
-        <Image
-          src="/Images/tours/logo.png"
-          alt="Discover Gilgit-Baltistan"
-          fill
-          priority
-          quality={90}
-          sizes={compact ? "56px" : "80px"}
-          className="object-contain drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
+        <PeakMark
+          className="h-full w-full drop-shadow-[0_4px_10px_rgba(0,0,0,0.35)] transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_6px_16px_rgba(0,0,0,0.45)]"
         />
       </span>
     </Link>
