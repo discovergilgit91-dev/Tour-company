@@ -31,7 +31,7 @@ export default function FeaturedEvent() {
         >
           <div className="relative aspect-[16/10] lg:aspect-auto">
             <Image
-              src="/Images/tours/culture.jpg"
+              src="/Images/tours/culture.png"
               alt="Traditional dance, dress, and music at the Gilgit-Baltistan Cultural Festival"
               fill
               quality={85}
