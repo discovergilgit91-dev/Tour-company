@@ -197,7 +197,7 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
 function BuildYourOwnCard() {
   return (
     <Link
-      href="/plan-your-trip"
+      href="/build-your-trip"
       className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
     >
       <div className="relative flex-1 overflow-hidden">
