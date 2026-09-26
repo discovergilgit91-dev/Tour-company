@@ -187,6 +187,63 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
   );
 }
 
+/* Same shape, size, and hover behavior as TourCard (rounded corners,
+   image/gradient panel, badge, footer row, arrow button) so it sits in the
+   row without looking out of place — but every distinguishing detail
+   (badge, copy, footer line, link target) signals it's not a fixed
+   itinerary. No real destination photo fits a build-your-own trip, so the
+   image panel reuses TourCard's own "no photo" gradient pattern instead of
+   introducing a new visual language. */
+function BuildYourOwnCard() {
+  return (
+    <Link
+      href="/plan-your-trip"
+      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
+    >
+      <div className="relative flex-1 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-forest via-forest to-green-dark text-gold/20 transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]">
+          <CompassIcon size={110} />
+        </div>
+
+        <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
+
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-gold px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-forest">
+          <CompassIcon size={14} />
+          CUSTOM
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 p-5">
+          <div className="mb-2.5 flex items-center gap-2 text-white">
+            <PinIcon size={15} />
+            <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
+              ANYWHERE IN GILGIT-BALTISTAN
+            </span>
+          </div>
+
+          <h3 className="font-serif text-[25px] leading-[1.15] text-white sm:text-[27px]">Design Your Own Journey</h3>
+
+          <p className="mt-1 font-sans text-[13px] leading-snug text-white/85">
+            Pick your destinations, dates, and pace — we&rsquo;ll build the trip around you.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
+        <div className="flex min-w-0 items-center gap-2.5 text-forest">
+          <CalendarIcon size={16} />
+          <span className="truncate font-sans text-[13px]">Fully customizable</span>
+        </div>
+
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+          <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
+            <ArrowIcon size={17} />
+          </span>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
 function ComingSoonCard() {
   return (
     <article className="relative flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-forest p-7 text-white sm:h-[500px]">
@@ -216,7 +273,8 @@ export default function UpcomingTours() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const [activePage, setActivePage] = useState(0);
   const [cardsPerPage, setCardsPerPage] = useState(1);
-  const totalItems = TOURS.length + 1;
+  // +1 for the "Build Your Own Trip" card, +1 for the "Coming Soon" card.
+  const totalItems = TOURS.length + 2;
 
   const updateCardsPerPage = useCallback(() => {
     if (typeof window === "undefined") return;
@@ -351,6 +409,18 @@ export default function UpcomingTours() {
                 <TourCard tour={tour} />
               </div>
             ))}
+
+            {/* Placed after the fixed tours (so the curated lineup reads first)
+                but before the passive "Coming Soon" teaser — this card is
+                actionable right now, so it leads the "not a fixed tour"
+                tail rather than trailing behind a card with nothing to
+                click. */}
+            <div
+              data-tour-card
+              className="w-full shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]"
+            >
+              <BuildYourOwnCard />
+            </div>
 
             <div
               data-tour-card
