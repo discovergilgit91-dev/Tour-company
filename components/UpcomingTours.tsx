@@ -32,7 +32,7 @@ const TOURS = [
     title: "Cultural Heritage Tour",
     subtitle: "",
     date: "05 Jul – 08 Jul, 2027",
-    image: "/Images/tours/altit-baltit.jpg",
+    image: "/Images/tours/culture-heritage.png",
   },
   {
     id: "nanga-parbat-camping",
@@ -41,7 +41,7 @@ const TOURS = [
     title: "Nanga Parbat Camping Experience",
     subtitle: "",
     date: "20 Jul – 22 Jul, 2027",
-    image: undefined as string | undefined,
+    image: "/Images/tours/nangaparbat-moutain.png",
   },
 ];
 
