@@ -90,7 +90,7 @@ const REASONS: Reason[] = [
   {
     id: "authentic",
     Icon: IconHeritage,
-    image: "/Images/tours/local-food.png",
+    image: "/Images/tours/local-experience.png",
     place: "Baltit Fort",
     title: "Authentic Local Experiences",
     description:
@@ -117,7 +117,7 @@ const REASONS: Reason[] = [
   {
     id: "adventure",
     Icon: IconMountainSun,
-    image: "/Images/tours/adventures.png",
+    image: "/Images/tours/adventure.png",
     place: "Nanga Parbat",
     title: "Adventure & Nature",
     description:

@@ -161,7 +161,7 @@ export default function AboutStory() {
             }`}
           >
             <Image
-              src="/Images/about/our-story.jpg"
+              src="/Images/tours/story.png"
               alt="Our team guiding a journey through Gilgit-Baltistan"
               fill
               sizes="(max-width: 1023px) 100vw, 50vw"
