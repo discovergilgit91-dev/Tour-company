@@ -42,15 +42,14 @@ export function Logo({
       aria-label="Discover Gilgit-Baltistan — home"
       className={`group inline-flex shrink-0 items-center ${className}`}
     >
-      {/* No plate/box behind the mark — just a soft, blurred glow (not a hard
-          edge) so the emblem's dark green still lifts off a photo or the
-          footer's dark bg, without reading as a sticker. */}
+      {/* Just the artwork itself, no background at all — a drop-shadow
+          (follows the emblem's own silhouette, not a box) is the only thing
+          keeping it readable over a photo or the footer's dark bg. */}
       <span
         className={`relative flex shrink-0 items-center justify-center transition-all duration-300 ${
           compact ? "h-14 w-14 sm:h-16 sm:w-16" : "h-20 w-20 sm:h-24 sm:w-24"
         }`}
       >
-        <span aria-hidden className="absolute inset-[10%] rounded-full bg-cream/85 blur-lg" />
         <Image
           src="/Images/tours/logo.png"
           alt="Discover Gilgit-Baltistan"
@@ -58,7 +57,7 @@ export function Logo({
           priority
           quality={90}
           sizes="96px"
-          className="relative object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.4)] transition-transform duration-300 group-hover:scale-105"
+          className="object-contain drop-shadow-[0_3px_8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105"
         />
       </span>
     </Link>
