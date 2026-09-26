@@ -23,7 +23,7 @@ const TOURS = [
     title: "Rakaposhi Base Camp Trek",
     subtitle: "",
     date: "10 Jun – 16 Jun, 2027",
-    image: "/Images/tours/rakaposhi-trek.jpg",
+    image: "/Images/tours/Rakaposhi-camp.png",
   },
   {
     id: "altit-baltit",
