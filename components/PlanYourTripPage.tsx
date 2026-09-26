@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { LinkButton } from "./ui/Button";
 import {
   ArrowIcon,
   CheckIcon,
   ClockIcon,
+  CompassIcon,
   MailIcon,
   PhoneIcon,
   PinIcon,
@@ -138,6 +139,22 @@ function WildlifeIcon({ size = 18 }: { size?: number }) {
   );
 }
 
+function QuestionIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.5" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M9.3 9.4a2.7 2.7 0 1 1 3.9 2.4c-1 .5-1.2 1-1.2 2"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="17" r="0.9" className="fill-current" stroke="none" />
+    </svg>
+  );
+}
+
 const INTERESTS = [
   { id: "trek", label: "Trekking & Hiking", Icon: TrekIcon },
   { id: "culture", label: "Cultural Heritage", Icon: CultureIcon },
@@ -147,10 +164,20 @@ const INTERESTS = [
   { id: "adventure", label: "Adventure Sports", Icon: AdventureIcon },
   { id: "food", label: "Food & Cuisine", Icon: CuisineIcon },
   { id: "wildlife", label: "Wildlife & Nature", Icon: WildlifeIcon },
+  { id: "unsure", label: "Not Sure Yet", Icon: QuestionIcon },
 ];
 
-const REGIONS = ["Hunza Valley", "Skardu & Deosai", "Gilgit City", "Naran & Babusar", "Not sure yet — surprise me"];
-const SEASONS = ["Spring (Mar–May)", "Summer (Jun–Aug)", "Autumn (Sep–Nov)", "Winter (Dec–Feb)", "I'm flexible"];
+const DESTINATIONS = [
+  "Hunza Valley",
+  "Skardu",
+  "Deosai Plains",
+  "Gilgit City",
+  "Naltar Valley",
+  "Fairy Meadows",
+  "Khunjerab Pass",
+  "Naran & Babusar",
+];
+
 const GROUP_SIZES = ["Solo traveller", "Couple", "Family (3–5)", "Group (6+)"];
 const BUDGETS = ["Under $500", "$500 – $1,000", "$1,000 – $2,000", "$2,000+", "Not sure yet"];
 const DURATIONS = ["Weekend (2–3 days)", "4–7 days", "8–14 days", "2+ weeks"];
@@ -203,12 +230,188 @@ const FIELD_CLASS =
 
 const LABEL_CLASS = "mb-1.5 block text-xs font-semibold uppercase tracking-[0.1em] text-muted";
 
+/** Same field look, with a red border swapped in once a field has failed validation. */
+function fieldClass(hasError?: boolean) {
+  return `${FIELD_CLASS} ${hasError ? "border-red-300 focus:border-red-400" : ""}`;
+}
+
+/** Small inline message under a field — never a popup, per the design brief. */
+function FieldError({ message }: { message?: string }) {
+  if (!message) return null;
+  return <p className="mt-1.5 text-[11px] font-medium text-red-600">{message}</p>;
+}
+
+/** Numbered section label, reusing the same gold-ring badge style as "How it works" below. */
+function SectionHeading({ index, title }: { index: number; title: string }) {
+  return (
+    <div className="mb-4 flex items-center gap-2.5">
+      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-gold/40 font-serif text-[11px] text-gold">
+        {index}
+      </span>
+      <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">{title}</h3>
+    </div>
+  );
+}
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[+\d][\d\s-]{6,}$/;
+
+type DateMode = "exact" | "flexible";
+
+type FormValues = {
+  name: string;
+  email: string;
+  phone: string;
+  interests: string[];
+  destinations: string[];
+  flexibleDestination: boolean;
+  dateMode: DateMode;
+  startDate: string;
+  endDate: string;
+  consent: boolean;
+};
+
+type FormErrors = Partial<Record<"name" | "email" | "phone" | "interests" | "destinations" | "dates" | "consent", string>>;
+
+function computeErrors(v: FormValues): FormErrors {
+  const errors: FormErrors = {};
+
+  if (!v.name.trim()) errors.name = "Please enter your full name.";
+
+  if (!v.email.trim()) errors.email = "Please enter your email.";
+  else if (!EMAIL_RE.test(v.email.trim())) errors.email = "Enter a valid email address.";
+
+  if (!v.phone.trim()) errors.phone = "Please enter a phone or WhatsApp number.";
+  else if (!PHONE_RE.test(v.phone.trim())) errors.phone = "Enter a valid phone number.";
+
+  if (v.interests.length === 0) errors.interests = "Pick at least one interest, or “Not Sure Yet.”";
+
+  if (!v.flexibleDestination && v.destinations.length === 0) {
+    errors.destinations = "Pick at least one destination, or choose “I’m flexible.”";
+  }
+
+  if (v.dateMode === "exact") {
+    if (!v.startDate || !v.endDate) errors.dates = "Pick both a start and end date.";
+    else if (new Date(v.endDate).getTime() <= new Date(v.startDate).getTime()) {
+      errors.dates = "End date must be after the start date.";
+    }
+  }
+
+  if (!v.consent) errors.consent = "Please confirm to continue.";
+
+  return errors;
+}
+
+function formatDateRange(start: string, end: string) {
+  const s = new Date(start);
+  const e = new Date(end);
+  if (Number.isNaN(s.getTime()) || Number.isNaN(e.getTime())) return "";
+  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+  return `${s.toLocaleDateString("en-US", opts)} – ${e.toLocaleDateString("en-US", opts)}`;
+}
+
 export default function PlanYourTripPage() {
-  const [selected, setSelected] = useState<string[]>([]);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [interests, setInterests] = useState<string[]>([]);
+  const [destinations, setDestinations] = useState<string[]>([]);
+  const [flexibleDestination, setFlexibleDestination] = useState(true);
+  const [dateMode, setDateMode] = useState<DateMode>("flexible");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [groupSize, setGroupSize] = useState(GROUP_SIZES[1]);
+  const [duration, setDuration] = useState(DURATIONS[1]);
+  const [budget, setBudget] = useState(BUDGETS[BUDGETS.length - 1]);
+  const [consent, setConsent] = useState(false);
+  const [attempted, setAttempted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  const errors = useMemo<FormErrors>(
+    () =>
+      attempted
+        ? computeErrors({
+            name,
+            email,
+            phone,
+            interests,
+            destinations,
+            flexibleDestination,
+            dateMode,
+            startDate,
+            endDate,
+            consent,
+          })
+        : {},
+    [attempted, name, email, phone, interests, destinations, flexibleDestination, dateMode, startDate, endDate, consent]
+  );
+
   function toggleInterest(id: string) {
-    setSelected((prev) => (prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]));
+    setInterests((prev) => (prev.includes(id) ? prev.filter((v) => v !== id) : [...prev, id]));
+  }
+
+  function toggleDestination(place: string) {
+    setDestinations((prev) => (prev.includes(place) ? prev.filter((v) => v !== place) : [...prev, place]));
+  }
+
+  function toggleFlexibleDestination() {
+    setFlexibleDestination((prev) => {
+      const next = !prev;
+      if (next) setDestinations([]);
+      return next;
+    });
+  }
+
+  function buildSummary() {
+    const parts: string[] = [];
+
+    if (flexibleDestination) parts.push("Flexible on destination");
+    else if (destinations.length > 0) parts.push(`${destinations.length} destination${destinations.length > 1 ? "s" : ""}`);
+
+    if (dateMode === "exact" && startDate && endDate) {
+      const range = formatDateRange(startDate, endDate);
+      parts.push(range || duration);
+    } else {
+      parts.push(duration);
+    }
+
+    parts.push(groupSize);
+
+    const interestLabels = interests
+      .filter((id) => id !== "unsure")
+      .map((id) => INTERESTS.find((i) => i.id === id)?.label)
+      .filter((label): label is string => Boolean(label));
+
+    if (interestLabels.length > 0) {
+      parts.push(
+        interestLabels.length > 2
+          ? `${interestLabels.slice(0, 2).join(", ")} +${interestLabels.length - 2} more`
+          : interestLabels.join(", ")
+      );
+    } else if (interests.includes("unsure")) {
+      parts.push("open to suggestions");
+    }
+
+    return parts.join(" · ");
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const result = computeErrors({
+      name,
+      email,
+      phone,
+      interests,
+      destinations,
+      flexibleDestination,
+      dateMode,
+      startDate,
+      endDate,
+      consent,
+    });
+    setAttempted(true);
+    if (Object.keys(result).length > 0) return;
+    setSubmitted(true);
   }
 
   return (
@@ -285,10 +488,8 @@ export default function PlanYourTripPage() {
                   </div>
                 ) : (
                   <form
-                    onSubmit={(event) => {
-                      event.preventDefault();
-                      setSubmitted(true);
-                    }}
+                    onSubmit={handleSubmit}
+                    noValidate
                     className="rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-8"
                   >
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
@@ -296,158 +497,367 @@ export default function PlanYourTripPage() {
                     </p>
                     <h2 className="mt-1.5 font-serif text-2xl text-forest sm:text-3xl">Tell us about your trip</h2>
 
-                    <div className="mt-7 space-y-6">
-                      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                        <div>
-                          <label htmlFor="name" className={LABEL_CLASS}>
-                            Full name
-                          </label>
-                          <input id="name" name="name" type="text" required placeholder="Your full name" className={FIELD_CLASS} />
-                        </div>
-                        <div>
-                          <label htmlFor="email" className={LABEL_CLASS}>
-                            Email
-                          </label>
-                          <input id="email" name="email" type="email" required placeholder="you@example.com" className={FIELD_CLASS} />
+                    <div className="mt-7 space-y-7">
+                      {/* ---- 1. Your details ---- */}
+                      <div>
+                        <SectionHeading index={1} title="Your details" />
+                        <div className="space-y-5">
+                          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                            <div>
+                              <label htmlFor="name" className={LABEL_CLASS}>
+                                Full name
+                              </label>
+                              <input
+                                id="name"
+                                name="name"
+                                type="text"
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}
+                                placeholder="Your full name"
+                                className={fieldClass(Boolean(errors.name))}
+                              />
+                              <FieldError message={errors.name} />
+                            </div>
+                            <div>
+                              <label htmlFor="email" className={LABEL_CLASS}>
+                                Email
+                              </label>
+                              <input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                                placeholder="you@example.com"
+                                className={fieldClass(Boolean(errors.email))}
+                              />
+                              <FieldError message={errors.email} />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label htmlFor="phone" className={LABEL_CLASS}>
+                              Phone / WhatsApp
+                            </label>
+                            <input
+                              id="phone"
+                              name="phone"
+                              type="tel"
+                              value={phone}
+                              onChange={(event) => setPhone(event.target.value)}
+                              placeholder="+92 300 1234567"
+                              className={fieldClass(Boolean(errors.phone))}
+                            />
+                            <FieldError message={errors.phone} />
+                          </div>
                         </div>
                       </div>
 
-                      <div>
-                        <label htmlFor="phone" className={LABEL_CLASS}>
-                          Phone / WhatsApp
-                        </label>
-                        <input id="phone" name="phone" type="tel" required placeholder="+92 300 1234567" className={FIELD_CLASS} />
-                      </div>
+                      {/* ---- 2. Trip preferences ---- */}
+                      <div className="border-t border-forest/8 pt-7">
+                        <SectionHeading index={2} title="Trip preferences" />
+                        <div className="space-y-5">
+                          {/* Interest chips — the distinctive centerpiece of this form */}
+                          <div>
+                            <label className={LABEL_CLASS}>What excites you most? Pick all that apply.</label>
+                            <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+                              {INTERESTS.map(({ id, label, Icon }) => {
+                                const active = interests.includes(id);
+                                return (
+                                  <button
+                                    key={id}
+                                    type="button"
+                                    onClick={() => toggleInterest(id)}
+                                    aria-pressed={active}
+                                    className={`flex flex-col items-center gap-2 rounded-xl border px-3 py-4 text-center transition-all duration-200 ${
+                                      active
+                                        ? "border-green bg-green/[0.06] text-green shadow-[0_4px_14px_-6px_rgba(31,106,76,0.4)]"
+                                        : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
+                                    }`}
+                                  >
+                                    <span
+                                      className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors duration-200 ${
+                                        active ? "bg-green text-white" : "bg-forest/[0.05] text-forest/70"
+                                      }`}
+                                    >
+                                      <Icon size={17} />
+                                    </span>
+                                    <span className="text-[11px] font-medium leading-snug">{label}</span>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                            <FieldError message={errors.interests} />
+                          </div>
 
-                      {/* Interest chips — the distinctive centerpiece of this form */}
-                      <div>
-                        <label className={LABEL_CLASS}>What excites you most? Pick all that apply.</label>
-                        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-                          {INTERESTS.map(({ id, label, Icon }) => {
-                            const active = selected.includes(id);
-                            return (
+                          {/* Destination multi-select — same chip style as interests above,
+                              plus a removable-chip summary and a mutually exclusive
+                              "flexible" option that clears and disables the picks. */}
+                          <div>
+                            <label className={LABEL_CLASS}>Where in Gilgit-Baltistan? Pick as many as you like.</label>
+                            <div
+                              className={`grid grid-cols-2 gap-2.5 sm:grid-cols-4 transition-opacity duration-200 ${
+                                flexibleDestination ? "opacity-40" : ""
+                              }`}
+                            >
+                              {DESTINATIONS.map((place) => {
+                                const active = destinations.includes(place);
+                                return (
+                                  <button
+                                    key={place}
+                                    type="button"
+                                    onClick={() => toggleDestination(place)}
+                                    disabled={flexibleDestination}
+                                    aria-pressed={active}
+                                    className={`rounded-xl border px-3 py-2.5 text-center text-[12px] font-medium leading-snug transition-all duration-200 disabled:cursor-not-allowed ${
+                                      active
+                                        ? "border-green bg-green/[0.06] text-green shadow-[0_4px_14px_-6px_rgba(31,106,76,0.4)]"
+                                        : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
+                                    }`}
+                                  >
+                                    {place}
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            {destinations.length > 0 && !flexibleDestination && (
+                              <div className="mt-3 flex flex-wrap gap-2">
+                                {destinations.map((place) => (
+                                  <span
+                                    key={place}
+                                    className="inline-flex items-center gap-1.5 rounded-full bg-forest/[0.06] py-1.5 pl-3 pr-2 text-[11px] font-medium text-forest"
+                                  >
+                                    {place}
+                                    <button
+                                      type="button"
+                                      onClick={() => toggleDestination(place)}
+                                      aria-label={`Remove ${place}`}
+                                      className="flex h-4 w-4 items-center justify-center rounded-full text-forest/50 transition-colors hover:bg-forest/10 hover:text-forest"
+                                    >
+                                      <svg width="9" height="9" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path
+                                          d="M5 5l14 14M19 5 5 19"
+                                          stroke="currentColor"
+                                          strokeWidth="2.4"
+                                          strokeLinecap="round"
+                                        />
+                                      </svg>
+                                    </button>
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            <button
+                              type="button"
+                              onClick={toggleFlexibleDestination}
+                              aria-pressed={flexibleDestination}
+                              className={`mt-3 flex w-full items-center gap-3 rounded-xl border px-4 py-3 text-left transition-all duration-200 ${
+                                flexibleDestination
+                                  ? "border-gold bg-gold/[0.08] text-forest"
+                                  : "border-dashed border-forest/20 text-muted hover:border-forest/35 hover:text-forest"
+                              }`}
+                            >
+                              <span
+                                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+                                  flexibleDestination ? "bg-gold text-forest" : "bg-forest/[0.05] text-forest/60"
+                                }`}
+                              >
+                                <CompassIcon size={15} />
+                              </span>
+                              <span className="text-[12.5px] font-medium leading-snug">
+                                I&rsquo;m flexible — surprise me with the best fit
+                              </span>
+                              {flexibleDestination && (
+                                <span className="ml-auto text-gold">
+                                  <CheckIcon size={15} />
+                                </span>
+                              )}
+                            </button>
+
+                            <FieldError message={errors.destinations} />
+                          </div>
+
+                          {/* Dates — exact range vs. flexible are mutually exclusive */}
+                          <div>
+                            <label className={LABEL_CLASS}>When are you traveling?</label>
+                            <div className="flex gap-2.5">
                               <button
-                                key={id}
                                 type="button"
-                                onClick={() => toggleInterest(id)}
-                                aria-pressed={active}
-                                className={`flex flex-col items-center gap-2 rounded-xl border px-3 py-4 text-center transition-all duration-200 ${
-                                  active
-                                    ? "border-green bg-green/[0.06] text-green shadow-[0_4px_14px_-6px_rgba(31,106,76,0.4)]"
+                                onClick={() => setDateMode("exact")}
+                                aria-pressed={dateMode === "exact"}
+                                className={`flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                                  dateMode === "exact"
+                                    ? "border-green bg-green/[0.06] text-green"
                                     : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
                                 }`}
                               >
-                                <span
-                                  className={`flex h-9 w-9 items-center justify-center rounded-full transition-colors duration-200 ${
-                                    active ? "bg-green text-white" : "bg-forest/[0.05] text-forest/70"
-                                  }`}
-                                >
-                                  <Icon size={17} />
-                                </span>
-                                <span className="text-[11px] font-medium leading-snug">{label}</span>
+                                I have exact dates
                               </button>
-                            );
-                          })}
+                              <button
+                                type="button"
+                                onClick={() => setDateMode("flexible")}
+                                aria-pressed={dateMode === "flexible"}
+                                className={`flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                                  dateMode === "flexible"
+                                    ? "border-green bg-green/[0.06] text-green"
+                                    : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
+                                }`}
+                              >
+                                I&rsquo;m flexible
+                              </button>
+                            </div>
+
+                            {dateMode === "exact" && (
+                              <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                <div>
+                                  <label
+                                    htmlFor="startDate"
+                                    className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                                  >
+                                    Start date
+                                  </label>
+                                  <input
+                                    id="startDate"
+                                    name="startDate"
+                                    type="date"
+                                    value={startDate}
+                                    onChange={(event) => setStartDate(event.target.value)}
+                                    className={`${fieldClass(Boolean(errors.dates))} cursor-pointer`}
+                                  />
+                                </div>
+                                <div>
+                                  <label
+                                    htmlFor="endDate"
+                                    className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                                  >
+                                    End date
+                                  </label>
+                                  <input
+                                    id="endDate"
+                                    name="endDate"
+                                    type="date"
+                                    value={endDate}
+                                    min={startDate || undefined}
+                                    onChange={(event) => setEndDate(event.target.value)}
+                                    className={`${fieldClass(Boolean(errors.dates))} cursor-pointer`}
+                                  />
+                                </div>
+                              </div>
+                            )}
+
+                            <FieldError message={errors.dates} />
+                          </div>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                        <div>
-                          <label htmlFor="region" className={LABEL_CLASS}>
-                            Where in Gilgit-Baltistan?
-                          </label>
-                          <select id="region" name="region" className={`${FIELD_CLASS} cursor-pointer`} defaultValue={REGIONS[REGIONS.length - 1]}>
-                            {REGIONS.map((region) => (
-                              <option key={region} value={region}>
-                                {region}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                        <div>
-                          <label htmlFor="season" className={LABEL_CLASS}>
-                            When are you thinking of travelling?
-                          </label>
-                          <select id="season" name="season" className={`${FIELD_CLASS} cursor-pointer`} defaultValue={SEASONS[SEASONS.length - 1]}>
-                            {SEASONS.map((season) => (
-                              <option key={season} value={season}>
-                                {season}
-                              </option>
-                            ))}
-                          </select>
+                      {/* ---- 3. Logistics & notes ---- */}
+                      <div className="border-t border-forest/8 pt-7">
+                        <SectionHeading index={3} title="Logistics & notes" />
+                        <div className="space-y-5">
+                          <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+                            <div>
+                              <label htmlFor="groupSize" className={LABEL_CLASS}>
+                                Group size
+                              </label>
+                              <select
+                                id="groupSize"
+                                name="groupSize"
+                                value={groupSize}
+                                onChange={(event) => setGroupSize(event.target.value)}
+                                className={`${FIELD_CLASS} cursor-pointer`}
+                              >
+                                {GROUP_SIZES.map((size) => (
+                                  <option key={size} value={size}>
+                                    {size}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                            <div>
+                              <label htmlFor="duration" className={LABEL_CLASS}>
+                                Trip duration
+                              </label>
+                              <select
+                                id="duration"
+                                name="duration"
+                                value={duration}
+                                onChange={(event) => setDuration(event.target.value)}
+                                className={`${FIELD_CLASS} cursor-pointer`}
+                              >
+                                {DURATIONS.map((item) => (
+                                  <option key={item} value={item}>
+                                    {item}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                            <div>
+                              <label htmlFor="budget" className={LABEL_CLASS}>
+                                Budget per person
+                              </label>
+                              <select
+                                id="budget"
+                                name="budget"
+                                value={budget}
+                                onChange={(event) => setBudget(event.target.value)}
+                                className={`${FIELD_CLASS} cursor-pointer`}
+                              >
+                                {BUDGETS.map((item) => (
+                                  <option key={item} value={item}>
+                                    {item}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
+
+                          <div>
+                            <label htmlFor="notes" className={LABEL_CLASS}>
+                              Anything else we should know? <span className="normal-case text-muted/70">(optional)</span>
+                            </label>
+                            <textarea
+                              id="notes"
+                              name="notes"
+                              rows={4}
+                              placeholder="Special occasions, accessibility needs, must-see places..."
+                              className={`${FIELD_CLASS} resize-none`}
+                            />
+                          </div>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
-                        <div>
-                          <label htmlFor="groupSize" className={LABEL_CLASS}>
-                            Group size
-                          </label>
-                          <select id="groupSize" name="groupSize" className={`${FIELD_CLASS} cursor-pointer`} defaultValue={GROUP_SIZES[1]}>
-                            {GROUP_SIZES.map((size) => (
-                              <option key={size} value={size}>
-                                {size}
-                              </option>
-                            ))}
-                          </select>
+                      {/* ---- Summary + consent + submit ---- */}
+                      <div className="border-t border-forest/8 pt-7">
+                        <div className="rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3.5">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">
+                            Quick summary
+                          </p>
+                          <p className="mt-1 text-[13px] leading-snug text-forest">{buildSummary()}</p>
                         </div>
-                        <div>
-                          <label htmlFor="duration" className={LABEL_CLASS}>
-                            Trip duration
-                          </label>
-                          <select id="duration" name="duration" className={`${FIELD_CLASS} cursor-pointer`} defaultValue={DURATIONS[1]}>
-                            {DURATIONS.map((duration) => (
-                              <option key={duration} value={duration}>
-                                {duration}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                        <div>
-                          <label htmlFor="budget" className={LABEL_CLASS}>
-                            Budget per person
-                          </label>
-                          <select id="budget" name="budget" className={`${FIELD_CLASS} cursor-pointer`} defaultValue={BUDGETS[BUDGETS.length - 1]}>
-                            {BUDGETS.map((budget) => (
-                              <option key={budget} value={budget}>
-                                {budget}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
 
-                      <div>
-                        <label htmlFor="notes" className={LABEL_CLASS}>
-                          Anything else we should know? <span className="normal-case text-muted/70">(optional)</span>
+                        <label className="mt-5 flex items-start gap-3 text-xs leading-relaxed text-muted">
+                          <input
+                            type="checkbox"
+                            checked={consent}
+                            onChange={(event) => setConsent(event.target.checked)}
+                            className="mt-0.5 h-4 w-4 shrink-0 rounded border-forest/25 text-green focus:ring-green/40"
+                          />
+                          I agree to be contacted about this trip. No payment is taken now.
                         </label>
-                        <textarea
-                          id="notes"
-                          name="notes"
-                          rows={4}
-                          placeholder="Special occasions, accessibility needs, must-see places..."
-                          className={`${FIELD_CLASS} resize-none`}
-                        />
+                        <FieldError message={errors.consent} />
+
+                        <button
+                          type="submit"
+                          className="group mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
+                        >
+                          Start Planning My Trip
+                          <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
+                            <ArrowIcon size={14} />
+                          </span>
+                        </button>
                       </div>
-
-                      <label className="flex items-start gap-3 text-xs leading-relaxed text-muted">
-                        <input
-                          type="checkbox"
-                          required
-                          className="mt-0.5 h-4 w-4 shrink-0 rounded border-forest/25 text-green focus:ring-green/40"
-                        />
-                        I agree to be contacted about this trip. No payment is taken now.
-                      </label>
-
-                      <button
-                        type="submit"
-                        className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
-                      >
-                        Start Planning My Trip
-                        <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
-                          <ArrowIcon size={14} />
-                        </span>
-                      </button>
                     </div>
                   </form>
                 )}
