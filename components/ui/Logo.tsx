@@ -42,16 +42,15 @@ export function Logo({
       aria-label="Discover Gilgit-Baltistan — home"
       className={`group inline-flex shrink-0 items-center ${className}`}
     >
-      {/* The full emblem (icon + baked-in wordmark) is drawn in a fixed dark
-          green, so it only reads clearly on a light surface — a cream plate
-          behind it keeps the mark legible whether the header is transparent
-          over a hero photo, scrolled to its solid cream bar, or sitting on
-          the footer's dark bg, instead of swapping colors per surface. */}
+      {/* No plate/box behind the mark — just a soft, blurred glow (not a hard
+          edge) so the emblem's dark green still lifts off a photo or the
+          footer's dark bg, without reading as a sticker. */}
       <span
-        className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-cream shadow-[0_4px_14px_rgba(0,0,0,0.22)] ring-1 ring-black/[0.04] transition-all duration-300 group-hover:shadow-[0_6px_18px_rgba(0,0,0,0.3)] ${
-          compact ? "h-14 w-14 p-1.5 sm:h-16 sm:w-16 sm:p-2" : "h-20 w-20 p-2 sm:h-24 sm:w-24 sm:p-2.5"
+        className={`relative flex shrink-0 items-center justify-center transition-all duration-300 ${
+          compact ? "h-14 w-14 sm:h-16 sm:w-16" : "h-20 w-20 sm:h-24 sm:w-24"
         }`}
       >
+        <span aria-hidden className="absolute inset-[10%] rounded-full bg-cream/85 blur-lg" />
         <Image
           src="/Images/tours/logo.png"
           alt="Discover Gilgit-Baltistan"
@@ -59,7 +58,7 @@ export function Logo({
           priority
           quality={90}
           sizes="96px"
-          className="object-contain transition-transform duration-300 group-hover:scale-105"
+          className="relative object-contain drop-shadow-[0_2px_5px_rgba(0,0,0,0.4)] transition-transform duration-300 group-hover:scale-105"
         />
       </span>
     </Link>
