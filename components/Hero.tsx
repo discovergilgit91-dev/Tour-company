@@ -338,7 +338,7 @@ export default function Hero({
   const currentSlide = resolvedSlides[active] ?? resolvedSlides[0];
 
   return (
-    <section className={`relative bg-forest ${showSearchBar ? "pb-10 sm:pb-8 md:pb-6" : ""}`}>
+    <section className={`relative bg-forest ${showSearchBar ? "pb-16 sm:pb-10 md:pb-8" : ""}`}>
       <div className="relative min-h-[76svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           {resolvedSlides.map((slide, i) => (
