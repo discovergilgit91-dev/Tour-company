@@ -429,7 +429,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
         caption: "Sunrise at the lakeside camp",
         from: "from-orange-500/30",
         to: "to-night",
-        image: "/Images/tours/rush-lake-2.png",
+        image: "/Images/tours/rush-lake-4.png",
       },
     ],
   },
