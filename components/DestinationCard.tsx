@@ -23,6 +23,8 @@ export type Destination = {
   blurb: string;
   /** Path under /public. Leave unset to show the "photo coming soon" placeholder instead of a broken image. */
   image?: string;
+  /** Optional separate photo for the detail page hero. Falls back to `image` when unset. */
+  heroImage?: string;
   tag: string;
   href: string;
   /** Approximate elevation shown under the photo, e.g. "2,500 m" */

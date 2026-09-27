@@ -135,6 +135,7 @@ export const DESTINATIONS: Destination[] = [
     name: "Rush Lake",
     blurb: "One of the highest alpine lakes in the world, reached by a high-altitude trek above Nagar's glaciers.",
     image: "/Images/tours/rush-lake.png",
+    heroImage: "/Images/tours/rush-lake-2.png",
     tag: "Discover Rush Lake",
     href: "/destinations/rush-lake",
     altitude: "4,694 m",
