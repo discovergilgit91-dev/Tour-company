@@ -50,15 +50,15 @@ export default function DestinationDetailPage({
       {/* ---------------- Hero ---------------- */}
       <section className="relative bg-forest">
         <div className="relative min-h-[62svh] w-full sm:min-h-[68svh] md:min-h-[72svh]">
-          {/* A shared, generic journeys photo (no baked-in text, unlike the
-              per-destination tour placeholders in public/Images/README.md, which
-              would collide with the heading below) — the same photo for every
-              destination, not this one specifically. Any real photo for this
-              destination is still surfaced as the lead tile in the "Photo
-              highlights" gallery further down the page. */}
+          {/* Uses this destination's own real photo when it has one (no
+              baked-in text, so it's safe behind the heading below); falls
+              back to a shared, generic journeys photo for destinations that
+              still only have the auto-generated placeholder in
+              public/Images/README.md, which would collide with the heading
+              if used directly. */}
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
-              src="/Images/tours/Journeys.png"
+              src={destination.image ?? "/Images/tours/Journeys.png"}
               alt=""
               fill
               priority
