@@ -19,7 +19,7 @@ export default function ClosingCTA() {
     <section id="contact" className="relative w-full overflow-hidden">
       <div className="relative min-h-[440px] w-full sm:min-h-[480px]">
         <Image
-          src="/Images/hero/closing-cta.jpg"
+          src="/Images/tours/kutwal-lake.png"
           alt=""
           aria-hidden
           fill

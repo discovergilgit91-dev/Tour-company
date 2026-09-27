@@ -251,6 +251,17 @@ export const DESTINATIONS: Destination[] = [
     category: "trekking",
   },
   {
+    id: "kutwal-lake",
+    slug: "kutwal-lake",
+    name: "Kutwal Lake",
+    blurb: "A quiet alpine lake near Tato village, reached on the trek in toward Fairy Meadows beneath Nanga Parbat.",
+    image: "/Images/tours/kutwal-lake.png",
+    tag: "Discover Kutwal Lake",
+    href: "/destinations/kutwal-lake",
+    altitude: "3,077 m",
+    category: "lakes",
+  },
+  {
     id: "rama-lake",
     slug: "rama-lake",
     name: "Rama Lake",
@@ -320,7 +331,7 @@ export const REGIONS: Region[] = [
     id: "diamer-astore",
     label: "Diamer & Astore",
     note: "Meadows, valleys, and lakes beneath the Killer Mountain",
-    ids: ["fairy-meadows", "rama-lake", "harmosh-valley", "rupal-valley"],
+    ids: ["fairy-meadows", "kutwal-lake", "rama-lake", "harmosh-valley", "rupal-valley"],
   },
 ];
 
