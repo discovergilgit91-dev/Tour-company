@@ -298,11 +298,22 @@ export default function DestinationDetailPage({
                       isWide ? "aspect-[4/5] sm:aspect-[8/5]" : "aspect-[4/5]"
                     }`}
                   >
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
-                    >
-                      <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full p-4 text-cream/15" />
-                    </div>
+                    {photo.image ? (
+                      <Image
+                        src={photo.image}
+                        alt={photo.caption}
+                        fill
+                        quality={85}
+                        sizes={isWide ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                      />
+                    ) : (
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
+                      >
+                        <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full p-4 text-cream/15" />
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
                     <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
                       {photo.tag}
