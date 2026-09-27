@@ -90,6 +90,7 @@ export const DESTINATIONS: Destination[] = [
     slug: "borith-lake",
     name: "Borith Lake",
     blurb: "A saline lake above Hussaini, ringed by willow and sea buckthorn, with views up to the Passu glaciers.",
+    image: "/Images/tours/borith-lake.png",
     tag: "Discover Borith Lake",
     href: "/destinations/borith-lake",
     altitude: "2,600 m",
