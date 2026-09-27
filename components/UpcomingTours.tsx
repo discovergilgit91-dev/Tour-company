@@ -191,9 +191,9 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
    image/gradient panel, badge, footer row, arrow button) so it sits in the
    row without looking out of place — but every distinguishing detail
    (badge, copy, footer line, link target) signals it's not a fixed
-   itinerary. No real destination photo fits a build-your-own trip, so the
-   image panel reuses TourCard's own "no photo" gradient pattern instead of
-   introducing a new visual language. */
+   itinerary. Uses a deliberately non-specific landscape photo (no named
+   landmark) so it doesn't read as "the" destination for a build-your-own
+   trip, unlike every other card here. */
 function BuildYourOwnCard() {
   return (
     <Link
@@ -201,9 +201,13 @@ function BuildYourOwnCard() {
       className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
     >
       <div className="relative flex-1 overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-forest via-forest to-green-dark text-gold/20 transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]">
-          <CompassIcon size={110} />
-        </div>
+        <Image
+          src="/Images/tours/custom.png"
+          alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
+          fill
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
+          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+        />
 
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
 
