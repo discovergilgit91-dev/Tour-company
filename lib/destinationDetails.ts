@@ -1,5 +1,5 @@
 export type FamousForItem = { title: string; text: string };
-export type GalleryTile = { tag: string; caption: string; from: string; to: string };
+export type GalleryTile = { tag: string; caption: string; from: string; to: string; image?: string };
 
 export type DestinationDetailContent = {
   tagline: string;
@@ -403,10 +403,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "One of the highest alpine lakes in the world, reached by a high-altitude trek above Nagar's glaciers.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "The Lake", caption: "Rush Lake at nearly 4,700 m", from: "from-sky-800/30", to: "to-night" },
-      { tag: "Peak Panorama", caption: "Rakaposhi and Diran from camp", from: "from-slate-600/30", to: "to-forest" },
-      { tag: "High Trail", caption: "The climb above Nagar's glaciers", from: "from-stone-600/30", to: "to-night" },
-      { tag: "Camp", caption: "Sunrise at the lakeside camp", from: "from-orange-500/30", to: "to-night" },
+      {
+        tag: "The Lake",
+        caption: "Rush Lake at nearly 4,700 m",
+        from: "from-sky-800/30",
+        to: "to-night",
+        image: "/Images/tours/rush-lake-1.png",
+      },
+      {
+        tag: "Peak Panorama",
+        caption: "Rakaposhi and Diran from camp",
+        from: "from-slate-600/30",
+        to: "to-forest",
+        image: "/Images/tours/rush-lake-3.png",
+      },
+      {
+        tag: "High Trail",
+        caption: "The climb above Nagar's glaciers",
+        from: "from-stone-600/30",
+        to: "to-night",
+        image: "/Images/tours/nagar-glacier.png",
+      },
+      {
+        tag: "Camp",
+        caption: "Sunrise at the lakeside camp",
+        from: "from-orange-500/30",
+        to: "to-night",
+        image: "/Images/tours/rush-lake-2.png",
+      },
     ],
   },
 
