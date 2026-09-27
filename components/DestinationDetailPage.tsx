@@ -62,15 +62,19 @@ export default function DestinationDetailPage({
               alt=""
               fill
               priority
-              quality={85}
+              quality={90}
               sizes="100vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-green-dark/85 via-forest/80 to-night/90" />
-            <PeaksMotif className="absolute inset-x-0 bottom-0 h-[45%] w-full text-cream/[0.05]" />
+            {/* Dark at both edges — bottom for the heading, top for the
+                transparent header's nav links, which sit directly on the
+                photo with no bar of their own — and clear in the middle so
+                the photo itself still reads sharp instead of a flat tint
+                over the whole thing. */}
+            <div className="absolute inset-0 bg-gradient-to-t from-forest/85 via-forest/10 to-forest/45" />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[62svh] max-w-6xl flex-col justify-end px-5 pb-10 pt-28 sm:min-h-[68svh] sm:px-6 sm:pt-32 md:min-h-[72svh] md:pt-36 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[62svh] max-w-6xl flex-col justify-end px-5 pb-12 pt-28 sm:min-h-[68svh] sm:px-6 sm:pb-14 sm:pt-32 md:min-h-[72svh] md:pt-36 lg:px-8 lg:pb-16">
             <LinkButton
               href="/lands"
               variant="dark"
