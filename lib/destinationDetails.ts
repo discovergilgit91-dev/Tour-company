@@ -771,6 +771,42 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     ],
   },
 
+  "kutwal-lake": {
+    tagline: "A quiet alpine lake on the trail in toward Fairy Meadows",
+    intro:
+      "Kutwal Lake sits above Tato village, a short stretch below the jeep track and trekking trail that leads up to Fairy Meadows. Fewer travelers stop here than at the meadows above, which leaves its still water and surrounding pine forest quiet even in peak season.",
+    highlights: [
+      "A still alpine lake just below the Fairy Meadows trail",
+      "Pine forest and open pasture ringing the shoreline",
+      "Far quieter than Fairy Meadows itself, even in season",
+      "A natural rest stop for trekkers on the way up or down",
+    ],
+    famousFor: [
+      {
+        title: "A Quiet Stop Before Fairy Meadows",
+        text: "Most travelers pass straight through on their way up to the meadows, leaving Kutwal Lake one of the calmer, less crowded spots along the route.",
+      },
+      {
+        title: "Reflections in Still Water",
+        text: "On calm mornings the lake mirrors the pine forest and surrounding ridgeline, a favorite quiet stop for photographers heading up the trail.",
+      },
+      {
+        title: "Tato Village Access",
+        text: "The lake is a short walk above Tato village, the same trailhead used for the jeep track and trek up to Fairy Meadows.",
+      },
+    ],
+    bestTime: "June–September, alongside the Fairy Meadows trekking season",
+    howToReach: "A short walk above Tato village, reached by jeep from Raikot Bridge on the Karakoram Highway.",
+    quote: "A quiet alpine lake near Tato village, reached on the trek in toward Fairy Meadows beneath Nanga Parbat.",
+    quoteAuthor: "Discover Gilgit guide notes",
+    gallery: [
+      { tag: "Lake", caption: "Kutwal Lake's still water", from: "from-sky-700/30", to: "to-night" },
+      { tag: "Pine Forest", caption: "Forest ringing the shoreline", from: "from-green-dark", to: "to-night" },
+      { tag: "Trail", caption: "The path up toward Fairy Meadows", from: "from-lime-700/30", to: "to-forest" },
+      { tag: "Tato Village", caption: "The trailhead below the lake", from: "from-amber-700/40", to: "to-night" },
+    ],
+  },
+
   "rama-lake": {
     tagline: "A still lake beneath Nanga Parbat's uninterrupted view",
     intro:
