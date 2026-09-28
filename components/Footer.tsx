@@ -171,8 +171,16 @@ export default function Footer() {
             </div>
           </div>
 
-          <FooterColumn title="Explore" links={exploreLinks} />
-          <FooterColumn title="Account" links={ACCOUNT_LINKS} />
+          <FooterColumn
+            title="Explore"
+            links={exploreLinks}
+            className="lg:border-r lg:border-cream/[0.08] lg:pr-8"
+          />
+          <FooterColumn
+            title="Account"
+            links={ACCOUNT_LINKS}
+            className="lg:border-r lg:border-cream/[0.08] lg:pr-8"
+          />
 
           {/* CONTACT */}
           <div>
