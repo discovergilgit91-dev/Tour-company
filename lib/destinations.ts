@@ -21,6 +21,7 @@ export const DESTINATIONS: Destination[] = [
     name: "Karimabad",
     blurb: "The heart of Hunza — terraced rooftops, apricot orchards, and clear views up to Rakaposhi and Ultar Sar.",
     image: "/Images/tours/hunza-valley.png",
+    heroImage: "/Images/tours/blossom-season.png",
     tag: "Discover Karimabad",
     href: "/destinations/karimabad",
     altitude: "2,200 m",
