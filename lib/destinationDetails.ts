@@ -163,10 +163,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "The oldest monument in Hunza, perched on a sheer cliff above the river since the 11th century.",
     quoteAuthor: "Local heritage guide",
     gallery: [
-      { tag: "Cliffside", caption: "Altit Fort above the gorge", from: "from-stone-600/40", to: "to-night" },
-      { tag: "Village", caption: "Altit Khun's stone lanes", from: "from-amber-800/30", to: "to-forest" },
-      { tag: "Garden", caption: "The restored royal garden", from: "from-green-dark", to: "to-night" },
-      { tag: "River", caption: "The Hunza River gorge below", from: "from-sky-700/30", to: "to-night" },
+      {
+        tag: "Cliffside",
+        caption: "Altit Fort above the gorge",
+        from: "from-stone-600/40",
+        to: "to-night",
+        image: "/Images/tours/altit-fort-above-the-gorge.png",
+      },
+      {
+        tag: "Village",
+        caption: "Altit Khun's stone lanes",
+        from: "from-amber-800/30",
+        to: "to-forest",
+        image: "/Images/tours/altit-khuns-stone-lanes.png",
+      },
+      {
+        tag: "Garden",
+        caption: "The restored royal garden",
+        from: "from-green-dark",
+        to: "to-night",
+        image: "/Images/tours/the-restored-royal-garden.png",
+      },
+      {
+        tag: "River",
+        caption: "The Hunza River gorge below",
+        from: "from-sky-700/30",
+        to: "to-night",
+        image: "/Images/tours/the-hunza-river-gorge-below.png",
+      },
     ],
   },
 
