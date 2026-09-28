@@ -36,11 +36,11 @@ type Destination = { id: string; name: string; image: string };
 const DESTINATIONS: Destination[] = [
   { id: "hunza-valley", name: "Hunza Valley", image: "/Images/tours/hunza-valley.png" },
   { id: "skardu", name: "Skardu", image: "/Images/tours/skardu.png" },
-  { id: "deosai-plains", name: "Deosai Plains", image: "/Images/tours/deosai-plains.png" },
-  { id: "fairy-meadows", name: "Fairy Meadows", image: "/Images/tours/Fairy-meadows.png" },
-  { id: "shigar-valley", name: "Shigar Valley", image: "/Images/tours/shigar-fort.png" },
-  { id: "khunjerab-pass", name: "Khunjerab Pass", image: "/Images/tours/khunjerab.png" },
-  { id: "attabad-lake", name: "Attabad Lake", image: "/Images/tours/attabads-signature-colour.png" },
+  { id: "deosai-plains", name: "Deosai Plains", image: "/Images/tours/deosai-plains.jpg" },
+  { id: "fairy-meadows", name: "Fairy Meadows", image: "/Images/tours/Fairy-meadows.jpg" },
+  { id: "shigar-valley", name: "Shigar Valley", image: "/Images/tours/shigar-fort.jpg" },
+  { id: "khunjerab-pass", name: "Khunjerab Pass", image: "/Images/tours/khunjerab.jpg" },
+  { id: "attabad-lake", name: "Attabad Lake", image: "/Images/tours/attabads-signature-colour.jpg" },
   { id: "passu-cones", name: "Passu Cones", image: "/Images/tours/passu-cones.jpg" },
 ];
 

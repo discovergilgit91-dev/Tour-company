@@ -25,7 +25,7 @@ const DEFAULT_SLIDES: HeroSlide[] = [
       "Journey through Hunza's dramatic valleys, ancient villages, and towering peaks — guided by people who call these mountains home.",
   },
   {
-    src: "/Images/tours/Fairy-meadows.png",
+    src: "/Images/tours/Fairy-meadows.jpg",
     alt: "Nanga Parbat, the Killer Mountain",
     badge: "FAIRY MEADOWS — NANGA PARBAT",
     titleLine1: "Stand beneath",
