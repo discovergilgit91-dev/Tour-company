@@ -223,7 +223,13 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A brilliant turquoise lake born from a 2010 landslide, now crossed by boat beneath the Karakoram Highway.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Turquoise Water", caption: "Attabad's signature colour", from: "from-cyan-500/30", to: "to-night" },
+      {
+        tag: "Turquoise Water",
+        caption: "Attabad's signature colour",
+        from: "from-cyan-500/30",
+        to: "to-night",
+        image: "/Images/tours/attabads-signature-colour.png",
+      },
       {
         tag: "Boat Crossing",
         caption: "Crossing by traditional boat",
