@@ -224,9 +224,27 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Turquoise Water", caption: "Attabad's signature colour", from: "from-cyan-500/30", to: "to-night" },
-      { tag: "Boat Crossing", caption: "Crossing by traditional boat", from: "from-sky-600/30", to: "to-forest" },
-      { tag: "Cliffs", caption: "Bare rock walls around the lake", from: "from-stone-600/30", to: "to-night" },
-      { tag: "Highway", caption: "The rerouted Karakoram Highway", from: "from-green-dark", to: "to-night" },
+      {
+        tag: "Boat Crossing",
+        caption: "Crossing by traditional boat",
+        from: "from-sky-600/30",
+        to: "to-forest",
+        image: "/Images/tours/crossing-by-traditional-boat.png",
+      },
+      {
+        tag: "Cliffs",
+        caption: "Bare rock walls around the lake",
+        from: "from-stone-600/30",
+        to: "to-night",
+        image: "/Images/tours/bare-rock-walls-around-the-lake.png",
+      },
+      {
+        tag: "Highway",
+        caption: "The rerouted Karakoram Highway",
+        from: "from-green-dark",
+        to: "to-night",
+        image: "/Images/tours/the-rerouted-karakoram-highway.png",
+      },
     ],
   },
 

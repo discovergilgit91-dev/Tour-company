@@ -136,7 +136,7 @@ const TOURS: Tour[] = [
     duration: 3,
     dateRange: "01 Oct – 03 Oct, 2027",
     price: 300,
-    image: "/Images/tours/attabad-lake.png",
+    image: "/Images/tours/attabads-signature-colour.png",
     href: "/tours/attabad-karimabad-escape",
   },
   {
