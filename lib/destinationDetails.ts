@@ -283,10 +283,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "Jagged cathedral peaks rising straight from the valley floor — one of the most photographed skylines in the north.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Skyline", caption: "The Passu Cones at dawn", from: "from-orange-600/30", to: "to-night" },
-      { tag: "Suspension Bridge", caption: "Crossing above the Hunza River", from: "from-amber-700/30", to: "to-forest" },
-      { tag: "Glacier", caption: "Passu glacier's meltwater braids", from: "from-sky-700/30", to: "to-night" },
-      { tag: "Golden Hour", caption: "Cones lit amber at sunset", from: "from-rose-500/30", to: "to-night" },
+      {
+        tag: "Skyline",
+        caption: "The Passu Cones at dawn",
+        from: "from-orange-600/30",
+        to: "to-night",
+        image: "/Images/tours/passu-cones-at-drawn.png",
+      },
+      {
+        tag: "Suspension Bridge",
+        caption: "Crossing above the Hunza River",
+        from: "from-amber-700/30",
+        to: "to-forest",
+        image: "/Images/tours/passu-suspension.png",
+      },
+      {
+        tag: "Glacier",
+        caption: "Passu glacier's meltwater braids",
+        from: "from-sky-700/30",
+        to: "to-night",
+        image: "/Images/tours/passu-glacier.png",
+      },
+      {
+        tag: "Golden Hour",
+        caption: "Cones lit amber at sunset",
+        from: "from-rose-500/30",
+        to: "to-night",
+        image: "/Images/tours/cones-lit-amber-at-sunset.png",
+      },
     ],
   },
 
