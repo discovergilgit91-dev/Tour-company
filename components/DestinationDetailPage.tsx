@@ -66,11 +66,12 @@ export default function DestinationDetailPage({
               sizes="100vw"
               className="object-cover"
             />
-            {/* Dark at the edges for the header's nav links (top) and even
-                through the middle now that the heading sits vertically
-                centered there, while staying lighter than a flat tint so
-                the photo still reads sharp rather than muddy. */}
-            <div className="absolute inset-0 bg-gradient-to-b from-forest/70 via-forest/45 to-forest/70" />
+            {/* Just a light touch at the very top/bottom edges for the
+                transparent header's nav — the photo itself stays
+                untinted through the middle where the text sits; the text
+                elements below carry their own shadow/backing for
+                legibility instead of a flat wash over the whole image. */}
+            <div className="absolute inset-0 bg-gradient-to-b from-forest/35 via-transparent to-forest/35" />
           </div>
 
           <div className="relative z-10 mx-auto flex min-h-[62svh] max-w-6xl flex-col justify-center px-5 py-28 sm:min-h-[68svh] sm:px-6 sm:py-32 md:min-h-[72svh] md:py-36 lg:px-8">
@@ -93,20 +94,20 @@ export default function DestinationDetailPage({
                   </span>
                 )}
                 {categoryLabel && (
-                  <span className="inline-flex items-center rounded-full border border-cream/30 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-cream sm:text-xs">
+                  <span className="inline-flex items-center rounded-full border border-cream/30 bg-night/20 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm sm:text-xs [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
                     {categoryLabel}
                   </span>
                 )}
               </div>
 
-              <h1 className="mt-5 font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-cream sm:text-5xl md:text-[56px]">
+              <h1 className="mt-5 font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-5xl md:text-[56px]">
                 {destination.name}
               </h1>
-              <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">
+              <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] sm:text-base md:text-lg">
                 {content.tagline}
               </p>
 
-              <div className="mt-7 flex items-center gap-2.5 text-cream/90">
+              <div className="mt-7 flex items-center gap-2.5 text-cream/90 [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
                 <span className="text-green">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M2 20 9.5 7l4 6.5L16 10l6 10H2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
