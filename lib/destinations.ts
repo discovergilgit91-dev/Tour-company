@@ -55,7 +55,7 @@ export const DESTINATIONS: Destination[] = [
     slug: "attabad-lake",
     name: "Attabad Lake",
     blurb: "A brilliant turquoise lake born from a 2010 landslide, now crossed by boat beneath the Karakoram Highway.",
-    image: "/Images/tours/attabad-lake.png",
+    image: "/Images/tours/attabads-signature-colour.png",
     tag: "Discover Attabad Lake",
     href: "/destinations/attabad-lake",
     altitude: "2,560 m",

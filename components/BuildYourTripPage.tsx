@@ -40,7 +40,7 @@ const DESTINATIONS: Destination[] = [
   { id: "fairy-meadows", name: "Fairy Meadows", image: "/Images/tours/Fairy-meadows.png" },
   { id: "shigar-valley", name: "Shigar Valley", image: "/Images/tours/shigar-fort.png" },
   { id: "khunjerab-pass", name: "Khunjerab Pass", image: "/Images/tours/khunjerab.png" },
-  { id: "attabad-lake", name: "Attabad Lake", image: "/Images/tours/attabad-lake.png" },
+  { id: "attabad-lake", name: "Attabad Lake", image: "/Images/tours/attabads-signature-colour.png" },
   { id: "passu-cones", name: "Passu Cones", image: "/Images/tours/passu-cones.jpg" },
 ];
 
