@@ -403,10 +403,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A saline lake above Hussaini, ringed by willow and sea buckthorn, with views up to the Passu glaciers.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Lakeshore", caption: "Willow-lined water's edge", from: "from-green-dark", to: "to-night" },
-      { tag: "Reflections", caption: "Passu glaciers mirrored at dusk", from: "from-sky-700/30", to: "to-forest" },
-      { tag: "Autumn", caption: "Sea buckthorn in October", from: "from-orange-500/30", to: "to-night" },
-      { tag: "Stillness", caption: "Early morning on the lake", from: "from-slate-500/30", to: "to-night" },
+      {
+        tag: "Lakeshore",
+        caption: "Willow-lined water's edge",
+        from: "from-green-dark",
+        to: "to-night",
+        image: "/Images/tours/borith-lake-shoreline.png",
+      },
+      {
+        tag: "The Trail",
+        caption: "The cliff path with glacier views",
+        from: "from-sky-700/30",
+        to: "to-forest",
+        image: "/Images/tours/borith-passu-glacier-trail.png",
+      },
+      {
+        tag: "Autumn",
+        caption: "Sea buckthorn in October",
+        from: "from-orange-500/30",
+        to: "to-night",
+        image: "/Images/tours/borith-seabuckthorn-october.png",
+      },
+      {
+        tag: "Stillness",
+        caption: "Early morning on the lake",
+        from: "from-slate-500/30",
+        to: "to-night",
+        image: "/Images/tours/borith-lake-early-morning.png",
+      },
     ],
   },
 
