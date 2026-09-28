@@ -57,6 +57,8 @@ export const DESTINATIONS: Destination[] = [
     blurb: "A brilliant turquoise lake born from a 2010 landslide, now crossed by boat beneath the Karakoram Highway.",
     image: "/Images/tours/attabads-signature-colour.jpg",
     focus: "center 70%",
+    heroImage: "/Images/tours/the-rerouted-karakoram-highway.png",
+    heroFocus: "center 60%",
     tag: "Discover Attabad Lake",
     href: "/destinations/attabad-lake",
     altitude: "2,560 m",
