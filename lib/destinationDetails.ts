@@ -343,10 +343,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "The highest paved border crossing in the world, where the Karakoram Highway meets China at 4,700 metres.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "The Pass", caption: "4,700 metres at the border gate", from: "from-slate-500/30", to: "to-night" },
-      { tag: "Wildlife", caption: "Ibex on the high slopes", from: "from-stone-600/30", to: "to-forest" },
-      { tag: "Highway", caption: "The final stretch of the KKH", from: "from-sky-800/30", to: "to-night" },
-      { tag: "High Altitude", caption: "Barren peaks above the pass", from: "from-gray-500/30", to: "to-night" },
+      {
+        tag: "The Pass",
+        caption: "4,700 metres at the border gate",
+        from: "from-slate-500/30",
+        to: "to-night",
+        image: "/Images/tours/khunjerab-border-gate.png",
+      },
+      {
+        tag: "Wildlife",
+        caption: "Ibex on the high slopes",
+        from: "from-stone-600/30",
+        to: "to-forest",
+        image: "/Images/tours/khunjerab-ibex.png",
+      },
+      {
+        tag: "Highway",
+        caption: "The final stretch of the KKH",
+        from: "from-sky-800/30",
+        to: "to-night",
+        image: "/Images/tours/khunjerab-kkh-at-snow.png",
+      },
+      {
+        tag: "High Altitude",
+        caption: "Barren peaks above the pass",
+        from: "from-gray-500/30",
+        to: "to-night",
+        image: "/Images/tours/khunjerab-barren-peaks.png",
+      },
     ],
   },
 

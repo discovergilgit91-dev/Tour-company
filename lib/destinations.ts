@@ -79,6 +79,7 @@ export const DESTINATIONS: Destination[] = [
     name: "Khunjerab Pass",
     blurb: "The highest paved border crossing in the world, where the Karakoram Highway meets China at 4,700 metres.",
     image: "/Images/tours/khunjerab.jpg",
+    heroImage: "/Images/tours/khunjerab-border-gate.png",
     tag: "Discover Khunjerab Pass",
     href: "/destinations/khunjerab-pass",
     altitude: "4,700 m",
