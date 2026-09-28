@@ -101,6 +101,7 @@ export const DESTINATIONS: Destination[] = [
     slug: "shimshal-valley",
     name: "Shimshal Valley",
     blurb: "One of the most remote settlements in the Karakoram, reached by a cliffside road above the Shimshal River.",
+    image: "/Images/tours/shimsal-road5.png",
     tag: "Discover Shimshal Valley",
     href: "/destinations/shimshal-valley",
     altitude: "3,100 m",

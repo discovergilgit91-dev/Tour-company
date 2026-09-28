@@ -295,10 +295,28 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "One of the most remote settlements in the Karakoram, reached by a cliffside road above the Shimshal River.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "The Road", caption: "The cliffside route into Shimshal", from: "from-stone-600/40", to: "to-night" },
+      {
+        tag: "The Road",
+        caption: "The cliffside route into Shimshal",
+        from: "from-stone-600/40",
+        to: "to-night",
+        image: "/Images/tours/shimsal-road.png",
+      },
       { tag: "Village", caption: "Shimshal's farming settlement", from: "from-amber-700/30", to: "to-forest" },
-      { tag: "High Pasture", caption: "Yaks on summer grazing land", from: "from-green-dark", to: "to-night" },
-      { tag: "River Valley", caption: "The Shimshal River below", from: "from-sky-700/30", to: "to-night" },
+      {
+        tag: "High Pasture",
+        caption: "Yaks on summer grazing land",
+        from: "from-green-dark",
+        to: "to-night",
+        image: "/Images/tours/shimsal-valley2.png",
+      },
+      {
+        tag: "River Valley",
+        caption: "The Shimshal River below",
+        from: "from-sky-700/30",
+        to: "to-night",
+        image: "/Images/tours/shimsal-valley.png",
+      },
     ],
   },
 
