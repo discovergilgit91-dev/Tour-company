@@ -50,7 +50,13 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
         to: "to-night",
         image: "/Images/tours/streets-of-karimabad.png",
       },
-      { tag: "Baltit Fort", caption: "The fort above the rooftops", from: "from-amber-700/40", to: "to-night" },
+      {
+        tag: "Baltit Fort",
+        caption: "The fort above the rooftops",
+        from: "from-amber-700/40",
+        to: "to-night",
+        image: "/Images/tours/fort-above-the-rooftop.png",
+      },
       {
         tag: "Orchards",
         caption: "Blossom season in the valley",
