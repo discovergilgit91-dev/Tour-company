@@ -103,10 +103,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "Standing on the watchtower, you understand immediately why the Mirs chose this exact spot.",
     quoteAuthor: "A visitor from Karachi",
     gallery: [
-      { tag: "Facade", caption: "Baltit Fort's timber balconies", from: "from-amber-700/40", to: "to-night" },
-      { tag: "Interior", caption: "The restored royal chambers", from: "from-forest", to: "to-night" },
-      { tag: "Watchtower", caption: "View over Karimabad", from: "from-green-dark", to: "to-forest" },
-      { tag: "Approach", caption: "The climb up from the bazaar", from: "from-stone-500/30", to: "to-night" },
+      {
+        tag: "Facade",
+        caption: "Baltit Fort's timber balconies",
+        from: "from-amber-700/40",
+        to: "to-night",
+        image: "/Images/tours/baltit-fort-timber-balconies.png",
+      },
+      {
+        tag: "Interior",
+        caption: "The restored royal chambers",
+        from: "from-forest",
+        to: "to-night",
+        image: "/Images/tours/the-restored-royal-chambers.png",
+      },
+      {
+        tag: "Watchtower",
+        caption: "View over Karimabad",
+        from: "from-green-dark",
+        to: "to-forest",
+        image: "/Images/tours/view-over-karimabad.png",
+      },
+      {
+        tag: "Approach",
+        caption: "The climb up from the bazaar",
+        from: "from-stone-500/30",
+        to: "to-night",
+        image: "/Images/tours/the-climb-up-from-the-bazaar.png",
+      },
     ],
   },
 
