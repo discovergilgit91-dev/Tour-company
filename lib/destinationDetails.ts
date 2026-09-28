@@ -43,10 +43,22 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "Karimabad felt like stepping into a painting — every rooftop had orchards, every corner had a view of Rakaposhi.",
     quoteAuthor: "A traveler from Lahore",
     gallery: [
-      { tag: "Old Town", caption: "Terraced streets of Karimabad", from: "from-green-dark", to: "to-night" },
+      {
+        tag: "Old Town",
+        caption: "Terraced streets of Karimabad",
+        from: "from-green-dark",
+        to: "to-night",
+        image: "/Images/tours/streets-of-karimabad.png",
+      },
       { tag: "Baltit Fort", caption: "The fort above the rooftops", from: "from-amber-700/40", to: "to-night" },
       { tag: "Orchards", caption: "Blossom season in the valley", from: "from-rose-400/30", to: "to-forest" },
-      { tag: "Sunset", caption: "Rakaposhi at golden hour", from: "from-orange-500/30", to: "to-night" },
+      {
+        tag: "Sunset",
+        caption: "Rakaposhi at golden hour",
+        from: "from-orange-500/30",
+        to: "to-night",
+        image: "/Images/tours/rakaposhi-at-golden-hour.png",
+      },
     ],
   },
 
