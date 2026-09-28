@@ -96,7 +96,7 @@ const STORIES = [
     quote:
       "Fairy Meadows at sunrise, arranged down to the last detail. The most well-run trip I've taken anywhere in the world.",
     rating: 5,
-    photo: "/Images/tours/Fairy-meadows.png",
+    photo: "/Images/tours/Fairy-meadows.jpg",
     avatar: "/Images/avatars/daniel-reyes.jpg",
   },
   {
@@ -105,7 +105,7 @@ const STORIES = [
     region: "Deosai Plains",
     quote: "Deosai felt endless in the best way. Small group, unhurried pace, and a team that clearly loves this land.",
     rating: 4,
-    photo: "/Images/tours/deosai-plains.png",
+    photo: "/Images/tours/deosai-plains.jpg",
     avatar: "/Images/avatars/meera-nair.jpg",
   },
 ];

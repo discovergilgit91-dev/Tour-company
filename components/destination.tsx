@@ -21,7 +21,7 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     slug: "deosai-plains",
     blurb:
       "The 'Land of Giants' — vast alpine plateau where brown bears roam beneath endless sky.",
-    image: "/Images/tours/deosai-plains.png",
+    image: "/Images/tours/deosai-plains.jpg",
     tag: "Explore Deosai",
     href: "/destinations/deosai-plains",
     altitude: "4,114 m",
@@ -31,7 +31,7 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     name: "Skardu & Katpana",
     slug: "skardu-katpana",
     blurb: "Cold desert dunes beside turquoise lakes, gateway to the world's highest peaks.",
-    image: "/Images/tours/sarfaranga-desert.png",
+    image: "/Images/tours/sarfaranga-desert.jpg",
     tag: "Discover Skardu",
     href: "/destinations/skardu-katpana",
     altitude: "2,230 m",

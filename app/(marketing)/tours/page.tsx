@@ -84,7 +84,7 @@ const TOURS: Tour[] = [
     duration: 4,
     dateRange: "14 Aug – 17 Aug, 2027",
     price: 420,
-    image: "/Images/tours/Fairy-meadows.png",
+    image: "/Images/tours/Fairy-meadows.jpg",
     href: "/tours/fairy-meadows-trek",
   },
   {
@@ -123,7 +123,7 @@ const TOURS: Tour[] = [
     duration: 4,
     dateRange: "18 Sep – 21 Sep, 2027",
     price: 380,
-    image: "/Images/tours/shigar-fort.png",
+    image: "/Images/tours/shigar-fort.jpg",
     href: "/tours/shigar-heritage-trail",
   },
   {
@@ -136,7 +136,7 @@ const TOURS: Tour[] = [
     duration: 3,
     dateRange: "01 Oct – 03 Oct, 2027",
     price: 300,
-    image: "/Images/tours/attabads-signature-colour.png",
+    image: "/Images/tours/attabads-signature-colour.jpg",
     href: "/tours/attabad-karimabad-escape",
   },
   {
@@ -149,7 +149,7 @@ const TOURS: Tour[] = [
     duration: 2,
     dateRange: "12 Oct – 13 Oct, 2027",
     price: 260,
-    image: "/Images/tours/khunjerab.png",
+    image: "/Images/tours/khunjerab.jpg",
     href: "/tours/khunjerab-border-expedition",
   },
   {

@@ -228,7 +228,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
         caption: "Attabad's signature colour",
         from: "from-cyan-500/30",
         to: "to-night",
-        image: "/Images/tours/attabads-signature-colour.png",
+        image: "/Images/tours/attabads-signature-colour.jpg",
       },
       {
         tag: "Boat Crossing",
