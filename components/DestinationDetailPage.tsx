@@ -49,7 +49,7 @@ export default function DestinationDetailPage({
     <main className="bg-cream">
       {/* ---------------- Hero ---------------- */}
       <section className="relative bg-forest">
-        <div className="relative min-h-[62svh] w-full sm:min-h-[68svh] md:min-h-[72svh]">
+        <div className="relative min-h-[78svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
           {/* Uses a dedicated hero photo when set, then this destination's
               own card photo (no baked-in text, so it's safe behind the
               heading below), then falls back to a shared, generic journeys
@@ -74,7 +74,7 @@ export default function DestinationDetailPage({
             <div className="absolute inset-0 bg-gradient-to-b from-forest/35 via-transparent to-forest/35" />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[62svh] max-w-6xl flex-col justify-center px-5 py-28 sm:min-h-[68svh] sm:px-6 sm:py-32 md:min-h-[72svh] md:py-36 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-center px-5 py-28 sm:min-h-[82svh] sm:px-6 sm:py-32 md:min-h-[86svh] md:py-36 lg:px-8">
             <LinkButton
               href="/lands"
               variant="dark"
