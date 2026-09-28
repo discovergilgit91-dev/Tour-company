@@ -64,6 +64,11 @@ export default function DestinationDetailPage({
               priority
               quality={90}
               sizes="100vw"
+              style={
+                destination.heroFocus ?? destination.focus
+                  ? { objectPosition: destination.heroFocus ?? destination.focus }
+                  : undefined
+              }
               className="object-cover"
             />
             {/* Just a light touch at the very top/bottom edges for the

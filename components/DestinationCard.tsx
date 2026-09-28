@@ -31,6 +31,11 @@ export type Destination = {
   altitude: string;
   /** Optional CSS object-position for the photo crop, e.g. "50% 30%" */
   focus?: string;
+  /** Optional object-position for the detail page hero specifically (a much
+      wider crop than the card/Featured tile). Falls back to `focus` when
+      unset — only needed when `heroImage` points at a different photo than
+      `image`, so the card's own crop isn't affected. */
+  heroFocus?: string;
   /** Route-ready identifier for a future /destinations/[slug] detail page */
   slug?: string;
   /** No longer used by the layout — kept so existing callers still type-check */
