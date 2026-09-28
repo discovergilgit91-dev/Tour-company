@@ -302,7 +302,13 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
         to: "to-night",
         image: "/Images/tours/shimsal-road.png",
       },
-      { tag: "Village", caption: "Shimshal's farming settlement", from: "from-amber-700/30", to: "to-forest" },
+      {
+        tag: "High Route",
+        caption: "A yak caravan beside a glacial lake",
+        from: "from-amber-700/30",
+        to: "to-forest",
+        image: "/Images/tours/shimsal-road3.png",
+      },
       {
         tag: "High Pasture",
         caption: "Yaks on summer grazing land",
