@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
 import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
 import type { SessionProfile } from "@/lib/supabase/session";
+import { notifyN8n } from "@/lib/notifyN8n";
 import {
   ArrowIcon,
   CheckIcon,
@@ -336,6 +337,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
   const [consent, setConsent] = useState(false);
   const [attempted, setAttempted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   // Restore whatever was typed before a signed-out submit attempt sent
   // this visitor off to sign up/sign in.
@@ -444,7 +446,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
     return parts.join(" · ");
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const result = computeErrors({
       name,
@@ -483,6 +485,33 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
       });
       router.push("/sign-up");
       return;
+    }
+
+    // The n8n webhook is the only place this form's data goes (no
+    // Supabase). A failed/timed-out call is logged server-side inside
+    // notifyN8n and never blocks the success state below — from the
+    // visitor's side, submitting always looks the same.
+    setSubmitting(true);
+    try {
+      await notifyN8n({
+        name,
+        email,
+        phone,
+        interests: interests.map((id) => INTERESTS.find((i) => i.id === id)?.label ?? id),
+        destinations,
+        flexibleDestination,
+        dateMode,
+        startDate: dateMode === "exact" ? startDate : null,
+        endDate: dateMode === "exact" ? endDate : null,
+        groupSize,
+        duration,
+        budget,
+        notes,
+      });
+    } catch {
+      // Already logged inside notifyN8n — nothing more to do here.
+    } finally {
+      setSubmitting(false);
     }
 
     setSubmitted(true);
@@ -926,7 +955,8 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
 
                         <button
                           type="submit"
-                          className="group mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
+                          disabled={submitting}
+                          className="group mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-60"
                         >
                           {isSignedIn ? "Start Planning My Trip" : "Sign Up to Start Planning"}
                           <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
