@@ -219,6 +219,23 @@ a {
   }
 }
 
+/* Soft ambient glow breathing behind the launcher button. */
+.chat-launcher-glow {
+  animation: chatLauncherGlow 3200ms ease-in-out infinite both;
+}
+
+@keyframes chatLauncherGlow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.08);
+  }
+}
+
 /* =========================================================
    REDUCED MOTION
 ========================================================= */
@@ -266,6 +283,12 @@ a {
   .chat-typing-dot {
     animation: none;
     opacity: 1;
+    transform: none;
+  }
+
+  .chat-launcher-glow {
+    animation: none;
+    opacity: 0.4;
     transform: none;
   }
 }
