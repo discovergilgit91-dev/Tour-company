@@ -523,10 +523,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A trek through pine forest and high pasture to the foot of Rakaposhi, one of the world's most dramatic peaks.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Trailhead", caption: "Pine forest above Ghulmet", from: "from-green-dark", to: "to-night" },
-      { tag: "High Pasture", caption: "Open grazing land en route", from: "from-lime-700/30", to: "to-forest" },
-      { tag: "Base Camp", caption: "Rakaposhi's icefall up close", from: "from-slate-500/30", to: "to-night" },
-      { tag: "Summit View", caption: "Rakaposhi's near-unbroken rise", from: "from-sky-700/30", to: "to-night" },
+      {
+        tag: "Trailhead",
+        caption: "Pine forest above Ghulmet",
+        from: "from-green-dark",
+        to: "to-night",
+        image: "/Images/tours/pine-forest-above-ghulmet.png",
+      },
+      {
+        tag: "High Pasture",
+        caption: "Open grazing land en route",
+        from: "from-lime-700/30",
+        to: "to-forest",
+        image: "/Images/tours/open-gazing-land-en.png",
+      },
+      {
+        tag: "Base Camp",
+        caption: "Rakaposhi's icefall up close",
+        from: "from-slate-500/30",
+        to: "to-night",
+        image: "/Images/tours/rakaposhis-icefall-up-close.png",
+      },
+      {
+        tag: "Summit View",
+        caption: "Rakaposhi's near-unbroken rise",
+        from: "from-sky-700/30",
+        to: "to-night",
+        image: "/Images/tours/rakaposhis-near-unbroken-rise.png",
+      },
     ],
   },
 
