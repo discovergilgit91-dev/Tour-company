@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import BookingPage from "@/components/BookingPage";
 import { getTourDetail, TOUR_DETAILS } from "@/lib/tourDetails";
+import { getSessionProfile } from "@/lib/supabase/session";
 
 export function generateMetadata({
   searchParams,
@@ -26,6 +27,7 @@ export default async function BookPage({
   const { tour: slug } = await searchParams;
   const tour = slug ? getTourDetail(slug) ?? null : null;
   const allTours = Object.values(TOUR_DETAILS).map((t) => ({ slug: t.slug, title: t.title }));
+  const sessionProfile = await getSessionProfile();
 
-  return <BookingPage tour={tour} allTours={allTours} />;
+  return <BookingPage tour={tour} allTours={allTours} sessionProfile={sessionProfile} />;
 }

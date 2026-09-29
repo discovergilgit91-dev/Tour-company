@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isAuthRetryableFetchError } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
+import { PENDING_FORM_LABEL, readPendingSubmission } from "@/lib/pendingSubmission";
 import { Button } from "../ui/Button";
 import { ArrowIcon } from "../ui/icons";
 import { AuthShell } from "./AuthShell";
@@ -25,6 +26,19 @@ export default function SignInForm({ initialError }: { initialError?: string } =
   const [error, setError] = useState<string | null>(
     initialError ? (CALLBACK_ERROR_MESSAGES[initialError] ?? null) : null
   );
+  const [returnTo, setReturnTo] = useState<string | null>(null);
+  const [pendingLabel, setPendingLabel] = useState<string | null>(null);
+
+  // Someone redirected here mid-way through a trip request/reservation
+  // they weren't signed in to submit — show why, and send them back to
+  // it (with their input intact) once they're signed in.
+  useEffect(() => {
+    const pending = readPendingSubmission();
+    if (pending) {
+      setReturnTo(pending.returnTo);
+      setPendingLabel(PENDING_FORM_LABEL[pending.formId] ?? "trip request");
+    }
+  }, []);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -48,7 +62,7 @@ export default function SignInForm({ initialError }: { initialError?: string } =
         }
         return;
       }
-      router.push("/");
+      router.push(returnTo ?? "/");
       router.refresh();
     } catch {
       setLoading(false);
@@ -87,6 +101,7 @@ export default function SignInForm({ initialError }: { initialError?: string } =
         { value: "12+", label: "Years guiding" },
         { value: "3,500+", label: "Travelers hosted" },
       ]}
+      notice={pendingLabel ? `Sign in to complete your ${pendingLabel}.` : undefined}
     >
       <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
         <span className="h-px w-8 bg-muted/60" />

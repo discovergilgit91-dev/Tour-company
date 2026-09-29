@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { isAuthRetryableFetchError } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
+import { PENDING_FORM_LABEL, readPendingSubmission } from "@/lib/pendingSubmission";
 import { Button } from "../ui/Button";
 import { ArrowIcon } from "../ui/icons";
 import { AuthShell } from "./AuthShell";
@@ -19,6 +20,19 @@ export default function SignUpForm() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [returnTo, setReturnTo] = useState<string | null>(null);
+  const [pendingLabel, setPendingLabel] = useState<string | null>(null);
+
+  // Someone redirected here mid-way through a trip request/reservation
+  // they weren't signed in to submit — show why, and send them back to
+  // it (with their input intact) once their email is confirmed.
+  useEffect(() => {
+    const pending = readPendingSubmission();
+    if (pending) {
+      setReturnTo(pending.returnTo);
+      setPendingLabel(PENDING_FORM_LABEL[pending.formId] ?? "trip request");
+    }
+  }, []);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -41,7 +55,9 @@ export default function SignUpForm() {
         password,
         options: {
           data: { full_name: fullName },
-          emailRedirectTo: `${window.location.origin}/auth/callback`,
+          emailRedirectTo: `${window.location.origin}/auth/callback${
+            returnTo ? `?next=${encodeURIComponent(returnTo)}` : ""
+          }`,
         },
       });
       setLoading(false);
@@ -108,6 +124,7 @@ export default function SignUpForm() {
         { value: "40+", label: "Curated journeys" },
         { value: "4.9★", label: "Average rating" },
       ]}
+      notice={!submitted && pendingLabel ? `Create an account to complete your ${pendingLabel}.` : undefined}
     >
       {submitted ? (
         <div className="flex min-h-[380px] flex-col items-center justify-center text-center">
@@ -117,7 +134,7 @@ export default function SignUpForm() {
           <h2 className="mt-5 font-serif text-2xl text-forest">Almost there</h2>
           <p className="mt-2 max-w-xs text-sm leading-relaxed text-muted">
             We&apos;ve sent a confirmation link to <span className="font-semibold text-forest">{email}</span>. Open it to
-            activate your account.
+            activate your account{pendingLabel ? ` and pick up your ${pendingLabel} right where you left off` : ""}.
           </p>
           <Link href="/sign-in" className="mt-6 text-sm font-semibold text-green hover:text-green-dark">
             Back to sign in
