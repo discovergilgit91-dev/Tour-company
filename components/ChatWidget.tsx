@@ -278,11 +278,22 @@ export default function ChatWidget() {
           <span className="absolute inset-x-3 top-0 border-t border-dashed border-forest/15" />
         </div>
 
-        {/* MESSAGE LIST */}
-        <div className="relative min-h-0 flex-1 bg-[#fbf8f2]">
-          <PeaksMotif
+        {/* MESSAGE LIST — a real backdrop instead of a flat fill: a
+            golden-hour peak from the site's own tour photography, tinted
+            and washed with the cream color so it reads as a quiet keepsake
+            behind the conversation rather than a busy photo. */}
+        <div className="relative min-h-0 flex-1 overflow-hidden bg-[#fbf8f2]">
+          <Image
+            src="/Images/tours/cones-lit-amber-at-sunset.png"
+            alt=""
+            aria-hidden
+            fill
+            sizes="400px"
+            className="object-cover object-[center_35%] opacity-[0.24] sepia-[.35] saturate-[.8]"
+          />
+          <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 w-full text-forest/[0.035]"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf8f2]/60 via-[#fbf8f2]/85 to-[#fbf8f2]"
           />
           <div ref={scrollRef} className="chat-scroll relative h-full space-y-3 overflow-y-auto px-4 py-4">
             {messages.map((message) => (
