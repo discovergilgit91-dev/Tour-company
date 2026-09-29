@@ -1,8 +1,9 @@
 import { createClient } from "@/lib/supabase/server";
 import HeaderClient, { type HeaderUser } from "./HeaderClient";
 
-// Server wrapper: reads the session server-side so the header never
-// flashes the logged-out state for an already-authenticated visitor.
+// Server wrapper: reads the session (and profile name) server-side so the
+// header never flashes the logged-out state, or a bare email before the
+// name loads, for an already-authenticated visitor.
 export default async function Header() {
   let user: HeaderUser | null = null;
 
@@ -11,8 +12,15 @@ export default async function Header() {
     const {
       data: { user: authUser },
     } = await supabase.auth.getUser();
+
     if (authUser?.email) {
-      user = { email: authUser.email };
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("full_name")
+        .eq("id", authUser.id)
+        .single();
+
+      user = { email: authUser.email, fullName: profile?.full_name ?? null };
     }
   } catch {
     // Supabase unreachable — render as logged out rather than crash the page.
