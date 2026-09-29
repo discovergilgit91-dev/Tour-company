@@ -126,6 +126,8 @@ export const DESTINATIONS: Destination[] = [
     altitude: "3,200 m",
     category: "trekking",
     badge: "Adventure",
+    heroImage: "/Images/tours/rakaposhi-at-golden-hour.png",
+    heroFocus: "50% 30%",
   },
   {
     id: "hopar-glacier",
