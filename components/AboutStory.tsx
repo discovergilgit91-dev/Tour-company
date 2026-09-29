@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { LinkButton } from "./ui/Button";
-import { PeakMark } from "./ui/Logo";
+import { LogoIcon } from "./ui/Logo";
 import { CompassIcon } from "./ui/icons";
 
 const STATS = [
@@ -207,7 +207,7 @@ export default function AboutStory() {
                 </textPath>
               </text>
             </svg>
-            <PeakMark className="relative h-7 w-7 text-gold" />
+            <LogoIcon className="relative h-7 w-7" />
           </div>
         </div>
 
@@ -219,7 +219,7 @@ export default function AboutStory() {
                 inView ? "w-8" : "w-0"
               }`}
             />
-            <PeakMark className="h-4 w-4 text-gold" />
+            <LogoIcon className="h-4 w-4" />
             Our story
           </div>
 
@@ -297,7 +297,7 @@ export default function AboutStory() {
 
           <div className={`mt-8 ${reveal(1100).className}`} style={reveal(1100).style}>
             <LinkButton href="/plan-your-trip" variant="outline" className="group">
-              <PeakMark className="text-cream" />
+              <LogoIcon className="h-5 w-6" />
               Plan your journey
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">→</span>
             </LinkButton>
