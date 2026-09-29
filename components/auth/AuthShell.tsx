@@ -1,6 +1,6 @@
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { Logo, PeakMark } from "../ui/Logo";
+import { Logo, LogoIcon } from "../ui/Logo";
 
 /* ---- faint topographic contour lines, same technique as AboutStory ---- */
 function ring(cx: number, cy: number, r: number, seed: number, squash = 1) {
@@ -32,7 +32,7 @@ function RotatingBadge() {
           </textPath>
         </text>
       </svg>
-      <PeakMark className="relative h-8 w-8 text-gold" />
+      <LogoIcon className="relative h-8 w-8" />
     </div>
   );
 }

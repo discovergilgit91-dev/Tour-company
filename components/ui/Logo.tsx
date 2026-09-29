@@ -1,30 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export function PeakMark({ className = "" }: { className?: string }) {
+/**
+ * Small inline accent for use next to text or inside a decorative ring —
+ * the same logo-icon.png artwork the header/footer wordmark uses, not a
+ * generic placeholder mountain glyph.
+ */
+export function LogoIcon({ className = "h-5 w-6" }: { className?: string }) {
   return (
-    <svg
-      width="30"
-      height="24"
-      viewBox="0 0 34 28"
-      fill="none"
-      className={`shrink-0 ${className}`}
-      aria-hidden="true"
-    >
-      <path
-        d="M1 26L11 6L16 15L21 3L33 26H1Z"
-        stroke="currentColor"
-        strokeOpacity="0.9"
-        strokeWidth="1.6"
-        strokeLinejoin="round"
-      />
-
-      <path
-        d="M11 6L16 15L13 18.5L6.5 18.5L11 6Z"
-        className="fill-gold"
-        fillOpacity="0.9"
-      />
-    </svg>
+    <span className={`relative inline-block shrink-0 ${className}`}>
+      <Image src="/Images/tours/logo-icon.png" alt="" aria-hidden fill sizes="48px" className="object-contain" />
+    </span>
   );
 }
 

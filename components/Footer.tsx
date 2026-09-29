@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Logo, PeakMark } from "./ui/Logo";
+import { Logo, LogoIcon } from "./ui/Logo";
 import { ArrowIcon, CompassIcon, MailIcon, PhoneIcon, PinIcon } from "./ui/icons";
 import { NAV_LINKS } from "@/lib/nav";
 
@@ -215,7 +215,7 @@ export default function Footer() {
               href="/plan-your-trip"
               className="mt-6 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
             >
-              <PeakMark />
+              <LogoIcon className="h-5 w-6" />
               <span>Plan your journey</span>
               <ArrowIcon />
             </Link>
