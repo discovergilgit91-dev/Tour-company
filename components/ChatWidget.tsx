@@ -65,6 +65,14 @@ function SendIcon({ size = 16 }: { size?: number }) {
   );
 }
 
+function ChipArrowIcon() {
+  return (
+    <svg width={10} height={10} viewBox="0 0 24 24" fill="none" aria-hidden="true" className="shrink-0">
+      <path d="M5 12h13.5M13 6l6.5 6-6.5 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 /* The real company mark (the same file Header/Footer use), set on its
    own solid badge rather than directly on a colored surface — the
    emblem's own green linework would otherwise vanish against the
@@ -205,9 +213,11 @@ export default function ChatWidget() {
         </span>
 
         {showInvite && !isOpen && (
-          <span className="absolute -right-0.5 -top-0.5 flex h-4 w-4" aria-hidden="true">
+          <span className="absolute -right-1 -top-1 flex h-5 min-w-5" aria-hidden="true">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-4 w-4 rounded-full border-2 border-cream bg-gold" />
+            <span className="relative flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-cream bg-gold px-1 text-[10px] font-bold leading-none text-forest">
+              1
+            </span>
           </span>
         )}
       </button>
@@ -217,7 +227,7 @@ export default function ChatWidget() {
         aria-modal="true"
         aria-label="Chat with Discover Gilgit-Baltistan"
         aria-hidden={!isOpen}
-        className={`chat-window fixed inset-0 z-[90] flex flex-col overflow-hidden rounded-none bg-white shadow-[0_28px_70px_-12px_rgba(7,23,25,0.5)] ring-1 ring-black/5 transition-all duration-300 ease-out motion-reduce:transition-none sm:inset-auto sm:bottom-[calc(env(safe-area-inset-bottom)+6rem)] sm:right-6 sm:h-[600px] sm:max-h-[calc(100svh-120px)] sm:w-[380px] sm:rounded-[22px] ${
+        className={`chat-window fixed inset-0 z-[90] flex flex-col overflow-hidden rounded-none bg-white shadow-[0_28px_70px_-12px_rgba(7,23,25,0.5)] ring-1 ring-black/5 transition-all duration-300 ease-out motion-reduce:transition-none sm:inset-auto sm:bottom-[calc(env(safe-area-inset-bottom)+6rem)] sm:right-6 sm:h-[600px] sm:max-h-[calc(100svh-120px)] sm:w-[380px] sm:rounded-tl-[26px] sm:rounded-tr-[26px] sm:rounded-bl-[26px] sm:rounded-br-[8px] ${
           isOpen ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
         }`}
       >
@@ -228,10 +238,14 @@ export default function ChatWidget() {
         {/* HEADER */}
         <div className="relative shrink-0 overflow-hidden bg-gradient-to-br from-forest to-night px-5 py-4 text-cream">
           <PeaksMotif className="absolute inset-x-0 bottom-0 h-full w-full text-cream/[0.06]" />
+          <span className="chat-grain" aria-hidden="true" />
           <div className="relative flex items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-3">
               <LogoBadge box={44} mark={30} ring />
               <div className="min-w-0">
+                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-gold/80">
+                  Your travel concierge
+                </p>
                 <p className="truncate font-serif text-[15px] leading-tight text-cream">
                   Discover Gilgit-Baltistan
                 </p>
@@ -255,44 +269,62 @@ export default function ChatWidget() {
           </div>
         </div>
 
+        {/* Ticket-stub seam — two punched notches and a dashed
+            perforation line where the header meets the conversation,
+            echoing a boarding pass rather than a generic panel divider. */}
+        <div className="relative z-10 h-0" aria-hidden="true">
+          <span className="absolute -top-[7px] left-0 h-[14px] w-[14px] -translate-x-1/2 rounded-full bg-white" />
+          <span className="absolute -top-[7px] right-0 h-[14px] w-[14px] translate-x-1/2 rounded-full bg-white" />
+          <span className="absolute inset-x-3 top-0 border-t border-dashed border-forest/15" />
+        </div>
+
         {/* MESSAGE LIST */}
-        <div ref={scrollRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto bg-[#fbf8f2] px-4 py-4">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`chat-bubble-in flex items-end gap-2 ${
-                message.role === "user" ? "justify-end" : "justify-start"
-              }`}
-            >
-              {message.role === "bot" && <LogoBadge box={28} mark={19} />}
+        <div className="relative min-h-0 flex-1 bg-[#fbf8f2]">
+          <PeaksMotif
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 w-full text-forest/[0.035]"
+          />
+          <div ref={scrollRef} className="chat-scroll relative h-full space-y-3 overflow-y-auto px-4 py-4">
+            {messages.map((message) => (
               <div
-                className={`max-w-[78%] rounded-2xl px-4 py-2.5 text-[13.5px] leading-relaxed ${
-                  message.role === "user"
-                    ? "rounded-br-sm bg-gradient-to-br from-green to-green-dark text-cream shadow-[0_4px_14px_-2px_rgba(31,106,76,0.35)]"
-                    : "rounded-bl-sm border border-forest/[0.04] bg-white text-forest shadow-[0_2px_8px_rgba(20,35,31,0.06)]"
+                key={message.id}
+                className={`chat-bubble-in flex items-end gap-2 ${
+                  message.role === "user" ? "justify-end" : "justify-start"
                 }`}
               >
-                {message.text}
-              </div>
-            </div>
-          ))}
-
-          {isTyping && <TypingBubble />}
-
-          {showQuickReplies && messages.length > 0 && !isTyping && (
-            <div className="flex flex-wrap gap-2 pt-1">
-              {QUICK_REPLIES.map((label) => (
-                <button
-                  key={label}
-                  type="button"
-                  onClick={() => appendUserMessage(label)}
-                  className="rounded-full border border-forest/15 bg-white px-3.5 py-2 text-[12.5px] font-medium text-forest shadow-[0_1px_4px_rgba(20,35,31,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:border-green/50 hover:bg-green/5 hover:shadow-[0_4px_10px_rgba(20,35,31,0.1)] motion-reduce:hover:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                {message.role === "bot" && <LogoBadge box={28} mark={19} />}
+                <div
+                  className={`max-w-[78%] rounded-2xl px-4 py-2.5 text-[13.5px] leading-relaxed ${
+                    message.role === "user"
+                      ? "rounded-br-sm bg-gradient-to-br from-green to-green-dark text-cream shadow-[0_4px_14px_-2px_rgba(31,106,76,0.35)]"
+                      : "rounded-bl-sm border border-forest/[0.04] bg-white text-forest shadow-[0_2px_8px_rgba(20,35,31,0.06)]"
+                  }`}
                 >
-                  {label}
-                </button>
-              ))}
-            </div>
-          )}
+                  {message.text}
+                </div>
+              </div>
+            ))}
+
+            {isTyping && <TypingBubble />}
+
+            {showQuickReplies && messages.length > 0 && !isTyping && (
+              <div className="flex flex-wrap gap-2 pt-1">
+                {QUICK_REPLIES.map((label) => (
+                  <button
+                    key={label}
+                    type="button"
+                    onClick={() => appendUserMessage(label)}
+                    className="group flex items-center gap-1.5 rounded-full border border-forest/15 bg-white px-3.5 py-2 text-[12.5px] font-medium text-forest shadow-[0_1px_4px_rgba(20,35,31,0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:border-green/50 hover:bg-green/5 hover:shadow-[0_4px_10px_rgba(20,35,31,0.1)] motion-reduce:hover:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+                  >
+                    <span className="text-muted transition-colors group-hover:text-green">
+                      <ChipArrowIcon />
+                    </span>
+                    {label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
 
         {/* INPUT BAR */}
@@ -310,9 +342,11 @@ export default function ChatWidget() {
             type="submit"
             aria-label="Send message"
             disabled={!draft.trim()}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-green to-green-dark text-cream shadow-[0_4px_12px_-2px_rgba(31,106,76,0.4)] transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_16px_-2px_rgba(31,106,76,0.5)] disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none motion-reduce:hover:scale-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+            className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-green to-green-dark text-cream shadow-[0_4px_12px_-2px_rgba(31,106,76,0.4)] transition-all duration-200 hover:scale-105 hover:shadow-[0_6px_16px_-2px_rgba(31,106,76,0.5)] active:scale-95 disabled:pointer-events-none disabled:opacity-40 disabled:shadow-none motion-reduce:hover:scale-100 motion-reduce:active:scale-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
-            <SendIcon size={16} />
+            <span className="inline-flex transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:-rotate-12 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 motion-reduce:group-hover:rotate-0">
+              <SendIcon size={16} />
+            </span>
           </button>
         </form>
       </div>
