@@ -289,11 +289,11 @@ export default function ChatWidget() {
             aria-hidden
             fill
             sizes="400px"
-            className="object-cover object-[center_35%] opacity-[0.24] sepia-[.35] saturate-[.8]"
+            className="object-cover object-[center_35%] opacity-[0.5] sepia-[.35] saturate-[.85]"
           />
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf8f2]/60 via-[#fbf8f2]/85 to-[#fbf8f2]"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#fbf8f2]/45 via-[#fbf8f2]/65 to-[#fbf8f2]/90"
           />
           <div ref={scrollRef} className="chat-scroll relative h-full space-y-3 overflow-y-auto px-4 py-4">
             {messages.map((message) => (
