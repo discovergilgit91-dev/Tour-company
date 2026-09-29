@@ -1,7 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
+import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
+import type { SessionProfile } from "@/lib/supabase/session";
 import {
   ArrowIcon,
   CheckIcon,
@@ -310,9 +313,15 @@ function formatDateRange(start: string, end: string) {
   return `${s.toLocaleDateString("en-US", opts)} – ${e.toLocaleDateString("en-US", opts)}`;
 }
 
-export default function PlanYourTripPage() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+const FORM_ID = "plan-your-trip" as const;
+const RETURN_TO = "/plan-your-trip";
+
+export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: SessionProfile | null }) {
+  const router = useRouter();
+  const isSignedIn = sessionProfile !== null;
+
+  const [name, setName] = useState(sessionProfile?.fullName ?? "");
+  const [email, setEmail] = useState(sessionProfile?.email ?? "");
   const [phone, setPhone] = useState("");
   const [interests, setInterests] = useState<string[]>([]);
   const [destinations, setDestinations] = useState<string[]>([]);
@@ -323,9 +332,49 @@ export default function PlanYourTripPage() {
   const [groupSize, setGroupSize] = useState(GROUP_SIZES[1]);
   const [duration, setDuration] = useState(DURATIONS[1]);
   const [budget, setBudget] = useState(BUDGETS[BUDGETS.length - 1]);
+  const [notes, setNotes] = useState("");
   const [consent, setConsent] = useState(false);
   const [attempted, setAttempted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // Restore whatever was typed before a signed-out submit attempt sent
+  // this visitor off to sign up/sign in.
+  useEffect(() => {
+    const pending = readPendingSubmission<{
+      name: string;
+      email: string;
+      phone: string;
+      interests: string[];
+      destinations: string[];
+      flexibleDestination: boolean;
+      dateMode: DateMode;
+      startDate: string;
+      endDate: string;
+      groupSize: string;
+      duration: string;
+      budget: string;
+      notes: string;
+    }>();
+    if (!pending || pending.formId !== FORM_ID) return;
+
+    const v = pending.values;
+    setName(v.name);
+    setEmail(v.email);
+    setPhone(v.phone);
+    setInterests(v.interests);
+    setDestinations(v.destinations);
+    setFlexibleDestination(v.flexibleDestination);
+    setDateMode(v.dateMode);
+    setStartDate(v.startDate);
+    setEndDate(v.endDate);
+    setGroupSize(v.groupSize);
+    setDuration(v.duration);
+    setBudget(v.budget);
+    setNotes(v.notes);
+    clearPendingSubmission();
+    // Restoring is a one-time thing on mount, deliberately not re-run.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const errors = useMemo<FormErrors>(
     () =>
@@ -411,6 +460,31 @@ export default function PlanYourTripPage() {
     });
     setAttempted(true);
     if (Object.keys(result).length > 0) return;
+
+    if (!isSignedIn) {
+      savePendingSubmission({
+        formId: FORM_ID,
+        returnTo: RETURN_TO,
+        values: {
+          name,
+          email,
+          phone,
+          interests,
+          destinations,
+          flexibleDestination,
+          dateMode,
+          startDate,
+          endDate,
+          groupSize,
+          duration,
+          budget,
+          notes,
+        },
+      });
+      router.push("/sign-up");
+      return;
+    }
+
     setSubmitted(true);
   }
 
@@ -821,6 +895,8 @@ export default function PlanYourTripPage() {
                               id="notes"
                               name="notes"
                               rows={4}
+                              value={notes}
+                              onChange={(event) => setNotes(event.target.value)}
                               placeholder="Special occasions, accessibility needs, must-see places..."
                               className={`${FIELD_CLASS} resize-none`}
                             />
@@ -852,7 +928,7 @@ export default function PlanYourTripPage() {
                           type="submit"
                           className="group mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
                         >
-                          Start Planning My Trip
+                          {isSignedIn ? "Start Planning My Trip" : "Sign Up to Start Planning"}
                           <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                             <ArrowIcon size={14} />
                           </span>

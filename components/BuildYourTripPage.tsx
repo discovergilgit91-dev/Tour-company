@@ -1,11 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CheckIcon, ClockIcon, ShieldCheckIcon, UsersIcon } from "./ui/icons";
 import { PeaksMotif } from "./tours/motifs";
 import { useRevealOnScroll } from "./DestinationCard";
+import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
+import type { SessionProfile } from "@/lib/supabase/session";
 
 /* ---------------------------------------------------------------------
    "Build Your Own Trip" — the destination for the "Design Your Own
@@ -215,7 +218,13 @@ function DestinationPickCard({
   );
 }
 
-export default function BuildYourTripPage() {
+const FORM_ID = "build-your-trip" as const;
+const RETURN_TO = "/build-your-trip";
+
+export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: SessionProfile | null }) {
+  const router = useRouter();
+  const isSignedIn = sessionProfile !== null;
+
   const [destinations, setDestinations] = useState<string[]>([]);
   const [dateMode, setDateMode] = useState<DateMode>("flexible");
   const [startDate, setStartDate] = useState("");
@@ -223,13 +232,48 @@ export default function BuildYourTripPage() {
   const [groupSize, setGroupSize] = useState(GROUP_SIZES[1]);
   const [pace, setPace] = useState<Pace | "">("");
   const [budget, setBudget] = useState(BUDGETS[BUDGETS.length - 1]);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState(sessionProfile?.fullName ?? "");
+  const [email, setEmail] = useState(sessionProfile?.email ?? "");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [consent, setConsent] = useState(false);
   const [attempted, setAttempted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  // Restore whatever was typed before a signed-out submit attempt sent
+  // this visitor off to sign up/sign in.
+  useEffect(() => {
+    const pending = readPendingSubmission<{
+      destinations: string[];
+      dateMode: DateMode;
+      startDate: string;
+      endDate: string;
+      groupSize: string;
+      pace: Pace | "";
+      budget: string;
+      name: string;
+      email: string;
+      phone: string;
+      notes: string;
+    }>();
+    if (!pending || pending.formId !== FORM_ID) return;
+
+    const v = pending.values;
+    setDestinations(v.destinations);
+    setDateMode(v.dateMode);
+    setStartDate(v.startDate);
+    setEndDate(v.endDate);
+    setGroupSize(v.groupSize);
+    setPace(v.pace);
+    setBudget(v.budget);
+    setName(v.name);
+    setEmail(v.email);
+    setPhone(v.phone);
+    setNotes(v.notes);
+    clearPendingSubmission();
+    // Restoring is a one-time thing on mount, deliberately not re-run.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const errors = useMemo<FormErrors>(
     () =>
@@ -268,6 +312,16 @@ export default function BuildYourTripPage() {
     const result = computeErrors({ destinations, dateMode, startDate, endDate, groupSize, pace, budget, name, email, phone, consent });
     setAttempted(true);
     if (Object.keys(result).length > 0) return;
+
+    if (!isSignedIn) {
+      savePendingSubmission({
+        formId: FORM_ID,
+        returnTo: RETURN_TO,
+        values: { destinations, dateMode, startDate, endDate, groupSize, pace, budget, name, email, phone, notes },
+      });
+      router.push("/sign-up");
+      return;
+    }
 
     // Client-side only for now — everything the eventual backend needs is
     // already shaped as one plain object, ready to POST as-is once wired up.
@@ -630,7 +684,7 @@ export default function BuildYourTripPage() {
                       type="submit"
                       className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
                     >
-                      Send My Custom Trip Request
+                      {isSignedIn ? "Send My Custom Trip Request" : "Sign Up to Send Request"}
                       <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                         <ArrowIcon size={14} />
                       </span>

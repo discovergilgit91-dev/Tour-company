@@ -52,6 +52,7 @@ export function AuthShell({
   imageAlt,
   quote,
   stats,
+  notice,
   children,
 }: {
   eyebrow: string;
@@ -62,6 +63,9 @@ export function AuthShell({
   imageAlt: string;
   quote?: AuthQuote;
   stats?: { value: string; label: string }[];
+  /** Short contextual line shown above the form — e.g. someone redirected
+      here mid-way through a trip request they weren't signed in to submit. */
+  notice?: ReactNode;
   children: ReactNode;
 }) {
   return (
@@ -142,7 +146,14 @@ export function AuthShell({
 
         {/* ---------------- form panel ---------------- */}
         <div className="flex flex-1 items-center justify-center px-5 py-10 sm:px-8 sm:py-14 lg:px-16">
-          <div className="auth-fade-in w-full max-w-md motion-reduce:animate-none">{children}</div>
+          <div className="auth-fade-in w-full max-w-md motion-reduce:animate-none">
+            {notice && (
+              <div className="mb-6 rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3 text-sm leading-relaxed text-forest">
+                {notice}
+              </div>
+            )}
+            {children}
+          </div>
         </div>
       </div>
 

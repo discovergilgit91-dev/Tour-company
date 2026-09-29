@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
 import {
@@ -16,6 +16,8 @@ import {
 } from "./ui/icons";
 import { PeaksMotif, MOTIF_COMPONENTS } from "./tours/motifs";
 import { useRevealOnScroll } from "./DestinationCard";
+import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
+import type { SessionProfile } from "@/lib/supabase/session";
 import type { TourDetail } from "@/lib/tourDetails";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -112,11 +114,51 @@ function extractMaxTravelers(groupSize: string): number {
 
 type SimpleTour = { slug: string; title: string };
 
-export default function BookingPage({ tour, allTours }: { tour: TourDetail | null; allTours: SimpleTour[] }) {
+const FORM_ID = "book" as const;
+
+export default function BookingPage({
+  tour,
+  allTours,
+  sessionProfile,
+}: {
+  tour: TourDetail | null;
+  allTours: SimpleTour[];
+  sessionProfile: SessionProfile | null;
+}) {
   const router = useRouter();
+  const isSignedIn = sessionProfile !== null;
+  const returnTo = tour ? `/book?tour=${tour.slug}` : "/book";
+
+  const [name, setName] = useState(sessionProfile?.fullName ?? "");
+  const [email, setEmail] = useState(sessionProfile?.email ?? "");
+  const [phone, setPhone] = useState("");
+  const [requests, setRequests] = useState("");
   const [travelers, setTravelers] = useState(2);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  // Restore whatever was typed before a signed-out submit attempt sent
+  // this visitor off to sign up/sign in.
+  useEffect(() => {
+    const pending = readPendingSubmission<{
+      name: string;
+      email: string;
+      phone: string;
+      requests: string;
+      travelers: number;
+    }>();
+    if (!pending || pending.formId !== FORM_ID) return;
+
+    const v = pending.values;
+    setName(v.name);
+    setEmail(v.email);
+    setPhone(v.phone);
+    setRequests(v.requests);
+    setTravelers(v.travelers);
+    clearPendingSubmission();
+    // Restoring is a one-time thing on mount, deliberately not re-run.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const maxTravelers = tour ? extractMaxTravelers(tour.groupSize) : 10;
   const pricePerPerson = tour ? extractPrice(tour.price) : 0;
@@ -230,6 +272,17 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                 <form
                   onSubmit={(event) => {
                     event.preventDefault();
+
+                    if (!isSignedIn) {
+                      savePendingSubmission({
+                        formId: FORM_ID,
+                        returnTo,
+                        values: { name, email, phone, requests, travelers },
+                      });
+                      router.push("/sign-up");
+                      return;
+                    }
+
                     setSubmitted(true);
                   }}
                   className="rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-8"
@@ -270,13 +323,31 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                         <label htmlFor="name" className={LABEL_CLASS}>
                           Full name
                         </label>
-                        <input id="name" name="name" type="text" required placeholder="Your full name" className={FIELD_CLASS} />
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          value={name}
+                          onChange={(event) => setName(event.target.value)}
+                          placeholder="Your full name"
+                          className={FIELD_CLASS}
+                        />
                       </div>
                       <div>
                         <label htmlFor="email" className={LABEL_CLASS}>
                           Email
                         </label>
-                        <input id="email" name="email" type="email" required placeholder="you@example.com" className={FIELD_CLASS} />
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          value={email}
+                          onChange={(event) => setEmail(event.target.value)}
+                          placeholder="you@example.com"
+                          className={FIELD_CLASS}
+                        />
                       </div>
                     </div>
 
@@ -285,7 +356,16 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                         <label htmlFor="phone" className={LABEL_CLASS}>
                           Phone / WhatsApp
                         </label>
-                        <input id="phone" name="phone" type="tel" required placeholder="+92 300 1234567" className={FIELD_CLASS} />
+                        <input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          required
+                          value={phone}
+                          onChange={(event) => setPhone(event.target.value)}
+                          placeholder="+92 300 1234567"
+                          className={FIELD_CLASS}
+                        />
                       </div>
                       <div>
                         <label htmlFor="travelers" className={LABEL_CLASS}>
@@ -314,6 +394,8 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                         id="requests"
                         name="requests"
                         rows={4}
+                        value={requests}
+                        onChange={(event) => setRequests(event.target.value)}
                         placeholder="Dietary needs, room preferences, anything else we should know..."
                         className={`${FIELD_CLASS} resize-none`}
                       />
@@ -332,7 +414,7 @@ export default function BookingPage({ tour, allTours }: { tour: TourDetail | nul
                       type="submit"
                       className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
                     >
-                      Submit Reservation Request
+                      {isSignedIn ? "Submit Reservation Request" : "Sign Up to Reserve"}
                       <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                         <ArrowIcon size={14} />
                       </span>

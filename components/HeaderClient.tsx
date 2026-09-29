@@ -8,9 +8,10 @@ import { MenuIcon } from "./ui/icons";
 import { NAV_LINKS } from "@/lib/nav";
 import { signOut } from "@/app/auth/actions";
 import { getDisplayName, getInitials } from "@/lib/account";
+import type { SessionProfile } from "@/lib/supabase/session";
 import AccountMenu from "./AccountMenu";
 
-export type HeaderUser = { email: string; fullName: string | null };
+export type HeaderUser = SessionProfile;
 
 export default function HeaderClient({ user }: { user: HeaderUser | null }) {
   const [open, setOpen] = useState(false);
