@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
+import { savePendingSubmission } from "@/lib/pendingSubmission";
+import { DESTINATIONS, GROUP_SIZES } from "@/lib/tripPlanningOptions";
 
 export type HeroSlide = {
   src: string;
@@ -155,15 +158,108 @@ function VideoModal({ label, onClose }: { label: string; onClose: () => void }) 
   );
 }
 
+const TRAVELER_OPTIONS = ["1 Adult", "2 Adults", "2 Adults, 1 Child", "3 Adults", "4+ Adults"];
+
+/** Hero keeps its own "N Adults" wording (visual design is frozen), so this
+    bridges it to Plan Your Trip's different "group size" vocabulary. */
+const TRAVELER_TO_GROUP_SIZE: Record<string, string> = {
+  "1 Adult": GROUP_SIZES[0],
+  "2 Adults": GROUP_SIZES[1],
+  "2 Adults, 1 Child": GROUP_SIZES[2],
+  "3 Adults": GROUP_SIZES[2],
+  "4+ Adults": GROUP_SIZES[3],
+};
+
+type DateMode = "exact" | "flexible";
+
+function formatDateRange(start: string, end: string) {
+  const s = new Date(start);
+  const e = new Date(end);
+  if (Number.isNaN(s.getTime()) || Number.isNaN(e.getTime())) return "";
+  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
+  return `${s.toLocaleDateString("en-US", opts)} – ${e.toLocaleDateString("en-US", opts)}`;
+}
+
+/** Closes a popover on outside click or Escape — same pattern as AccountMenu. */
+function usePopoverClose(open: boolean, onClose: () => void, ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    if (!open) return;
+    function handlePointerDown(event: MouseEvent) {
+      if (ref.current && !ref.current.contains(event.target as Node)) onClose();
+    }
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") onClose();
+    }
+    document.addEventListener("mousedown", handlePointerDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [open]);
+}
+
+const TOGGLE_BUTTON_CLASS = (active: boolean) =>
+  `flex-1 rounded-xl border px-3 py-2 text-[12px] font-medium transition-all duration-200 ${
+    active
+      ? "border-green bg-green/[0.06] text-green"
+      : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
+  }`;
+
 export function SearchBar() {
+  const router = useRouter();
+
   const [destination, setDestination] = useState("");
-  const [dates, setDates] = useState("");
+  const [destinationOpen, setDestinationOpen] = useState(false);
+  const destinationRef = useRef<HTMLDivElement>(null);
+  usePopoverClose(destinationOpen, () => setDestinationOpen(false), destinationRef);
+
+  const [dateMode, setDateMode] = useState<DateMode>("flexible");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [datesOpen, setDatesOpen] = useState(false);
+  const datesRef = useRef<HTMLDivElement>(null);
+  usePopoverClose(datesOpen, () => setDatesOpen(false), datesRef);
+
   const [travelers, setTravelers] = useState("2 Adults");
+
+  const filteredDestinations = destination.trim()
+    ? DESTINATIONS.filter((place) => place.toLowerCase().includes(destination.trim().toLowerCase()))
+    : DESTINATIONS;
+
+  function handleSearch() {
+    const trimmed = destination.trim();
+    const matched = trimmed
+      ? DESTINATIONS.find((place) => place.toLowerCase() === trimmed.toLowerCase())
+      : undefined;
+
+    savePendingSubmission({
+      formId: "plan-your-trip",
+      returnTo: "/plan-your-trip",
+      values: {
+        destinations: matched ? [matched] : [],
+        flexibleDestination: !matched,
+        dateMode,
+        startDate: dateMode === "exact" ? startDate : "",
+        endDate: dateMode === "exact" ? endDate : "",
+        groupSize: TRAVELER_TO_GROUP_SIZE[travelers] ?? GROUP_SIZES[1],
+      },
+    });
+    router.push("/plan-your-trip");
+  }
+
+  const datesLabel =
+    dateMode === "flexible"
+      ? "I'm flexible"
+      : startDate && endDate
+        ? formatDateRange(startDate, endDate)
+        : "";
 
   return (
     <div className="hero-search w-full">
       <div className="flex flex-col items-stretch gap-1.5 rounded-2xl bg-white p-1.5 shadow-[0_15px_40px_-12px_rgba(20,35,31,0.35)] sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:p-2 sm:shadow-[0_25px_60px_-15px_rgba(20,35,31,0.4)]">
-        <div className="flex min-w-0 flex-1 items-center gap-3 px-3.5 py-2 sm:px-4">
+        <div ref={destinationRef} className="relative flex min-w-0 flex-1 items-center gap-3 px-3.5 py-2 sm:px-4">
           <svg
             width="17"
             height="17"
@@ -183,17 +279,44 @@ export function SearchBar() {
             <input
               type="text"
               value={destination}
-              onChange={(event) => setDestination(event.target.value)}
+              onChange={(event) => {
+                setDestination(event.target.value);
+                setDestinationOpen(true);
+              }}
+              onFocus={() => setDestinationOpen(true)}
               placeholder="Search destination..."
+              autoComplete="off"
               className="w-full min-w-0 bg-transparent text-[12.5px] text-forest/50 outline-none placeholder:text-forest/40 sm:text-[13px]"
             />
           </div>
+
+          {destinationOpen && (
+            <div className="absolute left-0 top-full z-[60] mt-2 max-h-64 w-full min-w-[220px] overflow-y-auto rounded-2xl bg-white p-2 shadow-[0_20px_45px_-12px_rgba(7,23,25,0.35)] ring-1 ring-black/5">
+              {filteredDestinations.length > 0 ? (
+                filteredDestinations.map((place) => (
+                  <button
+                    key={place}
+                    type="button"
+                    onClick={() => {
+                      setDestination(place);
+                      setDestinationOpen(false);
+                    }}
+                    className="flex w-full items-center rounded-xl px-3 py-2 text-left text-[13px] text-forest/80 transition-colors hover:bg-forest/[0.06] hover:text-forest"
+                  >
+                    {place}
+                  </button>
+                ))
+              ) : (
+                <p className="px-3 py-2 text-[12.5px] text-forest/40">No matching destinations</p>
+              )}
+            </div>
+          )}
         </div>
 
         <div className="hidden h-9 w-px bg-forest/10 sm:block" />
         <div className="h-px w-full bg-forest/10 sm:hidden" />
 
-        <div className="flex min-w-0 flex-1 items-center gap-3 px-3.5 py-2 sm:px-4">
+        <div ref={datesRef} className="relative flex min-w-0 flex-1 items-center gap-3 px-3.5 py-2 sm:px-4">
           <svg
             width="17"
             height="17"
@@ -206,18 +329,85 @@ export function SearchBar() {
             <rect x="3.5" y="5" width="17" height="16" rx="2.5" />
             <path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" />
           </svg>
-          <div className="flex min-w-0 flex-1 flex-col">
+          <button
+            type="button"
+            onClick={() => setDatesOpen((prev) => !prev)}
+            className="flex min-w-0 flex-1 flex-col text-left"
+          >
             <span className="text-[12.5px] font-semibold text-forest sm:text-[13px]">
               Select Dates
             </span>
-            <input
-              type="text"
-              value={dates}
-              onChange={(event) => setDates(event.target.value)}
-              placeholder="Check in – Check out"
-              className="w-full min-w-0 bg-transparent text-[12.5px] text-forest/50 outline-none placeholder:text-forest/40 sm:text-[13px]"
-            />
-          </div>
+            <span className="w-full min-w-0 truncate text-[12.5px] text-forest/50 sm:text-[13px]">
+              {datesLabel || <span className="text-forest/40">Check in – Check out</span>}
+            </span>
+          </button>
+
+          {datesOpen && (
+            <div className="absolute left-0 top-full z-[60] mt-2 w-[290px] rounded-2xl bg-white p-4 shadow-[0_20px_45px_-12px_rgba(7,23,25,0.35)] ring-1 ring-black/5">
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setDateMode("exact")}
+                  aria-pressed={dateMode === "exact"}
+                  className={TOGGLE_BUTTON_CLASS(dateMode === "exact")}
+                >
+                  Exact dates
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setDateMode("flexible")}
+                  aria-pressed={dateMode === "flexible"}
+                  className={TOGGLE_BUTTON_CLASS(dateMode === "flexible")}
+                >
+                  I&rsquo;m flexible
+                </button>
+              </div>
+
+              {dateMode === "exact" && (
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  <div>
+                    <label
+                      htmlFor="hero-start-date"
+                      className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                    >
+                      Start
+                    </label>
+                    <input
+                      id="hero-start-date"
+                      type="date"
+                      value={startDate}
+                      onChange={(event) => setStartDate(event.target.value)}
+                      className="w-full cursor-pointer rounded-lg border border-forest/12 bg-white px-2.5 py-2 text-[12px] text-forest outline-none focus:border-green/50"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="hero-end-date"
+                      className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                    >
+                      End
+                    </label>
+                    <input
+                      id="hero-end-date"
+                      type="date"
+                      value={endDate}
+                      min={startDate || undefined}
+                      onChange={(event) => setEndDate(event.target.value)}
+                      className="w-full cursor-pointer rounded-lg border border-forest/12 bg-white px-2.5 py-2 text-[12px] text-forest outline-none focus:border-green/50"
+                    />
+                  </div>
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setDatesOpen(false)}
+                className="mt-3 w-full rounded-xl bg-forest/[0.06] py-2 text-[12px] font-semibold text-forest transition-colors hover:bg-forest/[0.1]"
+              >
+                Done
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="hidden h-9 w-px bg-forest/10 sm:block" />
@@ -247,11 +437,9 @@ export function SearchBar() {
               onChange={(event) => setTravelers(event.target.value)}
               className="w-full min-w-0 cursor-pointer appearance-none bg-transparent text-[12.5px] text-forest/50 outline-none sm:text-[13px]"
             >
-              <option>1 Adult</option>
-              <option>2 Adults</option>
-              <option>2 Adults, 1 Child</option>
-              <option>3 Adults</option>
-              <option>4+ Adults</option>
+              {TRAVELER_OPTIONS.map((option) => (
+                <option key={option}>{option}</option>
+              ))}
             </select>
           </div>
           <svg
@@ -269,6 +457,7 @@ export function SearchBar() {
 
         <button
           type="button"
+          onClick={handleSearch}
           className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-green px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out hover:bg-green-dark hover:shadow-[0_10px_24px_-4px_rgba(31,106,76,0.5)] active:scale-[0.97] sm:px-6"
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
