@@ -6,6 +6,7 @@ import { LinkButton } from "./ui/Button";
 import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
 import type { SessionProfile } from "@/lib/supabase/session";
 import { notifyN8n } from "@/lib/notifyN8n";
+import { DESTINATIONS, GROUP_SIZES, DURATIONS } from "@/lib/tripPlanningOptions";
 import {
   ArrowIcon,
   CheckIcon,
@@ -171,20 +172,7 @@ const INTERESTS = [
   { id: "unsure", label: "Not Sure Yet", Icon: QuestionIcon },
 ];
 
-const DESTINATIONS = [
-  "Hunza Valley",
-  "Skardu",
-  "Deosai Plains",
-  "Gilgit City",
-  "Naltar Valley",
-  "Fairy Meadows",
-  "Khunjerab Pass",
-  "Naran & Babusar",
-];
-
-const GROUP_SIZES = ["Solo traveller", "Couple", "Family (3–5)", "Group (6+)"];
 const BUDGETS = ["Under $500", "$500 – $1,000", "$1,000 – $2,000", "$2,000+", "Not sure yet"];
-const DURATIONS = ["Weekend (2–3 days)", "4–7 days", "8–14 days", "2+ weeks"];
 
 const HOW_IT_WORKS = [
   {
@@ -339,40 +327,45 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Restore whatever was typed before a signed-out submit attempt sent
-  // this visitor off to sign up/sign in.
+  // Restore whatever was typed before a signed-out submit attempt sent this
+  // visitor off to sign up/sign in — or whatever was entered into the
+  // homepage hero search bar, which only ever sends a subset of these
+  // fields (destination/dates/travelers), so every key here is optional
+  // and falls back to this form's own current value when absent.
   useEffect(() => {
-    const pending = readPendingSubmission<{
-      name: string;
-      email: string;
-      phone: string;
-      interests: string[];
-      destinations: string[];
-      flexibleDestination: boolean;
-      dateMode: DateMode;
-      startDate: string;
-      endDate: string;
-      groupSize: string;
-      duration: string;
-      budget: string;
-      notes: string;
-    }>();
+    const pending = readPendingSubmission<
+      Partial<{
+        name: string;
+        email: string;
+        phone: string;
+        interests: string[];
+        destinations: string[];
+        flexibleDestination: boolean;
+        dateMode: DateMode;
+        startDate: string;
+        endDate: string;
+        groupSize: string;
+        duration: string;
+        budget: string;
+        notes: string;
+      }>
+    >();
     if (!pending || pending.formId !== FORM_ID) return;
 
     const v = pending.values;
-    setName(v.name);
-    setEmail(v.email);
-    setPhone(v.phone);
-    setInterests(v.interests);
-    setDestinations(v.destinations);
-    setFlexibleDestination(v.flexibleDestination);
-    setDateMode(v.dateMode);
-    setStartDate(v.startDate);
-    setEndDate(v.endDate);
-    setGroupSize(v.groupSize);
-    setDuration(v.duration);
-    setBudget(v.budget);
-    setNotes(v.notes);
+    if (v.name !== undefined) setName(v.name);
+    if (v.email !== undefined) setEmail(v.email);
+    if (v.phone !== undefined) setPhone(v.phone);
+    if (v.interests !== undefined) setInterests(v.interests);
+    if (v.destinations !== undefined) setDestinations(v.destinations);
+    if (v.flexibleDestination !== undefined) setFlexibleDestination(v.flexibleDestination);
+    if (v.dateMode !== undefined) setDateMode(v.dateMode);
+    if (v.startDate !== undefined) setStartDate(v.startDate);
+    if (v.endDate !== undefined) setEndDate(v.endDate);
+    if (v.groupSize !== undefined) setGroupSize(v.groupSize);
+    if (v.duration !== undefined) setDuration(v.duration);
+    if (v.budget !== undefined) setBudget(v.budget);
+    if (v.notes !== undefined) setNotes(v.notes);
     clearPendingSubmission();
     // Restoring is a one-time thing on mount, deliberately not re-run.
     // eslint-disable-next-line react-hooks/exhaustive-deps
