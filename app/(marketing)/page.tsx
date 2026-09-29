@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 import Hero from "@/components/Hero";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import FeaturedDestinations from "@/components/destination";
@@ -24,6 +24,7 @@ export default async function Home() {
   let error: unknown = null;
 
   try {
+    const supabase = await createClient();
     const result = await supabase.from("tours").select("*").returns<Tour[]>();
     tours = result.data;
     error = result.error;
