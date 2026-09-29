@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { isAuthRetryableFetchError } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/client";
 import { Button } from "../ui/Button";
 import { ArrowIcon } from "../ui/icons";
 import { AuthShell } from "./AuthShell";
@@ -33,27 +34,61 @@ export default function SignUpForm() {
     }
 
     setLoading(true);
-    const { error: authError } = await supabase.auth.signUp({
-      email,
-      password,
-      options: { data: { full_name: fullName } },
-    });
-    setLoading(false);
+    try {
+      const supabase = createClient();
+      const { data, error: authError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: fullName },
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
+        },
+      });
+      setLoading(false);
 
-    if (authError) {
-      setError(authError.message);
-      return;
+      if (authError) {
+        if (isAuthRetryableFetchError(authError)) {
+          setError("We couldn't reach the sign-up service. Please check your connection and try again.");
+        } else if (authError.code === "user_already_exists" || authError.code === "email_exists") {
+          setError("An account with this email already exists — try signing in instead.");
+        } else if (authError.code === "weak_password") {
+          setError(authError.message || "Please choose a stronger password.");
+        } else if (authError.code === "validation_failed" || authError.code === "email_address_invalid") {
+          setError("Please enter a valid email address.");
+        } else {
+          setError(authError.message);
+        }
+        return;
+      }
+
+      // With email confirmation on, Supabase deliberately masks a
+      // duplicate signup as a "success" (rather than an error) to avoid
+      // leaking which emails are registered — a real new user gets a
+      // non-empty identities array, a pre-existing one gets an empty one.
+      if (data.user && data.user.identities && data.user.identities.length === 0) {
+        setError("An account with this email already exists — try signing in instead.");
+        return;
+      }
+
+      setSubmitted(true);
+    } catch {
+      setLoading(false);
+      setError("We couldn't reach the sign-up service. Please check your connection and try again.");
     }
-    setSubmitted(true);
   }
 
   async function handleGoogle() {
     setError(null);
-    const { error: authError } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: typeof window !== "undefined" ? window.location.origin : undefined },
-    });
-    if (authError) setError(authError.message);
+    try {
+      const supabase = createClient();
+      const { error: authError } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
+      });
+      if (authError) setError(authError.message);
+    } catch {
+      setError("We couldn't reach the sign-up service. Please check your connection and try again.");
+    }
   }
 
   return (

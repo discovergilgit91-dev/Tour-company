@@ -3,44 +3,71 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { supabase } from "@/lib/supabase";
+import { isAuthRetryableFetchError } from "@supabase/supabase-js";
+import { createClient } from "@/lib/supabase/client";
 import { Button } from "../ui/Button";
 import { ArrowIcon } from "../ui/icons";
 import { AuthShell } from "./AuthShell";
 import { AuthField, PasswordField } from "./fields";
 import { AlertIcon, GoogleIcon, MailIcon, SpinnerIcon } from "./icons";
 
-export default function SignInForm() {
+const CALLBACK_ERROR_MESSAGES: Record<string, string> = {
+  confirmation_failed:
+    "That confirmation link is invalid or has expired. Please try signing in, or sign up again to get a new one.",
+};
+
+export default function SignInForm({ initialError }: { initialError?: string } = {}) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [remember, setRemember] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(
+    initialError ? (CALLBACK_ERROR_MESSAGES[initialError] ?? null) : null
+  );
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setError(null);
     setLoading(true);
 
-    const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
+    try {
+      const supabase = createClient();
+      const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
 
-    setLoading(false);
-    if (authError) {
-      setError(authError.message);
-      return;
+      setLoading(false);
+      if (authError) {
+        if (isAuthRetryableFetchError(authError)) {
+          setError("We couldn't reach the sign-in service. Please check your connection and try again.");
+        } else if (authError.code === "email_not_confirmed") {
+          setError("Please confirm your email before signing in — check your inbox for the confirmation link.");
+        } else if (authError.code === "invalid_credentials") {
+          setError("That email and password combination doesn't match. Please try again.");
+        } else {
+          setError(authError.message);
+        }
+        return;
+      }
+      router.push("/");
+      router.refresh();
+    } catch {
+      setLoading(false);
+      setError("We couldn't reach the sign-in service. Please check your connection and try again.");
     }
-    router.push("/");
-    router.refresh();
   }
 
   async function handleGoogle() {
     setError(null);
-    const { error: authError } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: { redirectTo: typeof window !== "undefined" ? window.location.origin : undefined },
-    });
-    if (authError) setError(authError.message);
+    try {
+      const supabase = createClient();
+      const { error: authError } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: `${window.location.origin}/auth/callback` },
+      });
+      if (authError) setError(authError.message);
+    } catch {
+      setError("We couldn't reach the sign-in service. Please check your connection and try again.");
+    }
   }
 
   return (
