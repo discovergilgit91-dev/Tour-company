@@ -7,8 +7,10 @@ import { LinkButton } from "./ui/Button";
 import { MenuIcon } from "./ui/icons";
 import { NAV_LINKS } from "@/lib/nav";
 import { signOut } from "@/app/auth/actions";
+import { getDisplayName, getInitials } from "@/lib/account";
+import AccountMenu from "./AccountMenu";
 
-export type HeaderUser = { email: string };
+export type HeaderUser = { email: string; fullName: string | null };
 
 export default function HeaderClient({ user }: { user: HeaderUser | null }) {
   const [open, setOpen] = useState(false);
@@ -26,7 +28,8 @@ export default function HeaderClient({ user }: { user: HeaderUser | null }) {
   // (see WhyChooseUs), instead of staying on the transparent-over-photo
   // cream-text look from the top of the page.
   const solid = scrolled || open;
-  const initial = user?.email ? user.email.charAt(0).toUpperCase() : "";
+  const displayName = user ? getDisplayName(user.fullName, user.email) : "";
+  const initials = user ? getInitials(displayName) : "";
 
   return (
     <header
@@ -59,30 +62,12 @@ export default function HeaderClient({ user }: { user: HeaderUser | null }) {
 
         <div className="hidden items-center gap-5 lg:flex">
           {user ? (
-            <>
-              <div className="flex items-center gap-2.5">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest text-xs font-semibold uppercase text-cream">
-                  {initial}
-                </span>
-                <span
-                  className={`max-w-[160px] truncate font-sans text-[13px] font-medium ${
-                    solid ? "text-forest/75" : "text-cream/75"
-                  }`}
-                >
-                  {user.email}
-                </span>
-              </div>
-              <form action={signOut}>
-                <button
-                  type="submit"
-                  className={`font-sans text-[13px] font-medium transition-colors ${
-                    solid ? "text-forest/75 hover:text-forest" : "text-cream/75 hover:text-cream"
-                  }`}
-                >
-                  Sign Out
-                </button>
-              </form>
-            </>
+            <AccountMenu
+              displayName={displayName}
+              email={user.email}
+              initials={initials}
+              toneClassName={solid ? "text-forest/75" : "text-cream/75"}
+            />
           ) : (
             <>
               <Link
@@ -124,28 +109,52 @@ export default function HeaderClient({ user }: { user: HeaderUser | null }) {
             </Link>
           ))}
 
-          <div className="mt-2 flex items-center gap-4 border-t border-forest/10 px-2 pt-3">
+          <div className="mt-2 border-t border-forest/10 pt-3">
             {user ? (
-              <>
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-forest text-xs font-semibold uppercase text-cream">
-                  {initial}
-                </span>
-                <span className="min-w-0 flex-1 truncate font-sans text-sm text-forest/80">{user.email}</span>
-                <form action={signOut}>
-                  <button type="submit" className="font-sans text-sm text-forest/80 hover:text-forest">
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-3 px-2 pb-2">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-forest to-night text-xs font-semibold uppercase tracking-wide text-gold ring-1 ring-gold/30">
+                    {initials}
+                  </span>
+                  <div className="min-w-0">
+                    <p className="truncate font-serif text-sm leading-tight text-forest">{displayName}</p>
+                    <p className="truncate text-xs text-muted">{user.email}</p>
+                  </div>
+                </div>
+
+                <Link
+                  href="/account"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-2 py-2.5 font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
+                >
+                  My Account
+                </Link>
+                <Link
+                  href="/account/trip-requests"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg px-2 py-2.5 font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
+                >
+                  My Trip Requests
+                </Link>
+
+                <form action={signOut} className="mt-1 border-t border-forest/10 pt-1">
+                  <button
+                    type="submit"
+                    className="w-full rounded-lg px-2 py-2.5 text-left font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
+                  >
                     Sign Out
                   </button>
                 </form>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="flex items-center gap-4 px-2">
                 <Link href="/sign-in" className="font-sans text-sm text-forest/80 hover:text-forest">
                   Sign In
                 </Link>
                 <LinkButton href="/sign-up" className="px-5 py-2.5 text-xs">
                   Sign Up
                 </LinkButton>
-              </>
+              </div>
             )}
           </div>
         </nav>
