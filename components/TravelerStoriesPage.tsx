@@ -87,7 +87,7 @@ const STORIES = [
       "Our guide knew every turn of the Hunza road by heart. It felt less like a tour and more like visiting family in the mountains.",
     rating: 5,
     photo: "/Images/tours/hunza-valley.png",
-    avatar: "/Images/avatars/ayesha-khan.jpg",
+    avatar: "/Images/tours/Ayesha-khan.jpg",
   },
   {
     name: "Daniel Reyes",
@@ -97,7 +97,7 @@ const STORIES = [
       "Fairy Meadows at sunrise, arranged down to the last detail. The most well-run trip I've taken anywhere in the world.",
     rating: 5,
     photo: "/Images/tours/Fairy-meadows.jpg",
-    avatar: "/Images/avatars/daniel-reyes.jpg",
+    avatar: "/Images/tours/Daniel-reyes.jpg",
   },
   {
     name: "Meera Nair",
@@ -106,7 +106,7 @@ const STORIES = [
     quote: "Deosai felt endless in the best way. Small group, unhurried pace, and a team that clearly loves this land.",
     rating: 4,
     photo: "/Images/tours/deosai-plains.jpg",
-    avatar: "/Images/avatars/meera-nair.jpg",
+    avatar: "/Images/tours/mera-mire.jpg",
   },
 ];
 
@@ -117,11 +117,11 @@ export default function TravelerStoriesPage() {
       <section className="relative overflow-hidden bg-forest">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/Images/tours/crossing-by-traditional-boat.png"
-            alt="Travelers on a traditional boat crossing Attabad Lake"
+            src="/Images/tours/borith-passu-glacier-trail.png"
+            alt="A trekker on a cliffside trail overlooking the Passu glacier"
             fill
             priority
-            quality={85}
+            quality={90}
             sizes="100vw"
             className="object-cover"
           />
