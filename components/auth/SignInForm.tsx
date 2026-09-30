@@ -86,7 +86,7 @@ export default function SignInForm({ initialError }: { initialError?: string } =
 
   return (
     <AuthShell
-      eyebrow="Welcome back"
+      eyebrow="WELCOME BACK"
       title="Continue your"
       titleAccent="journey with us."
       tagline="Sign back in to pick up your saved trips, past bookings and personal itineraries — wherever you left off."

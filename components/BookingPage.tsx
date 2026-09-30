@@ -175,7 +175,15 @@ export default function BookingPage({
       <section className={`relative overflow-hidden bg-forest ${tour ? "" : ""}`}>
         <div className="absolute inset-0 z-0 overflow-hidden">
           {heroImage ? (
-            <Image src={heroImage.src} alt={heroImage.alt} fill priority sizes="100vw" className="object-cover" />
+            <Image
+              src={heroImage.src}
+              alt={heroImage.alt}
+              fill
+              priority
+              quality={85}
+              sizes="100vw"
+              className="object-cover"
+            />
           ) : (
             <div
               className={`h-full w-full bg-gradient-to-br ${tour ? tour.theme.heroFrom : "from-forest/60"} via-forest to-night`}

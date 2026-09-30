@@ -59,6 +59,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
               alt={heroImage.alt}
               fill
               priority
+              quality={85}
               sizes="100vw"
               className="object-cover"
             />
@@ -88,7 +89,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
               {tour.badge}
             </span>
 
-            <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:mt-6 sm:text-5xl md:text-[56px]">
+            <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:mt-6 sm:text-5xl">
               {tour.title}
               <br />
               <span className="heading-accent">{tour.heroAccentLine}</span>

@@ -585,14 +585,14 @@ export default function Hero({
           <div key={active} className="hero-content max-w-3xl motion-reduce:animate-none">
             {currentSlide.badge && (
               <div className="hero-badge">
-                <span className="inline-block rounded-full bg-cream/95 px-3 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:px-4 sm:text-xs">
+                <span className="inline-block rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
                   {currentSlide.badge}
                 </span>
               </div>
             )}
 
             <div className="mt-4 overflow-hidden sm:mt-5">
-              <h1 className="hero-heading font-serif text-[26px] font-semibold leading-[1.15] tracking-tight sm:text-4xl md:text-5xl lg:text-[60px]">
+              <h1 className="hero-heading font-serif text-[30px] font-semibold leading-[1.12] tracking-tight sm:text-5xl">
                 <span className="text-cream">{currentSlide.titleLine1}</span>
                 {currentSlide.titleLine2 && (
                   <>
