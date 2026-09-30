@@ -34,15 +34,6 @@ const TOURS = [
     date: "05 Jul – 08 Jul, 2027",
     image: "/Images/tours/culture-heritage.png",
   },
-  {
-    id: "nanga-parbat-camping",
-    duration: "3 DAYS",
-    location: "DIAMER – NANGA PARBAT",
-    title: "Nanga Parbat Camping Experience",
-    subtitle: "",
-    date: "20 Jul – 22 Jul, 2027",
-    image: "/Images/tours/nangaparbat-moutain.png",
-  },
 ];
 
 const HERO_IMAGE = "/Images/tours/hunza-valley.png";
@@ -198,7 +189,7 @@ function BuildYourOwnCard() {
   return (
     <Link
       href="/build-your-trip"
-      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
+      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] border-2 border-gold bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_36px_rgba(201,161,90,0.4)] outline-none transition-shadow duration-300 hover:shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_48px_rgba(201,161,90,0.55)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
     >
       <div className="relative flex-1 overflow-hidden">
         <Image
