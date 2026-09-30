@@ -348,13 +348,21 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
       {/* ---------------- Hero ---------------- */}
       <section className="relative overflow-hidden bg-forest">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="h-full w-full bg-gradient-to-br from-forest/60 via-forest to-night" />
+          <Image
+            src="/Images/tours/custom.png"
+            alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
           <div
             aria-hidden
             className="pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
           />
           <PeaksMotif className="absolute inset-x-0 bottom-0 h-[55%] w-full text-cream/[0.05]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest/60 via-transparent to-forest/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">

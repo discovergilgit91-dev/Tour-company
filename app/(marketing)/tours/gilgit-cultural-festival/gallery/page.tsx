@@ -15,6 +15,8 @@ export default function FestivalGalleryPage() {
         eyebrow="FESTIVAL GALLERY"
         title="Moments, colors and culture"
         description="Every dance, dish, and handmade craft from the Gilgit-Baltistan Cultural Festival — browse by category or take it all in."
+        image="/Images/tours/the-climb-up-from-the-bazaar.png"
+        imageAlt="The stone path climbing from Karimabad's bazaar toward Baltit Fort"
         primaryCta={null}
         secondaryCta={null}
       />

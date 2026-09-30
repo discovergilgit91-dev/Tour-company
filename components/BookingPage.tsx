@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
 import {
@@ -19,6 +20,7 @@ import { useRevealOnScroll } from "./DestinationCard";
 import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
 import type { SessionProfile } from "@/lib/supabase/session";
 import type { TourDetail } from "@/lib/tourDetails";
+import { TOUR_HERO_IMAGES, GENERIC_BOOKING_HERO_IMAGE } from "@/lib/tourDetails";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
@@ -165,15 +167,21 @@ export default function BookingPage({
   const total = pricePerPerson * travelers;
 
   const AccentMotif = tour ? MOTIF_COMPONENTS[tour.theme.motif] : null;
+  const heroImage = tour ? TOUR_HERO_IMAGES[tour.slug] : GENERIC_BOOKING_HERO_IMAGE;
 
   return (
     <main className="bg-cream">
       {/* ---------------- Intro band ---------------- */}
       <section className={`relative overflow-hidden bg-forest ${tour ? "" : ""}`}>
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <div
-            className={`h-full w-full bg-gradient-to-br ${tour ? tour.theme.heroFrom : "from-forest/60"} via-forest to-night`}
-          />
+          {heroImage ? (
+            <Image src={heroImage.src} alt={heroImage.alt} fill priority sizes="100vw" className="object-cover" />
+          ) : (
+            <div
+              className={`h-full w-full bg-gradient-to-br ${tour ? tour.theme.heroFrom : "from-forest/60"} via-forest to-night`}
+            />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
           {tour && (
             <div
               aria-hidden
@@ -184,7 +192,7 @@ export default function BookingPage({
           {AccentMotif && (
             <AccentMotif className="absolute right-6 top-16 h-28 w-28 text-cream/20 sm:right-12 sm:h-40 sm:w-40" />
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-forest/60 via-transparent to-forest/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">

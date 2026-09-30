@@ -189,6 +189,8 @@ export default function ToursPage() {
         eyebrow="UPCOMING JOURNEYS"
         title="Every trip, mapped and ready to book."
         description="Browse our full calendar of guided tours and seasonal events across Gilgit-Baltistan — filter by region, duration, or budget to find your next journey."
+        image="/Images/tours/nagar-glacier.png"
+        imageAlt="A trekker on Nagar glacier pointing toward a snow-capped peak"
         primaryCta={{ label: "Talk to a Trip Planner", href: "/#contact" }}
         secondaryCta={null}
       />
