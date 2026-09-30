@@ -30,18 +30,14 @@ export default function LandsPage() {
         />
 
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          {/* photo — a clean, properly cropped rectangle (no fade/vignette
-              into the cream background). Anchored with right-8 (not
-              right-0): absolutely-positioned elements align to their
-              container's padding edge, not its content edge, so right-0
-              was ignoring this section's own lg:px-8 and sitting 32px
-              further right than the filter bar below, which — as a normal
-              in-flow element — does respect that padding. right-8 matches
-              it exactly. Narrowed from 56% to a fixed width at the same
-              time: at that old width, with no fade left to mask it, the
-              photo's own left edge could sit close enough to overlap the
-              real paragraph text. */}
-          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[240px] w-[280px] select-none overflow-hidden rounded-[18px] shadow-[0_24px_60px_-24px_rgba(18,36,28,0.4)] lg:block xl:w-[380px]">
+          {/* photo — same fade-in treatment as the "Upcoming Tours &
+              Events" hero image: a full-bleed photo blending into the
+              cream background via gradient, rather than a boxed card
+              with a shadow. Position/size unchanged from before (right-8
+              to align with the filter bar below; right-0 would ignore
+              this section's own lg:px-8 padding — see the filter bar's
+              alignment for why). */}
+          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[240px] w-[280px] select-none overflow-hidden rounded-[18px] lg:block xl:w-[380px]">
             <Image
               src="/Images/tours/shimsal-valley2.png"
               alt="A wide valley horizon ringed by snow-capped peaks in Gilgit-Baltistan"
@@ -50,6 +46,8 @@ export default function LandsPage() {
               sizes="(min-width: 1280px) 380px, 280px"
               className="object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/70 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-cream to-transparent" />
           </div>
 
           <div className="max-w-2xl">
