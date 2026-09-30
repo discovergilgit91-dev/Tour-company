@@ -104,15 +104,15 @@ export function AuthShell({
 
           {/* middle: tagline, hidden on the compact mobile banner to keep it tidy */}
           <div className="relative z-10 hidden max-w-md lg:block">
-            <span className="inline-flex items-center gap-2 rounded-full border border-cream/20 bg-cream/10 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-cream backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
               {eyebrow}
             </span>
-            <h1 className="mt-5 font-serif text-4xl leading-[1.08] tracking-tight text-cream xl:text-5xl">
+            <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
               {title}
               <br />
               <span className="heading-accent">{titleAccent}</span>
             </h1>
-            <p className="mt-4 max-w-sm text-sm leading-relaxed text-cream/75">{tagline}</p>
+            <p className="mt-4 max-w-sm text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">{tagline}</p>
 
             {stats && (
               <div className="mt-8 flex items-center gap-6 border-t border-cream/15 pt-6">
@@ -127,7 +127,9 @@ export function AuthShell({
           </div>
 
           {/* compact mobile/tablet tagline (single line, no card) */}
-          <p className="relative z-10 max-w-sm text-sm leading-snug text-cream/85 lg:hidden">{tagline}</p>
+          <p className="relative z-10 max-w-sm text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg lg:hidden">
+            {tagline}
+          </p>
 
           {/* bottom: quote card + rotating badge, desktop only */}
           <div className="relative z-10 hidden items-end justify-between gap-6 lg:flex">

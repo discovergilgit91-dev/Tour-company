@@ -109,7 +109,7 @@ export default function SignUpForm() {
 
   return (
     <AuthShell
-      eyebrow="Start your journey"
+      eyebrow="START YOUR JOURNEY"
       title="Plan trips like"
       titleAccent="a local would."
       tagline="Create a free account to save destinations, track your bookings, and get itineraries built by guides who grew up here."

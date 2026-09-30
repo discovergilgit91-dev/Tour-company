@@ -121,6 +121,7 @@ export default function TravelerStoriesPage() {
             alt="Travelers on a traditional boat crossing Attabad Lake"
             fill
             priority
+            quality={85}
             sizes="100vw"
             className="object-cover"
           />

@@ -517,10 +517,11 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
       <section className="relative overflow-hidden bg-forest">
         <div className="absolute inset-0 z-0 overflow-hidden">
           <Image
-            src="/Images/tours/borith-lake-early-morning.png"
-            alt="A calm morning at Borith Lake with a lakeside camp"
+            src="/Images/tours/kutwal-lake.png"
+            alt="Kutwal Lake beneath snow-capped peaks, ringed by pine forest"
             fill
             priority
+            quality={85}
             sizes="100vw"
             className="object-cover"
           />

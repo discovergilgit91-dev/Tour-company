@@ -353,6 +353,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
             alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
             fill
             priority
+            quality={85}
             sizes="100vw"
             className="object-cover"
           />
