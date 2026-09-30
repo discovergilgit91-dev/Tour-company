@@ -679,10 +679,34 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A classic trailhead into the Karakoram, with Diran Peak rising directly above the ice.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Glacier", caption: "Minapin's ice field", from: "from-sky-700/30", to: "to-night" },
-      { tag: "Diran Peak", caption: "Diran rising above the trail", from: "from-slate-600/30", to: "to-forest" },
-      { tag: "Forest Trail", caption: "Pine forest on the approach", from: "from-green-dark", to: "to-night" },
-      { tag: "High Pasture", caption: "Open ground before the ice", from: "from-lime-700/30", to: "to-night" },
+      {
+        tag: "Glacier",
+        caption: "Minapin's ice field",
+        from: "from-sky-700/30",
+        to: "to-night",
+        image: "/Images/tours/minapin(4).png",
+      },
+      {
+        tag: "Diran Peak",
+        caption: "Diran rising above the trail",
+        from: "from-slate-600/30",
+        to: "to-forest",
+        image: "/Images/tours/minapin(3).png",
+      },
+      {
+        tag: "Forest Trail",
+        caption: "Pine forest on the approach",
+        from: "from-green-dark",
+        to: "to-night",
+        image: "/Images/tours/minapin(5).png",
+      },
+      {
+        tag: "High Pasture",
+        caption: "Open ground before the ice",
+        from: "from-lime-700/30",
+        to: "to-night",
+        image: "/Images/tours/minapin(2).png",
+      },
     ],
   },
 

@@ -161,6 +161,7 @@ export const DESTINATIONS: Destination[] = [
     href: "/destinations/minapin-glacier",
     altitude: "2,800 m",
     category: "trekking",
+    heroImage: "/Images/tours/minapin(1).png",
   },
   // ---- Gilgit & Ghizer: four named places ----
   {
