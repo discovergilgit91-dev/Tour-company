@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import { RouteMapSection } from "@/components/DestinationCard";
 import LandsExplorer from "@/components/LandsExplorer";
@@ -9,22 +10,6 @@ export const metadata: Metadata = {
   description:
     "Explore every destination across Gilgit-Baltistan, region by region — from the orchards of Hunza to the quiet valleys of Ghizer.",
 };
-
-/* ---- faint topographic contour lines behind the intro (same technique as AboutStory) ---- */
-function ring(cx: number, cy: number, r: number, seed: number, squash = 1) {
-  const points: string[] = [];
-  const steps = 60;
-  for (let i = 0; i < steps; i++) {
-    const t = (i / steps) * Math.PI * 2;
-    const wobble =
-      1 + 0.16 * Math.sin(3 * t + seed) + 0.09 * Math.sin(5 * t + seed * 1.7) + 0.05 * Math.sin(9 * t + seed * 0.6);
-    const x = cx + Math.cos(t) * r * wobble;
-    const y = cy + Math.sin(t) * r * wobble * squash;
-    points.push(`${i === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`);
-  }
-  return `${points.join(" ")}Z`;
-}
-const CONTOURS = Array.from({ length: 8 }, (_, i) => ring(560, 260, 30 + (260 * i) / 7, 1.2 + i * 0.4, 0.8));
 
 export default function LandsPage() {
   return (
@@ -43,20 +28,8 @@ export default function LandsPage() {
           aria-hidden
           className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
         />
-        <svg
-          aria-hidden
-          viewBox="0 0 900 500"
-          preserveAspectRatio="xMaxYMin slice"
-          className="pointer-events-none absolute inset-y-0 right-0 hidden h-full w-2/3 text-forest/[0.035] lg:block"
-        >
-          <g fill="none" stroke="currentColor" strokeWidth="1">
-            {CONTOURS.map((d, i) => (
-              <path key={i} d={d} />
-            ))}
-          </g>
-        </svg>
 
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:min-h-[240px] lg:px-8">
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
@@ -73,6 +46,18 @@ export default function LandsPage() {
               From the orchards of Hunza to the quiet valleys of Ghizer, explore the places that
               reveal the beauty, culture, and wild landscapes of Gilgit-Baltistan.
             </p>
+          </div>
+
+          {/* real photo, standing in for the old decorative contour-line SVG —
+              same right-of-text placement, only shown once there's room for it. */}
+          <div className="absolute inset-y-8 right-0 hidden w-[280px] overflow-hidden rounded-[22px] shadow-[0_20px_45px_-15px_rgba(18,36,28,0.25)] lg:block xl:w-[340px]">
+            <Image
+              src="/Images/tours/shimsal-valley2.png"
+              alt="A wide valley horizon ringed by snow-capped peaks in Gilgit-Baltistan"
+              fill
+              sizes="(min-width: 1280px) 340px, (min-width: 1024px) 280px, 0px"
+              className="object-cover"
+            />
           </div>
         </div>
       </section>
