@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import ToursExplorer, { type Tour } from "@/components/ToursExplorer";
 
@@ -198,7 +199,7 @@ export default function ToursPage() {
       />
 
       {/* Intro — same rhythm as the /lands page intro */}
-      <section className="relative w-full overflow-hidden bg-cream pb-8 pt-12 sm:pt-14 lg:pt-16">
+      <section className="relative isolate w-full overflow-hidden bg-cream pb-8 pt-12 sm:pt-14 lg:pt-16">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
@@ -217,6 +218,25 @@ export default function ToursPage() {
         </svg>
 
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          {/* photo — same fade-in treatment as the /lands "Find your next
+              horizon" intro: a full-bleed photo blending into the cream
+              background via gradient, rather than a boxed card with a
+              shadow. right-8 aligns with this section's own lg:px-8
+              padding (right-0 would ignore it and hug the viewport edge
+              instead). */}
+          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[240px] w-[280px] select-none overflow-hidden rounded-[18px] lg:block xl:w-[380px]">
+            <Image
+              src="/Images/tours/ramalake(2).png"
+              alt="Sunlight on an alpine lake ringed by snow-capped peaks"
+              fill
+              quality={85}
+              sizes="(min-width: 1280px) 380px, 280px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/70 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-cream to-transparent" />
+          </div>
+
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
