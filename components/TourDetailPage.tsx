@@ -1,6 +1,7 @@
 "use client";
 
 import jsPDF from "jspdf";
+import Image from "next/image";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, ClockIcon, PinIcon, UsersIcon, GaugeIcon, DownloadIcon } from "./ui/icons";
 import { useRevealOnScroll } from "./DestinationCard";
@@ -9,6 +10,7 @@ import { STAT_ICON_COMPONENTS } from "./tours/statIcons";
 import CompleteExperience from "./CompleteExperience";
 import TestimonialSection from "./TestimonialSection";
 import type { TourDetail } from "@/lib/tourDetails";
+import { TOUR_HERO_IMAGES } from "@/lib/tourDetails";
 
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
@@ -37,19 +39,33 @@ const DAY_WORDS: Record<number, string> = {
 };
 
 /* ---------------------------------------------------------------------
-   Hero — same structural rhythm as the shared Hero component, but with
-   a bespoke, theme-driven decorative background (no photography exists
-   for these tours yet) and a trip facts strip in place of a generic
-   secondary CTA.
+   Hero — same structural rhythm as the shared Hero component: a real
+   photo per tour (see TOUR_HERO_IMAGES) with the same two-layer
+   gradient overlay the homepage Hero uses for legibility, plus the
+   theme-driven blob glow and motif icons layered on top for continuity
+   with the rest of this page's decoration.
    --------------------------------------------------------------------- */
 function TourHero({ tour }: { tour: TourDetail }) {
   const Motif = MOTIF_COMPONENTS[tour.theme.motif];
+  const heroImage = TOUR_HERO_IMAGES[tour.slug];
 
   return (
     <section className="relative bg-forest">
       <div className="relative min-h-[76svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
         <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className={`h-full w-full bg-gradient-to-br ${tour.theme.heroFrom} via-forest to-night`} />
+          {heroImage ? (
+            <Image
+              src={heroImage.src}
+              alt={heroImage.alt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+          ) : (
+            <div className={`h-full w-full bg-gradient-to-br ${tour.theme.heroFrom} via-forest to-night`} />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
           <div
             aria-hidden
             className={`pointer-events-none absolute -left-24 top-16 h-[420px] w-[420px] rounded-full ${tour.theme.blob} blur-3xl`}
@@ -63,7 +79,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
             className={`absolute right-4 top-20 h-32 w-32 text-cream/30 sm:right-10 sm:h-44 sm:w-44 md:top-16 md:h-56 md:w-56`}
           />
           <Motif className="absolute -left-6 bottom-8 h-28 w-28 rotate-[200deg] text-cream/20 sm:h-36 sm:w-36" />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest/50 via-transparent to-forest/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
         <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[82svh] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[86svh] md:pb-24 md:pt-36 lg:px-8">

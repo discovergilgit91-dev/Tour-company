@@ -1406,6 +1406,60 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
   },
 };
 
+/** Real hero photo per tour (TourHero/BookingPage previously fell back to a
+    flat theme-colored gradient — "no photography exists for these tours
+    yet" — which is no longer true). Kept as a lookup here, rather than a
+    field on every TOUR_DETAILS entry, so adding it didn't mean touching
+    all twelve large object literals above. Each photo is distinct from
+    every other page-level hero on the site, and from every other tour's. */
+export const TOUR_HERO_IMAGES: Record<string, { src: string; alt: string }> = {
+  "hunza-spring": { src: "/Images/tours/blossom-season.png", alt: "Baltit Fort above Karimabad's spring blossoms" },
+  "rakaposhi-trek": {
+    src: "/Images/tours/rakaposhis-icefall-up-close.png",
+    alt: "Tents at Rakaposhi Base Camp beneath the icefall",
+  },
+  "altit-baltit": {
+    src: "/Images/tours/baltit-fort-timber-balconies.png",
+    alt: "The carved timber balconies of Baltit Fort",
+  },
+  "nanga-parbat-camping": { src: "/Images/tours/nangaparbat-moutain.png", alt: "Nanga Parbat's snow-covered face" },
+  "passu-cathedral-trek": {
+    src: "/Images/tours/cones-lit-amber-at-sunset.png",
+    alt: "The Passu Cones lit amber at sunset",
+  },
+  "fairy-meadows-trek": {
+    src: "/Images/tours/pine-forest-above-ghulmet.png",
+    alt: "Pine forest rising toward a snow peak above Fairy Meadows",
+  },
+  "deosai-wildlife-safari": {
+    src: "/Images/tours/open-gazing-land-en.png",
+    alt: "Wildflowers on the open plains of Deosai",
+  },
+  "skardu-cold-desert": { src: "/Images/tours/cold-desert.png", alt: "Sand dunes at sunset near Skardu" },
+  "shigar-heritage-trail": {
+    src: "/Images/tours/fort-above-the-rooftop.png",
+    alt: "A hilltop fort lit up above a Baltistan village at night",
+  },
+  "attabad-karimabad-escape": {
+    src: "/Images/tours/view-over-karimabad.png",
+    alt: "The Hunza Valley seen through Baltit Fort's carved windows",
+  },
+  "khunjerab-border-expedition": {
+    src: "/Images/tours/khunjerab-kkh-at-snow.png",
+    alt: "The Karakoram Highway crossing a snow-covered Khunjerab Pass",
+  },
+  "phander-naltar-circuit": {
+    src: "/Images/tours/rush-lake-4.png",
+    alt: "An alpine lake reflecting a fiery sunset sky",
+  },
+};
+
+/** Shown on /book when no specific tour is selected. */
+export const GENERIC_BOOKING_HERO_IMAGE = {
+  src: "/Images/tours/shimsal-road3.png",
+  alt: "A laden pack yak beside a turquoise lake in the Shimshal valley",
+};
+
 export function getTourDetail(slug: string): TourDetail | undefined {
   return TOUR_DETAILS[slug];
 }
