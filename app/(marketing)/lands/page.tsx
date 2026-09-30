@@ -29,7 +29,29 @@ export default function LandsPage() {
           className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
         />
 
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:min-h-[240px] lg:px-8">
+        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:min-h-[320px] lg:px-8 xl:min-h-[380px]">
+          {/* photo — a full-width banner stacked above the text on mobile
+              and tablet, then moves beside it from lg up. The soft offset
+              frame behind it (same touch as the About Story photo) and the
+              bigger, softer shadow (the same one FeaturedEvent uses for its
+              photo panel) are what make it read as a real, elevated photo
+              rather than a small boxed-in placeholder. */}
+          <div className="relative mb-8 aspect-[16/10] w-full sm:aspect-[2/1] lg:absolute lg:inset-y-4 lg:right-8 lg:mb-0 lg:aspect-auto lg:w-[280px] xl:w-[380px]">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-[26px] border border-gold/35"
+            />
+            <div className="relative h-full w-full overflow-hidden rounded-[26px] shadow-[0_24px_60px_-24px_rgba(18,36,28,0.4)]">
+              <Image
+                src="/Images/tours/shimsal-valley2.png"
+                alt="A wide valley horizon ringed by snow-capped peaks in Gilgit-Baltistan"
+                fill
+                sizes="(min-width: 1280px) 380px, (min-width: 1024px) 280px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
@@ -46,18 +68,6 @@ export default function LandsPage() {
               From the orchards of Hunza to the quiet valleys of Ghizer, explore the places that
               reveal the beauty, culture, and wild landscapes of Gilgit-Baltistan.
             </p>
-          </div>
-
-          {/* real photo, standing in for the old decorative contour-line SVG —
-              same right-of-text placement, only shown once there's room for it. */}
-          <div className="absolute inset-y-8 right-0 hidden w-[280px] overflow-hidden rounded-[22px] shadow-[0_20px_45px_-15px_rgba(18,36,28,0.25)] lg:block xl:w-[340px]">
-            <Image
-              src="/Images/tours/shimsal-valley2.png"
-              alt="A wide valley horizon ringed by snow-capped peaks in Gilgit-Baltistan"
-              fill
-              sizes="(min-width: 1280px) 340px, (min-width: 1024px) 280px, 0px"
-              className="object-cover"
-            />
           </div>
         </div>
       </section>
