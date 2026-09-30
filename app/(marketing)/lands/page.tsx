@@ -11,27 +11,6 @@ export const metadata: Metadata = {
     "Explore every destination across Gilgit-Baltistan, region by region — from the orchards of Hunza to the quiet valleys of Ghizer.",
 };
 
-/* Same faint squiggle-contour motif UpcomingTours draws behind its own
-   bleeding hero photo — copied locally rather than imported since it's a
-   small, self-contained decoration (matches how AboutStory keeps its own
-   local contour-line generator instead of sharing one). */
-function ArtContours({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 520 320" fill="none" aria-hidden="true" className={className} preserveAspectRatio="none">
-      {[0, 1, 2, 3, 4, 5, 6].map((i) => (
-        <path
-          key={i}
-          d={`M-20 ${250 - i * 26}
-             C 90 ${200 - i * 24}, 150 ${290 - i * 22}, 250 ${230 - i * 26}
-             S 420 ${140 - i * 22}, 540 ${190 - i * 26}`}
-          stroke="currentColor"
-          strokeWidth="1"
-        />
-      ))}
-    </svg>
-  );
-}
-
 export default function LandsPage() {
   return (
     <main className="min-h-screen bg-cream">
@@ -52,20 +31,26 @@ export default function LandsPage() {
 
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           {/* photo — a clean, properly cropped rectangle (no fade/vignette
-              into the cream background), with the faint contour-line motif
-              layered just to its left. */}
-          <div className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-[240px] w-[56%] select-none overflow-hidden rounded-[18px] shadow-[0_24px_60px_-24px_rgba(18,36,28,0.4)] lg:block">
+              into the cream background). Anchored with right-8 (not
+              right-0): absolutely-positioned elements align to their
+              container's padding edge, not its content edge, so right-0
+              was ignoring this section's own lg:px-8 and sitting 32px
+              further right than the filter bar below, which — as a normal
+              in-flow element — does respect that padding. right-8 matches
+              it exactly. Narrowed from 56% to a fixed width at the same
+              time: at that old width, with no fade left to mask it, the
+              photo's own left edge could sit close enough to overlap the
+              real paragraph text. */}
+          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[240px] w-[280px] select-none overflow-hidden rounded-[18px] shadow-[0_24px_60px_-24px_rgba(18,36,28,0.4)] lg:block xl:w-[380px]">
             <Image
               src="/Images/tours/shimsal-valley2.png"
               alt="A wide valley horizon ringed by snow-capped peaks in Gilgit-Baltistan"
               fill
               quality={85}
-              sizes="(min-width: 1152px) 620px, 56vw"
+              sizes="(min-width: 1280px) 380px, 280px"
               className="object-cover"
             />
           </div>
-
-          <ArtContours className="pointer-events-none absolute right-[38%] top-0 -z-10 hidden h-[220px] w-[36%] text-gold/20 lg:block" />
 
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
