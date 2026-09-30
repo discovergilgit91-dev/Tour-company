@@ -51,21 +51,18 @@ export default function LandsPage() {
         />
 
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          {/* photo — same treatment as the "Upcoming Tours & Events" intro:
-              bleeds in from the right behind the text, fading into the
-              cream background via gradient rather than sitting in its own
-              hard-edged box, with the same faint contour-line motif
+          {/* photo — a clean, properly cropped rectangle (no fade/vignette
+              into the cream background), with the faint contour-line motif
               layered just to its left. */}
-          <div className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-[240px] w-[56%] select-none overflow-hidden rounded-[18px] lg:block">
+          <div className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-[240px] w-[56%] select-none overflow-hidden rounded-[18px] shadow-[0_24px_60px_-24px_rgba(18,36,28,0.4)] lg:block">
             <Image
               src="/Images/tours/shimsal-valley2.png"
-              alt=""
+              alt="A wide valley horizon ringed by snow-capped peaks in Gilgit-Baltistan"
               fill
+              quality={85}
               sizes="(min-width: 1152px) 620px, 56vw"
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/70 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-cream to-transparent" />
           </div>
 
           <ArtContours className="pointer-events-none absolute right-[38%] top-0 -z-10 hidden h-[220px] w-[36%] text-gold/20 lg:block" />

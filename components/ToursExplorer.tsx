@@ -439,6 +439,19 @@ function ClosingCta() {
 
   return (
     <section className="relative overflow-hidden bg-forest">
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Image
+          src="/Images/tours/rakaposhis-near-unbroken-rise.png"
+          alt="A trekker looking out over a vast glacier beneath snow-capped peaks"
+          fill
+          quality={85}
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
+      </div>
+
       <div
         ref={ref}
         style={{ transitionDelay: visible ? "80ms" : "0ms" }}
