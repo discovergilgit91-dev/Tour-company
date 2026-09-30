@@ -72,6 +72,7 @@ const TOURS: Tour[] = [
     duration: 6,
     dateRange: "02 Aug – 07 Aug, 2027",
     price: 690,
+    image: "/Images/tours/passu-cones-at-drawn.png",
     href: "/tours/passu-cathedral-trek",
   },
   {
@@ -123,7 +124,7 @@ const TOURS: Tour[] = [
     duration: 4,
     dateRange: "18 Sep – 21 Sep, 2027",
     price: 380,
-    image: "/Images/tours/shigar-fort.jpg",
+    image: "/Images/tours/shigar(2).png",
     href: "/tours/shigar-heritage-trail",
   },
   {
@@ -162,6 +163,7 @@ const TOURS: Tour[] = [
     duration: 4,
     dateRange: "25 Oct – 28 Oct, 2027",
     price: 340,
+    image: "/Images/tours/phander(3).png",
     href: "/tours/phander-naltar-circuit",
   },
 ];
