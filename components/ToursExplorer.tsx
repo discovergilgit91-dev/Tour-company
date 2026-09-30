@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { IconButton, LinkButton } from "./ui/Button";
-import { ArrowIcon, CalendarIcon, ClockIcon, PinIcon } from "./ui/icons";
+import { ArrowIcon, CalendarIcon, ClockIcon, CompassIcon, PinIcon } from "./ui/icons";
 import { useRevealOnScroll } from "./DestinationCard";
 import FeaturedEvent from "./FeaturedEvent";
 
@@ -144,6 +144,67 @@ function TourCard({ tour, index }: { tour: Tour; index: number }) {
         <div className="flex min-w-0 items-center gap-2.5 text-forest">
           <CalendarIcon size={16} />
           <span className="truncate font-sans text-[13px]">{tour.dateRange}</span>
+        </div>
+
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+          <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
+            <ArrowIcon size={16} />
+          </span>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+/* ---------------------------------------------------------------------
+   Same shape, size, and hover behavior as TourCard so it sits in the grid
+   without looking out of place, but every distinguishing detail (badge,
+   copy, footer line, link target) signals it's not a fixed itinerary —
+   mirrors the "Design Your Own Journey" card on the homepage's Upcoming
+   Tours carousel (see BuildYourOwnCard in UpcomingTours.tsx).
+   --------------------------------------------------------------------- */
+function CustomJourneyCard() {
+  return (
+    <Link
+      href="/build-your-trip"
+      className="group flex h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+    >
+      <div className="relative flex-1 overflow-hidden">
+        <Image
+          src="/Images/tours/custom.png"
+          alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
+          fill
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+          className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.06]"
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
+
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-gold px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-forest">
+          <CompassIcon size={14} />
+          CUSTOM
+        </div>
+
+        <div className="absolute inset-x-0 bottom-0 p-5">
+          <div className="mb-2.5 flex items-center gap-2 text-white">
+            <PinIcon size={15} />
+            <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
+              ANYWHERE IN GILGIT-BALTISTAN
+            </span>
+          </div>
+
+          <h3 className="font-serif text-[23px] leading-[1.15] text-white">Design Your Own Journey</h3>
+
+          <p className="mt-1 font-sans text-[14px] leading-snug text-white/85">
+            Pick your destinations, dates, and pace — we&rsquo;ll build the trip around you.
+          </p>
+        </div>
+      </div>
+
+      <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
+        <div className="flex min-w-0 items-center gap-2.5 text-forest">
+          <CalendarIcon size={16} />
+          <span className="truncate font-sans text-[13px]">Fully customizable</span>
         </div>
 
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
@@ -642,19 +703,25 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
               {filtered.map((tour, index) => (
                 <TourCard key={tour.id} tour={tour} index={index} />
               ))}
+              <CustomJourneyCard />
             </div>
           ) : (
-            <div className="rounded-2xl border border-dashed border-forest/15 bg-white/60 px-6 py-16 text-center">
-              <p className="font-serif text-xl text-forest">No tours match those filters</p>
-              <p className="mt-2 text-sm text-muted">Try clearing a filter or two to see more journeys.</p>
-              <button
-                type="button"
-                onClick={clearAll}
-                className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
-              >
-                Clear all filters
-              </button>
-            </div>
+            <>
+              <div className="rounded-2xl border border-dashed border-forest/15 bg-white/60 px-6 py-16 text-center">
+                <p className="font-serif text-xl text-forest">No tours match those filters</p>
+                <p className="mt-2 text-sm text-muted">Try clearing a filter or two to see more journeys.</p>
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
+                >
+                  Clear all filters
+                </button>
+              </div>
+              <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+                <CustomJourneyCard />
+              </div>
+            </>
           )}
         </div>
       </div>
