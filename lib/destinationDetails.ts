@@ -583,10 +583,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A glacier valley within walking distance of the village, framed by Diran and Spantik on either side.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Glacier Ice", caption: "Hopar's accessible ice field", from: "from-sky-700/30", to: "to-night" },
-      { tag: "Diran Peak", caption: "Diran rising above the valley", from: "from-slate-600/30", to: "to-forest" },
-      { tag: "Village", caption: "Traditional Nagar stone houses", from: "from-amber-700/30", to: "to-night" },
-      { tag: "Approach", caption: "The walk-in trail to the glacier", from: "from-green-dark", to: "to-night" },
+      { tag: "Glacier Ice", caption: "Hopar's accessible ice field", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/minapin(4).png" },
+      { tag: "Diran Peak", caption: "Diran rising above the valley", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/minapin(2).png" },
+      { tag: "Village", caption: "Traditional Nagar stone houses", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/altit-khuns-stone-lanes.png" },
+      { tag: "Approach", caption: "The walk-in trail to the glacier", from: "from-green-dark", to: "to-night", image: "/Images/tours/minapin(3).png" },
     ],
   },
 
@@ -740,10 +740,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
       "A peaceful landscape of turquoise rivers, mountain villages, and quiet valleys shaped by the waters of the north.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "River", caption: "The turquoise Ghizer River", from: "from-cyan-600/30", to: "to-night" },
-      { tag: "Farmland", caption: "Open valley farmland", from: "from-green-dark", to: "to-forest" },
-      { tag: "Village", caption: "A quiet Ghizer settlement", from: "from-amber-700/30", to: "to-night" },
-      { tag: "Mountains", caption: "Peaks framing the valley road", from: "from-slate-600/30", to: "to-night" },
+      { tag: "River", caption: "The turquoise Ghizer River", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/juction-point.png" },
+      { tag: "Farmland", caption: "Open valley farmland", from: "from-green-dark", to: "to-forest", image: "/Images/tours/custom.png" },
+      { tag: "Village", caption: "A quiet Ghizer settlement", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/the-climb-up-from-the-bazaar.png" },
+      { tag: "Mountains", caption: "Peaks framing the valley road", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/rush-lake-3.png" },
     ],
   },
 
@@ -776,10 +776,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A secluded valley of green fields, traditional villages, and dramatic mountain scenery.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Fields", caption: "Terraced farmland in Yasin", from: "from-lime-700/30", to: "to-night" },
-      { tag: "Village", caption: "A traditional Yasin settlement", from: "from-amber-700/30", to: "to-forest" },
-      { tag: "Mountains", caption: "Peaks above the valley floor", from: "from-slate-600/30", to: "to-night" },
-      { tag: "River", caption: "The Yasin valley's waterway", from: "from-sky-700/30", to: "to-night" },
+      { tag: "Fields", caption: "Terraced farmland in Yasin", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/hunza-blossom.png" },
+      { tag: "Village", caption: "A traditional Yasin settlement", from: "from-amber-700/30", to: "to-forest", image: "/Images/tours/altit-khuns-stone-lanes.png" },
+      { tag: "Mountains", caption: "Peaks above the valley floor", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/rakaposhis-near-unbroken-rise.png" },
+      { tag: "River", caption: "The Yasin valley's waterway", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/shimsal-road.png" },
     ],
   },
 
@@ -812,10 +812,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A hidden valley of lakes and orchards in Ghizer, where still turquoise water sits beneath quiet peaks.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Lake", caption: "Phander's still turquoise water", from: "from-cyan-600/30", to: "to-night" },
-      { tag: "Orchards", caption: "Fruit trees along the shore", from: "from-lime-700/30", to: "to-forest" },
-      { tag: "Reflections", caption: "Peaks mirrored on the lake", from: "from-sky-700/30", to: "to-night" },
-      { tag: "Valley Floor", caption: "Phander's quiet farmland", from: "from-green-dark", to: "to-night" },
+      { tag: "Lake", caption: "Phander's still turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/borith-lake-early-morning.png" },
+      { tag: "Orchards", caption: "Fruit trees along the shore", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/the-restored-royal-garden.png" },
+      { tag: "Reflections", caption: "Peaks mirrored on the lake", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/skardu.png" },
+      { tag: "Valley Floor", caption: "Phander's quiet farmland", from: "from-green-dark", to: "to-night", image: "/Images/tours/shimsal-valley2.png" },
     ],
   },
 
@@ -848,10 +848,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "Pine forests and a chain of colourful alpine lakes make Naltar one of the north's most vivid landscapes.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Alpine Lakes", caption: "Naltar's chain of colour", from: "from-emerald-600/30", to: "to-night" },
-      { tag: "Pine Forest", caption: "Dense forest along the trail", from: "from-green-dark", to: "to-forest" },
-      { tag: "Ski Slope", caption: "Winter skiing in Naltar", from: "from-sky-800/30", to: "to-night" },
-      { tag: "Autumn Colour", caption: "Naltar's forest in October", from: "from-orange-500/30", to: "to-night" },
+      { tag: "Alpine Lakes", caption: "Naltar's chain of colour", from: "from-emerald-600/30", to: "to-night", image: "/Images/tours/rush-lake-1.png" },
+      { tag: "Pine Forest", caption: "Dense forest along the trail", from: "from-green-dark", to: "to-forest", image: "/Images/tours/hunza-valley.png" },
+      { tag: "Ski Slope", caption: "Winter skiing in Naltar", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/khunjerab-kkh-at-snow.png" },
+      { tag: "Autumn Colour", caption: "Naltar's forest in October", from: "from-orange-500/30", to: "to-night", image: "/Images/tours/borith-seabuckthorn-october.png" },
     ],
   },
 
@@ -884,10 +884,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "Cold desert dunes beside turquoise lakes, surrounded by dramatic mountain scenery.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Dunes", caption: "Katpana's cold desert sand", from: "from-amber-600/30", to: "to-night" },
-      { tag: "Lake", caption: "Turquoise water near Skardu", from: "from-cyan-600/30", to: "to-forest" },
-      { tag: "Mountains", caption: "Peaks above the desert", from: "from-slate-600/30", to: "to-night" },
-      { tag: "Town", caption: "Skardu's mountaineering base", from: "from-green-dark", to: "to-night" },
+      { tag: "Dunes", caption: "Katpana's cold desert sand", from: "from-amber-600/30", to: "to-night", image: "/Images/tours/cold-desert.png" },
+      { tag: "Lake", caption: "Turquoise water near Skardu", from: "from-cyan-600/30", to: "to-forest", image: "/Images/tours/bare-rock-walls-around-the-lake.png" },
+      { tag: "Mountains", caption: "Peaks above the desert", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/minapin(5).png" },
+      { tag: "Town", caption: "Skardu's mountaineering base", from: "from-green-dark", to: "to-night", image: "/Images/tours/the-climb-up-from-the-bazaar.png" },
     ],
   },
 
@@ -920,10 +920,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A historic valley of stone villages, fertile fields, and gateways to the high mountains of Baltistan.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Fort", caption: "Shigar Fort's restored architecture", from: "from-amber-700/40", to: "to-night" },
-      { tag: "Fields", caption: "Terraced farmland in the valley", from: "from-lime-700/30", to: "to-forest" },
-      { tag: "Village", caption: "Traditional Balti stone houses", from: "from-stone-600/30", to: "to-night" },
-      { tag: "Mountains", caption: "Peaks above Shigar's valley floor", from: "from-slate-600/30", to: "to-night" },
+      { tag: "Fort", caption: "Shigar Fort's restored architecture", from: "from-amber-700/40", to: "to-night", image: "/Images/tours/culture-heritage.png" },
+      { tag: "Fields", caption: "Terraced farmland in the valley", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/blossom-season.png" },
+      { tag: "Village", caption: "Traditional Balti stone houses", from: "from-stone-600/30", to: "to-night", image: "/Images/tours/fort-above-the-rooftop.png" },
+      { tag: "Mountains", caption: "Peaks above Shigar's valley floor", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/passu-cones-at-drawn.png" },
     ],
   },
 
@@ -956,10 +956,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "The Land of Giants — vast alpine plains where wild landscapes stretch beneath an endless sky.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "The Plateau", caption: "Deosai's endless open plains", from: "from-lime-700/30", to: "to-night" },
-      { tag: "Wildlife", caption: "Himalayan brown bear habitat", from: "from-amber-800/30", to: "to-forest" },
-      { tag: "Sheosar Lake", caption: "A still lake on the plateau", from: "from-sky-700/30", to: "to-night" },
-      { tag: "Wildflowers", caption: "Summer bloom across the plains", from: "from-rose-500/30", to: "to-night" },
+      { tag: "The Plateau", caption: "Deosai's endless open plains", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/deosai.png" },
+      { tag: "Wildlife", caption: "Himalayan brown bear habitat", from: "from-amber-800/30", to: "to-forest", image: "/Images/tours/khunjerab-ibex.png" },
+      { tag: "Sheosar Lake", caption: "A still lake on the plateau", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/shimsal-road3.png" },
+      { tag: "Wildflowers", caption: "Summer bloom across the plains", from: "from-rose-500/30", to: "to-night", image: "/Images/tours/open-gazing-land-en.png" },
     ],
   },
 
@@ -992,10 +992,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A still turquoise lake near Skardu, its glassy water mirroring the pine forest and cliffs around it.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Lake", caption: "Kachura's turquoise water", from: "from-cyan-600/30", to: "to-night" },
-      { tag: "Reflections", caption: "Pine forest mirrored on the surface", from: "from-green-dark", to: "to-forest" },
-      { tag: "Cliffs", caption: "Rock walls above the shoreline", from: "from-stone-600/30", to: "to-night" },
-      { tag: "Morning Calm", caption: "Kachura at sunrise", from: "from-sky-700/30", to: "to-night" },
+      { tag: "Lake", caption: "Kachura's turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/rush-lake-4.png" },
+      { tag: "Reflections", caption: "Pine forest mirrored on the surface", from: "from-green-dark", to: "to-forest", image: "/Images/tours/rush-lake-1.png" },
+      { tag: "Cliffs", caption: "Rock walls above the shoreline", from: "from-stone-600/30", to: "to-night", image: "/Images/tours/borith-passu-glacier-trail.png" },
+      { tag: "Morning Calm", caption: "Kachura at sunrise", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/borith-lake-early-morning.png" },
     ],
   },
 
@@ -1028,10 +1028,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "Alpine meadows at the foot of Nanga Parbat, wrapped in pine forest and morning mist.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Meadow", caption: "Fairy Meadows beneath Nanga Parbat", from: "from-green-dark", to: "to-night" },
-      { tag: "Nanga Parbat", caption: "The Killer Mountain's face", from: "from-slate-600/30", to: "to-forest" },
-      { tag: "Pine Forest", caption: "Forest framing the meadow", from: "from-lime-700/30", to: "to-night" },
-      { tag: "Morning Mist", caption: "Mist rolling through camp", from: "from-sky-700/30", to: "to-night" },
+      { tag: "Meadow", caption: "Fairy Meadows beneath Nanga Parbat", from: "from-green-dark", to: "to-night", image: "/Images/tours/meadows.png" },
+      { tag: "Nanga Parbat", caption: "The Killer Mountain's face", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/rakaposhis-icefall-up-close.png" },
+      { tag: "Pine Forest", caption: "Forest framing the meadow", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/hunza-valley.png" },
+      { tag: "Morning Mist", caption: "Mist rolling through camp", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/passu-cones-at-drawn.png" },
     ],
   },
 
@@ -1064,10 +1064,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A quiet alpine lake near Tato village, reached on the trek in toward Fairy Meadows beneath Nanga Parbat.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Lake", caption: "Kutwal Lake's still water", from: "from-sky-700/30", to: "to-night" },
-      { tag: "Pine Forest", caption: "Forest ringing the shoreline", from: "from-green-dark", to: "to-night" },
-      { tag: "Trail", caption: "The path up toward Fairy Meadows", from: "from-lime-700/30", to: "to-forest" },
-      { tag: "Tato Village", caption: "The trailhead below the lake", from: "from-amber-700/40", to: "to-night" },
+      { tag: "Lake", caption: "Kutwal Lake's still water", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/shimsal-road3.png" },
+      { tag: "Pine Forest", caption: "Forest ringing the shoreline", from: "from-green-dark", to: "to-night", image: "/Images/tours/meadows.png" },
+      { tag: "Trail", caption: "The path up toward Fairy Meadows", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/borith-passu-glacier-trail.png" },
+      { tag: "Tato Village", caption: "The trailhead below the lake", from: "from-amber-700/40", to: "to-night", image: "/Images/tours/altit-khuns-stone-lanes.png" },
     ],
   },
 
@@ -1100,10 +1100,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A still alpine lake ringed by pine forest, framed by uninterrupted views of Nanga Parbat rising above.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Lake", caption: "Rama Lake's still water", from: "from-sky-700/30", to: "to-night" },
-      { tag: "Nanga Parbat", caption: "The peak reflected on the lake", from: "from-slate-600/30", to: "to-forest" },
-      { tag: "Pine Forest", caption: "Forest ringing the lakeshore", from: "from-green-dark", to: "to-night" },
-      { tag: "Meadow", caption: "Camping ground at Rama", from: "from-lime-700/30", to: "to-night" },
+      { tag: "Lake", caption: "Rama Lake's still water", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/rush-lake-1.png" },
+      { tag: "Nanga Parbat", caption: "The peak reflected on the lake", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/rakaposhis-icefall-up-close.png" },
+      { tag: "Pine Forest", caption: "Forest ringing the lakeshore", from: "from-green-dark", to: "to-night", image: "/Images/tours/hunza-valley.png" },
+      { tag: "Meadow", caption: "Camping ground at Rama", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/meadows.png" },
     ],
   },
 
@@ -1136,10 +1136,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A remote glacial valley below Haramosh Peak, reached through pine forest and high pasture far from the highway.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Glacier", caption: "Harmosh's remote ice field", from: "from-sky-800/30", to: "to-night" },
-      { tag: "Haramosh Peak", caption: "The valley's defining summit", from: "from-slate-600/30", to: "to-forest" },
-      { tag: "Pine Forest", caption: "Forest on the approach trail", from: "from-green-dark", to: "to-night" },
-      { tag: "High Pasture", caption: "Herders' grazing ground", from: "from-lime-700/30", to: "to-night" },
+      { tag: "Glacier", caption: "Harmosh's remote ice field", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/minapin(4).png" },
+      { tag: "Haramosh Peak", caption: "The valley's defining summit", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/minapin(2).png" },
+      { tag: "Pine Forest", caption: "Forest on the approach trail", from: "from-green-dark", to: "to-night", image: "/Images/tours/borith-seabuckthorn-october.png" },
+      { tag: "High Pasture", caption: "Herders' grazing ground", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/shimsal-valley2.png" },
     ],
   },
 
@@ -1172,10 +1172,10 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "Gateway to Nanga Parbat's Rupal Face, one of the tallest mountain walls on earth, deep in Astore district.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Rupal Face", caption: "One of the tallest walls on Earth", from: "from-slate-600/30", to: "to-night" },
-      { tag: "Valley", caption: "Rupal's approach valley", from: "from-green-dark", to: "to-forest" },
-      { tag: "Village", caption: "Traditional Astore settlements", from: "from-amber-700/30", to: "to-night" },
-      { tag: "Base Camp", caption: "Camping beneath the face", from: "from-sky-700/30", to: "to-night" },
+      { tag: "Rupal Face", caption: "One of the tallest walls on Earth", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/passu-cones-at-drawn.png" },
+      { tag: "Valley", caption: "Rupal's approach valley", from: "from-green-dark", to: "to-forest", image: "/Images/tours/minapin(5).png" },
+      { tag: "Village", caption: "Traditional Astore settlements", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/blossom-season.png" },
+      { tag: "Base Camp", caption: "Camping beneath the face", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/rakaposhis-icefall-up-close.png" },
     ],
   },
 };
