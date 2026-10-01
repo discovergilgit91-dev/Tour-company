@@ -18,6 +18,7 @@ import {
 import { PeaksMotif, MOTIF_COMPONENTS } from "./tours/motifs";
 import { useRevealOnScroll } from "./DestinationCard";
 import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
+import { notifyN8nReservation } from "@/lib/notifyN8nReservation";
 import type { SessionProfile } from "@/lib/supabase/session";
 import type { TourDetail } from "@/lib/tourDetails";
 import { TOUR_HERO_IMAGES, GENERIC_BOOKING_HERO_IMAGE } from "@/lib/tourDetails";
@@ -136,6 +137,8 @@ export default function BookingPage({
   const [phone, setPhone] = useState("");
   const [requests, setRequests] = useState("");
   const [travelers, setTravelers] = useState(2);
+  const [consent, setConsent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
@@ -286,8 +289,9 @@ export default function BookingPage({
                 </div>
               ) : (
                 <form
-                  onSubmit={(event) => {
+                  onSubmit={async (event) => {
                     event.preventDefault();
+                    if (submitting) return;
 
                     if (!isSignedIn) {
                       savePendingSubmission({
@@ -297,6 +301,41 @@ export default function BookingPage({
                       });
                       router.push("/sign-up");
                       return;
+                    }
+
+                    // The n8n webhook is the only place this form's data goes (no
+                    // Supabase). A failed/timed-out call is logged server-side inside
+                    // notifyN8nReservation and never blocks the success state below —
+                    // from the visitor's side, submitting always looks the same.
+                    setSubmitting(true);
+                    try {
+                      await notifyN8nReservation({
+                        fullName: name,
+                        email,
+                        phone,
+                        travellers: travelers,
+                        specialRequests: requests,
+                        consent,
+                        tour: tour
+                          ? {
+                              slug: tour.slug,
+                              name: tour.title,
+                              dates: tour.dateRange,
+                              duration: tour.duration,
+                              route: tour.route,
+                              physicalLevel: tour.level,
+                              pricePerTraveller: pricePerPerson,
+                              totalPrice: total,
+                              currency: "USD",
+                              included: INCLUDED,
+                              notIncluded: NOT_INCLUDED,
+                            }
+                          : null,
+                      });
+                    } catch {
+                      // Already logged inside notifyN8nReservation — nothing more to do here.
+                    } finally {
+                      setSubmitting(false);
                     }
 
                     setSubmitted(true);
@@ -421,6 +460,8 @@ export default function BookingPage({
                       <input
                         type="checkbox"
                         required
+                        checked={consent}
+                        onChange={(event) => setConsent(event.target.checked)}
                         className="mt-0.5 h-4 w-4 shrink-0 rounded border-forest/25 text-green focus:ring-green/40"
                       />
                       I agree to be contacted about this reservation request. No payment is taken now.
@@ -428,7 +469,8 @@ export default function BookingPage({
 
                     <button
                       type="submit"
-                      className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
+                      disabled={submitting}
+                      className="group flex w-full disabled:cursor-wait disabled:opacity-70 items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
                     >
                       {isSignedIn ? "Submit Reservation Request" : "Sign Up to Reserve"}
                       <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
