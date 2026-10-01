@@ -585,11 +585,22 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
               return (
                 <Reveal key={photo.caption} delay={(index % 6) * 80}>
                   <div className="group relative aspect-[4/5] overflow-hidden rounded-[18px]">
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
-                    >
-                      <Motif className="absolute inset-0 h-full w-full p-10 text-cream/20" />
-                    </div>
+                    {photo.image ? (
+                      <Image
+                        src={photo.image}
+                        alt={photo.caption}
+                        fill
+                        quality={85}
+                        sizes="(min-width: 1024px) 33vw, 50vw"
+                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                      />
+                    ) : (
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
+                      >
+                        <Motif className="absolute inset-0 h-full w-full p-10 text-cream/20" />
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
                     <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
                       {photo.tag}
