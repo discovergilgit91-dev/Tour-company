@@ -778,7 +778,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     gallery: [
       { tag: "Fields", caption: "Terraced farmland in Yasin", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/yasin(2).png" },
       { tag: "Valley", caption: "Green fields along the river", from: "from-amber-700/30", to: "to-forest", image: "/Images/tours/yasin(3).png" },
-      { tag: "Mountains", caption: "Peaks above the valley floor", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/yasin(4).png" },
+      { tag: "Village", caption: "A traditional Yasin settlement", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/yasin(1).png" },
       { tag: "River", caption: "The Yasin valley's waterway", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/yasin(5).png" },
     ],
   },

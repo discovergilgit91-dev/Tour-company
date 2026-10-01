@@ -187,7 +187,7 @@ export const DESTINATIONS: Destination[] = [
     name: "Yasin Valley",
     blurb: "A secluded valley of green fields, traditional villages, and dramatic mountain scenery.",
     image: "/Images/tours/yasin(3).png",
-    heroImage: "/Images/tours/yasin(1).png",
+    heroImage: "/Images/tours/yasin(4).png",
     tag: "Discover Yasin Valley",
     href: "/destinations/yasin-valley",
     altitude: "2,500 m",
