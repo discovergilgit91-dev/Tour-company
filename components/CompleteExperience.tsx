@@ -116,37 +116,43 @@ function MountainBanner({ className = "" }: { className?: string }) {
 const SERVICES = [
   {
     Icon: TransportIcon,
-    image: "/Images/services/transportation.jpg",
+    image: "/Images/tours/Transportation.png",
+    focus: "50% 72%",
     title: "Transportation",
     description: "Private transfers and 4x4s for every mountain road, door to door.",
   },
   {
     Icon: StayIcon,
-    image: "/Images/services/stay.jpg",
+    image: "/Images/tours/Stay.png",
+    focus: "50% 55%",
     title: "Stay",
     description: "Handpicked guesthouses and heritage stays at every altitude.",
   },
   {
     Icon: FoodIcon,
-    image: "/Images/services/food.jpg",
+    image: "/Images/tours/service-local-food.png",
+    focus: "50% 50%",
     title: "Local Food",
     description: "Fresh, home-style meals rooted in Gilgit-Baltistan's own kitchens.",
   },
   {
     Icon: GuideIcon,
-    image: "/Images/services/guides.jpg",
+    image: "/Images/tours/guided-experience.png",
+    focus: "30% 50%",
     title: "Guided Experiences",
     description: "Local guides who know every valley, pass, and story worth telling.",
   },
   {
     Icon: ActivitiesIcon,
-    image: "/Images/services/activities.jpg",
+    image: "/Images/tours/activities.png",
+    focus: "50% 50%",
     title: "Activities",
     description: "Treks, safaris, and cultural visits, paced around your group.",
   },
   {
     Icon: SupportIcon,
-    image: "/Images/services/support.jpg",
+    image: "/Images/tours/complete-support.png",
+    focus: "20% 60%",
     title: "Complete Support",
     description: "One team, one point of contact, from booking to the final drive home.",
   },
@@ -201,7 +207,7 @@ export default function CompleteExperience() {
         </Reveal>
 
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-7">
-          {SERVICES.map(({ Icon, image, title, description }, index) => (
+          {SERVICES.map(({ Icon, image, focus, title, description }, index) => (
             <Reveal key={title} delay={(index % 6) * 70}>
               <div className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-cream/10 bg-cream/[0.03] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(0,0,0,0.5)]">
                 <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
@@ -211,6 +217,7 @@ export default function CompleteExperience() {
                     fill
                     quality={85}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    style={{ objectPosition: focus }}
                     className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/10 to-transparent" />
