@@ -341,11 +341,24 @@ function TripOverviewCard({ tour }: { tour: TourDetail }) {
   return (
     <div className="overflow-hidden rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)]">
       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-forest to-night">
-        <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full text-cream/10" />
-        <Motif className="absolute right-2 top-4 h-24 w-24 text-cream/30" />
-        <span className="absolute left-4 top-4 inline-flex items-center rounded-full border border-cream/15 bg-night/50 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/70 backdrop-blur-sm">
-          Photo coming soon
-        </span>
+        {tour.photos[3]?.image ? (
+          <>
+            <Image
+              src={tour.photos[3].image}
+              alt={tour.photos[3].caption}
+              fill
+              quality={85}
+              sizes="(min-width: 1024px) 340px, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-night/40 via-transparent to-transparent" />
+          </>
+        ) : (
+          <>
+            <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full text-cream/10" />
+            <Motif className="absolute right-2 top-4 h-24 w-24 text-cream/30" />
+          </>
+        )}
       </div>
 
       <div className="p-6">
@@ -488,12 +501,22 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                     <Reveal key={guide.name} delay={index * 90}>
                       <div className="flex h-full gap-4 rounded-[18px] border border-forest/10 bg-white p-5 shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_28px_-8px_rgba(18,36,28,0.16)]">
                         <div
-                          className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${guide.from} ${guide.to} font-serif text-lg text-white`}
+                          className={`relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br ${guide.from} ${guide.to} font-serif text-lg text-white`}
                         >
-                          {guide.name
-                            .split(" ")
-                            .map((w) => w[0])
-                            .join("")}
+                          {guide.avatar ? (
+                            <Image
+                              src={guide.avatar}
+                              alt={guide.name}
+                              fill
+                              sizes="56px"
+                              className="object-cover object-[center_20%]"
+                            />
+                          ) : (
+                            guide.name
+                              .split(" ")
+                              .map((w) => w[0])
+                              .join("")
+                          )}
                         </div>
                         <div className="min-w-0">
                           <h3 className="font-serif text-lg text-forest">{guide.name}</h3>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CalendarIcon } from "./ui/icons";
 import { useRevealOnScroll } from "./DestinationCard";
@@ -329,9 +330,15 @@ export default function FestivalPage() {
                   />
                 </svg>
                 <SunMotif className="absolute inset-0 h-full w-full p-16 text-gold/10" />
-                <span className="absolute left-5 top-5 inline-flex items-center rounded-full border border-cream/15 bg-night/60 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-cream/70 backdrop-blur-sm">
-                  Photo coming soon
-                </span>
+                <Image
+                  src="/Images/tours/local-experience.png"
+                  alt="A local market with fresh produce and handmade goods"
+                  fill
+                  quality={85}
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
               </div>
             </Reveal>
 
