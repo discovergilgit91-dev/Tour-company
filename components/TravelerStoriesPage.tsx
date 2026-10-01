@@ -134,19 +134,21 @@ export default function TravelerStoriesPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-28 text-center sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
-          <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
-            TRAVELER STORIES
-          </span>
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
+          <div className="max-w-2xl">
+            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+              TRAVELER STORIES
+            </span>
 
-          <h1 className="mx-auto max-w-2xl font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
-            Real trips. <span className="heading-accent">Real stories.</span>
-          </h1>
+            <h1 className="font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
+              Real trips. <span className="heading-accent">Real stories.</span>
+            </h1>
 
-          <p className="mx-auto mt-5 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">
-            Honest words from the people who&rsquo;ve walked these valleys with us — no scripts, no stock
-            reviews, just what they told us afterward.
-          </p>
+            <p className="mt-5 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">
+              Honest words from the people who&rsquo;ve walked these valleys with us — no scripts, no stock
+              reviews, just what they told us afterward.
+            </p>
+          </div>
         </div>
       </section>
 
