@@ -45,7 +45,6 @@ export const DESTINATIONS: Destination[] = [
     name: "Altit Fort",
     blurb: "The oldest monument in Hunza, perched on a sheer cliff above the river since the 11th century.",
     image: "/Images/tours/gilgit_fort_upscaled.png",
-    heroImage: "/Images/tours/altit-fort-above-the-gorge.png",
     tag: "Discover Altit Fort",
     href: "/destinations/altit-fort",
     altitude: "2,100 m",
@@ -175,6 +174,7 @@ export const DESTINATIONS: Destination[] = [
     blurb:
       "A peaceful landscape of turquoise rivers, mountain villages, and quiet valleys shaped by the waters of the north.",
     image: "/Images/tours/ghizer(2).png",
+    heroImage: "/Images/tours/ghizer(4).png",
     tag: "Discover Ghizer Valley",
     href: "/destinations/ghizer-valley",
     altitude: "2,150 m",
@@ -186,6 +186,7 @@ export const DESTINATIONS: Destination[] = [
     name: "Yasin Valley",
     blurb: "A secluded valley of green fields, traditional villages, and dramatic mountain scenery.",
     image: "/Images/tours/yasin(3).png",
+    heroImage: "/Images/tours/yasin(5).png",
     tag: "Discover Yasin Valley",
     href: "/destinations/yasin-valley",
     altitude: "2,500 m",
