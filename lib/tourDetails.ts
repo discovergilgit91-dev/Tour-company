@@ -2,7 +2,7 @@ import type { StatIconId } from "@/components/tours/statIcons";
 import type { MotifShape } from "@/components/tours/motifs";
 
 export type TourStat = { value: string; label: string; iconId: StatIconId };
-export type TourGuide = { name: string; role: string; bio: string; from: string; to: string };
+export type TourGuide = { name: string; role: string; bio: string; from: string; to: string; avatar?: string };
 export type TourItineraryDay = { day: string; title: string; tag: string; description: string };
 export type TourPhoto = { caption: string; tag: string; from: string; to: string; image?: string };
 
@@ -77,14 +77,43 @@ const PHOTO_HUES: [string, string][] = [
   ["from-indigo-300/70", "to-forest"],
 ];
 
+const FEMALE_GUIDE_FIRST_NAMES = new Set([
+  "Amina", "Zarina", "Nusrat", "Rukhsana", "Farida", "Salma", "Dilshad", "Sultana", "Zeenat", "Shabana", "Alia",
+  "Sofia", "Nargis", "Rabia", "Sana", "Faiza", "Nasreen", "Sabira", "Yasmeen", "Perveen", "Gulnaz",
+]);
+const MALE_AVATARS = ["/Images/tours/Ali-raza.png", "/Images/tours/Daniel-reyes-face.jpg"];
+const FEMALE_AVATARS = [
+  "/Images/tours/Sarah-khan.png",
+  "/Images/tours/ayesha-malik.png",
+  "/Images/tours/Ayesha-khan.jpg",
+  "/Images/tours/mera-mire.jpg",
+];
+
 function guides(rows: [string, string, string][]): TourGuide[] {
-  return rows.map(([name, role, bio], i) => ({
+  let maleCount = 0;
+  let femaleCount = 0;
+  const hasAli = rows.some(([name]) => name === "Ali Raza");
+  return rows.map(([name, role, bio], i) => {
+    const female = FEMALE_GUIDE_FIRST_NAMES.has(name.split(" ")[0]);
+    // Ali Raza's own portrait is Ali-raza.png; other male guides on that tour take the remaining portrait.
+    const avatar =
+      name === "Ali Raza"
+        ? MALE_AVATARS[0]
+        : female
+          ? FEMALE_AVATARS[femaleCount++ % FEMALE_AVATARS.length]
+          : MALE_AVATARS[(maleCount++ + (hasAli ? 1 : 0)) % MALE_AVATARS.length];
+    return { ...guideBase(name, role, bio, i), avatar };
+  });
+}
+
+function guideBase(name: string, role: string, bio: string, i: number): TourGuide {
+  return ({
     name,
     role,
     bio,
     from: AVATAR_HUES[i % AVATAR_HUES.length][0],
     to: AVATAR_HUES[i % AVATAR_HUES.length][1],
-  }));
+  });
 }
 
 function photos(rows: [string, string, string?][]): TourPhoto[] {

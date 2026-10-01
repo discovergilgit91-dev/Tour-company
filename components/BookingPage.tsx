@@ -523,11 +523,24 @@ export default function BookingPage({
                   {tour ? (
                     <div className="overflow-hidden rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)]">
                       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-forest to-night">
-                        <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full text-cream/10" />
-                        {AccentMotif && <AccentMotif className="absolute right-2 top-4 h-24 w-24 text-cream/30" />}
-                        <span className="absolute left-4 top-4 inline-flex items-center rounded-full border border-cream/15 bg-night/50 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/70 backdrop-blur-sm">
-                          Photo coming soon
-                        </span>
+                        {tour.photos[3]?.image ? (
+                          <>
+                            <Image
+                              src={tour.photos[3].image}
+                              alt={tour.photos[3].caption}
+                              fill
+                              quality={85}
+                              sizes="(min-width: 1024px) 340px, 100vw"
+                              className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-night/40 via-transparent to-transparent" />
+                          </>
+                        ) : (
+                          <>
+                            <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full text-cream/10" />
+                            {AccentMotif && <AccentMotif className="absolute right-2 top-4 h-24 w-24 text-cream/30" />}
+                          </>
+                        )}
                       </div>
 
                       <div className="p-6">
