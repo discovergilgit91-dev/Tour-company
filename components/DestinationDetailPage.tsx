@@ -44,6 +44,9 @@ export default function DestinationDetailPage({
   nearby: Destination[];
 }) {
   const categoryLabel = destination.category ? LAND_CATEGORY_LABELS[destination.category] : undefined;
+  // The Featured tile repeats the listing-card photo, so skip it when that photo is already a gallery tile.
+  const showFeatured =
+    Boolean(destination.image) && !content.gallery.some((photo) => photo.image === destination.image);
 
   return (
     <main className="bg-cream">
@@ -265,8 +268,12 @@ export default function DestinationDetailPage({
             </h2>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:mt-12">
-            {destination.image && (
+          <div
+            className={`mt-10 grid grid-cols-2 gap-4 lg:mt-12 ${
+              !showFeatured && content.gallery.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4"
+            }`}
+          >
+            {showFeatured && destination.image && (
               <Reveal className="col-span-2">
                 <div className="group relative aspect-[16/11] overflow-hidden rounded-[18px] sm:aspect-[8/5]">
                   <Image
@@ -292,7 +299,7 @@ export default function DestinationDetailPage({
               </Reveal>
             )}
             {content.gallery.map((photo, index) => {
-              const isWide = Boolean(destination.image) && index >= 2;
+              const isWide = showFeatured && index >= 2;
               return (
                 <Reveal
                   key={photo.caption}

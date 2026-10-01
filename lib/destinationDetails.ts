@@ -228,7 +228,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
         caption: "Attabad's signature colour",
         from: "from-cyan-500/30",
         to: "to-night",
-        image: "/Images/tours/rush-lake-1.png",
+        image: "/Images/tours/attabads-signature-colour.jpg",
       },
       {
         tag: "Boat Crossing",
@@ -638,7 +638,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
         caption: "The climb above Nagar's glaciers",
         from: "from-stone-600/30",
         to: "to-night",
-        image: "/Images/tours/nagar-glacier.png",
+        image: "/Images/tours/rush-lake.png",
       },
       {
         tag: "Camp",
@@ -742,7 +742,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     gallery: [
       { tag: "River", caption: "The turquoise Ghizer River", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/ghizer(1).png" },
       { tag: "Farmland", caption: "Open valley farmland", from: "from-green-dark", to: "to-forest", image: "/Images/tours/ghizer(3).png" },
-      { tag: "Village", caption: "A quiet Ghizer settlement", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/altit-khuns-stone-lanes.png" },
+      { tag: "Village", caption: "A quiet Ghizer settlement", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/ghizer(2).png" },
       { tag: "Mountains", caption: "Peaks framing the valley road", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/ghizer(4).png" },
     ],
   },
@@ -777,8 +777,8 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Fields", caption: "Terraced farmland in Yasin", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/yasin(2).png" },
-      { tag: "Village", caption: "A traditional Yasin settlement", from: "from-amber-700/30", to: "to-forest", image: "/Images/tours/yasin(1).png" },
-      { tag: "Mountains", caption: "Peaks above the valley floor", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/yasin(4).png" },
+      { tag: "Valley", caption: "Green fields along the river", from: "from-amber-700/30", to: "to-forest", image: "/Images/tours/yasin(3).png" },
+      { tag: "Village", caption: "A traditional Yasin settlement", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/yasin(1).png" },
       { tag: "River", caption: "The Yasin valley's waterway", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/yasin(5).png" },
     ],
   },
@@ -815,7 +815,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
       { tag: "Lake", caption: "Phander's still turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/phander(1).png" },
       { tag: "Autumn Colour", caption: "Golden poplars along the river", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/phander(2).png" },
       { tag: "Reflections", caption: "Peaks mirrored on the lake", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/phander(3).png" },
-      { tag: "Valley Floor", caption: "Grazing land on the valley floor", from: "from-green-dark", to: "to-night", image: "/Images/tours/shimsal-valley2.png" },
+      { tag: "Valley Floor", caption: "Welcome to Phander Valley", from: "from-green-dark", to: "to-night", image: "/Images/tours/Phander(4).png" },
     ],
   },
 
@@ -850,7 +850,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     gallery: [
       { tag: "Alpine Lakes", caption: "Naltar's chain of colour", from: "from-emerald-600/30", to: "to-night", image: "/Images/tours/nalter(1).png" },
       { tag: "Pine Forest", caption: "Dense forest along the trail", from: "from-green-dark", to: "to-forest", image: "/Images/tours/nalter(2).png" },
-      { tag: "Ski Slope", caption: "Winter skiing in Naltar", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/khunjerab-kkh-at-snow.png" },
+      { tag: "Ski Slope", caption: "Winter skiing in Naltar", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/nalter(4).png" },
       { tag: "Mirror Lake", caption: "A second still lake in the valley", from: "from-orange-500/30", to: "to-night", image: "/Images/tours/nalter(3).png" },
     ],
   },
@@ -921,7 +921,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Fort", caption: "Shigar Fort's restored architecture", from: "from-amber-700/40", to: "to-night", image: "/Images/tours/shigar(2).png" },
-      { tag: "Fields", caption: "Terraced farmland in the valley", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/blossom-season.png" },
+      { tag: "Fields", caption: "Terraced farmland in the valley", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/shigar(1).png" },
       { tag: "Village", caption: "Traditional Balti stone houses", from: "from-stone-600/30", to: "to-night", image: "/Images/tours/shigar(3).png" },
       { tag: "Mountains", caption: "Peaks above Shigar's valley floor", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/shigar(4).png" },
     ],
@@ -992,7 +992,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A still turquoise lake near Skardu, its glassy water mirroring the pine forest and cliffs around it.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Lake", caption: "Kachura's turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/borith-lake-early-morning.png" },
+      { tag: "Lake", caption: "Kachura's turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/kachura(1).png" },
       { tag: "Reflections", caption: "Pine forest mirrored on the surface", from: "from-green-dark", to: "to-forest", image: "/Images/tours/kachura(2).png" },
       { tag: "Cliffs", caption: "Rock walls above the shoreline", from: "from-stone-600/30", to: "to-night", image: "/Images/tours/kachura(3).png" },
       { tag: "Morning Calm", caption: "Kachura at sunrise", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/kachura(4).png" },
@@ -1066,7 +1066,6 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     gallery: [
       { tag: "Lake", caption: "Kutwal Lake's still water", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/kutwal(1).png" },
       { tag: "High Pasture", caption: "Horses grazing near Kutwal", from: "from-green-dark", to: "to-night", image: "/Images/tours/kutwal(3).png" },
-      { tag: "Trail", caption: "The path up toward Fairy Meadows", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/borith-passu-glacier-trail.png" },
       { tag: "Tato Village", caption: "The trailhead below the lake", from: "from-amber-700/40", to: "to-night", image: "/Images/tours/kutwal(4).png" },
     ],
   },
@@ -1101,7 +1100,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Lake", caption: "Rama Lake's still water", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/ramalake(2).png" },
-      { tag: "Nanga Parbat", caption: "The peak reflected on the lake", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/rush-lake-4.png" },
+      { tag: "Nanga Parbat", caption: "The peak reflected on the lake", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/ramalake(1).png" },
       { tag: "Pine Forest", caption: "Forest ringing the lakeshore", from: "from-green-dark", to: "to-night", image: "/Images/tours/ramalake(3).png" },
       { tag: "Meadow", caption: "Camping ground at Rama", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/ramalake(4).png" },
     ],
@@ -1137,7 +1136,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Glacier", caption: "Harmosh's remote ice field", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/haramosh(1).png" },
-      { tag: "Haramosh Peak", caption: "The valley's defining summit", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/minapin(2).png" },
+      { tag: "Haramosh Peak", caption: "The valley's defining summit", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/haramosh(2).png" },
       { tag: "Pine Forest", caption: "Forest on the approach trail", from: "from-green-dark", to: "to-night", image: "/Images/tours/haramosh(3).png" },
       { tag: "High Pasture", caption: "Herders' grazing ground", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/haramosh(4).png" },
     ],
