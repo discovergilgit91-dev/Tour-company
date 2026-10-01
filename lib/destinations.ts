@@ -45,6 +45,7 @@ export const DESTINATIONS: Destination[] = [
     name: "Altit Fort",
     blurb: "The oldest monument in Hunza, perched on a sheer cliff above the river since the 11th century.",
     image: "/Images/tours/gilgit_fort_upscaled.png",
+    heroImage: "/Images/tours/culture-heritage.png",
     tag: "Discover Altit Fort",
     href: "/destinations/altit-fort",
     altitude: "2,100 m",
