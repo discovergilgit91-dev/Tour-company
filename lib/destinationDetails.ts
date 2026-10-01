@@ -228,7 +228,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
         caption: "Attabad's signature colour",
         from: "from-cyan-500/30",
         to: "to-night",
-        image: "/Images/tours/attabads-signature-colour.jpg",
+        image: "/Images/tours/rush-lake-1.png",
       },
       {
         tag: "Boat Crossing",
@@ -742,7 +742,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     gallery: [
       { tag: "River", caption: "The turquoise Ghizer River", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/ghizer(1).png" },
       { tag: "Farmland", caption: "Open valley farmland", from: "from-green-dark", to: "to-forest", image: "/Images/tours/ghizer(3).png" },
-      { tag: "Village", caption: "A quiet Ghizer settlement", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/ghizer(2).png" },
+      { tag: "Village", caption: "A quiet Ghizer settlement", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/altit-khuns-stone-lanes.png" },
       { tag: "Mountains", caption: "Peaks framing the valley road", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/ghizer(4).png" },
     ],
   },
@@ -815,7 +815,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
       { tag: "Lake", caption: "Phander's still turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/phander(1).png" },
       { tag: "Autumn Colour", caption: "Golden poplars along the river", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/phander(2).png" },
       { tag: "Reflections", caption: "Peaks mirrored on the lake", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/phander(3).png" },
-      { tag: "Valley Floor", caption: "Welcome to Phander Valley", from: "from-green-dark", to: "to-night", image: "/Images/tours/Phander(4).png" },
+      { tag: "Valley Floor", caption: "Grazing land on the valley floor", from: "from-green-dark", to: "to-night", image: "/Images/tours/shimsal-valley2.png" },
     ],
   },
 
@@ -850,7 +850,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     gallery: [
       { tag: "Alpine Lakes", caption: "Naltar's chain of colour", from: "from-emerald-600/30", to: "to-night", image: "/Images/tours/nalter(1).png" },
       { tag: "Pine Forest", caption: "Dense forest along the trail", from: "from-green-dark", to: "to-forest", image: "/Images/tours/nalter(2).png" },
-      { tag: "Ski Slope", caption: "Winter skiing in Naltar", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/nalter(4).png" },
+      { tag: "Ski Slope", caption: "Winter skiing in Naltar", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/khunjerab-kkh-at-snow.png" },
       { tag: "Mirror Lake", caption: "A second still lake in the valley", from: "from-orange-500/30", to: "to-night", image: "/Images/tours/nalter(3).png" },
     ],
   },
@@ -921,7 +921,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Fort", caption: "Shigar Fort's restored architecture", from: "from-amber-700/40", to: "to-night", image: "/Images/tours/shigar(2).png" },
-      { tag: "Fields", caption: "Terraced farmland in the valley", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/shigar(1).png" },
+      { tag: "Fields", caption: "Terraced farmland in the valley", from: "from-lime-700/30", to: "to-forest", image: "/Images/tours/blossom-season.png" },
       { tag: "Village", caption: "Traditional Balti stone houses", from: "from-stone-600/30", to: "to-night", image: "/Images/tours/shigar(3).png" },
       { tag: "Mountains", caption: "Peaks above Shigar's valley floor", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/shigar(4).png" },
     ],
@@ -992,7 +992,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quote: "A still turquoise lake near Skardu, its glassy water mirroring the pine forest and cliffs around it.",
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
-      { tag: "Lake", caption: "Kachura's turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/kachura(1).png" },
+      { tag: "Lake", caption: "Kachura's turquoise water", from: "from-cyan-600/30", to: "to-night", image: "/Images/tours/borith-lake-early-morning.png" },
       { tag: "Reflections", caption: "Pine forest mirrored on the surface", from: "from-green-dark", to: "to-forest", image: "/Images/tours/kachura(2).png" },
       { tag: "Cliffs", caption: "Rock walls above the shoreline", from: "from-stone-600/30", to: "to-night", image: "/Images/tours/kachura(3).png" },
       { tag: "Morning Calm", caption: "Kachura at sunrise", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/kachura(4).png" },
@@ -1101,7 +1101,7 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Lake", caption: "Rama Lake's still water", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/ramalake(2).png" },
-      { tag: "Nanga Parbat", caption: "The peak reflected on the lake", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/ramalake(1).png" },
+      { tag: "Nanga Parbat", caption: "The peak reflected on the lake", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/rush-lake-4.png" },
       { tag: "Pine Forest", caption: "Forest ringing the lakeshore", from: "from-green-dark", to: "to-night", image: "/Images/tours/ramalake(3).png" },
       { tag: "Meadow", caption: "Camping ground at Rama", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/ramalake(4).png" },
     ],
@@ -1137,45 +1137,9 @@ export const DESTINATION_DETAILS: Record<string, DestinationDetailContent> = {
     quoteAuthor: "Discover Gilgit guide notes",
     gallery: [
       { tag: "Glacier", caption: "Harmosh's remote ice field", from: "from-sky-800/30", to: "to-night", image: "/Images/tours/haramosh(1).png" },
-      { tag: "Haramosh Peak", caption: "The valley's defining summit", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/haramosh(2).png" },
+      { tag: "Haramosh Peak", caption: "The valley's defining summit", from: "from-slate-600/30", to: "to-forest", image: "/Images/tours/minapin(2).png" },
       { tag: "Pine Forest", caption: "Forest on the approach trail", from: "from-green-dark", to: "to-night", image: "/Images/tours/haramosh(3).png" },
       { tag: "High Pasture", caption: "Herders' grazing ground", from: "from-lime-700/30", to: "to-night", image: "/Images/tours/haramosh(4).png" },
-    ],
-  },
-
-  "rupal-valley": {
-    tagline: "Gateway to one of the tallest mountain walls on Earth",
-    intro:
-      "Rupal Valley is the gateway to Nanga Parbat's Rupal Face, one of the tallest mountain walls on Earth, deep in Astore district — a valley defined entirely by the scale of the mountain wall rising directly above it.",
-    highlights: [
-      "The Rupal Face — one of the tallest continuous mountain walls in the world",
-      "A quieter approach to Nanga Parbat than the Fairy Meadows side",
-      "Traditional Astore villages along the valley approach",
-      "Serious trekking and mountaineering history along the route",
-    ],
-    famousFor: [
-      {
-        title: "The Rupal Face",
-        text: "Rising over 4,600 metres from base to summit, the Rupal Face is among the tallest continuous mountain walls on Earth — a genuine scale that's hard to grasp until you're standing beneath it.",
-      },
-      {
-        title: "Mountaineering History",
-        text: "The face has drawn serious mountaineering attempts for decades, including landmark ascents that shaped Himalayan climbing history.",
-      },
-      {
-        title: "A Quieter Nanga Parbat Approach",
-        text: "Far fewer visitors reach Nanga Parbat via Rupal than via Fairy Meadows, giving this side of the mountain a more remote, unhurried character.",
-      },
-    ],
-    bestTime: "June–September, when the valley road and trekking trails are open",
-    howToReach: "A multi-hour drive from Astore town, deep into Rupal valley.",
-    quote: "Gateway to Nanga Parbat's Rupal Face, one of the tallest mountain walls on earth, deep in Astore district.",
-    quoteAuthor: "Discover Gilgit guide notes",
-    gallery: [
-      { tag: "Rupal Face", caption: "One of the tallest walls on Earth", from: "from-slate-600/30", to: "to-night", image: "/Images/tours/rupal-valley(1).png" },
-      { tag: "Valley", caption: "Rupal's approach valley", from: "from-green-dark", to: "to-forest", image: "/Images/tours/rupal-valley(2).png" },
-      { tag: "Village", caption: "Traditional Astore settlements", from: "from-amber-700/30", to: "to-night", image: "/Images/tours/rupal-valley(3).png" },
-      { tag: "Base Camp", caption: "Camping beneath the face", from: "from-sky-700/30", to: "to-night", image: "/Images/tours/rupal-valley(4).png" },
     ],
   },
 };
