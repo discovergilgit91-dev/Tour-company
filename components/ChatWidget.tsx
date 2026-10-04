@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { PeaksMotif } from "./tours/motifs";
+import { CHAT_FALLBACK_REPLY, type ChatResponseBody } from "@/lib/chat";
 
 /* ---------------------------------------------------------------------
    Site-wide chat widget. Mounted once in app/layout.tsx (see that file
@@ -27,20 +28,36 @@ function nextMessageId() {
   return `msg-${messageCounter}`;
 }
 
+function newSessionId(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 12)}`;
+}
+
 /**
- * ---------------------------------------------------------------------
- * STUB — this is the single place the real n8n webhook call goes.
- * Swap the setTimeout below for a fetch() to the webhook, await the
- * real reply, and call onReply with its text instead of the canned one.
- * ---------------------------------------------------------------------
+ * Sends one message to /api/chat (the server route that talks to n8n — the
+ * browser never calls n8n directly) and resolves with the bot's reply text.
+ * Never rejects: any failure resolves with the fallback reply so it shows
+ * up as a normal bot bubble.
  */
-function sendMessageToBot(userText: string, onReply: (replyText: string) => void) {
-  const delay = 900 + Math.random() * 700;
-  setTimeout(() => {
-    onReply(
-      `Thanks for asking about "${userText}" — once this is connected, a guide will answer here directly. In the meantime, take a look at our destinations or tours pages!`
-    );
-  }, delay);
+async function sendMessageToBot(userText: string, sessionId: string): Promise<string> {
+  // Safety net so a hung request can't leave the typing bubble up forever;
+  // the server gives up on n8n well before this.
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userText, sessionId }),
+      signal: controller.signal,
+    });
+    const data = (await response.json()) as Partial<ChatResponseBody>;
+    return typeof data.reply === "string" && data.reply.trim() ? data.reply : CHAT_FALLBACK_REPLY;
+  } catch {
+    return CHAT_FALLBACK_REPLY;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 function CloseIcon({ size = 16 }: { size?: number }) {
@@ -117,6 +134,9 @@ export default function ChatWidget() {
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
+  // One id per conversation so n8n's memory links every message together.
+  // In memory only (never localStorage), like the rest of this widget's state.
+  const sessionIdRef = useRef<string | null>(null);
 
   // Invite dot only needs to catch a first-time visitor's eye — fade it
   // out on its own after a few seconds even if they never click it.
@@ -167,7 +187,9 @@ export default function ChatWidget() {
     setShowQuickReplies(false);
     setIsTyping(true);
 
-    sendMessageToBot(trimmed, (replyText) => {
+    sessionIdRef.current ??= newSessionId();
+
+    void sendMessageToBot(trimmed, sessionIdRef.current).then((replyText) => {
       setIsTyping(false);
       setMessages((prev) => [...prev, { id: nextMessageId(), role: "bot", text: replyText }]);
     });
