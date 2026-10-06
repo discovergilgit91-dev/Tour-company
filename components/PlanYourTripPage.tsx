@@ -369,7 +369,6 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
     if (v.notes !== undefined) setNotes(v.notes);
     clearPendingSubmission();
     // Restoring is a one-time thing on mount, deliberately not re-run.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const errors = useMemo<FormErrors>(

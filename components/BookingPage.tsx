@@ -162,7 +162,6 @@ export default function BookingPage({
     setTravelers(v.travelers);
     clearPendingSubmission();
     // Restoring is a one-time thing on mount, deliberately not re-run.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const maxTravelers = tour ? extractMaxTravelers(tour.groupSize) : 10;
@@ -363,7 +362,7 @@ export default function BookingPage({
                             if (event.target.value) router.push(`/book?tour=${event.target.value}`);
                           }}
                         >
-                          <option value="">I'm not sure yet — general inquiry</option>
+                          <option value="">I&apos;m not sure yet — general inquiry</option>
                           {allTours.map((t) => (
                             <option key={t.slug} value={t.slug}>
                               {t.title}

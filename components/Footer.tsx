@@ -18,13 +18,11 @@ const CONTACT_DETAILS = [
   { label: "Office", value: "Jutial Road, Gilgit, Gilgit-Baltistan", href: undefined, Icon: PinIcon },
 ];
 
-// Only channels with a real address are listed — an icon that goes nowhere is
-// worse than none. To add Instagram or Facebook, add an entry here with its
-// profile URL, e.g. { href: "https://instagram.com/<handle>", label: "Instagram", Icon: InstagramIcon }.
-const SOCIAL_LINKS: { href: string; label: string; Icon: () => React.JSX.Element }[] = [
-  // wa.me opens a WhatsApp chat with the same number shown under Contact.
-  { href: "https://wa.me/923551234567", label: "WhatsApp", Icon: WhatsAppIcon },
-];
+// Paste the full profile URLs here (e.g. "https://instagram.com/<handle>") and the
+// icons appear; while a value is empty the icon is left out, because an icon
+// that goes nowhere is worse than none.
+const INSTAGRAM_URL = "";
+const FACEBOOK_URL = "";
 
 function InstagramIcon() {
   return (
@@ -62,6 +60,13 @@ function WhatsAppIcon() {
     </svg>
   );
 }
+
+const SOCIAL_LINKS: { href: string; label: string; Icon: () => React.JSX.Element }[] = [
+  { href: INSTAGRAM_URL, label: "Instagram", Icon: InstagramIcon },
+  { href: FACEBOOK_URL, label: "Facebook", Icon: FacebookIcon },
+  // wa.me opens a WhatsApp chat with the same number shown under Contact.
+  { href: "https://wa.me/923551234567", label: "WhatsApp", Icon: WhatsAppIcon },
+].filter((link) => link.href);
 
 function SocialIcon({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
   return (
