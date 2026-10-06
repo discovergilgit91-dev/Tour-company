@@ -71,8 +71,12 @@ export function AuthShell({
   return (
     <main className="relative min-h-screen bg-cream">
       <div className="grid min-h-screen grid-cols-1 lg:grid-cols-[1.05fr_1fr]">
-        {/* ---------------- photo panel ---------------- */}
-        <div className="relative flex h-64 shrink-0 flex-col justify-between overflow-hidden bg-forest px-6 py-6 text-cream sm:h-72 sm:px-10 sm:py-8 lg:h-auto lg:min-h-screen lg:px-14 lg:py-12">
+        {/* ---------------- photo panel ----------------
+            Padding steps up with the screen (28 → 48 → 64 → 80 → 96px at the
+            sides) so the logo, tagline and quote card breathe inside the
+            panel; at 2xl it lands on the same ~96px inset the homepage hero's
+            content has. */}
+        <div className="relative flex h-64 shrink-0 flex-col justify-between overflow-hidden bg-forest px-7 py-7 text-cream sm:h-72 sm:px-12 sm:py-10 lg:h-auto lg:min-h-screen lg:px-16 lg:py-14 xl:px-20 xl:py-16 2xl:px-24">
           <Image
             src={image}
             alt={imageAlt}
