@@ -10,14 +10,21 @@ import { Button } from "../ui/Button";
 import { ArrowIcon } from "../ui/icons";
 import { AuthShell } from "./AuthShell";
 import { AuthField, PasswordField } from "./fields";
-import { AlertIcon, GoogleIcon, MailIcon, SpinnerIcon } from "./icons";
+import { AlertIcon, CheckCircleIcon, GoogleIcon, MailIcon, SpinnerIcon } from "./icons";
 
 const CALLBACK_ERROR_MESSAGES: Record<string, string> = {
   confirmation_failed:
     "That confirmation link is invalid or has expired. Please try signing in, or sign up again to get a new one.",
 };
 
-export default function SignInForm({ initialError }: { initialError?: string } = {}) {
+export default function SignInForm({
+  initialError,
+  passwordReset = false,
+}: {
+  initialError?: string;
+  /** Arrived from /reset-password after choosing a new password. */
+  passwordReset?: boolean;
+} = {}) {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -118,6 +125,18 @@ export default function SignInForm({ initialError }: { initialError?: string } =
         </Link>{" "}
         to start planning.
       </p>
+
+      {passwordReset && !error && (
+        <div
+          role="status"
+          className="mt-6 flex items-start gap-2.5 rounded-xl border border-green/25 bg-green/[0.07] px-4 py-3 text-sm text-green-dark"
+        >
+          <span className="mt-px shrink-0">
+            <CheckCircleIcon size={16} />
+          </span>
+          <span>Your password has been changed. You can now sign in with your new password.</span>
+        </div>
+      )}
 
       {error && (
         <div className="mt-6 flex items-start gap-2.5 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
