@@ -14,6 +14,8 @@ export default function PrivacyPage() {
       title="Privacy Policy"
       intro="What we collect when you use Discover Gilgit, why we collect it, and the choices you have."
       updated="October 2026"
+      image="/Images/tours/rush-lake-2.png"
+      imageAlt="Aerial view of Rush Lake ringed by autumn forest in Gilgit-Baltistan"
       sections={[
         {
           heading: "What we collect",

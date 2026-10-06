@@ -14,6 +14,8 @@ export default function TermsPage() {
       title="Terms of Service"
       intro="The plain-language rules for using Discover Gilgit — our website, your account, and the requests you send us."
       updated="October 2026"
+      image="/Images/tours/skardu-kaptana(3).png"
+      imageAlt="Sunlight breaking over a still mountain lake near Skardu, with a boat on the water"
       sections={[
         {
           heading: "Who we are and what this site does",
