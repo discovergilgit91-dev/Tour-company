@@ -221,11 +221,11 @@ export default function SignUpForm() {
               />
               <span>
                 I agree to the{" "}
-                <Link href="/terms" className="font-medium text-forest underline hover:text-green">
+                <Link href="/terms" target="_blank" rel="noopener noreferrer" className="font-medium text-forest underline hover:text-green">
                   Terms
                 </Link>{" "}
                 and{" "}
-                <Link href="/privacy" className="font-medium text-forest underline hover:text-green">
+                <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="font-medium text-forest underline hover:text-green">
                   Privacy Policy
                 </Link>
                 .

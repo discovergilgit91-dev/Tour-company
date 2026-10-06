@@ -70,7 +70,8 @@ const SLIDE_DURATION_MS = 6000;
 type HeroCta = { label: string; href: string };
 
 const DEFAULT_PRIMARY_CTA: HeroCta = { label: "Explore journeys", href: "/lands" };
-const DEFAULT_SECONDARY_CTA: HeroCta = { label: "Watch film", href: "/film" };
+// There is no film page yet; send the second button somewhere real until there is one.
+const DEFAULT_SECONDARY_CTA: HeroCta = { label: "Plan Your Trip", href: "/plan-your-trip" };
 
 export type HeroProps = {
   /** Full slideshow (defaults to the homepage's 5-slide carousel). Omit and use the shorthand props below for a single static hero instead. */
@@ -83,7 +84,7 @@ export type HeroProps = {
   imageAlt?: string;
   /** Defaults to the homepage's "Explore journeys" button. Pass `null` to hide it. */
   primaryCta?: HeroCta | null;
-  /** Defaults to the homepage's "Watch film" button. Pass `null` to hide it. */
+  /** Defaults to the homepage's "Plan Your Trip" button. Pass `null` to hide it. */
   secondaryCta?: HeroCta | null;
   /** A single self-contained "watch video" button — opens a lightbox within Hero itself,
       no wiring required from the calling page. Typically used instead of primary/secondaryCta. */

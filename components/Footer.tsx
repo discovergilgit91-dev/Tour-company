@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Logo, LogoIcon } from "./ui/Logo";
 import { ArrowIcon, CompassIcon, MailIcon, PhoneIcon, PinIcon } from "./ui/icons";
-import { NAV_LINKS } from "@/lib/nav";
+import { NAV_LINKS, navHref } from "@/lib/nav";
 import { getNavMenus } from "@/lib/navMenus";
 
 type FooterLinkItem = { href: string; label: string };
@@ -16,6 +16,14 @@ const CONTACT_DETAILS = [
   { label: "Email", value: "hello@discovergilgit.com", href: "mailto:hello@discovergilgit.com", Icon: MailIcon },
   { label: "Phone", value: "+92 355 123 4567", href: "tel:+923551234567", Icon: PhoneIcon },
   { label: "Office", value: "Jutial Road, Gilgit, Gilgit-Baltistan", href: undefined, Icon: PinIcon },
+];
+
+// Only channels with a real address are listed — an icon that goes nowhere is
+// worse than none. To add Instagram or Facebook, add an entry here with its
+// profile URL, e.g. { href: "https://instagram.com/<handle>", label: "Instagram", Icon: InstagramIcon }.
+const SOCIAL_LINKS: { href: string; label: string; Icon: () => React.JSX.Element }[] = [
+  // wa.me opens a WhatsApp chat with the same number shown under Contact.
+  { href: "https://wa.me/923551234567", label: "WhatsApp", Icon: WhatsAppIcon },
 ];
 
 function InstagramIcon() {
@@ -123,15 +131,9 @@ function FooterColumn({
 }
 
 export default function Footer() {
-  // The footer renders on every page, but NAV_LINKS' hash hrefs (e.g.
-  // "#destinations") only resolve to something on the homepage itself —
-  // elsewhere they'd just tack the hash onto the current URL. Prefixing
-  // with "/" sends them to the homepage first, then to the anchor, so
-  // every Explore link works from anywhere on the site.
-  const exploreLinks: FooterLinkItem[] = NAV_LINKS.map((link) => ({
-    ...link,
-    href: link.href.startsWith("#") ? `/${link.href}` : link.href,
-  }));
+  // Same helper the header uses: section links ("#reviews") become "/#reviews"
+  // so they work from any page, real page links ("/lands") pass through.
+  const exploreLinks: FooterLinkItem[] = NAV_LINKS.map((link) => ({ ...link, href: navHref(link.href) }));
 
   // The same destinations and tours/events as the header dropdowns — both are
   // built from lib/navMenus.ts, so the two can never drift apart.
@@ -185,15 +187,11 @@ export default function Footer() {
             </div>
 
             <div className="mt-5 flex items-center gap-2.5">
-              <SocialIcon href="#" label="Instagram">
-                <InstagramIcon />
-              </SocialIcon>
-              <SocialIcon href="#" label="Facebook">
-                <FacebookIcon />
-              </SocialIcon>
-              <SocialIcon href="#" label="WhatsApp">
-                <WhatsAppIcon />
-              </SocialIcon>
+              {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+                <SocialIcon key={label} href={href} label={label}>
+                  <Icon />
+                </SocialIcon>
+              ))}
             </div>
           </div>
 
@@ -280,9 +278,15 @@ export default function Footer() {
               <span>35.9° N, 74.3° E — Gilgit-Baltistan</span>
             </div>
 
-            <p className="text-[9px] text-cream/35 sm:text-right">
-              © {new Date().getFullYear()} Discover Gilgit. All rights reserved.
-            </p>
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] text-cream/35 sm:justify-end">
+              <Link href="/terms" className="transition-colors hover:text-cream/70">
+                Terms
+              </Link>
+              <Link href="/privacy" className="transition-colors hover:text-cream/70">
+                Privacy
+              </Link>
+              <p>© {new Date().getFullYear()} Discover Gilgit. All rights reserved.</p>
+            </div>
           </div>
         </div>
       </div>

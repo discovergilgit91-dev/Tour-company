@@ -213,11 +213,11 @@ export default function SignInForm({
 
       <p className="mt-8 text-center text-xs text-muted">
         By continuing you agree to Discover Gilgit&apos;s{" "}
-        <Link href="/terms" className="underline hover:text-forest">
+        <Link href="/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-forest">
           Terms
         </Link>{" "}
         and{" "}
-        <Link href="/privacy" className="underline hover:text-forest">
+        <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-forest">
           Privacy Policy
         </Link>
         .
