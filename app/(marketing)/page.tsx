@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import Hero from "@/components/Hero";
 import WhyChooseUs from "@/components/WhyChooseUs";
@@ -17,6 +18,14 @@ type Tour = {
   duration: string;
   location: string;
   image_url: string | null;
+};
+
+export const metadata: Metadata = {
+  // Absolute: the homepage gets a full descriptive title rather than the bare
+  // site name inherited from the root layout.
+  title: { absolute: "Discover Gilgit — Guided Journeys Through Gilgit-Baltistan" },
+  description:
+    "Locally guided tours, treks and cultural events across Hunza, Skardu, Deosai, Fairy Meadows and the rest of Gilgit-Baltistan — plan a trip or build your own with a local planner.",
 };
 
 export default async function Home() {
