@@ -1,20 +1,14 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import SignInForm from "@/components/auth/SignInForm";
+import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 
 export const metadata: Metadata = {
-  title: "Sign In — Discover Gilgit",
-  description: "Sign in to your Discover Gilgit account to manage your bookings and saved trips.",
+  title: "Forgot Password — Discover Gilgit",
+  description: "Request a link to reset your Discover Gilgit password.",
 };
 
-export default async function SignInPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error?: string; reset?: string }>;
-}) {
-  const { error, reset } = await searchParams;
-
+export default async function ForgotPasswordPage() {
   // Read outside the try/catch: redirect() works by throwing, and a
   // catch-all here would otherwise swallow that throw as if Supabase
   // were unreachable and silently fail to redirect.
@@ -26,13 +20,13 @@ export default async function SignInPage({
     } = await supabase.auth.getUser();
     isSignedIn = !!user;
   } catch {
-    // Supabase unreachable — fail open and let them see the sign-in page
-    // rather than blocking access to it.
+    // Supabase unreachable — fail open and let them see the page rather
+    // than blocking access to it.
   }
 
   if (isSignedIn) {
     redirect("/");
   }
 
-  return <SignInForm initialError={error} passwordReset={reset === "success"} />;
+  return <ForgotPasswordForm />;
 }
