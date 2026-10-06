@@ -207,7 +207,7 @@ export default function AboutStory() {
                 </textPath>
               </text>
             </svg>
-            <LogoIcon className="relative h-7 w-7" />
+            <LogoIcon className="relative h-12 w-12 sm:h-[52px] sm:w-[52px]" sizes="104px" quality={90} />
           </div>
         </div>
 
@@ -219,7 +219,6 @@ export default function AboutStory() {
                 inView ? "w-8" : "w-0"
               }`}
             />
-            <LogoIcon className="h-4 w-4" />
             Our story
           </div>
 
