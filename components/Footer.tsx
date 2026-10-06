@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Logo, LogoIcon } from "./ui/Logo";
 import { ArrowIcon, CompassIcon, MailIcon, PhoneIcon, PinIcon } from "./ui/icons";
 import { NAV_LINKS } from "@/lib/nav";
+import { getNavMenus } from "@/lib/navMenus";
 
 type FooterLinkItem = { href: string; label: string };
 
@@ -84,23 +85,39 @@ function FooterColumn({
   title,
   links,
   className = "",
+  twoColumns = false,
+  viewAll,
 }: {
   title: string;
   links: FooterLinkItem[];
   className?: string;
+  /** Lay the links out in two columns from lg up — for the wide Destinations / Tours & Events groups. */
+  twoColumns?: boolean;
+  /** Closing link under the list, in the same gold style as "Plan your journey". */
+  viewAll?: FooterLinkItem;
 }) {
   return (
     <div className={className}>
       <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
         {title}
       </h3>
-      <ul className="mt-5 space-y-3.5">
+      <ul className={twoColumns ? "mt-5 grid gap-x-10 gap-y-3.5 lg:grid-cols-2" : "mt-5 space-y-3.5"}>
         {links.map((link) => (
           <li key={link.href}>
             <FooterLink href={link.href}>{link.label}</FooterLink>
           </li>
         ))}
       </ul>
+
+      {viewAll && (
+        <Link
+          href={viewAll.href}
+          className="mt-6 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
+        >
+          <span>{viewAll.label}</span>
+          <ArrowIcon />
+        </Link>
+      )}
     </div>
   );
 }
@@ -115,6 +132,12 @@ export default function Footer() {
     ...link,
     href: link.href.startsWith("#") ? `/${link.href}` : link.href,
   }));
+
+  // The same destinations and tours/events as the header dropdowns — both are
+  // built from lib/navMenus.ts, so the two can never drift apart.
+  const menus = getNavMenus();
+  const destinationsMenu = menus.find((menu) => menu.label === "Destinations");
+  const toursMenu = menus.find((menu) => menu.label === "Upcoming Tours & Events");
 
   return (
     <footer className="relative overflow-hidden bg-night text-cream">
@@ -221,6 +244,28 @@ export default function Footer() {
             </Link>
           </div>
         </div>
+
+        {/* Second row: the two grouped link lists. Each takes half the width
+            from lg up (links in two columns) so long names don't wrap, and they
+            simply stack below that, like the columns above. */}
+        {destinationsMenu && toursMenu && (
+          <div className="mt-9 grid grid-cols-1 gap-8 border-t border-cream/[0.08] pt-9 sm:mt-10 sm:pt-10 lg:grid-cols-2 lg:gap-0">
+            <FooterColumn
+              title="Destinations"
+              links={destinationsMenu.items}
+              twoColumns
+              viewAll={destinationsMenu.viewAll}
+              className="lg:border-r lg:border-cream/[0.08] lg:pr-8"
+            />
+            <FooterColumn
+              title="Tours & Events"
+              links={toursMenu.items}
+              twoColumns
+              viewAll={toursMenu.viewAll}
+              className="lg:pl-8"
+            />
+          </div>
+        )}
 
         <div className="mt-9 border-t border-cream/[0.08] pt-5 sm:mt-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
