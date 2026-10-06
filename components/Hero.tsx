@@ -69,7 +69,7 @@ const SLIDE_DURATION_MS = 6000;
 
 type HeroCta = { label: string; href: string };
 
-const DEFAULT_PRIMARY_CTA: HeroCta = { label: "Explore journeys", href: "/journeys" };
+const DEFAULT_PRIMARY_CTA: HeroCta = { label: "Explore journeys", href: "/lands" };
 const DEFAULT_SECONDARY_CTA: HeroCta = { label: "Watch film", href: "/film" };
 
 export type HeroProps = {
