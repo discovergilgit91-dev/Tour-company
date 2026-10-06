@@ -8,6 +8,7 @@ import { ArrowIcon, CheckIcon, ClockIcon, ShieldCheckIcon, UsersIcon } from "./u
 import { PeaksMotif } from "./tours/motifs";
 import { useRevealOnScroll } from "./DestinationCard";
 import { clearPendingSubmission, readPendingSubmission, savePendingSubmission } from "@/lib/pendingSubmission";
+import { notifyN8nCustomTrip } from "@/lib/notifyN8nCustomTrip";
 import type { SessionProfile } from "@/lib/supabase/session";
 
 /* ---------------------------------------------------------------------
@@ -323,24 +324,28 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
       return;
     }
 
-    // Client-side only for now — everything the eventual backend needs is
-    // already shaped as one plain object, ready to POST as-is once wired up.
-    const payload = {
+    setSubmitted(true);
+
+    // The n8n webhook is the only place this form's data goes (no Supabase).
+    // Its workflow can take a while (the helper allows 45s), so the success
+    // state above never waits on it — it's fired in the background, and a
+    // failure or timeout is logged server-side inside notifyN8nCustomTrip.
+    notifyN8nCustomTrip({
+      name,
+      email,
+      phone,
       destinations: destinations.map((id) => DESTINATIONS.find((d) => d.id === id)?.name ?? id),
       dateMode,
       startDate: dateMode === "exact" ? startDate : null,
       endDate: dateMode === "exact" ? endDate : null,
       groupSize,
-      pace,
+      pace: pace as Pace, // computeErrors above guarantees a pace is picked
       budget,
-      name,
-      email,
-      phone,
       notes,
-    };
-    console.log("Custom trip request (client-side only):", payload);
-
-    setSubmitted(true);
+      consent,
+    }).catch(() => {
+      // Nothing to show the visitor — already logged server-side where it can be.
+    });
   }
 
   return (
