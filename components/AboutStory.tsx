@@ -192,7 +192,7 @@ export default function AboutStory() {
           {/* slowly rotating badge that straddles the photo edge on large screens */}
           <div
             aria-hidden
-            className={`absolute right-3 top-3 z-10 flex h-24 w-24 items-center justify-center rounded-full border border-gold/30 bg-night/70 backdrop-blur-md transition-all duration-700 ease-out motion-reduce:transition-none sm:h-28 sm:w-28 lg:-right-10 lg:top-10 ${
+            className={`absolute right-3 top-3 z-10 flex h-28 w-28 items-center justify-center rounded-full border border-gold/30 bg-night/70 backdrop-blur-md transition-all duration-700 ease-out motion-reduce:transition-none sm:h-36 sm:w-36 lg:-right-12 lg:top-8 lg:h-40 lg:w-40 ${
               inView ? "scale-100 opacity-100" : "scale-75 opacity-0"
             }`}
             style={{ transitionDelay: inView ? "900ms" : "0ms" }}
@@ -207,7 +207,7 @@ export default function AboutStory() {
                 </textPath>
               </text>
             </svg>
-            <LogoIcon className="relative h-12 w-12 sm:h-[52px] sm:w-[52px]" sizes="104px" quality={90} />
+            <LogoIcon className="relative h-[54px] w-[54px] sm:h-[68px] sm:w-[68px] lg:h-[76px] lg:w-[76px]" sizes="152px" quality={90} />
           </div>
         </div>
 
