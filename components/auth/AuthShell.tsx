@@ -21,7 +21,9 @@ const CONTOURS = Array.from({ length: 9 }, (_, i) => ring(120, 460, 30 + (280 * 
 
 function RotatingBadge() {
   return (
-    <div className="relative flex h-24 w-24 shrink-0 items-center justify-center rounded-full border border-cream/25 bg-night/40 backdrop-blur-md">
+    // Gold ring + layered shadow lift the badge off the photo; it is larger
+    // from lg up (where it is shown) and bigger again on wide screens.
+    <div className="relative flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-2 border-gold/70 bg-night/60 shadow-[0_14px_32px_-6px_rgba(0,0,0,0.6),0_2px_8px_rgba(0,0,0,0.35),0_0_0_5px_rgba(201,161,90,0.12)] backdrop-blur-md xl:h-32 xl:w-32">
       <svg viewBox="0 0 120 120" className="auth-spin absolute inset-0 h-full w-full text-cream/70">
         <defs>
           <path id="auth-ring" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
@@ -32,7 +34,7 @@ function RotatingBadge() {
           </textPath>
         </text>
       </svg>
-      <LogoIcon className="relative h-8 w-8" />
+      <LogoIcon className="relative h-11 w-11 xl:h-14 xl:w-14" sizes="112px" quality={90} />
     </div>
   );
 }

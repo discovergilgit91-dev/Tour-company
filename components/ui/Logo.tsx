@@ -6,10 +6,27 @@ import Link from "next/link";
  * the same logo-icon.png artwork the header/footer wordmark uses, not a
  * generic placeholder mountain glyph.
  */
-export function LogoIcon({ className = "h-5 w-6" }: { className?: string }) {
+export function LogoIcon({
+  className = "h-5 w-6",
+  sizes = "48px",
+  quality,
+}: {
+  className?: string;
+  /** Hint for the rendered width — raise it when the icon is shown larger than ~48px so a sharper source is picked. */
+  sizes?: string;
+  quality?: number;
+}) {
   return (
     <span className={`relative inline-block shrink-0 ${className}`}>
-      <Image src="/Images/tours/logo-icon.png" alt="" aria-hidden fill sizes="48px" className="object-contain" />
+      <Image
+        src="/Images/tours/logo-icon.png"
+        alt=""
+        aria-hidden
+        fill
+        sizes={sizes}
+        quality={quality}
+        className="object-contain"
+      />
     </span>
   );
 }
