@@ -17,10 +17,12 @@ import {
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
-// An AI Agent with tool calls can take a while; leave room above TIMEOUT_MS.
-export const maxDuration = 30;
+// An AI Agent turn with several tool calls (knowledge base, lead capture,
+// emails) can take 20+ seconds. maxDuration must stay above TIMEOUT_MS or the
+// host kills the function before the timeout can return the fallback reply.
+export const maxDuration = 60;
 
-const TIMEOUT_MS = 15000;
+const TIMEOUT_MS = 45000;
 
 // Best-effort per-IP limit (in memory, so per server instance) — this route
 // fronts an AI agent, so keep a runaway script from running up the bill.

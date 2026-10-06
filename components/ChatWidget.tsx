@@ -39,11 +39,15 @@ function newSessionId(): string {
  * Never rejects: any failure resolves with the fallback reply so it shows
  * up as a normal bot bubble.
  */
+// Must stay above the route's 45s TIMEOUT_MS (app/api/chat/route.ts) so the
+// route's own fallback reply arrives before the widget gives up.
+const CLIENT_TIMEOUT_MS = 50000;
+
 async function sendMessageToBot(userText: string, sessionId: string): Promise<string> {
   // Safety net so a hung request can't leave the typing bubble up forever;
   // the server gives up on n8n well before this.
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 30000);
+  const timeout = setTimeout(() => controller.abort(), CLIENT_TIMEOUT_MS);
   try {
     const response = await fetch("/api/chat", {
       method: "POST",
