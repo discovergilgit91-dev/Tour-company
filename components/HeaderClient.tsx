@@ -4,18 +4,25 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./ui/Logo";
 import { LinkButton } from "./ui/Button";
-import { MenuIcon } from "./ui/icons";
+import { ArrowIcon, ChevronDownIcon, MenuIcon } from "./ui/icons";
 import { NAV_LINKS } from "@/lib/nav";
 import { signOut } from "@/app/auth/actions";
 import { getDisplayName, getInitials } from "@/lib/account";
 import type { SessionProfile } from "@/lib/supabase/session";
 import AccountMenu from "./AccountMenu";
+import NavDropdown from "./NavDropdown";
+import type { NavMenu } from "@/lib/navMenus";
 
 export type HeaderUser = SessionProfile;
 
-export default function HeaderClient({ user }: { user: HeaderUser | null }) {
+export default function HeaderClient({ user, menus }: { user: HeaderUser | null; menus: NavMenu[] }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  // Only one dropdown is ever open: desktop tracks it here, and the mobile
+  // menu keeps its own single expanded section.
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
+  const menuFor = (label: string) => menus.find((menu) => menu.label === label);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -48,17 +55,34 @@ export default function HeaderClient({ user }: { user: HeaderUser | null }) {
         <Logo compact={scrolled} />
 
         <nav className="hidden items-center gap-7 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`font-sans text-[13px] font-medium transition-colors ${
-                solid ? "text-forest/75 hover:text-forest" : "text-cream/75 hover:text-cream"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const menu = menuFor(link.label);
+            const toneClassName = solid ? "text-forest/75 hover:text-forest" : "text-cream/75 hover:text-cream";
+
+            if (menu) {
+              return (
+                <NavDropdown
+                  key={link.href}
+                  menu={menu}
+                  open={openMenu === menu.label}
+                  onOpenChange={(next) =>
+                    setOpenMenu((current) => (next ? menu.label : current === menu.label ? null : current))
+                  }
+                  toneClassName={toneClassName}
+                />
+              );
+            }
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-sans text-[13px] font-medium transition-colors ${toneClassName}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden items-center gap-5 lg:flex">
@@ -90,7 +114,10 @@ export default function HeaderClient({ user }: { user: HeaderUser | null }) {
           type="button"
           aria-label="Toggle menu"
           aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => {
+            setOpen((value) => !value);
+            setExpandedMenu(null);
+          }}
           className="flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
         >
           <MenuIcon open={open} />
@@ -99,16 +126,69 @@ export default function HeaderClient({ user }: { user: HeaderUser | null }) {
 
       {open && (
         <nav className="flex flex-col gap-1 border-t border-forest/10 bg-cream px-5 py-4 lg:hidden">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="rounded-lg px-2 py-2.5 font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const menu = menuFor(link.label);
+
+            if (menu) {
+              const expanded = expandedMenu === menu.label;
+              const closeAll = () => {
+                setOpen(false);
+                setExpandedMenu(null);
+              };
+              return (
+                <div key={link.href}>
+                  <button
+                    type="button"
+                    aria-expanded={expanded}
+                    onClick={() => setExpandedMenu(expanded ? null : menu.label)}
+                    className="flex w-full items-center justify-between rounded-lg px-2 py-2.5 text-left font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
+                  >
+                    {menu.label}
+                    <span className={`transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}>
+                      <ChevronDownIcon size={14} />
+                    </span>
+                  </button>
+
+                  {expanded && (
+                    <div className="mb-1 ml-3 border-l border-forest/10 pl-2">
+                      {menu.items.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          onClick={closeAll}
+                          className="block rounded-lg px-2 py-2 hover:bg-forest/5"
+                        >
+                          <span className="block font-sans text-sm text-forest/80">{item.label}</span>
+                          {item.detail && <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>}
+                        </Link>
+                      ))}
+                      <div className="mt-1 border-t border-forest/10 pt-1">
+                        <Link
+                          href={menu.viewAll.href}
+                          onClick={closeAll}
+                          className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-sm font-medium text-forest hover:bg-forest/5"
+                        >
+                          {menu.viewAll.label}
+                          <ArrowIcon size={13} />
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-2 py-2.5 font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
+              >
+                {link.label}
+              </Link>
+            );
+          })}
 
           <div className="mt-2 border-t border-forest/10 pt-3">
             {user ? (
