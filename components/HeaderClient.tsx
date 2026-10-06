@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Logo } from "./ui/Logo";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, ChevronDownIcon, MenuIcon } from "./ui/icons";
-import { NAV_LINKS } from "@/lib/nav";
+import { NAV_LINKS, navHref } from "@/lib/nav";
 import { signOut } from "@/app/auth/actions";
 import { getDisplayName, getInitials } from "@/lib/account";
 import type { SessionProfile } from "@/lib/supabase/session";
@@ -69,6 +69,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                     setOpenMenu((current) => (next ? menu.label : current === menu.label ? null : current))
                   }
                   toneClassName={toneClassName}
+                  activeClassName={solid ? "text-forest" : "text-cream"}
                 />
               );
             }
@@ -76,7 +77,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
             return (
               <Link
                 key={link.href}
-                href={link.href}
+                href={navHref(link.href)}
                 className={`font-sans text-[13px] font-medium transition-colors ${toneClassName}`}
               >
                 {link.label}
@@ -124,8 +125,11 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
         </button>
       </div>
 
+      {/* The mobile menu scrolls on its own when taller than the screen (e.g. a
+          section expanded on a short phone) — the header is fixed, so the page
+          itself can't scroll to reveal the rest. */}
       {open && (
-        <nav className="flex flex-col gap-1 border-t border-forest/10 bg-cream px-5 py-4 lg:hidden">
+        <nav className="flex max-h-[calc(100svh-8rem)] flex-col gap-1 overflow-y-auto overscroll-contain border-t border-forest/10 bg-cream px-5 py-4 lg:hidden">
           {NAV_LINKS.map((link) => {
             const menu = menuFor(link.label);
 
@@ -150,15 +154,15 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                   </button>
 
                   {expanded && (
-                    <div className="mb-1 ml-3 border-l border-forest/10 pl-2">
+                    <div className="mb-1 ml-3 border-l-2 border-gold/40 pl-2">
                       {menu.items.map((item) => (
                         <Link
                           key={item.href}
                           href={item.href}
                           onClick={closeAll}
-                          className="block rounded-lg px-2 py-2 hover:bg-forest/5"
+                          className="block rounded-lg px-2 py-2 active:bg-gold/[0.09] hover:bg-gold/[0.09]"
                         >
-                          <span className="block font-sans text-sm text-forest/80">{item.label}</span>
+                          <span className="block font-sans text-sm font-medium text-forest/85">{item.label}</span>
                           {item.detail && <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>}
                         </Link>
                       ))}
@@ -166,10 +170,12 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                         <Link
                           href={menu.viewAll.href}
                           onClick={closeAll}
-                          className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-sm font-medium text-forest hover:bg-forest/5"
+                          className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[13px] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
                         >
                           {menu.viewAll.label}
-                          <ArrowIcon size={13} />
+                          <span className="text-gold">
+                            <ArrowIcon size={14} />
+                          </span>
                         </Link>
                       </div>
                     </div>
@@ -181,7 +187,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
             return (
               <Link
                 key={link.href}
-                href={link.href}
+                href={navHref(link.href)}
                 onClick={() => setOpen(false)}
                 className="rounded-lg px-2 py-2.5 font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
               >

@@ -27,12 +27,15 @@ export default function NavDropdown({
   open,
   onOpenChange,
   toneClassName,
+  activeClassName,
 }: {
   menu: NavMenu;
   open: boolean;
   onOpenChange: (next: boolean) => void;
   /** Trigger text color, matched to the header's current tone. */
   toneClassName: string;
+  /** Trigger text color while its panel is open. */
+  activeClassName: string;
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -160,7 +163,7 @@ export default function NavDropdown({
         }}
         onClick={handleTriggerClick}
         onKeyDown={handleTriggerKeyDown}
-        className={`flex items-center gap-1 font-sans text-[13px] font-medium transition-colors ${toneClassName}`}
+        className={`flex items-center gap-1 font-sans text-[13px] font-medium transition-colors ${open ? activeClassName : toneClassName}`}
       >
         {menu.label}
         <span className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
@@ -179,34 +182,58 @@ export default function NavDropdown({
         }`}
       >
         <div
-          className={`w-72 origin-top rounded-2xl bg-white p-2 shadow-[0_20px_45px_-12px_rgba(7,23,25,0.35)] ring-1 ring-black/5 transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none ${
-            open ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          className={`w-80 origin-top overflow-hidden rounded-2xl bg-white p-2 shadow-[0_28px_60px_-20px_rgba(7,23,25,0.32),0_4px_14px_-4px_rgba(7,23,25,0.08)] ring-1 ring-forest/[0.06] transition-[opacity,transform] duration-[260ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
+            open ? "translate-y-0 scale-100 opacity-100" : "-translate-y-1.5 scale-[0.97] opacity-0"
           }`}
         >
-          <ul className="py-0.5">
-            {menu.items.map((item) => (
-              <li key={item.href}>
+          <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+            {menu.eyebrow}
+          </p>
+
+          <ul>
+            {menu.items.map((item, index) => (
+              <li
+                key={item.href}
+                style={{ transitionDelay: open ? `${60 + index * 28}ms` : "0ms" }}
+                className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
+                  open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                }`}
+              >
                 <Link
                   href={item.href}
                   onClick={() => onOpenChange(false)}
-                  className="block rounded-xl px-3 py-2 transition-colors hover:bg-forest/5 focus-visible:bg-forest/5 focus-visible:outline-none"
+                  className="group relative flex items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 transition-colors duration-200 hover:bg-gold/[0.09] focus-visible:bg-gold/[0.09] focus-visible:outline-none"
                 >
-                  <span className="block text-sm text-forest/80">{item.label}</span>
-                  {item.detail && <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>}
+                  {/* gold accent that grows in on hover / keyboard focus */}
+                  <span
+                    aria-hidden
+                    className="absolute bottom-2.5 left-0 top-2.5 w-[3px] origin-center scale-y-0 rounded-full bg-gold transition-transform duration-300 ease-out group-hover:scale-y-100 group-focus-visible:scale-y-100 motion-reduce:transition-none"
+                  />
+                  <span className="min-w-0 transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
+                    <span className="block text-sm font-medium leading-snug text-forest/85 transition-colors group-hover:text-forest">
+                      {item.label}
+                    </span>
+                    {item.detail && <span className="mt-0.5 block truncate text-xs text-muted">{item.detail}</span>}
+                  </span>
+                  <span className="shrink-0 -translate-x-1 text-gold opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 motion-reduce:transition-none">
+                    <ArrowIcon size={13} />
+                  </span>
                 </Link>
               </li>
             ))}
           </ul>
 
-          <div className="mt-1.5 border-t border-forest/10 pt-1.5">
+          {/* "View all" sits on its own tinted strip so it reads as a
+              secondary, closing action rather than another list item. */}
+          <div className="-mx-2 -mb-2 mt-2 border-t border-forest/[0.08] bg-cream/70 p-2">
             <Link
               href={menu.viewAll.href}
               onClick={() => onOpenChange(false)}
-              className="group flex items-center justify-between rounded-xl px-3 py-2 text-sm font-medium text-forest transition-colors hover:bg-forest/5 focus-visible:bg-forest/5 focus-visible:outline-none"
+              className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
             >
               {menu.viewAll.label}
-              <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
-                <ArrowIcon size={13} />
+              <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
+                <ArrowIcon size={14} />
               </span>
             </Link>
           </div>

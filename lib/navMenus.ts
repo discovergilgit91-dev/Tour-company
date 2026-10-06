@@ -19,6 +19,8 @@ export type NavMenuItem = {
 export type NavMenu = {
   /** Matches the label of the NAV_LINKS entry this dropdown belongs to. */
   label: string;
+  /** Small uppercase heading at the top of the panel. */
+  eyebrow: string;
   items: NavMenuItem[];
   viewAll: { href: string; label: string };
 };
@@ -60,11 +62,13 @@ export function getNavMenus(): NavMenu[] {
   return [
     {
       label: "Destinations",
+      eyebrow: "Popular destinations",
       items: destinationItems,
       viewAll: { href: "/lands", label: "View all destinations" },
     },
     {
       label: "Upcoming Tours & Events",
+      eyebrow: "Coming up",
       items: [...tourItems, FESTIVAL],
       viewAll: { href: "/tours", label: "View all tours & events" },
     },

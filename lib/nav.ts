@@ -6,3 +6,13 @@ export const NAV_LINKS = [
   { href: "#reviews", label: "Reviews" },
   { href: "/plan-your-trip", label: "Plan Your Trip" },
 ];
+
+/**
+ * Hash hrefs ("#reviews") only point at something on the homepage, where those
+ * sections live. Prefixing "/" makes them work from every page: on the
+ * homepage it's a same-page smooth scroll, anywhere else Next navigates to the
+ * homepage and then scrolls to the section. Real paths pass through untouched.
+ */
+export function navHref(href: string): string {
+  return href.startsWith("#") ? `/${href}` : href;
+}
