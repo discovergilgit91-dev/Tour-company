@@ -115,10 +115,30 @@ const MORE_HIGHLIGHTS = [
 ];
 
 const GALLERY_TILES = [
-  { caption: "Traditional Dance", from: "from-rose-400/40", to: "to-night" },
-  { caption: "Local Cuisine", from: "from-teal-400/40", to: "to-night" },
-  { caption: "Handicrafts Market", from: "from-orange-400/40", to: "to-forest" },
-  { caption: "Community Spirit", from: "from-purple-400/40", to: "to-forest" },
+  {
+    caption: "Traditional Dance",
+    src: "/Images/tours/local-dance.png",
+    alt: "Dancers in brocade coats and feathered caps performing before the festival crowd",
+    position: "40% 70%",
+  },
+  {
+    caption: "Local Cuisine",
+    src: "/Images/tours/local-food(2).png",
+    alt: "A spread of traditional Gilgit-Baltistan dishes and breads",
+    position: "50% 50%",
+  },
+  {
+    caption: "Handicrafts Market",
+    src: "/Images/tours/handcraft-markey.png",
+    alt: "A handicraft stall hung with woven rugs, shawls and baskets",
+    position: "50% 50%",
+  },
+  {
+    caption: "Community Spirit",
+    src: "/Images/tours/community spirit.png",
+    alt: "Riders and a gathered crowd at a mountain-meadow polo match",
+    position: "50% 60%",
+  },
 ];
 
 const TESTIMONIALS = [
@@ -434,11 +454,15 @@ export default function FestivalPage() {
             {GALLERY_TILES.map((tile, index) => (
               <Reveal key={tile.caption} delay={index * 90}>
                 <div className="group relative aspect-square overflow-hidden rounded-[18px]">
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${tile.from} ${tile.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
-                  >
-                    <SunMotif className="absolute inset-0 h-full w-full p-8 text-cream/15" />
-                  </div>
+                  <Image
+                    src={tile.src}
+                    alt={tile.alt}
+                    fill
+                    quality={85}
+                    sizes="(min-width: 1152px) 276px, (min-width: 640px) 25vw, 50vw"
+                    style={{ objectPosition: tile.position }}
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-transparent to-transparent" />
                   <span className="absolute inset-x-4 bottom-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/85">
                     {tile.caption}
