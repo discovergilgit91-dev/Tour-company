@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon } from "./ui/icons";
@@ -25,33 +26,61 @@ type Photo = {
   id: string;
   category: string;
   caption: string;
+  alt: string;
+  src: string;
   featured: boolean;
 };
 
-const PHOTO_TITLES: Record<string, string[]> = {
-  dance: ["Sword Dance at Dusk", "Circle of Drums", "Children's Folk Dance", "The Whirling Steps"],
-  cuisine: ["Apricot Harvest Feast", "Fresh-Baked Chapshoro", "Mountain Tea Ceremony", "Walnut & Honey Sweets"],
+const G = "/Images/tours/gallery";
+
+// Photos are cropped from the festival and heritage pictures on the site; the
+// first photo in each category is the featured (wide) tile.
+const PHOTO_DATA: Record<string, { caption: string; alt: string; file: string }[]> = {
+  dance: [
+    { caption: "Torchlit Dance at Dusk", alt: "Dancers circling a bonfire with flaming torches at night", file: "dance-torch-procession" },
+    { caption: "Sword Dance in Red Brocade", alt: "A dancer in a red brocade coat holding a sword and shield", file: "dance-red-coat" },
+    { caption: "Gold Brocade Steps", alt: "A dancer in a gold brocade coat mid-step on the dance ground", file: "dance-gold-coat" },
+    { caption: "Shield & Sword Dancer", alt: "A dancer in a green coat and white cap with a shield", file: "dance-green-coat" },
+  ],
+  cuisine: [
+    { caption: "A Festival Feast Table", alt: "A table spread with traditional dishes, breads and sauces", file: "food-table" },
+    { caption: "Fresh Flatbreads & Dumplings", alt: "Stacked flatbreads and steamed dumplings", file: "food-flatbreads" },
+    { caption: "Fresh-Baked Mountain Bread", alt: "Sliced loaves of mountain bread on a plate", file: "food-bread-loaves" },
+    { caption: "Golden Skillet Bread", alt: "A large golden skillet-baked flatbread", file: "food-brown-bread" },
+  ],
   handicrafts: [
-    "Handwoven Wool Rugs",
-    "Silver Filigree Jewelry",
-    "Wood-Carved Lattice Work",
-    "Embroidered Pattu Shawls",
+    { caption: "Handwoven Wool Rugs", alt: "A row of handwoven wool rugs hung above a stall", file: "craft-rug-row" },
+    { caption: "Shawls & Woollen Garments", alt: "Woollen garments and shawls hanging in a handicraft stall", file: "craft-garments" },
+    { caption: "Woven Baskets & Cushions", alt: "Woven baskets and embroidered cushions", file: "craft-baskets" },
+    { caption: "Carpets & Kilim Cushions", alt: "A patterned carpet with cushions and baskets", file: "craft-centre-rug" },
   ],
-  performances: ["Rubab Under the Stars", "The Storyteller's Circle", "Highland Flute Ensemble", "Evening Drum Procession"],
+  performances: [
+    { caption: "Drums on the Hillside", alt: "Musicians with a large drum and a flute on a grassy hillside", file: "perf-musicians" },
+    { caption: "The Festival Arena", alt: "Dancers in the arena in front of the festival crowd", file: "perf-stage-crowd" },
+    { caption: "Travellers of the High Pass", alt: "Two men in fur and wool coats looking up at a snow peak", file: "perf-mountain-men" },
+    { caption: "Dressed for the Celebration", alt: "Women laughing together in colourful embroidered festival dress", file: "perf-festival-dress" },
+  ],
   exhibitions: [
-    "Heritage Costume Display",
-    "Ancient Manuscripts Corner",
-    "Photography of the Five Valleys",
-    "Artifacts of the Silk Road",
+    { caption: "Heritage Costume Display", alt: "A traditional feathered cap with embroidered and beaded trim", file: "exh-heritage-cap" },
+    { caption: "Baltit Fort Pavilion", alt: "A carved timber pavilion at Baltit Fort with mountains behind", file: "exh-baltit-balcony" },
+    { caption: "Altit & the Hunza River", alt: "Altit village above the turquoise Hunza River", file: "exh-altit-gorge" },
+    { caption: "Artifacts of the Silk Road", alt: "Shelves of textiles and crafts in a heritage market", file: "exh-market-shelves" },
   ],
-  community: ["Elders' Welcome Circle", "Children at Play", "Shared Community Feast", "Festival Volunteers"],
+  community: [
+    { caption: "Polo on the High Meadow", alt: "Riders at a polo match on a mountain meadow with a crowd looking on", file: "community-polo" },
+    { caption: "Festival Crowd in Colour", alt: "A crowd gathered in colourful traditional dress", file: "community-crowd" },
+    { caption: "Shared Community Feast", alt: "A family-style meal shared on the floor of a timber hall", file: "community-feast" },
+    { caption: "Dressed in Festival Colours", alt: "Close view of festival-goers in embroidered headwear and shawls", file: "community-crowd-detail" },
+  ],
 };
 
 const PHOTOS: Photo[] = CATEGORIES.flatMap((category) =>
-  PHOTO_TITLES[category.id].map((caption, photoIndex) => ({
+  PHOTO_DATA[category.id].map((photo, photoIndex) => ({
     id: `${category.id}-${photoIndex}`,
     category: category.id,
-    caption,
+    caption: photo.caption,
+    alt: photo.alt,
+    src: `${G}/${photo.file}.jpg`,
     featured: photoIndex === 0,
   }))
 );
@@ -62,41 +91,6 @@ const GALLERY_STATS = [
   { value: "3", label: "Days of Color" },
   { value: "1", label: "Festival to Remember" },
 ];
-
-function SunMotif({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" className={className} aria-hidden="true">
-      <circle cx="50" cy="50" r="14" fill="none" stroke="currentColor" strokeWidth="1.4" />
-      {Array.from({ length: 12 }, (_, i) => {
-        const angle = (i / 12) * Math.PI * 2;
-        const x1 = 50 + Math.cos(angle) * 20;
-        const y1 = 50 + Math.sin(angle) * 20;
-        const x2 = 50 + Math.cos(angle) * 34;
-        const y2 = 50 + Math.sin(angle) * 34;
-        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="1.4" />;
-      })}
-    </svg>
-  );
-}
-
-function PeaksMotif({ className = "" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 100 100" className={className} preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path
-        d="M-10 78 14 50l12 16 14-24 14 22 12-12 20 26 16-14 22 20"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
-      />
-      <path
-        d="M-10 90 16 62l13 17 15-25 15 23 13-13 21 27 17-15 23 21"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.2"
-      />
-    </svg>
-  );
-}
 
 function LinkIcon({ size = 16 }: { size?: number }) {
   return (
@@ -136,8 +130,6 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 function GalleryTile({ photo, category, onOpen }: { photo: Photo; category: Category; onOpen: () => void }) {
   const { ref, visible } = useRevealOnScroll<HTMLButtonElement>();
-  const Motif = photo.id.length % 2 === 0 ? SunMotif : PeaksMotif;
-
   return (
     <button
       ref={ref}
@@ -147,10 +139,19 @@ function GalleryTile({ photo, category, onOpen }: { photo: Photo; category: Cate
         photo.featured ? "col-span-2" : ""
       } ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
     >
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${category.from} ${category.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
-      >
-        <Motif className="absolute inset-0 h-full w-full p-8 text-cream/15" />
+      <div className="absolute inset-0 bg-forest/10 transition-transform duration-500 ease-out group-hover:scale-[1.06]">
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          fill
+          quality={80}
+          sizes={
+            photo.featured
+              ? "(min-width: 1024px) 400px, (min-width: 640px) 66vw, 100vw"
+              : "(min-width: 1024px) 200px, (min-width: 640px) 33vw, 50vw"
+          }
+          className="object-cover"
+        />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-transparent to-transparent" />
       {photo.featured && (
@@ -181,7 +182,6 @@ function Lightbox({
 }) {
   const photo = photos[index];
   const category = CATEGORIES.find((c) => c.id === photo.category)!;
-  const Motif = photo.id.length % 2 === 0 ? SunMotif : PeaksMotif;
 
   return (
     <div
@@ -231,8 +231,10 @@ function Lightbox({
         className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-[22px] border border-cream/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] sm:aspect-[3/4]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`absolute inset-0 bg-gradient-to-br ${category.from} ${category.to}`}>
-          <Motif className="absolute inset-0 h-full w-full p-14 text-cream/15" />
+        <div className="absolute inset-0 bg-night">
+          {/* blurred copy fills the frame; the sharp photo sits whole on top */}
+          <Image src={photo.src} alt="" aria-hidden fill sizes="448px" className="scale-110 object-cover opacity-60 blur-2xl" />
+          <Image src={photo.src} alt={photo.alt} fill quality={85} sizes="448px" className="object-contain" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent" />
         <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-night/50 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/85 backdrop-blur-sm">
