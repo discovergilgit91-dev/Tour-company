@@ -44,7 +44,7 @@ export default function ClosingCTA() {
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
-              <Link href="/#destinations" className={`${BASE_BUTTON} bg-gold text-forest hover:bg-gold/90`}>
+              <Link href="/lands" className={`${BASE_BUTTON} bg-gold text-forest hover:bg-gold/90`}>
                 Explore Destinations
                 <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                   <ArrowIcon size={14} />

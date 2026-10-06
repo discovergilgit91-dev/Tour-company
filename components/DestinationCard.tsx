@@ -325,7 +325,7 @@ export function RouteMapSection() {
               </div>
 
               <LinkButton
-                href="/#contact"
+                href="/plan-your-trip"
                 variant="outline"
                 className="group ml-auto gap-2 text-[11px] uppercase tracking-[0.12em]"
               >
