@@ -7,6 +7,7 @@ import { LinkButton } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "My Trip Requests — Discover Gilgit",
   description: "Track the custom trip requests and reservations you've sent us.",
+  robots: { index: false },
 };
 
 export default async function TripRequestsPage() {

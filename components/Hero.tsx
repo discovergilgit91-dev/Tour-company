@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
@@ -70,7 +71,8 @@ const SLIDE_DURATION_MS = 6000;
 type HeroCta = { label: string; href: string };
 
 const DEFAULT_PRIMARY_CTA: HeroCta = { label: "Explore journeys", href: "/lands" };
-const DEFAULT_SECONDARY_CTA: HeroCta = { label: "Watch film", href: "/film" };
+// There is no film page yet; send the second button somewhere real until there is one.
+const DEFAULT_SECONDARY_CTA: HeroCta = { label: "Plan Your Trip", href: "/plan-your-trip" };
 
 export type HeroProps = {
   /** Full slideshow (defaults to the homepage's 5-slide carousel). Omit and use the shorthand props below for a single static hero instead. */
@@ -83,7 +85,7 @@ export type HeroProps = {
   imageAlt?: string;
   /** Defaults to the homepage's "Explore journeys" button. Pass `null` to hide it. */
   primaryCta?: HeroCta | null;
-  /** Defaults to the homepage's "Watch film" button. Pass `null` to hide it. */
+  /** Defaults to the homepage's "Plan Your Trip" button. Pass `null` to hide it. */
   secondaryCta?: HeroCta | null;
   /** A single self-contained "watch video" button — opens a lightbox within Hero itself,
       no wiring required from the calling page. Typically used instead of primary/secondaryCta. */
@@ -538,12 +540,17 @@ export default function Hero({
               }`}
             >
               {slide.src ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                // next/image: the source photos are 2–3 MB, so let Next resize and
+                // re-encode them for the visitor's screen. Only the first slide is
+                // preloaded; the rest load as the slideshow reaches them.
+                <Image
                   src={slide.src}
                   alt={slide.alt}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  className="h-full w-full object-cover"
+                  fill
+                  priority={i === 0}
+                  quality={80}
+                  sizes="100vw"
+                  className="object-cover"
                 />
               ) : (
                 <div className="h-full w-full bg-gradient-to-br from-forest via-night to-forest" aria-hidden="true">

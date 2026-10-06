@@ -18,6 +18,8 @@ const workSans = Work_Sans({
 export const metadata: Metadata = {
   title: "Discover Gilgit",
   description: "Guided journeys through Gilgit-Baltistan",
+  // Defaults for link previews; individual pages inherit these.
+  openGraph: { siteName: "Discover Gilgit", type: "website", locale: "en_US" },
 };
 
 // viewportFit: "cover" lets the launcher/chat window's safe-area-inset-*

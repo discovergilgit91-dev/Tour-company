@@ -15,6 +15,7 @@ import { AlertIcon, CheckCircleIcon, GoogleIcon, MailIcon, SpinnerIcon } from ".
 const CALLBACK_ERROR_MESSAGES: Record<string, string> = {
   confirmation_failed:
     "That confirmation link is invalid or has expired. Please try signing in, or sign up again to get a new one.",
+  oauth_failed: "We couldn't complete sign-in with Google. Please try again, or use your email and password.",
 };
 
 export default function SignInForm({
@@ -213,11 +214,11 @@ export default function SignInForm({
 
       <p className="mt-8 text-center text-xs text-muted">
         By continuing you agree to Discover Gilgit&apos;s{" "}
-        <Link href="/terms" className="underline hover:text-forest">
+        <Link href="/terms" target="_blank" rel="noopener noreferrer" className="underline hover:text-forest">
           Terms
         </Link>{" "}
         and{" "}
-        <Link href="/privacy" className="underline hover:text-forest">
+        <Link href="/privacy" target="_blank" rel="noopener noreferrer" className="underline hover:text-forest">
           Privacy Policy
         </Link>
         .

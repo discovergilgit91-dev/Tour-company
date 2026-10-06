@@ -162,7 +162,6 @@ export default function BookingPage({
     setTravelers(v.travelers);
     clearPendingSubmission();
     // Restoring is a one-time thing on mount, deliberately not re-run.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const maxTravelers = tour ? extractMaxTravelers(tour.groupSize) : 10;
@@ -363,7 +362,7 @@ export default function BookingPage({
                             if (event.target.value) router.push(`/book?tour=${event.target.value}`);
                           }}
                         >
-                          <option value="">I'm not sure yet — general inquiry</option>
+                          <option value="">I&apos;m not sure yet — general inquiry</option>
                           {allTours.map((t) => (
                             <option key={t.slug} value={t.slug}>
                               {t.title}
@@ -383,6 +382,8 @@ export default function BookingPage({
                           name="name"
                           type="text"
                           required
+                          pattern=".*\S.*"
+                          title="Please enter your full name."
                           value={name}
                           onChange={(event) => setName(event.target.value)}
                           placeholder="Your full name"
@@ -398,6 +399,8 @@ export default function BookingPage({
                           name="email"
                           type="email"
                           required
+                          pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                          title="Enter a valid email address, like you@example.com."
                           value={email}
                           onChange={(event) => setEmail(event.target.value)}
                           placeholder="you@example.com"
@@ -416,6 +419,8 @@ export default function BookingPage({
                           name="phone"
                           type="tel"
                           required
+                          pattern="[+\d][\d\s\-]{6,}"
+                          title="Enter a valid phone number, like +92 300 1234567."
                           value={phone}
                           onChange={(event) => setPhone(event.target.value)}
                           placeholder="+92 300 1234567"

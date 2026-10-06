@@ -6,6 +6,7 @@ import AccountPage from "@/components/AccountPage";
 export const metadata: Metadata = {
   title: "My Account — Discover Gilgit",
   description: "Manage your Discover Gilgit account details.",
+  robots: { index: false },
 };
 
 type Profile = {

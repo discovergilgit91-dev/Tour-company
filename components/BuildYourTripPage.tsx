@@ -273,7 +273,6 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
     setNotes(v.notes);
     clearPendingSubmission();
     // Restoring is a one-time thing on mount, deliberately not re-run.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const errors = useMemo<FormErrors>(

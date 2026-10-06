@@ -6,6 +6,7 @@ import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 export const metadata: Metadata = {
   title: "Forgot Password — Discover Gilgit",
   description: "Request a link to reset your Discover Gilgit password.",
+  robots: { index: false },
 };
 
 export default async function ForgotPasswordPage() {

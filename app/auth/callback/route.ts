@@ -10,7 +10,17 @@ import { createClient } from "@/lib/supabase/server";
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/";
+  // Only same-site paths ("/book", "/account"...). Anything else — a full URL,
+  // "//host", "@host" — would let a crafted link bounce someone to another site
+  // after they sign in, so it falls back to the homepage.
+  const requestedNext = searchParams.get("next") ?? "/";
+  const next = /^\/(?![/\\])/.test(requestedNext) ? requestedNext : "/";
+
+  // The provider (e.g. Google) sent the visitor back with an error instead of a
+  // code — typically they cancelled or denied access. Not an expired email link.
+  if (!code && searchParams.get("error")) {
+    return NextResponse.redirect(`${origin}/sign-in?error=oauth_failed`);
+  }
 
   if (code) {
     try {
