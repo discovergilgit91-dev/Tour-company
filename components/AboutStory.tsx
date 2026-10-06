@@ -297,7 +297,7 @@ export default function AboutStory() {
 
           <div className={`mt-8 ${reveal(1100).className}`} style={reveal(1100).style}>
             <LinkButton href="/plan-your-trip" variant="outline" className="group">
-              <LogoIcon className="h-5 w-6" />
+              <LogoIcon className="-my-1.5 h-8 w-10" />
               Plan your journey
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">→</span>
             </LinkButton>
