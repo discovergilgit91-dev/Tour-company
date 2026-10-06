@@ -382,6 +382,8 @@ export default function BookingPage({
                           name="name"
                           type="text"
                           required
+                          pattern=".*\S.*"
+                          title="Please enter your full name."
                           value={name}
                           onChange={(event) => setName(event.target.value)}
                           placeholder="Your full name"
@@ -397,6 +399,8 @@ export default function BookingPage({
                           name="email"
                           type="email"
                           required
+                          pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                          title="Enter a valid email address, like you@example.com."
                           value={email}
                           onChange={(event) => setEmail(event.target.value)}
                           placeholder="you@example.com"
@@ -415,6 +419,8 @@ export default function BookingPage({
                           name="phone"
                           type="tel"
                           required
+                          pattern="[+\d][\d\s\-]{6,}"
+                          title="Enter a valid phone number, like +92 300 1234567."
                           value={phone}
                           onChange={(event) => setPhone(event.target.value)}
                           placeholder="+92 300 1234567"
