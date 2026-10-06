@@ -15,6 +15,7 @@ import { AlertIcon, CheckCircleIcon, GoogleIcon, MailIcon, SpinnerIcon } from ".
 const CALLBACK_ERROR_MESSAGES: Record<string, string> = {
   confirmation_failed:
     "That confirmation link is invalid or has expired. Please try signing in, or sign up again to get a new one.",
+  oauth_failed: "We couldn't complete sign-in with Google. Please try again, or use your email and password.",
 };
 
 export default function SignInForm({
