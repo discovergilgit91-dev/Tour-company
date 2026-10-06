@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { LinkButton } from "./ui/Button";
@@ -539,12 +540,17 @@ export default function Hero({
               }`}
             >
               {slide.src ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                // next/image: the source photos are 2–3 MB, so let Next resize and
+                // re-encode them for the visitor's screen. Only the first slide is
+                // preloaded; the rest load as the slideshow reaches them.
+                <Image
                   src={slide.src}
                   alt={slide.alt}
-                  loading={i === 0 ? "eager" : "lazy"}
-                  className="h-full w-full object-cover"
+                  fill
+                  priority={i === 0}
+                  quality={80}
+                  sizes="100vw"
+                  className="object-cover"
                 />
               ) : (
                 <div className="h-full w-full bg-gradient-to-br from-forest via-night to-forest" aria-hidden="true">
