@@ -1,11 +1,12 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 
 export type LegalSection = { heading: string; body: ReactNode };
 
 /**
- * Shared layout for the Terms and Privacy pages: the same forest intro band
- * the other inner pages open with (the header floats over it), then a
+ * Shared layout for the Terms and Privacy pages: a photo hero with the same
+ * overlays the other inner-page heroes use (the header floats over it), then a
  * readable single column of numbered sections.
  */
 export default function LegalPage({
@@ -13,6 +14,8 @@ export default function LegalPage({
   title,
   intro,
   updated,
+  image,
+  imageAlt,
   sections,
 }: {
   eyebrow: string;
@@ -20,16 +23,24 @@ export default function LegalPage({
   intro: string;
   /** Human-readable "last updated" date. */
   updated: string;
+  /** Hero background photo (path under /public). */
+  image: string;
+  imageAlt: string;
   sections: LegalSection[];
 }) {
   return (
     <main className="bg-cream">
       <section className="relative overflow-hidden bg-forest">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
-        />
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-12 pt-28 sm:px-6 sm:pb-14 sm:pt-32 lg:px-8 lg:pt-36">
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <Image src={image} alt={imageAlt} fill priority quality={85} sizes="100vw" className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/80 via-forest/45 to-forest/15 sm:from-forest/75 sm:via-forest/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest/55 via-transparent to-forest/20" />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+          />
+        </div>
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pb-20 lg:pt-40">
           <span className="inline-flex items-center rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
             {eyebrow}
           </span>
