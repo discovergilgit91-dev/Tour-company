@@ -103,13 +103,18 @@ export function AuthShell({
             </g>
           </svg>
 
-          {/* top: brand mark, links back home */}
-          <div className="relative z-10">
+          {/* top: brand mark, links back home. The bottom margin is a floor
+              for the gap to the badge below: the three blocks are spread with
+              justify-between, so on shorter screens the logo and badge would
+              otherwise end up almost touching. */}
+          <div className="relative z-10 lg:mb-14">
             <Logo compact />
           </div>
 
-          {/* middle: tagline, hidden on the compact mobile banner to keep it tidy */}
-          <div className="relative z-10 hidden max-w-md lg:block">
+          {/* middle: tagline, hidden on the compact mobile banner to keep it tidy.
+              Its bottom margin keeps the gap above the quote card from being
+              squeezed by the logo's margin above. */}
+          <div className="relative z-10 hidden max-w-md lg:mb-9 lg:block">
             <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
               {eyebrow}
             </span>
