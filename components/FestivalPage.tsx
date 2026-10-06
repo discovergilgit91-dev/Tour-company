@@ -61,36 +61,41 @@ const CULTURES = [
     name: "Shina",
     tagline: "Grace in Every Step",
     fact: "The most widely spoken language across Gilgit-Baltistan.",
-    from: "from-rose-400/70",
-    to: "to-forest",
+    src: "/Images/tours/culture.png",
+    alt: "Festival-goers in traditional dress, with musicians and dancers",
+    position: "20% 50%",
   },
   {
     name: "Balti",
     tagline: "Strength in Unity",
     fact: "Rooted in Tibetan heritage, spoken throughout Baltistan.",
-    from: "from-teal-400/70",
-    to: "to-forest",
+    src: "/Images/tours/shigar-fort.jpg",
+    alt: "Shigar Fort and the river valley in Baltistan",
+    position: "30% 50%",
   },
   {
     name: "Burushaski",
     tagline: "Roots in the Mountains",
     fact: "A language isolate found nowhere else on Earth.",
-    from: "from-orange-400/70",
-    to: "to-forest",
+    src: "/Images/tours/culture-heritage.png",
+    alt: "Altit Fort on its cliff above Hunza",
+    position: "50% 50%",
   },
   {
     name: "Wakhi",
     tagline: "Pride in Simplicity",
     fact: "Spoken in the high valleys along the Pamir corridor.",
-    from: "from-purple-400/70",
-    to: "to-forest",
+    src: "/Images/tours/passu-cones.jpg",
+    alt: "The Passu Cones above the Karakoram Highway in Gojal",
+    position: "55% 50%",
   },
   {
     name: "Khowar",
     tagline: "Spirit of the Valleys",
     fact: "The voice of Chitral and the region's western valleys.",
-    from: "from-amber-400/70",
-    to: "to-forest",
+    src: "/Images/tours/yasin(4).png",
+    alt: "Wildflower meadows in Yasin Valley below snow peaks",
+    position: "50% 50%",
   },
 ];
 
@@ -294,10 +299,16 @@ export default function FestivalPage() {
                 {CULTURES.map((culture, index) => (
                   <Reveal key={culture.name} delay={index * 90}>
                     <div className="group">
-                      <div
-                        className={`relative aspect-[3/4] overflow-hidden rounded-[18px] bg-gradient-to-br ${culture.from} ${culture.to} transition-transform duration-500 ease-out group-hover:scale-[1.03]`}
-                      >
-                        <SunMotif className="absolute inset-0 h-full w-full p-6 text-cream/25" />
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-[18px] bg-forest/10 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+                        <Image
+                          src={culture.src}
+                          alt={culture.alt}
+                          fill
+                          quality={85}
+                          sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 46vw"
+                          style={{ objectPosition: culture.position }}
+                          className="object-cover"
+                        />
                       </div>
                       <h3 className="mt-3 font-serif text-lg text-forest">{culture.name}</h3>
                       <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.06em] text-green">
