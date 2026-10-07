@@ -4,6 +4,7 @@ export const NAV_LINKS = [
   { href: "#our-story", label: "Our Story" },
   { href: "/tours", label: "Upcoming Tours & Events" },
   { href: "#reviews", label: "Reviews" },
+  { href: "/blog", label: "Blog" },
   { href: "/plan-your-trip", label: "Plan Your Trip" },
 ];
 

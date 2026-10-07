@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Logo, LogoIcon } from "./ui/Logo";
 import { ArrowIcon, CompassIcon, MailIcon, PhoneIcon, PinIcon } from "./ui/icons";
+import { BLOG_POSTS } from "@/lib/blog";
 import { NAV_LINKS, navHref } from "@/lib/nav";
 import { getNavMenus } from "@/lib/navMenus";
 
@@ -143,6 +144,13 @@ export default function Footer() {
   // The same destinations and tours/events as the header dropdowns — both are
   // built from lib/navMenus.ts, so the two can never drift apart.
   const menus = getNavMenus();
+
+  // The two newest articles, shown under Account (the shortest column) so the
+  // footer doesn't grow a row for them.
+  const latestPosts: FooterLinkItem[] = BLOG_POSTS.slice(0, 2).map((post) => ({
+    href: `/blog/${post.slug}`,
+    label: post.title,
+  }));
   const destinationsMenu = menus.find((menu) => menu.label === "Destinations");
   const toursMenu = menus.find((menu) => menu.label === "Upcoming Tours & Events");
 
@@ -205,11 +213,16 @@ export default function Footer() {
             links={exploreLinks}
             className="lg:border-r lg:border-cream/[0.08] lg:pr-8"
           />
-          <FooterColumn
-            title="Account"
-            links={ACCOUNT_LINKS}
-            className="lg:border-r lg:border-cream/[0.08] lg:pr-8"
-          />
+          <div className="space-y-7 lg:border-r lg:border-cream/[0.08] lg:pr-8">
+            <FooterColumn title="Account" links={ACCOUNT_LINKS} />
+            {latestPosts.length > 0 && (
+              <FooterColumn
+                title="Latest from the blog"
+                links={latestPosts}
+                viewAll={{ href: "/blog", label: "Read the blog" }}
+              />
+            )}
+          </div>
 
           {/* CONTACT */}
           <div>
