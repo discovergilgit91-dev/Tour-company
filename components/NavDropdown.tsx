@@ -163,7 +163,7 @@ export default function NavDropdown({
         }}
         onClick={handleTriggerClick}
         onKeyDown={handleTriggerKeyDown}
-        className={`flex items-center gap-1 font-sans text-[13px] font-medium transition-colors ${open ? activeClassName : toneClassName}`}
+        className={`flex items-center gap-1 whitespace-nowrap font-sans text-[12px] xl:text-[13px] font-medium transition-colors ${open ? activeClassName : toneClassName}`}
       >
         {menu.label}
         <span className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>

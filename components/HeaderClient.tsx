@@ -54,7 +54,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
       >
         <Logo compact={scrolled} />
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-3 lg:flex xl:gap-7">
           {NAV_LINKS.map((link) => {
             const menu = menuFor(link.label);
             const toneClassName = solid ? "text-forest/75 hover:text-forest" : "text-cream/75 hover:text-cream";
@@ -78,7 +78,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
               <Link
                 key={link.href}
                 href={navHref(link.href)}
-                className={`font-sans text-[13px] font-medium transition-colors ${toneClassName}`}
+                className={`whitespace-nowrap font-sans text-[12px] font-medium xl:text-[13px] transition-colors ${toneClassName}`}
               >
                 {link.label}
               </Link>
@@ -86,7 +86,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
           })}
         </nav>
 
-        <div className="hidden items-center gap-5 lg:flex">
+        <div className="hidden items-center gap-4 lg:flex xl:gap-5">
           {user ? (
             <AccountMenu
               displayName={displayName}
@@ -98,13 +98,13 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
             <>
               <Link
                 href="/sign-in"
-                className={`font-sans text-[13px] font-medium transition-colors ${
+                className={`whitespace-nowrap font-sans text-[12px] font-medium xl:text-[13px] transition-colors ${
                   solid ? "text-forest/75 hover:text-forest" : "text-cream/75 hover:text-cream"
                 }`}
               >
                 Sign In
               </Link>
-              <LinkButton href="/sign-up" className="px-5 py-2.5 text-xs">
+              <LinkButton href="/sign-up" className="whitespace-nowrap px-5 py-2.5 text-xs">
                 Sign Up
               </LinkButton>
             </>
@@ -238,7 +238,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                 <Link href="/sign-in" className="font-sans text-sm text-forest/80 hover:text-forest">
                   Sign In
                 </Link>
-                <LinkButton href="/sign-up" className="px-5 py-2.5 text-xs">
+                <LinkButton href="/sign-up" className="whitespace-nowrap px-5 py-2.5 text-xs">
                   Sign Up
                 </LinkButton>
               </div>
