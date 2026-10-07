@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import BlogExplorer from "@/components/BlogExplorer";
+import JsonLd from "@/components/JsonLd";
 import { BLOG_POSTS } from "@/lib/blog";
+import { BLOG_LISTING_PATH, blogListingJsonLd, blogListingMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "The Journal — Discover Gilgit",
-  description:
-    "Planning notes, trek guides and good-to-know basics for travelling Gilgit-Baltistan — from the best months to visit to what's included on a Discover Gilgit trip.",
-};
+export const metadata: Metadata = blogListingMetadata();
+
+const LISTING_CRUMBS = [
+  { name: "Home", path: "/" },
+  { name: "Blog", path: BLOG_LISTING_PATH },
+];
 
 export default function BlogPage() {
   return (
     <main className="min-h-screen bg-cream">
+      <JsonLd data={[blogListingJsonLd(BLOG_POSTS), breadcrumbJsonLd(LISTING_CRUMBS)]} />
       <Hero
         eyebrow="THE JOURNAL"
         title="Stories and notes from the high country."
