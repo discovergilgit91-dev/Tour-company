@@ -28,8 +28,23 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
   const gridPosts = showFeatured ? rest : visible;
 
   return (
-    <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8 lg:pb-24 lg:pt-14">
-      <div className="mb-10 flex flex-col gap-3 rounded-[22px] border border-forest/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+    <section className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-28">
+      <div className="mb-12 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <span className="h-px w-8 bg-muted/60" />
+            Latest articles
+          </div>
+          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+            Read before you <span className="text-green">go</span>
+          </h2>
+          <p role="status" className="mt-3 text-sm text-muted">
+            <span className="font-semibold text-forest">{visible.length}</span>{" "}
+            {visible.length === 1 ? "article" : "articles"}
+            {activeCategory ? ` in ${activeCategory}` : ""}
+          </p>
+        </div>
+
         <div role="group" aria-label="Filter articles by category" className="flex flex-wrap gap-2">
           <button
             type="button"
@@ -64,11 +79,6 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
             );
           })}
         </div>
-
-        <p role="status" className="text-sm text-muted">
-          <span className="font-semibold text-forest">{visible.length}</span>{" "}
-          {visible.length === 1 ? "article" : "articles"}
-        </p>
       </div>
 
       {visible.length === 0 ? (
@@ -79,12 +89,12 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
       ) : (
         <>
           {showFeatured && (
-            <div className="mb-12 sm:mb-14">
+            <div className="mb-12 sm:mb-14 lg:mb-16">
               <BlogCard key={lead.slug} post={lead} featured />
             </div>
           )}
           {gridPosts.length > 0 && (
-            <div className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-7 lg:gap-y-12">
               {gridPosts.map((post, index) => (
                 <BlogCard key={post.slug} post={post} delay={(index % 6) * 90} />
               ))}
@@ -92,6 +102,6 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
           )}
         </>
       )}
-    </div>
+    </section>
   );
 }
