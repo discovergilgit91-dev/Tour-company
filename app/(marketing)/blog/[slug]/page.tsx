@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import BlogPostPage from "@/components/BlogPostPage";
 import { BLOG_POSTS, getBlogPost } from "@/lib/blog";
+import { blogPostMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
@@ -12,16 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getBlogPost(slug);
   if (!post) return {};
 
-  return {
-    title: `${post.title} — Discover Gilgit`,
-    description: post.excerpt,
-    openGraph: {
-      type: "article",
-      title: post.title,
-      description: post.excerpt,
-      publishedTime: post.publishDate,
-    },
-  };
+  return blogPostMetadata(post);
 }
 
 export default async function BlogPostRoute({ params }: { params: Promise<{ slug: string }> }) {

@@ -1,9 +1,36 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { formatBlogDate, getMorePosts, type BlogBlock, type BlogPost } from "@/lib/blog";
+import { blogPostCrumbs, blogPostingJsonLd, breadcrumbJsonLd } from "@/lib/seo";
 import BlogCard from "./BlogCard";
+import JsonLd from "./JsonLd";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon } from "./ui/icons";
+
+const INLINE_LINK = /\[([^\]]+)\]\((\/[^)\s]*)\)/g;
+
+/** Turns [label](/path) markup in body text into real internal links; everything else stays plain text. */
+function renderInline(text: string): ReactNode[] {
+  const nodes: ReactNode[] = [];
+  let last = 0;
+  for (const match of text.matchAll(INLINE_LINK)) {
+    const start = match.index ?? 0;
+    if (start > last) nodes.push(text.slice(last, start));
+    nodes.push(
+      <Link
+        key={start}
+        href={match[2]}
+        className="font-medium text-green underline decoration-green/30 underline-offset-[3px] transition-colors hover:text-green-dark hover:decoration-green-dark/60"
+      >
+        {match[1]}
+      </Link>
+    );
+    last = start + match[0].length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
 
 function renderBlock(block: BlogBlock, index: number) {
   switch (block.type) {
@@ -13,13 +40,19 @@ function renderBlock(block: BlogBlock, index: number) {
           {block.text}
         </h2>
       );
+    case "h3":
+      return (
+        <h3 key={index} className="mt-8 font-serif text-xl leading-snug tracking-tight text-forest sm:text-2xl">
+          {block.text}
+        </h3>
+      );
     case "list":
       return (
         <ul key={index} className="mt-5 space-y-3">
           {block.items.map((item) => (
             <li key={item} className="flex items-start gap-3 text-[15px] leading-[1.8] text-muted sm:text-[17px]">
               <span className="mt-[0.8em] h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />
-              <span>{item}</span>
+              <span>{renderInline(item)}</span>
             </li>
           ))}
         </ul>
@@ -40,14 +73,14 @@ function renderBlock(block: BlogBlock, index: number) {
     case "callout":
       return (
         <aside key={index} className="mt-9 rounded-xl border border-gold/25 bg-gold/[0.06] px-5 py-4 sm:px-6 sm:py-5">
-          <p className="font-serif text-lg text-forest">{block.title}</p>
-          <p className="mt-1.5 text-sm leading-relaxed text-forest/80 sm:text-base">{block.text}</p>
+          <h3 className="font-serif text-lg text-forest">{block.title}</h3>
+          <p className="mt-1.5 text-sm leading-relaxed text-forest/80 sm:text-base">{renderInline(block.text)}</p>
         </aside>
       );
     default:
       return (
         <p key={index} className="mt-5 text-[15px] leading-[1.8] text-muted sm:text-[17px] sm:leading-[1.85]">
-          {block.text}
+          {renderInline(block.text)}
         </p>
       );
   }
@@ -64,85 +97,91 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
 
   return (
     <main className="bg-cream">
-      {/* ---------------- Hero ---------------- */}
-      <section className="relative overflow-hidden bg-forest">
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <Image
-            src={post.featuredImage}
-            alt={post.featuredImageAlt}
-            fill
-            priority
-            quality={90}
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-forest/45 via-forest/10 to-forest/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-forest/60 via-transparent to-transparent" />
-        </div>
+      <JsonLd data={[blogPostingJsonLd(post), breadcrumbJsonLd(blogPostCrumbs(post))]} />
 
-        <div className="relative z-10 mx-auto flex min-h-[70svh] max-w-6xl flex-col justify-center px-5 pb-14 pt-32 sm:min-h-[74svh] sm:px-6 sm:pb-16 lg:px-8">
-          <LinkButton
-            href="/blog"
-            variant="dark"
-            className="group mb-6 w-fit gap-2 text-[11px] uppercase tracking-[0.12em]"
-          >
-            <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
-              <ArrowIcon size={13} />
-            </span>
-            Back to the blog
-          </LinkButton>
-
-          <div className="max-w-3xl">
-            <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
-              {post.category}
-            </span>
-
-            <h1 className="mt-5 font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-5xl md:text-[56px]">
-              {post.title}
-            </h1>
-            <p className="mt-4 max-w-2xl text-[13.5px] leading-relaxed text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] sm:text-base md:text-lg">
-              {post.excerpt}
-            </p>
-
-            <p className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-semibold text-cream/90 [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
-              <time dateTime={post.publishDate}>{formatBlogDate(post.publishDate)}</time>
-              <span aria-hidden className="h-1 w-1 rounded-full bg-gold" />
-              <span>{post.readTime}</span>
-            </p>
+      {/* The hero and the body are one <article>: the header carries the single
+          <h1>, the body's section headings are <h2>/<h3> beneath it. */}
+      <article>
+        {/* ---------------- Hero ---------------- */}
+        <header className="relative overflow-hidden bg-forest">
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <Image
+              src={post.featuredImage}
+              alt={post.featuredImageAlt}
+              fill
+              priority
+              quality={90}
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-forest/45 via-forest/10 to-forest/70" />
+            <div className="absolute inset-0 bg-gradient-to-r from-forest/60 via-transparent to-transparent" />
           </div>
-        </div>
-      </section>
 
-      {/* ---------------- Article ---------------- */}
-      <article className="pb-6 pt-12 sm:pt-14 lg:pt-16">
-        <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
-          <div className="-mt-5">{post.body.map(renderBlock)}</div>
+          <div className="relative z-10 mx-auto flex min-h-[70svh] max-w-6xl flex-col justify-center px-5 pb-14 pt-32 sm:min-h-[74svh] sm:px-6 sm:pb-16 lg:px-8">
+            <LinkButton
+              href="/blog"
+              variant="dark"
+              className="group mb-6 w-fit gap-2 text-[11px] uppercase tracking-[0.12em]"
+            >
+              <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
+                <ArrowIcon size={13} />
+              </span>
+              Back to the blog
+            </LinkButton>
 
-          {post.related.length > 0 && (
-            <div className="mt-14 rounded-[22px] border border-forest/10 bg-white p-5 sm:p-7">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Plan it</p>
-              <ul className="mt-4 divide-y divide-forest/10">
-                {post.related.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="group flex items-center justify-between gap-4 py-3.5 outline-none focus-visible:ring-2 focus-visible:ring-green"
-                    >
-                      <span>
-                        <span className="block font-serif text-lg text-forest transition-colors duration-300 group-hover:text-green">
-                          {link.label}
-                        </span>
-                        <span className="mt-0.5 block text-sm leading-relaxed text-muted">{link.description}</span>
-                      </span>
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest/[0.06] text-forest transition-colors duration-300 group-hover:bg-green group-hover:text-white">
-                        <ArrowIcon size={14} />
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
+                {post.category}
+              </span>
+
+              <h1 className="mt-5 font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-5xl md:text-[56px]">
+                {post.title}
+              </h1>
+              <p className="mt-4 max-w-2xl text-[13.5px] leading-relaxed text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] sm:text-base md:text-lg">
+                {post.excerpt}
+              </p>
+
+              <p className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-semibold text-cream/90 [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
+                <time dateTime={post.publishDate}>{formatBlogDate(post.publishDate)}</time>
+                <span aria-hidden className="h-1 w-1 rounded-full bg-gold" />
+                <span>{post.readTime}</span>
+              </p>
             </div>
-          )}
+          </div>
+        </header>
+
+        {/* ---------------- Article body ---------------- */}
+        <div className="pb-6 pt-12 sm:pt-14 lg:pt-16">
+          <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
+            <div className="-mt-5">{post.body.map(renderBlock)}</div>
+
+            {post.related.length > 0 && (
+              <div className="mt-14 rounded-[22px] border border-forest/10 bg-white p-5 sm:p-7">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Plan it</h2>
+                <ul className="mt-4 divide-y divide-forest/10">
+                  {post.related.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="group flex items-center justify-between gap-4 py-3.5 outline-none focus-visible:ring-2 focus-visible:ring-green"
+                      >
+                        <span>
+                          <span className="block font-serif text-lg text-forest transition-colors duration-300 group-hover:text-green">
+                            {link.label}
+                          </span>
+                          <span className="mt-0.5 block text-sm leading-relaxed text-muted">{link.description}</span>
+                        </span>
+                        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-forest/[0.06] text-forest transition-colors duration-300 group-hover:bg-green group-hover:text-white">
+                          <ArrowIcon size={14} />
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </article>
 
