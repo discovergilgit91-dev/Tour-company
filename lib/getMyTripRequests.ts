@@ -9,7 +9,8 @@
  * someone else's email. It is a plain server-side helper, imported only by the
  * server component that has already verified the session.
  *
- * Request  — POST N8N_LOOKUP_WEBHOOK_URL, JSON: { "email": "user@example.com" }
+ * Request  — POST N8N_LOOKUP_WEBHOOK_URL with header x-lookup-secret (from
+ *            N8N_LOOKUP_SECRET), JSON body: { "email": "user@example.com" }
  * Response — JSON: { "requests": [ ...rows ] } (a bare array is accepted too).
  * Each row is one Google Sheets row, flattened:
  *   source        "trip_request" | "reservation" | "custom_trip"
@@ -149,11 +150,16 @@ function bySubmittedDesc(a: MyTripRequest, b: MyTripRequest): number {
 export async function getMyTripRequests(email: string | null | undefined): Promise<MyTripRequest[]> {
   const userEmail = (email ?? "").trim().toLowerCase();
   const webhookUrl = process.env.N8N_LOOKUP_WEBHOOK_URL;
+  const secret = process.env.N8N_LOOKUP_SECRET ?? "";
 
   if (!userEmail) return [];
   if (!webhookUrl) {
     console.error(`[getMyTripRequests] N8N_LOOKUP_WEBHOOK_URL is not set (${new Date().toISOString()})`);
     return [];
+  }
+  if (!secret) {
+    // Still sent (as an empty header) so the failure shows up as n8n rejecting it, not a silent skip.
+    console.error(`[getMyTripRequests] N8N_LOOKUP_SECRET is not set (${new Date().toISOString()})`);
   }
 
   const controller = new AbortController();
@@ -162,7 +168,11 @@ export async function getMyTripRequests(email: string | null | undefined): Promi
   try {
     const response = await fetch(webhookUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        // Shared secret checked by the workflow's "Check Secret" node.
+        "x-lookup-secret": secret,
+      },
       body: JSON.stringify({ email: userEmail }),
       signal: controller.signal,
       // Always the live sheet — this is someone's own request history.
