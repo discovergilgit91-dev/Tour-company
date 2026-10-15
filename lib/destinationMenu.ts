@@ -7,10 +7,11 @@
  *   name       — what the row says.
  *   elevation  — shown as the small second line, e.g. "2,200 m". Leave it out
  *                (or "") and the line is hidden. Only fill in real figures.
- *   slug       — the slug of its page at /destinations/<slug>. Every destination
- *                on the /lands page is listed below under the region it sits in. A place with no
- *                slug (no page yet) links to its region's section on /lands
- *                instead of a dead page; add the slug once its page exists.
+ *   slug       — the slug of its page at /destinations/<slug>. Only places that
+ *                have a page are listed (every destination on the /lands page,
+ *                under the region it sits in). To add a place, create its page
+ *                first, then add it here with its slug. (An entry with no slug
+ *                would link to its region's section on /lands.)
  *
  * Each region's `href` is where clicking the region name (and "View all in …")
  * goes. There are no per-region pages yet, so these point at the matching
@@ -60,7 +61,6 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
       { name: "Deosai Plains", elevation: "4,114 m", slug: "deosai-plains" },
       { name: "Shangrila & Kachura Lakes", elevation: "2,500 m", slug: "kachura-lake" },
       { name: "Shigar Valley", elevation: "2,290 m", slug: "shigar-valley" },
-      { name: "Manthokha Waterfall", elevation: "" },
     ],
   },
   {
@@ -70,9 +70,6 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
     places: [
       { name: "Fairy Meadows", elevation: "3,300 m", slug: "fairy-meadows" },
       { name: "Kutwal Lake", elevation: "3,077 m", slug: "kutwal-lake" },
-      { name: "Nanga Parbat Base Camp", elevation: "" },
-      { name: "Babusar Top", elevation: "" },
-      { name: "Chilas", elevation: "" },
     ],
   },
   {
@@ -84,9 +81,6 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
       { name: "Yasin Valley", elevation: "2,500 m", slug: "yasin-valley" },
       { name: "Phander Lake", elevation: "2,900 m", slug: "phander-valley" },
       { name: "Naltar Valley", elevation: "2,800 m", slug: "naltar-valley" },
-      { name: "Gupis", elevation: "" },
-      { name: "Khalti Lake", elevation: "" },
-      { name: "Shandur Pass", elevation: "" },
     ],
   },
   {
@@ -96,9 +90,6 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
     places: [
       { name: "Rama Meadows & Lake", elevation: "3,300 m", slug: "rama-lake" },
       { name: "Harmosh Valley", elevation: "3,100 m", slug: "harmosh-valley" },
-      { name: "Minimarg", elevation: "" },
-      { name: "Rupal Valley", elevation: "" },
-      { name: "Domail", elevation: "" },
     ],
   },
 ];
