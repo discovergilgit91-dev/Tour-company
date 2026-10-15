@@ -34,7 +34,9 @@ const DEFAULT_DESTINATIONS: Destination[] = [
     name: "Nagar",
     slug: "nagar",
     blurb: "Glaciers, high pastures, and the road to Rakaposhi.",
-    image: "/Images/tours/sarfaranga-desert.jpg",
+    image: "/Images/tours/nagar-glacier.png",
+    // Keeps the trekker and the peak both inside the tall card crop.
+    focus: "35% 50%",
     tag: "Discover Nagar",
     href: "/lands#nagar",
     altitude: "2,700 m – 4,694 m",
