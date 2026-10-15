@@ -22,6 +22,8 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
   // menu keeps its own single expanded section.
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
+  // Inside an expanded mobile menu with regions: the one region showing its places.
+  const [expandedRegion, setExpandedRegion] = useState<string | null>(null);
   const menuFor = (label: string) => menus.find((menu) => menu.label === label);
 
   useEffect(() => {
@@ -138,13 +140,17 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
               const closeAll = () => {
                 setOpen(false);
                 setExpandedMenu(null);
+                setExpandedRegion(null);
               };
               return (
                 <div key={link.href}>
                   <button
                     type="button"
                     aria-expanded={expanded}
-                    onClick={() => setExpandedMenu(expanded ? null : menu.label)}
+                    onClick={() => {
+                      setExpandedMenu(expanded ? null : menu.label);
+                      setExpandedRegion(null);
+                    }}
                     className="flex w-full items-center justify-between rounded-lg px-2 py-2.5 text-left font-sans text-sm text-forest/80 hover:bg-forest/5 hover:text-forest"
                   >
                     {menu.label}
@@ -155,17 +161,73 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
 
                   {expanded && (
                     <div className="mb-1 ml-3 border-l-2 border-gold/40 pl-2">
-                      {menu.items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          onClick={closeAll}
-                          className="block rounded-lg px-2 py-2 active:bg-gold/[0.09] hover:bg-gold/[0.09]"
-                        >
-                          <span className="block font-sans text-sm font-medium text-forest/85">{item.label}</span>
-                          {item.detail && <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>}
-                        </Link>
-                      ))}
+                      {menu.regions
+                        ? menu.regions.map((region) => {
+                            const regionOpen = expandedRegion === region.id;
+                            return (
+                              <div key={region.id}>
+                                {/* Phones have no hover, so regions are an accordion: tap to
+                                    show its places underneath, tap again to hide them. */}
+                                <button
+                                  type="button"
+                                  aria-expanded={regionOpen}
+                                  onClick={() => setExpandedRegion(regionOpen ? null : region.id)}
+                                  className="flex w-full items-center justify-between gap-3 rounded-lg px-2 py-2 text-left active:bg-gold/[0.09] hover:bg-gold/[0.09]"
+                                >
+                                  <span>
+                                    <span className="block font-sans text-sm font-medium text-forest/85">
+                                      {region.label}
+                                    </span>
+                                    <span className="mt-0.5 block text-xs text-muted">{region.detail}</span>
+                                  </span>
+                                  <span className={`text-gold transition-transform duration-200 ${regionOpen ? "rotate-180" : ""}`}>
+                                    <ChevronDownIcon size={14} />
+                                  </span>
+                                </button>
+
+                                {regionOpen && (
+                                  <div className="mb-1 ml-3 border-l-2 border-gold/25 pl-2">
+                                    {region.items.map((item) => (
+                                      <Link
+                                        key={item.label}
+                                        href={item.href}
+                                        onClick={closeAll}
+                                        className="block rounded-lg px-2 py-2 active:bg-gold/[0.09] hover:bg-gold/[0.09]"
+                                      >
+                                        <span className="block font-sans text-sm font-medium text-forest/85">
+                                          {item.label}
+                                        </span>
+                                        {item.detail && (
+                                          <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>
+                                        )}
+                                      </Link>
+                                    ))}
+                                    <Link
+                                      href={region.viewAll.href}
+                                      onClick={closeAll}
+                                      className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[13px] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
+                                    >
+                                      {region.viewAll.label}
+                                      <span className="text-gold">
+                                        <ArrowIcon size={14} />
+                                      </span>
+                                    </Link>
+                                  </div>
+                                )}
+                              </div>
+                            );
+                          })
+                        : menu.items.map((item) => (
+                            <Link
+                              key={item.href}
+                              href={item.href}
+                              onClick={closeAll}
+                              className="block rounded-lg px-2 py-2 active:bg-gold/[0.09] hover:bg-gold/[0.09]"
+                            >
+                              <span className="block font-sans text-sm font-medium text-forest/85">{item.label}</span>
+                              {item.detail && <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>}
+                            </Link>
+                          ))}
                       <div className="mt-1 border-t border-forest/10 pt-1">
                         <Link
                           href={menu.viewAll.href}
