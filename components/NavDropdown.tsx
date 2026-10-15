@@ -1,11 +1,70 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useRef } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { ArrowIcon, ChevronDownIcon } from "./ui/icons";
-import type { NavMenu } from "@/lib/navMenus";
+import type { NavMenu, NavMenuItem } from "@/lib/navMenus";
 
 const CLOSE_DELAY_MS = 180;
+// A region only opens its flyout once the pointer has rested on it this long,
+// so sweeping diagonally across other rows toward the flyout doesn't switch it.
+const REGION_HOVER_DELAY_MS = 150;
+// Flyout card (w-72) + the transparent bridge between it and the dropdown (pl-3/pr-3).
+const FLYOUT_SPACE_PX = 288 + 12;
+const VIEWPORT_MARGIN_PX = 16;
+
+const CARD_CLASSES =
+  "overflow-hidden rounded-2xl bg-white p-2 shadow-[0_28px_60px_-20px_rgba(7,23,25,0.32),0_4px_14px_-4px_rgba(7,23,25,0.08)] ring-1 ring-forest/[0.06]";
+
+/**
+ * One dropdown / flyout row: label, optional muted detail line, a gold accent
+ * on the left and an arrow that slide in on hover or keyboard focus. `active`
+ * holds that same look (used for the region whose flyout is open).
+ */
+function Row({
+  item,
+  active = false,
+  ...linkProps
+}: { item: NavMenuItem; active?: boolean } & Omit<React.ComponentProps<typeof Link>, "href" | "children" | "className">) {
+  return (
+    <Link
+      href={item.href}
+      {...linkProps}
+      className={`group relative flex items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 transition-colors duration-200 hover:bg-gold/[0.09] focus-visible:bg-gold/[0.09] focus-visible:outline-none ${
+        active ? "bg-gold/[0.09]" : ""
+      }`}
+    >
+      {/* gold accent that grows in on hover / keyboard focus */}
+      <span
+        aria-hidden
+        className={`absolute bottom-2.5 left-0 top-2.5 w-[3px] origin-center rounded-full bg-gold transition-transform duration-300 ease-out group-hover:scale-y-100 group-focus-visible:scale-y-100 motion-reduce:transition-none ${
+          active ? "scale-y-100" : "scale-y-0"
+        }`}
+      />
+      <span
+        className={`min-w-0 transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none ${
+          active ? "translate-x-1" : ""
+        }`}
+      >
+        <span
+          className={`block text-sm font-medium leading-snug transition-colors group-hover:text-forest ${
+            active ? "text-forest" : "text-forest/85"
+          }`}
+        >
+          {item.label}
+        </span>
+        {item.detail && <span className="mt-0.5 block truncate text-xs text-muted">{item.detail}</span>}
+      </span>
+      <span
+        className={`shrink-0 text-gold transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 motion-reduce:transition-none ${
+          active ? "translate-x-0 opacity-100" : "-translate-x-1 opacity-0"
+        }`}
+      >
+        <ArrowIcon size={13} />
+      </span>
+    </Link>
+  );
+}
 
 /**
  * Desktop header dropdown. Whether it is open is owned by the header (a single
@@ -18,6 +77,15 @@ const CLOSE_DELAY_MS = 180;
  *   toggles; ArrowDown opens and moves into the list; Up/Down/Home/End move
  *   between items; Escape closes and returns focus to the trigger.
  * - Closes on outside click, on Tab leaving, and on choosing a link.
+ *
+ * A menu with `regions` is two-level: the dropdown lists the regions, and
+ * hovering (or Right arrow / Enter on) one opens a flyout of its places beside
+ * the dropdown — on the right, or the left when there isn't room. The flyout
+ * opens after a short hover delay, and a transparent bridge joins it to the
+ * dropdown so the pointer can cross the gap. On touch, the first tap on a
+ * region opens its flyout and a second tap goes to the region page. Arrow Up /
+ * Down move within a list, Left arrow or Escape closes the flyout. (Phones use
+ * an accordion instead — see HeaderClient.)
  *
  * Panel styling mirrors AccountMenu (rounded-2xl white card, same shadow/ring
  * and item hover) so the header's two menu styles stay consistent.
@@ -45,6 +113,34 @@ export default function NavDropdown({
   const focusOnOpen = useRef<"first" | null>(null);
   const panelId = useId();
 
+  const regions = menu.regions;
+  const [activeRegion, setActiveRegion] = useState<string | null>(null);
+  const [flip, setFlip] = useState(false);
+  const regionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const focusFlyoutOf = useRef<string | null>(null);
+
+  function clearRegionTimer() {
+    if (regionTimer.current) clearTimeout(regionTimer.current);
+    regionTimer.current = null;
+  }
+
+  function activateRegionAfterDelay(id: string) {
+    clearRegionTimer();
+    regionTimer.current = setTimeout(() => setActiveRegion(id), REGION_HOVER_DELAY_MS);
+  }
+
+  function openRegionWithKeyboard(id: string) {
+    clearRegionTimer();
+    focusFlyoutOf.current = id;
+    setActiveRegion(id);
+  }
+
+  function closeFlyoutAndFocusRegion(id: string) {
+    clearRegionTimer();
+    setActiveRegion(null);
+    panelRef.current?.querySelector<HTMLAnchorElement>(`[data-region-link="${id}"]`)?.focus();
+  }
+
   function cancelClose() {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     closeTimer.current = null;
@@ -56,6 +152,40 @@ export default function NavDropdown({
   }
 
   useEffect(() => cancelClose, []);
+  useEffect(() => clearRegionTimer, []);
+
+  // Closing the dropdown also closes any flyout.
+  useEffect(() => {
+    if (!open) {
+      clearRegionTimer();
+      setActiveRegion(null);
+    }
+  }, [open]);
+
+  // Open the flyout on the left when the right edge of the screen is too close.
+  useEffect(() => {
+    if (!open || !regions) return;
+    function measure() {
+      const rect = panelRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      const spaceRight = window.innerWidth - rect.right - VIEWPORT_MARGIN_PX;
+      const spaceLeft = rect.left - VIEWPORT_MARGIN_PX;
+      setFlip(spaceRight < FLYOUT_SPACE_PX && spaceLeft > spaceRight);
+    }
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [open, regions]);
+
+  // After a keyboard open (Right arrow / Enter), move focus into the flyout once it's visible.
+  useEffect(() => {
+    if (!activeRegion || focusFlyoutOf.current !== activeRegion) return;
+    focusFlyoutOf.current = null;
+    const frame = requestAnimationFrame(() => {
+      panelRef.current?.querySelector<HTMLAnchorElement>(`[data-flyout-link="${activeRegion}"]`)?.focus();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [activeRegion]);
 
   // Outside click / Escape — only listening while open, like AccountMenu.
   useEffect(() => {
@@ -98,8 +228,13 @@ export default function NavDropdown({
     return () => cancelAnimationFrame(frame);
   }, [open]);
 
+  // The dropdown's own links — not the ones inside a flyout.
   function links() {
-    return Array.from(panelRef.current?.querySelectorAll<HTMLAnchorElement>("a") ?? []);
+    return Array.from(panelRef.current?.querySelectorAll<HTMLAnchorElement>("a:not([data-flyout-link])") ?? []);
+  }
+
+  function flyoutLinks(regionId: string) {
+    return Array.from(panelRef.current?.querySelectorAll<HTMLAnchorElement>(`[data-flyout-link="${regionId}"]`) ?? []);
   }
 
   function handleTriggerClick(event: React.MouseEvent) {
@@ -121,8 +256,39 @@ export default function NavDropdown({
   }
 
   function handlePanelKeyDown(event: React.KeyboardEvent) {
-    const items = links();
-    const index = items.indexOf(document.activeElement as HTMLAnchorElement);
+    const current = document.activeElement as HTMLElement | null;
+    if (!current) return;
+
+    const inFlyout = current.getAttribute("data-flyout-link");
+    const regionLink = current.getAttribute("data-region-link");
+    const items = inFlyout ? flyoutLinks(inFlyout) : links();
+    const index = items.indexOf(current as HTMLAnchorElement);
+
+    // Inside a flyout: Left arrow / Escape close it and hand focus back to its region.
+    if (inFlyout && (event.key === "ArrowLeft" || event.key === "Escape")) {
+      event.preventDefault();
+      event.stopPropagation();
+      closeFlyoutAndFocusRegion(inFlyout);
+      return;
+    }
+
+    if (regionLink) {
+      // Right arrow / Enter open the flyout (Enter doesn't follow the link — the
+      // flyout's "View all in …" row is the keyboard route to the region page).
+      if (event.key === "ArrowRight" || event.key === "Enter") {
+        event.preventDefault();
+        openRegionWithKeyboard(regionLink);
+        return;
+      }
+      if ((event.key === "ArrowLeft" || event.key === "Escape") && activeRegion) {
+        event.preventDefault();
+        event.stopPropagation();
+        clearRegionTimer();
+        setActiveRegion(null);
+        return;
+      }
+    }
+
     let next = -1;
     if (event.key === "ArrowDown") next = (index + 1) % items.length;
     else if (event.key === "ArrowUp") next = index <= 0 ? items.length - 1 : index - 1;
@@ -177,66 +343,146 @@ export default function NavDropdown({
         id={panelId}
         ref={panelRef}
         onKeyDown={handlePanelKeyDown}
+        onPointerDownCapture={(event) => {
+          lastPointerType.current = event.pointerType;
+        }}
         className={`absolute left-1/2 top-full z-[60] -translate-x-1/2 pt-3 ${
           open ? "pointer-events-auto" : "pointer-events-none invisible"
         }`}
       >
-        <div
-          className={`w-80 origin-top overflow-hidden rounded-2xl bg-white p-2 shadow-[0_28px_60px_-20px_rgba(7,23,25,0.32),0_4px_14px_-4px_rgba(7,23,25,0.08)] ring-1 ring-forest/[0.06] transition-[opacity,transform] duration-[260ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
-            open ? "translate-y-0 scale-100 opacity-100" : "-translate-y-1.5 scale-[0.97] opacity-0"
-          }`}
-        >
-          <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
-            {menu.eyebrow}
-          </p>
+        {/* Positioning context for the flyouts: they hang off the card's top edge. */}
+        <div className="relative">
+          <div
+            className={`w-80 origin-top ${CARD_CLASSES} transition-[opacity,transform] duration-[260ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
+              open ? "translate-y-0 scale-100 opacity-100" : "-translate-y-1.5 scale-[0.97] opacity-0"
+            }`}
+          >
+            <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+              {menu.eyebrow}
+            </p>
 
-          <ul>
-            {menu.items.map((item, index) => (
-              <li
-                key={item.href}
-                style={{ transitionDelay: open ? `${60 + index * 28}ms` : "0ms" }}
-                className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
-                  open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+            <ul>
+              {regions
+                ? regions.map((region, index) => {
+                    const isActive = activeRegion === region.id;
+                    return (
+                      <li
+                        key={region.id}
+                        style={{ transitionDelay: open ? `${60 + index * 28}ms` : "0ms" }}
+                        className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
+                          open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                        }`}
+                      >
+                        <Row
+                          item={{ href: region.href, label: region.label, detail: region.detail }}
+                          active={isActive}
+                          data-region-link={region.id}
+                          aria-haspopup="true"
+                          aria-expanded={isActive}
+                          aria-controls={`${panelId}-${region.id}`}
+                          onPointerEnter={(event) => {
+                            if (event.pointerType === "mouse") activateRegionAfterDelay(region.id);
+                          }}
+                          onPointerLeave={(event) => {
+                            // Left before the delay ran out (e.g. passing over on the way to the flyout): don't switch.
+                            if (event.pointerType === "mouse") clearRegionTimer();
+                          }}
+                          onFocus={() => {
+                            if (activeRegion && activeRegion !== region.id) setActiveRegion(null);
+                          }}
+                          onClick={(event) => {
+                            // On touch there is no hover: the first tap opens the flyout, the second follows the link.
+                            const touch = lastPointerType.current === "touch" || lastPointerType.current === "pen";
+                            if (touch && !isActive) {
+                              event.preventDefault();
+                              setActiveRegion(region.id);
+                              return;
+                            }
+                            onOpenChange(false);
+                          }}
+                        />
+                      </li>
+                    );
+                  })
+                : menu.items.map((item, index) => (
+                    <li
+                      key={item.href}
+                      style={{ transitionDelay: open ? `${60 + index * 28}ms` : "0ms" }}
+                      className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
+                        open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                      }`}
+                    >
+                      <Row item={item} onClick={() => onOpenChange(false)} />
+                    </li>
+                  ))}
+            </ul>
+
+            {/* "View all" sits on its own tinted strip so it reads as a
+                secondary, closing action rather than another list item. */}
+            <div className="-mx-2 -mb-2 mt-2 border-t border-forest/[0.08] bg-cream/70 p-2">
+              <Link
+                href={menu.viewAll.href}
+                onClick={() => onOpenChange(false)}
+                onFocus={() => setActiveRegion(null)}
+                className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
+              >
+                {menu.viewAll.label}
+                <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
+                  <ArrowIcon size={14} />
+                </span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Flyouts — one per region, stacked in the same spot so switching regions crossfades.
+              The padding on the side facing the dropdown is the invisible bridge. */}
+          {regions?.map((region) => {
+            const isActive = open && activeRegion === region.id;
+            return (
+              <div
+                key={region.id}
+                id={`${panelId}-${region.id}`}
+                role="group"
+                aria-label={`${region.label} places`}
+                onPointerEnter={clearRegionTimer}
+                className={`absolute top-0 z-10 ${flip ? "right-full pr-3" : "left-full pl-3"} ${
+                  isActive ? "pointer-events-auto" : "pointer-events-none invisible"
                 }`}
               >
-                <Link
-                  href={item.href}
-                  onClick={() => onOpenChange(false)}
-                  className="group relative flex items-center justify-between gap-3 rounded-xl px-3.5 py-2.5 transition-colors duration-200 hover:bg-gold/[0.09] focus-visible:bg-gold/[0.09] focus-visible:outline-none"
+                <div
+                  className={`w-72 ${CARD_CLASSES} transition-[opacity,transform] duration-[220ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
+                    isActive ? "translate-x-0 opacity-100" : flip ? "translate-x-1.5 opacity-0" : "-translate-x-1.5 opacity-0"
+                  }`}
                 >
-                  {/* gold accent that grows in on hover / keyboard focus */}
-                  <span
-                    aria-hidden
-                    className="absolute bottom-2.5 left-0 top-2.5 w-[3px] origin-center scale-y-0 rounded-full bg-gold transition-transform duration-300 ease-out group-hover:scale-y-100 group-focus-visible:scale-y-100 motion-reduce:transition-none"
-                  />
-                  <span className="min-w-0 transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
-                    <span className="block text-sm font-medium leading-snug text-forest/85 transition-colors group-hover:text-forest">
-                      {item.label}
-                    </span>
-                    {item.detail && <span className="mt-0.5 block truncate text-xs text-muted">{item.detail}</span>}
-                  </span>
-                  <span className="shrink-0 -translate-x-1 text-gold opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 motion-reduce:transition-none">
-                    <ArrowIcon size={13} />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+                    {region.label}
+                  </p>
 
-          {/* "View all" sits on its own tinted strip so it reads as a
-              secondary, closing action rather than another list item. */}
-          <div className="-mx-2 -mb-2 mt-2 border-t border-forest/[0.08] bg-cream/70 p-2">
-            <Link
-              href={menu.viewAll.href}
-              onClick={() => onOpenChange(false)}
-              className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
-            >
-              {menu.viewAll.label}
-              <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
-                <ArrowIcon size={14} />
-              </span>
-            </Link>
-          </div>
+                  <ul>
+                    {region.items.map((item) => (
+                      <li key={item.label}>
+                        <Row item={item} data-flyout-link={region.id} onClick={() => onOpenChange(false)} />
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="-mx-2 -mb-2 mt-2 border-t border-forest/[0.08] bg-cream/70 p-2">
+                    <Link
+                      href={region.viewAll.href}
+                      data-flyout-link={region.id}
+                      onClick={() => onOpenChange(false)}
+                      className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
+                    >
+                      {region.viewAll.label}
+                      <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
+                        <ArrowIcon size={14} />
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

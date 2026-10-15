@@ -1,4 +1,5 @@
 import { DESTINATIONS } from "./destinations";
+import { DESTINATION_MENU_REGIONS } from "./destinationMenu";
 import { getTourDetail } from "./tourDetails";
 
 /**
@@ -16,12 +17,26 @@ export type NavMenuItem = {
   detail?: string;
 };
 
+/** One region of a two-level menu: a row in the dropdown that opens a flyout of its places. */
+export type NavRegion = {
+  id: string;
+  label: string;
+  /** Where the region name itself goes. */
+  href: string;
+  /** Small muted second line, e.g. "6 places". */
+  detail: string;
+  items: NavMenuItem[];
+  viewAll: { href: string; label: string };
+};
+
 export type NavMenu = {
   /** Matches the label of the NAV_LINKS entry this dropdown belongs to. */
   label: string;
   /** Small uppercase heading at the top of the panel. */
   eyebrow: string;
   items: NavMenuItem[];
+  /** When present, the header shows these regions (each with a flyout of places) instead of `items`. The footer keeps using `items`. */
+  regions?: NavRegion[];
   viewAll: { href: string; label: string };
 };
 
@@ -46,6 +61,25 @@ const FESTIVAL: NavMenuItem = {
   detail: "12 Aug – 14 Aug, 2027 · Gilgit City",
 };
 
+function getDestinationRegions(): NavRegion[] {
+  return DESTINATION_MENU_REGIONS.map((region) => ({
+    id: region.id,
+    label: region.label,
+    href: region.href,
+    detail: `${region.places.length} ${region.places.length === 1 ? "place" : "places"}`,
+    items: region.places.map((place) => {
+      const hasPage = Boolean(place.slug && DESTINATIONS.some((d) => d.slug === place.slug));
+      return {
+        // No page yet → the region's section, never a dead link.
+        href: hasPage ? `/destinations/${place.slug}` : region.href,
+        label: place.name,
+        detail: place.elevation?.trim() || undefined,
+      };
+    }),
+    viewAll: { href: region.href, label: `View all in ${region.label}` },
+  }));
+}
+
 export function getNavMenus(): NavMenu[] {
   const destinationItems: NavMenuItem[] = POPULAR_DESTINATION_SLUGS.flatMap((slug) => {
     const destination = DESTINATIONS.find((d) => d.slug === slug);
@@ -64,6 +98,7 @@ export function getNavMenus(): NavMenu[] {
       label: "Destinations",
       eyebrow: "Popular destinations",
       items: destinationItems,
+      regions: getDestinationRegions(),
       viewAll: { href: "/lands", label: "View all destinations" },
     },
     {
