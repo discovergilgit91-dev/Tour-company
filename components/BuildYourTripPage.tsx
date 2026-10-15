@@ -389,9 +389,9 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
       </section>
 
       {submitted ? (
-        <section className="relative w-full bg-cream py-16 sm:py-20 lg:py-24">
+        <section className="relative w-full bg-cream section-y">
           <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
-            <div className="flex flex-col items-center rounded-[22px] border border-forest/10 bg-white p-10 text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)]">
+            <div className="flex flex-col items-center rounded-[22px] border border-forest/10 bg-white text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
                 <CheckIcon size={28} />
               </span>
@@ -413,7 +413,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
       ) : (
         <form onSubmit={handleSubmit} noValidate>
           {/* ---------------- Destination picker ---------------- */}
-          <section className="relative w-full bg-cream py-14 sm:py-16 lg:py-20">
+          <section className="relative w-full bg-cream section-y">
             <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
               <Reveal>
                 <SectionHeading index={1} title="Destinations" />
@@ -428,7 +428,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                   </p>
                 </div>
 
-                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:mt-10 lg:grid-cols-4">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                   {DESTINATIONS.map((destination) => (
                     <DestinationPickCard
                       key={destination.id}
@@ -445,7 +445,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
           </section>
 
           {/* ---------------- Trip details ---------------- */}
-          <section className="relative w-full bg-white py-14 sm:py-16 lg:py-20">
+          <section className="relative w-full bg-white section-y">
             <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
               <Reveal>
                 <SectionHeading index={2} title="Trip details" />
@@ -453,7 +453,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                   Shape the rest of the trip
                 </h2>
 
-                <div className="mt-8 grid grid-cols-1 gap-10 lg:mt-10 lg:grid-cols-[1.2fr_1fr]">
+                <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr]">
                   <div className="space-y-7">
                     {/* Dates */}
                     <div>
@@ -463,7 +463,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           type="button"
                           onClick={() => setDateMode("exact")}
                           aria-pressed={dateMode === "exact"}
-                          className={`flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                          className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
                             dateMode === "exact"
                               ? "border-green bg-green/[0.06] text-green"
                               : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -475,7 +475,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           type="button"
                           onClick={() => setDateMode("flexible")}
                           aria-pressed={dateMode === "flexible"}
-                          className={`flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                          className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
                             dateMode === "flexible"
                               ? "border-green bg-green/[0.06] text-green"
                               : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -602,7 +602,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
           </section>
 
           {/* ---------------- Contact details + summary + submit ---------------- */}
-          <section className="relative w-full bg-cream py-14 sm:py-16 lg:py-20">
+          <section className="relative w-full bg-cream section-y">
             <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
               <Reveal>
                 <SectionHeading index={3} title="Contact details" />
@@ -610,7 +610,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                   Where should we send the plan?
                 </h2>
 
-                <div className="mt-8 rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-8 lg:mt-10">
+                <div className="mt-8 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] lg:mt-10 p-5 sm:p-6">
                   <div className="space-y-5">
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                       <div>
@@ -711,7 +711,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
       )}
 
       {/* ---------------- Trust / reassurance strip ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full overflow-hidden bg-forest section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
@@ -730,10 +730,10 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:mt-14 lg:gap-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-8 head-gap">
             {TRUST_POINTS.map(({ Icon, title, description }, index) => (
               <Reveal key={title} delay={index * 90}>
-                <div className="flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-6">
+                <div className="flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/10 text-gold">
                     <Icon size={19} />
                   </span>

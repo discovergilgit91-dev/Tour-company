@@ -76,7 +76,7 @@ export default function FeaturedDestinations({
        dead space below the header. */
     <section
       id="destinations"
-      className="relative w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12"
+      className="relative w-full overflow-hidden bg-cream section-b section-t-tight"
     >
       <div
         aria-hidden
@@ -84,7 +84,7 @@ export default function FeaturedDestinations({
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="mb-12 flex flex-col justify-between gap-8 lg:mb-14 lg:flex-row lg:items-end">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end head-gap-b">
           <div className="max-w-2xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
@@ -109,7 +109,7 @@ export default function FeaturedDestinations({
           </LinkButton>
         </div>
 
-        <div className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="card-grid card-grid-4 card-grid-loose">
           {destinations.map((destination, index) => (
             <DestinationCard
               key={destination.id}

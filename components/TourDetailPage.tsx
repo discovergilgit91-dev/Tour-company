@@ -421,7 +421,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
            breaks sticky positioning). Nothing in this section needs
            clipping — the decorative accent's slight bleed is fine inside
            the section's own padding. */}
-      <section className="relative w-full bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+      <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_340px] lg:gap-14">
             <div className="relative">
@@ -445,7 +445,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
 
               {/* Stats */}
               <Reveal delay={100}>
-                <div className="relative mt-8 rounded-[22px] border border-forest/10 bg-white p-6 sm:p-7">
+                <div className="relative mt-8 rounded-[22px] border border-forest/10 bg-white p-5 sm:p-6">
                   <div className="flex flex-col gap-5 border-b border-forest/8 pb-6 sm:flex-row sm:items-center sm:gap-8">
                     <div className="sm:flex-1">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-green">
@@ -473,7 +473,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                           <p className="mt-3 whitespace-nowrap font-serif text-2xl text-forest sm:text-4xl">
                             {stat.value}
                           </p>
-                          <p className="mt-1.5 min-h-[32px] text-xs uppercase leading-snug tracking-[0.08em] text-muted">
+                          <p className="mt-1.5 text-xs uppercase leading-snug tracking-[0.08em] text-muted">
                             {stat.label}
                           </p>
                         </div>
@@ -520,10 +520,10 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                         </div>
                         <div className="min-w-0">
                           <h3 className="font-serif text-lg text-forest">{guide.name}</h3>
-                          <p className="mt-0.5 min-h-[32px] text-xs font-semibold uppercase leading-snug tracking-[0.06em] text-green">
+                          <p className="mt-0.5 text-xs font-semibold uppercase leading-snug tracking-[0.06em] text-green">
                             {guide.role}
                           </p>
-                          <p className="mt-2 line-clamp-3 min-h-[54px] text-xs leading-relaxed text-muted">
+                          <p className="mt-2 line-clamp-3 text-[13px] leading-[1.55] text-muted">
                             {guide.bio}
                           </p>
                         </div>
@@ -548,7 +548,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                 <div className="mt-8 divide-y divide-forest/8 border-t border-forest/8">
                   {tour.itinerary.map((day, index) => (
                     <Reveal key={day.day} delay={index * 70}>
-                      <div className="grid grid-cols-1 gap-4 rounded-2xl py-6 transition-colors duration-300 hover:bg-forest/[0.025] sm:-mx-4 sm:grid-cols-[110px_1fr] sm:gap-6 sm:px-4">
+                      <div className="grid grid-cols-1 gap-4 rounded-2xl py-6 transition-colors duration-300 hover:bg-forest/[0.025] sm:-mx-4 sm:grid-cols-[110px_1fr] sm:gap-6 sm:px-4 p-5 sm:p-6">
                         <div className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-2.5">
                           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-forest font-serif text-base text-cream">
                             {index + 1}
@@ -563,7 +563,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                         </div>
                         <div>
                           <h3 className="font-serif text-base text-forest sm:text-lg">{day.title}</h3>
-                          <p className="mt-1.5 text-sm leading-relaxed text-muted">{day.description}</p>
+                          <p className="mt-1.5 text-[15px] leading-[1.55] text-muted">{day.description}</p>
                         </div>
                       </div>
                     </Reveal>
@@ -589,7 +589,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
       </section>
 
       {/* ---------------- Photo Highlights ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream pb-16 sm:pb-20 lg:pb-24">
+      <section className="relative w-full overflow-hidden bg-cream section-b">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
@@ -602,7 +602,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">{tour.galleryIntro}</p>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:mt-12">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 head-gap">
             {tour.photos.map((photo, index) => {
               const Motif = index % 2 === 0 ? PeakZigzagMotif : AccentMotif;
               return (
@@ -645,7 +645,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
       <TestimonialSection testimonials={[{ quote: tour.quote, author: tour.quoteAuthor }]} />
 
       {/* ---------------- Closing CTA ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream py-16 text-center sm:py-20">
+      <section className="relative w-full overflow-hidden bg-cream text-center section-y">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">

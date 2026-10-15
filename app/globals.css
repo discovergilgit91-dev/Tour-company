@@ -20,6 +20,93 @@
   --font-sans: var(--font-work-sans), sans-serif;
 }
 
+/* =========================================================
+   SPACING TOKENS — one scale for the whole site (4, 8, 12, 16,
+   20, 24, 32, 48, 64, 80px). Sections, card padding, grid gaps
+   and heading spacing read these instead of one-off values, so
+   re-tuning the density is a change to this block only.
+========================================================= */
+
+:root {
+  --space-section: 3rem; /* 48px — vertical padding of a section */
+  --space-section-tight: 1.5rem; /* 24px — top of a section that follows a hero/intro */
+  --space-card: 1.25rem; /* 20px — card / panel inner padding */
+  --space-gap: 1rem; /* 16px — gap between cards */
+  --space-head: 1.5rem; /* 24px — section heading → its content */
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --space-section: 4rem; /* 64px */
+    --space-section-tight: 2rem; /* 32px */
+    --space-card: 1.5rem; /* 24px */
+    --space-gap: 1.25rem; /* 20px */
+    --space-head: 2rem; /* 32px */
+  }
+}
+
+@utility section-y {
+  padding-block: var(--space-section);
+}
+
+@utility section-t {
+  padding-top: var(--space-section);
+}
+
+@utility section-b {
+  padding-bottom: var(--space-section);
+}
+
+@utility section-t-tight {
+  padding-top: var(--space-section-tight);
+}
+
+@utility head-gap {
+  margin-top: var(--space-head);
+}
+
+@utility head-gap-b {
+  margin-bottom: var(--space-head);
+}
+
+/* Card grid: 1 column on phones, 2 on tablets, 3 on desktop (card-grid-4: 4).
+   Cards in a row stretch to the tallest one, and an incomplete last row is
+   centred instead of leaving a gap on one side. */
+@layer components {
+  .card-grid {
+    --cols: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-gap);
+  }
+
+  /* Bare cards (photo + caption, no panel) need a little more air between rows. */
+  .card-grid-loose {
+    row-gap: var(--space-head);
+  }
+
+  .card-grid > * {
+    flex: 0 0 calc((100% - (var(--cols) - 1) * var(--space-gap)) / var(--cols));
+    min-width: 0;
+  }
+
+  @media (min-width: 40rem) {
+    .card-grid {
+      --cols: 2;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .card-grid {
+      --cols: 3;
+    }
+    .card-grid-4 {
+      --cols: 4;
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }

@@ -40,7 +40,7 @@ export default function LandsPage() {
       />
 
       {/* Intro — same rhythm as FeaturedDestinations on the homepage */}
-      <section className="relative isolate w-full overflow-hidden bg-cream pb-8 pt-12 sm:pt-14 lg:pt-16">
+      <section className="relative isolate w-full overflow-hidden bg-cream pb-8 section-t">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
@@ -93,13 +93,13 @@ export default function LandsPage() {
           because the sidebar tracks scroll position to highlight the
           active region. */}
       {DISTRICT_CARDS.length > 0 && (
-        <section className="relative mx-auto w-full max-w-6xl px-5 pt-10 sm:px-6 sm:pt-12 lg:px-8 lg:pt-14">
+        <section className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8 section-t-tight">
           <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
             <span className="h-px w-8 bg-muted/60" />
             Explore by district
           </div>
           <h2 className="sr-only">District guides</h2>
-          <div className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="card-grid card-grid-loose">
             {DISTRICT_CARDS.map((card, index) => (
               <DestinationCard key={card.id} destination={card} index={index} delay={index * 90} />
             ))}

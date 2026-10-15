@@ -30,7 +30,7 @@ export default function TripRequestList({ requests }: { requests: MyTripRequest[
           return (
             <li
               key={`${request.source}-${request.submittedAt ?? "undated"}-${index}`}
-              className="rounded-[22px] border border-forest/10 bg-white p-5 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-6"
+              className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6"
             >
               <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                 <span

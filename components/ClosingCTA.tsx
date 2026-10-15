@@ -17,7 +17,7 @@ const BASE_BUTTON =
 export default function ClosingCTA() {
   return (
     <section id="contact" className="relative w-full overflow-hidden">
-      <div className="relative min-h-[440px] w-full sm:min-h-[480px]">
+      <div className="relative min-h-[320px] w-full sm:min-h-[360px]">
         <Image
           src="/Images/tours/kutwal-lake.png"
           alt=""
@@ -31,7 +31,7 @@ export default function ClosingCTA() {
         <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
         <div className="relative z-10 mx-auto flex h-full w-full max-w-6xl items-center px-5 sm:px-6 lg:px-8">
-          <div className="max-w-xl py-16 sm:py-20">
+          <div className="section-y max-w-xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
               Ready for your next adventure?
             </p>

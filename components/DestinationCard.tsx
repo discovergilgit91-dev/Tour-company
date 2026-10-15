@@ -121,7 +121,7 @@ export function DestinationCard({
           the whole grid; "featured" only adds a badge and a ring, never a
           different size. */}
       <div
-        className={`relative aspect-[4/5] shrink-0 overflow-hidden rounded-[22px] bg-forest ${
+        className={`relative aspect-[4/3] shrink-0 overflow-hidden rounded-[22px] bg-forest sm:aspect-[4/5] ${
           featured ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
@@ -177,10 +177,10 @@ export function DestinationCard({
           <span className="absolute inset-y-0 left-0 w-full origin-left scale-x-0 bg-green transition-transform duration-500 ease-out group-hover:scale-x-100" />
         </div>
 
-        <h3 className="mt-4 line-clamp-2 min-h-[60px] font-serif text-2xl leading-tight tracking-tight text-forest">
+        <h3 className="mt-3 line-clamp-2 font-serif text-xl leading-tight tracking-tight text-forest sm:text-2xl">
           {name}
         </h3>
-        <p className="mt-2 line-clamp-4 min-h-24 text-sm leading-relaxed text-muted">{blurb}</p>
+        <p className="mt-2 line-clamp-4 flex-1 text-[15px] leading-[1.55] text-muted">{blurb}</p>
         <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
     </Link>
@@ -246,7 +246,7 @@ export function RouteMapSection() {
   }
 
   return (
-    <section id="route-map" className="relative overflow-hidden bg-night py-16 sm:py-20 lg:py-24">
+    <section id="route-map" className="relative overflow-hidden bg-night section-y">
       {/* faint road-line texture in the background */}
       <svg
         aria-hidden

@@ -145,7 +145,7 @@ export default function DestinationDetailPage({
       </section>
 
       {/* ---------------- About + quick facts ---------------- */}
-      <section className="relative w-full bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+      <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_320px] lg:gap-14">
             <div>
@@ -170,7 +170,7 @@ export default function DestinationDetailPage({
                       <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green/10 text-green">
                         <CheckIcon size={13} />
                       </span>
-                      <p className="text-sm leading-relaxed text-forest/80">{highlight}</p>
+                      <p className="text-[15px] leading-[1.55] text-forest/80">{highlight}</p>
                     </div>
                   ))}
                 </div>
@@ -180,7 +180,7 @@ export default function DestinationDetailPage({
             {/* ---------------- Quick facts sidebar ---------------- */}
             <div>
               <Reveal delay={120}>
-                <div className="rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] lg:sticky lg:top-24">
+                <div className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] lg:sticky lg:top-24 p-5 sm:p-6">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Trip planning</p>
                   <h3 className="mt-1.5 font-serif text-xl text-forest">Quick facts</h3>
 
@@ -236,7 +236,7 @@ export default function DestinationDetailPage({
       </section>
 
       {/* ---------------- What it's famous for ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full overflow-hidden bg-forest section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
@@ -255,10 +255,10 @@ export default function DestinationDetailPage({
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3 lg:mt-14 lg:gap-5">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-5 head-gap">
             {content.famousFor.map((item, index) => (
               <Reveal key={item.title} delay={index * 90}>
-                <div className="flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-6">
+                <div className="flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 font-serif text-sm text-gold">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -272,7 +272,7 @@ export default function DestinationDetailPage({
       </section>
 
       {/* ---------------- Photo gallery ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+      <section className="relative w-full overflow-hidden bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
@@ -285,9 +285,9 @@ export default function DestinationDetailPage({
           </Reveal>
 
           <div
-            className={`mt-10 grid grid-cols-2 gap-4 lg:mt-12 ${
+            className={`grid grid-cols-2 gap-4 ${
               !showFeatured && content.gallery.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4"
-            }`}
+            } head-gap`}
           >
             {showFeatured && destination.image && (
               <Reveal className="col-span-2">
@@ -366,7 +366,7 @@ export default function DestinationDetailPage({
 
       {/* ---------------- Nearby destinations ---------------- */}
       {nearby.length > 0 && (
-        <section className="relative w-full bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+        <section className="relative w-full bg-cream section-y">
           <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
             <Reveal>
               <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
@@ -378,7 +378,7 @@ export default function DestinationDetailPage({
               </h2>
             </Reveal>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+            <div className="card-grid card-grid-loose head-gap">
               {nearby.map((item, index) => (
                 <DestinationCard key={item.id} destination={item} index={index} delay={(index % 3) * 90} />
               ))}
@@ -388,7 +388,7 @@ export default function DestinationDetailPage({
       )}
 
       {/* ---------------- Closing CTA ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-16 text-center sm:py-20">
+      <section className="relative w-full overflow-hidden bg-forest text-center section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-24 top-0 h-[340px] w-[340px] rounded-full bg-gold/10 blur-3xl"

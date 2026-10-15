@@ -199,7 +199,7 @@ export default function ToursPage() {
       />
 
       {/* Intro — same rhythm as the /lands page intro */}
-      <section className="relative isolate w-full overflow-hidden bg-cream pb-8 pt-12 sm:pt-14 lg:pt-16">
+      <section className="relative isolate w-full overflow-hidden bg-cream pb-8 section-t">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"

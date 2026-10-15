@@ -36,7 +36,7 @@ export default function AccountPage({
         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-green">My Account</p>
         <h1 className="mt-2 font-serif text-3xl text-forest sm:text-4xl">Account settings</h1>
 
-        <div className="mt-8 rounded-[22px] border border-forest/10 bg-white p-6 shadow-sm sm:p-8">
+        <div className="mt-8 rounded-[22px] border border-forest/10 bg-white shadow-sm p-5 sm:p-6">
           <div className="flex flex-wrap items-center gap-5">
             <span className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-forest to-night text-2xl font-semibold uppercase tracking-wide text-gold ring-2 ring-gold/30">
               {initials}
@@ -76,14 +76,14 @@ export default function AccountPage({
           </form>
         </div>
 
-        <div className="mt-6 rounded-[22px] border border-forest/10 bg-white p-6 shadow-sm sm:p-8">
+        <div className="mt-6 rounded-[22px] border border-forest/10 bg-white shadow-sm p-5 sm:p-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
             <h2 className="font-serif text-xl text-forest">My Trip Requests</h2>
             <Link href="/account/trip-requests" className="text-sm font-semibold text-green hover:text-green-dark">
               View all →
             </Link>
           </div>
-          <p className="mt-2 text-sm leading-relaxed text-muted">
+          <p className="mt-2 text-[15px] leading-[1.55] text-muted">
             Track custom trip requests and reservations you&apos;ve sent us.
           </p>
         </div>
