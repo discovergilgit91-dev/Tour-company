@@ -7,7 +7,8 @@
  *   name       — what the row says.
  *   elevation  — shown as the small second line, e.g. "2,200 m". Leave it out
  *                (or "") and the line is hidden. Only fill in real figures.
- *   slug       — the slug of its page at /destinations/<slug>. A place with no
+ *   slug       — the slug of its page at /destinations/<slug>. Every destination
+ *                on the /lands page is listed below under the region it sits in. A place with no
  *                slug (no page yet) links to its region's section on /lands
  *                instead of a dead page; add the slug once its page exists.
  *
@@ -39,9 +40,15 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
       { name: "Karimabad", elevation: "2,200 m", slug: "karimabad" },
       { name: "Attabad Lake", elevation: "2,560 m", slug: "attabad-lake" },
       { name: "Passu Cones", elevation: "2,400 m", slug: "passu-cones" },
-      { name: "Altit & Baltit Forts", elevation: "" },
+      { name: "Baltit Fort", elevation: "2,220 m", slug: "baltit-fort" },
+      { name: "Altit Fort", elevation: "2,100 m", slug: "altit-fort" },
       { name: "Khunjerab Pass", elevation: "4,700 m", slug: "khunjerab-pass" },
       { name: "Hopar Glacier", elevation: "2,700 m", slug: "hopar-glacier" },
+      { name: "Borith Lake", elevation: "2,600 m", slug: "borith-lake" },
+      { name: "Shimshal Valley", elevation: "3,100 m", slug: "shimshal-valley" },
+      { name: "Rakaposhi Base Camp", elevation: "3,200 m", slug: "rakaposhi-base-camp" },
+      { name: "Minapin Glacier", elevation: "2,800 m", slug: "minapin-glacier" },
+      { name: "Rush Lake", elevation: "4,694 m", slug: "rush-lake" },
     ],
   },
   {
@@ -51,7 +58,7 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
     places: [
       { name: "Skardu & Katpana", elevation: "2,230 m", slug: "skardu-katpana" },
       { name: "Deosai Plains", elevation: "4,114 m", slug: "deosai-plains" },
-      { name: "Shangrila & Kachura Lakes", elevation: "" },
+      { name: "Shangrila & Kachura Lakes", elevation: "2,500 m", slug: "kachura-lake" },
       { name: "Shigar Valley", elevation: "2,290 m", slug: "shigar-valley" },
       { name: "Manthokha Waterfall", elevation: "" },
     ],
@@ -62,6 +69,7 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
     href: "/lands#diamer-astore",
     places: [
       { name: "Fairy Meadows", elevation: "3,300 m", slug: "fairy-meadows" },
+      { name: "Kutwal Lake", elevation: "3,077 m", slug: "kutwal-lake" },
       { name: "Nanga Parbat Base Camp", elevation: "" },
       { name: "Babusar Top", elevation: "" },
       { name: "Chilas", elevation: "" },
@@ -72,7 +80,10 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
     label: "Ghizer",
     href: "/lands#gilgit-ghizer",
     places: [
-      { name: "Phander Lake", elevation: "" },
+      { name: "Ghizer Valley", elevation: "2,150 m", slug: "ghizer-valley" },
+      { name: "Yasin Valley", elevation: "2,500 m", slug: "yasin-valley" },
+      { name: "Phander Lake", elevation: "2,900 m", slug: "phander-valley" },
+      { name: "Naltar Valley", elevation: "2,800 m", slug: "naltar-valley" },
       { name: "Gupis", elevation: "" },
       { name: "Khalti Lake", elevation: "" },
       { name: "Shandur Pass", elevation: "" },
@@ -83,7 +94,8 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
     label: "Astore",
     href: "/lands#diamer-astore",
     places: [
-      { name: "Rama Meadows & Lake", elevation: "" },
+      { name: "Rama Meadows & Lake", elevation: "3,300 m", slug: "rama-lake" },
+      { name: "Harmosh Valley", elevation: "3,100 m", slug: "harmosh-valley" },
       { name: "Minimarg", elevation: "" },
       { name: "Rupal Valley", elevation: "" },
       { name: "Domail", elevation: "" },
