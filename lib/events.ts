@@ -8,6 +8,8 @@
  * them in step if the festival changes.)
  */
 
+import type { DistrictSlug } from "./districts";
+
 export type SiteEvent = {
   slug: string;
   title: string;
@@ -16,6 +18,8 @@ export type SiteEvent = {
   startDate: string;
   /** Last day, YYYY-MM-DD — omit for a single-day event. */
   endDate?: string;
+  /** Which district page lists it. Leave out to keep it off district pages. */
+  district?: DistrictSlug;
   /** Shown under the name in the menu. Omit and the line shows just the date. */
   location?: string;
 };
@@ -28,5 +32,6 @@ export const EVENTS: SiteEvent[] = [
     startDate: "2027-08-12",
     endDate: "2027-08-14",
     location: "Gilgit City",
+    district: "gilgit",
   },
 ];

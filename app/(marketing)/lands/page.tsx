@@ -1,9 +1,26 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Hero from "@/components/Hero";
-import { RouteMapSection } from "@/components/DestinationCard";
+import { DestinationCard, RouteMapSection, type Destination } from "@/components/DestinationCard";
 import LandsExplorer from "@/components/LandsExplorer";
 import { DESTINATIONS, REGIONS } from "@/lib/destinations";
+import { DISTRICTS, districtHref } from "@/lib/districts";
+import { getAltitudeRange, getDistrictPlaces } from "@/lib/districtQueries";
+
+// Each district guide shown as a destination card, so it sits in the same grid
+// style as every other card on this page.
+const DISTRICT_CARDS: Destination[] = DISTRICTS.map((district) => ({
+  id: `district-${district.slug}`,
+  slug: district.slug,
+  name: district.name,
+  blurb: district.tagline,
+  image: district.hero.src,
+  focus: district.hero.focus,
+  tag: `Explore ${district.shortName}`,
+  href: districtHref(district),
+  altitude: getAltitudeRange(getDistrictPlaces(district)) ?? "",
+  badge: "District guide",
+}));
 
 export const metadata: Metadata = {
   title: "All Lands — Discover Gilgit",
@@ -75,6 +92,21 @@ export default function LandsPage() {
           teaser, organized like a proper travel directory. Client component
           because the sidebar tracks scroll position to highlight the
           active region. */}
+      {DISTRICT_CARDS.length > 0 && (
+        <section className="relative mx-auto w-full max-w-6xl px-5 pt-10 sm:px-6 sm:pt-12 lg:px-8 lg:pt-14">
+          <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <span className="h-px w-8 bg-muted/60" />
+            Explore by district
+          </div>
+          <h2 className="sr-only">District guides</h2>
+          <div className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {DISTRICT_CARDS.map((card, index) => (
+              <DestinationCard key={card.id} destination={card} index={index} delay={index * 90} />
+            ))}
+          </div>
+        </section>
+      )}
+
       <LandsExplorer destinations={DESTINATIONS} regions={REGIONS} />
 
       <RouteMapSection />

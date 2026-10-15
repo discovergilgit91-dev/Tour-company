@@ -13,6 +13,8 @@
  * natural mention of a destination or tour, not every mention.
  */
 
+import type { DistrictSlug } from "./districts";
+
 export type BlogCategory = "Planning" | "Trekking" | "Nature" | "Good to Know";
 
 export const BLOG_CATEGORIES: BlogCategory[] = ["Planning", "Trekking", "Nature", "Good to Know"];
@@ -52,6 +54,8 @@ export type BlogPost = {
   seoDescription: string;
   /** A short set of search keywords specific to this post. */
   keywords: string[];
+  /** District pages this article is "related reading" for — tag a post about a district's culture, food or places. */
+  districts?: DistrictSlug[];
   /** ISO date of the last substantive edit, if different from `publishDate`. Bump it when a post is revised. */
   modifiedDate?: string;
   body: BlogBlock[];
