@@ -78,8 +78,9 @@ function Row({
  *   between items; Escape closes and returns focus to the trigger.
  * - Closes on outside click, on Tab leaving, and on choosing a link.
  *
- * A menu with `regions` is two-level: the dropdown lists the regions, and
- * hovering (or Right arrow / Enter on) one opens a flyout of its places beside
+ * A menu with `sections` is two-level: the dropdown lists groups (regions,
+ * months…), and hovering (or Right arrow / Enter on) one opens a flyout of its
+ * items beside
  * the dropdown — on the right, or the left when there isn't room. The flyout
  * opens after a short hover delay, and a transparent bridge joins it to the
  * dropdown so the pointer can cross the gap. On touch, the first tap on a
@@ -113,7 +114,9 @@ export default function NavDropdown({
   const focusOnOpen = useRef<"first" | null>(null);
   const panelId = useId();
 
-  const regions = menu.regions;
+  const sections = menu.sections;
+  // Every group across all sections — each one owns a flyout.
+  const regions = sections?.flatMap((section) => section.groups);
   const [activeRegion, setActiveRegion] = useState<string | null>(null);
   const [flip, setFlip] = useState(false);
   const regionTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -357,76 +360,103 @@ export default function NavDropdown({
               open ? "translate-y-0 scale-100 opacity-100" : "-translate-y-1.5 scale-[0.97] opacity-0"
             }`}
           >
-            <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
-              {menu.eyebrow}
-            </p>
+            {!sections?.[0]?.eyebrow && (
+              <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+                {menu.eyebrow}
+              </p>
+            )}
 
-            <ul>
-              {regions
-                ? regions.map((region, index) => {
-                    const isActive = activeRegion === region.id;
-                    return (
-                      <li
-                        key={region.id}
-                        style={{ transitionDelay: open ? `${60 + index * 28}ms` : "0ms" }}
-                        className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
-                          open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+            {sections ? (
+              sections.map((section, sectionIndex) => {
+                const offset = sections.slice(0, sectionIndex).reduce((count, previous) => count + previous.groups.length, 0);
+                return (
+                  <div key={sectionIndex}>
+                    {section.eyebrow && (
+                      <p
+                        className={`px-3.5 pb-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70 ${
+                          sectionIndex > 0 ? "mt-2 border-t border-forest/[0.08] pt-3.5" : "pt-2.5"
                         }`}
                       >
-                        <Row
-                          item={{ href: region.href, label: region.label, detail: region.detail }}
-                          active={isActive}
-                          data-region-link={region.id}
-                          aria-haspopup="true"
-                          aria-expanded={isActive}
-                          aria-controls={`${panelId}-${region.id}`}
-                          onPointerEnter={(event) => {
-                            if (event.pointerType === "mouse") activateRegionAfterDelay(region.id);
-                          }}
-                          onPointerLeave={(event) => {
-                            // Left before the delay ran out (e.g. passing over on the way to the flyout): don't switch.
-                            if (event.pointerType === "mouse") clearRegionTimer();
-                          }}
-                          onFocus={() => {
-                            if (activeRegion && activeRegion !== region.id) setActiveRegion(null);
-                          }}
-                          onClick={(event) => {
-                            // On touch there is no hover: the first tap opens the flyout, the second follows the link.
-                            const touch = lastPointerType.current === "touch" || lastPointerType.current === "pen";
-                            if (touch && !isActive) {
-                              event.preventDefault();
-                              setActiveRegion(region.id);
-                              return;
-                            }
-                            onOpenChange(false);
-                          }}
-                        />
-                      </li>
-                    );
-                  })
-                : menu.items.map((item, index) => (
-                    <li
-                      key={item.href}
-                      style={{ transitionDelay: open ? `${60 + index * 28}ms` : "0ms" }}
-                      className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
-                        open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
-                      }`}
-                    >
-                      <Row item={item} onClick={() => onOpenChange(false)} />
-                    </li>
-                  ))}
-            </ul>
+                        {section.eyebrow}
+                      </p>
+                    )}
+
+                    {section.groups.length === 0 ? (
+                      section.emptyText && <p className="px-3.5 pb-2 pt-1 text-sm text-muted">{section.emptyText}</p>
+                    ) : (
+                      <ul>
+                        {section.groups.map((region, groupIndex) => {
+                          const isActive = activeRegion === region.id;
+                          return (
+                            <li
+                              key={region.id}
+                              style={{ transitionDelay: open ? `${60 + (offset + groupIndex) * 28}ms` : "0ms" }}
+                              className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
+                                open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                              }`}
+                            >
+                              <Row
+                                item={{ href: region.href, label: region.label, detail: region.detail }}
+                                active={isActive}
+                                data-region-link={region.id}
+                                aria-haspopup="true"
+                                aria-expanded={isActive}
+                                aria-controls={`${panelId}-${region.id}`}
+                                onPointerEnter={(event) => {
+                                  if (event.pointerType === "mouse") activateRegionAfterDelay(region.id);
+                                }}
+                                onPointerLeave={(event) => {
+                                  // Left before the delay ran out (e.g. passing over on the way to the flyout): don't switch.
+                                  if (event.pointerType === "mouse") clearRegionTimer();
+                                }}
+                                onFocus={() => {
+                                  if (activeRegion && activeRegion !== region.id) setActiveRegion(null);
+                                }}
+                                onClick={(event) => {
+                                  // On touch there is no hover: the first tap opens the flyout, the second follows the link.
+                                  const touch = lastPointerType.current === "touch" || lastPointerType.current === "pen";
+                                  if (touch && !isActive) {
+                                    event.preventDefault();
+                                    setActiveRegion(region.id);
+                                    return;
+                                  }
+                                  onOpenChange(false);
+                                }}
+                              />
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                );
+              })
+            ) : (
+              <ul>
+                {menu.items.map((item, index) => (
+                  <li
+                    key={item.href}
+                    style={{ transitionDelay: open ? `${60 + index * 28}ms` : "0ms" }}
+                    className={`transition-[opacity,transform] duration-300 ease-out motion-reduce:transition-none ${
+                      open ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0"
+                    }`}
+                  >
+                    <Row item={item} onClick={() => onOpenChange(false)} />
+                  </li>
+                ))}
+              </ul>
+            )}
 
             {/* "View all" sits on its own tinted strip so it reads as a
                 secondary, closing action rather than another list item. */}
             <div className="-mx-2 -mb-2 mt-2 border-t border-forest/[0.08] bg-cream/70 p-2">
               <Link
-                href={menu.viewAll.href}
+                href={(menu.dropdownViewAll ?? menu.viewAll).href}
                 onClick={() => onOpenChange(false)}
                 onFocus={() => setActiveRegion(null)}
                 className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
               >
-                {menu.viewAll.label}
+                {(menu.dropdownViewAll ?? menu.viewAll).label}
                 <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
                   <ArrowIcon size={14} />
                 </span>
@@ -443,7 +473,7 @@ export default function NavDropdown({
                 key={region.id}
                 id={`${panelId}-${region.id}`}
                 role="group"
-                aria-label={`${region.label} places`}
+                aria-label={`${region.label} — ${region.detail}`}
                 onPointerEnter={clearRegionTimer}
                 className={`absolute top-0 z-10 ${flip ? "right-full pr-3" : "left-full pl-3"} ${
                   isActive ? "pointer-events-auto" : "pointer-events-none invisible"
@@ -467,19 +497,21 @@ export default function NavDropdown({
                     ))}
                   </ul>
 
-                  <div className="-mx-2 -mb-2 mt-2 border-t border-forest/[0.08] bg-cream/70 p-2">
-                    <Link
-                      href={region.viewAll.href}
-                      data-flyout-link={region.id}
-                      onClick={() => onOpenChange(false)}
-                      className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
-                    >
-                      {region.viewAll.label}
-                      <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
-                        <ArrowIcon size={14} />
-                      </span>
-                    </Link>
-                  </div>
+                  {region.viewAll && (
+                    <div className="-mx-2 -mb-2 mt-2 border-t border-forest/[0.08] bg-cream/70 p-2">
+                      <Link
+                        href={region.viewAll.href}
+                        data-flyout-link={region.id}
+                        onClick={() => onOpenChange(false)}
+                        className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
+                      >
+                        {region.viewAll.label}
+                        <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
+                          <ArrowIcon size={14} />
+                        </span>
+                      </Link>
+                    </div>
+                  )}
                 </div>
               </div>
             );

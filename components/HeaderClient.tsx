@@ -161,62 +161,81 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
 
                   {expanded && (
                     <div className="mb-1 ml-3 border-l-2 border-gold/40 pl-2">
-                      {menu.regions
-                        ? menu.regions.map((region) => {
-                            const regionOpen = expandedRegion === region.id;
-                            return (
-                              <div key={region.id}>
-                                {/* Phones have no hover, so regions are an accordion: tap to
-                                    show its places underneath, tap again to hide them. */}
-                                <button
-                                  type="button"
-                                  aria-expanded={regionOpen}
-                                  onClick={() => setExpandedRegion(regionOpen ? null : region.id)}
-                                  className="flex w-full items-center justify-between gap-3 rounded-lg px-2 py-2 text-left active:bg-gold/[0.09] hover:bg-gold/[0.09]"
-                                >
-                                  <span>
-                                    <span className="block font-sans text-sm font-medium text-forest/85">
-                                      {region.label}
-                                    </span>
-                                    <span className="mt-0.5 block text-xs text-muted">{region.detail}</span>
-                                  </span>
-                                  <span className={`text-gold transition-transform duration-200 ${regionOpen ? "rotate-180" : ""}`}>
-                                    <ChevronDownIcon size={14} />
-                                  </span>
-                                </button>
+                      {menu.sections
+                        ? menu.sections.map((section, sectionIndex) => (
+                            <div key={sectionIndex}>
+                              {section.eyebrow && (
+                                <p className="px-2 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+                                  {section.eyebrow}
+                                </p>
+                              )}
+                              {section.groups.length === 0
+                                ? section.emptyText && (
+                                    <p className="px-2 py-2 text-sm text-muted">{section.emptyText}</p>
+                                  )
+                                : section.groups.map((region) => {
+                                    const regionOpen = expandedRegion === region.id;
+                                    return (
+                                      <div key={region.id}>
+                                        {/* Phones have no hover, so groups are an accordion: tap to
+                                            show their items underneath, tap again to hide them. */}
+                                        <button
+                                          type="button"
+                                          aria-expanded={regionOpen}
+                                          onClick={() => setExpandedRegion(regionOpen ? null : region.id)}
+                                          className="flex w-full items-center justify-between gap-3 rounded-lg px-2 py-2 text-left active:bg-gold/[0.09] hover:bg-gold/[0.09]"
+                                        >
+                                          <span>
+                                            <span className="block font-sans text-sm font-medium text-forest/85">
+                                              {region.label}
+                                            </span>
+                                            <span className="mt-0.5 block text-xs text-muted">{region.detail}</span>
+                                          </span>
+                                          <span
+                                            className={`text-gold transition-transform duration-200 ${
+                                              regionOpen ? "rotate-180" : ""
+                                            }`}
+                                          >
+                                            <ChevronDownIcon size={14} />
+                                          </span>
+                                        </button>
 
-                                {regionOpen && (
-                                  <div className="mb-1 ml-3 border-l-2 border-gold/25 pl-2">
-                                    {region.items.map((item) => (
-                                      <Link
-                                        key={item.label}
-                                        href={item.href}
-                                        onClick={closeAll}
-                                        className="block rounded-lg px-2 py-2 active:bg-gold/[0.09] hover:bg-gold/[0.09]"
-                                      >
-                                        <span className="block font-sans text-sm font-medium text-forest/85">
-                                          {item.label}
-                                        </span>
-                                        {item.detail && (
-                                          <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>
+                                        {regionOpen && (
+                                          <div className="mb-1 ml-3 border-l-2 border-gold/25 pl-2">
+                                            {region.items.map((item) => (
+                                              <Link
+                                                key={item.label}
+                                                href={item.href}
+                                                onClick={closeAll}
+                                                className="block rounded-lg px-2 py-2 active:bg-gold/[0.09] hover:bg-gold/[0.09]"
+                                              >
+                                                <span className="block font-sans text-sm font-medium text-forest/85">
+                                                  {item.label}
+                                                </span>
+                                                {item.detail && (
+                                                  <span className="mt-0.5 block text-xs text-muted">{item.detail}</span>
+                                                )}
+                                              </Link>
+                                            ))}
+                                            {region.viewAll && (
+                                              <Link
+                                                href={region.viewAll.href}
+                                                onClick={closeAll}
+                                                className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[13px] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
+                                              >
+                                                {region.viewAll.label}
+                                                <span className="text-gold">
+                                                  <ArrowIcon size={14} />
+                                                </span>
+                                              </Link>
+                                            )}
+                                          </div>
                                         )}
-                                      </Link>
-                                    ))}
-                                    <Link
-                                      href={region.viewAll.href}
-                                      onClick={closeAll}
-                                      className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[13px] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
-                                    >
-                                      {region.viewAll.label}
-                                      <span className="text-gold">
-                                        <ArrowIcon size={14} />
-                                      </span>
-                                    </Link>
-                                  </div>
-                                )}
-                              </div>
-                            );
-                          })
+                                      </div>
+                                    );
+                                  })}
+                            </div>
+                          ))
                         : menu.items.map((item) => (
                             <Link
                               key={item.href}
@@ -230,11 +249,11 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                           ))}
                       <div className="mt-1 border-t border-forest/10 pt-1">
                         <Link
-                          href={menu.viewAll.href}
+                          href={(menu.dropdownViewAll ?? menu.viewAll).href}
                           onClick={closeAll}
                           className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[13px] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
                         >
-                          {menu.viewAll.label}
+                          {(menu.dropdownViewAll ?? menu.viewAll).label}
                           <span className="text-gold">
                             <ArrowIcon size={14} />
                           </span>

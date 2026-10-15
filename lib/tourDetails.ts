@@ -1,5 +1,6 @@
 import type { StatIconId } from "@/components/tours/statIcons";
 import type { MotifShape } from "@/components/tours/motifs";
+import type { MenuRegionId } from "@/lib/destinationMenu";
 
 export type TourStat = { value: string; label: string; iconId: StatIconId };
 export type TourGuide = { name: string; role: string; bio: string; from: string; to: string; avatar?: string };
@@ -20,6 +21,8 @@ export type TourTheme = {
 
 export type TourDetail = {
   slug: string;
+  /** The region the tour starts in — decides which group it appears under in the navbar's tours menu. */
+  menuRegion: MenuRegionId;
   href: string;
   title: string;
   tagline: string;
@@ -239,6 +242,7 @@ const THEME_BLOSSOM_ROSE: TourTheme = {
 export const TOUR_DETAILS: Record<string, TourDetail> = {
   "hunza-spring": {
     slug: "hunza-spring",
+    menuRegion: "hunza",
     href: "/tours/hunza-spring",
     title: "Blossoms of Hunza",
     tagline: "Spring Tour · Blossoms & Peaks",
@@ -352,6 +356,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "rakaposhi-trek": {
     slug: "rakaposhi-trek",
+    menuRegion: "hunza",
     href: "/tours/rakaposhi-trek",
     title: "Rakaposhi Base Camp Trek",
     tagline: "Trekking Expedition · Glaciers & Giants",
@@ -474,6 +479,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "altit-baltit": {
     slug: "altit-baltit",
+    menuRegion: "hunza",
     href: "/tours/altit-baltit",
     title: "Cultural Heritage Tour",
     tagline: "Heritage Tour · Forts & Legends",
@@ -574,6 +580,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "nanga-parbat-camping": {
     slug: "nanga-parbat-camping",
+    menuRegion: "diamer",
     href: "/tours/nanga-parbat-camping",
     title: "Nanga Parbat Camping Experience",
     tagline: "Camping Trip · Beneath the Killer Mountain",
@@ -666,6 +673,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "passu-cathedral-trek": {
     slug: "passu-cathedral-trek",
+    menuRegion: "hunza",
     href: "/tours/passu-cathedral-trek",
     title: "Passu Cathedral Peaks Trek",
     tagline: "Trekking Expedition · Spires of Ice",
@@ -775,6 +783,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "fairy-meadows-trek": {
     slug: "fairy-meadows-trek",
+    menuRegion: "diamer",
     href: "/tours/fairy-meadows-trek",
     title: "Fairy Meadows Basecamp Trek",
     tagline: "Trekking Expedition · Meadows & Glaciers",
@@ -872,6 +881,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "deosai-wildlife-safari": {
     slug: "deosai-wildlife-safari",
+    menuRegion: "skardu",
     href: "/tours/deosai-wildlife-safari",
     title: "Deosai Wildlife Safari",
     tagline: "Wildlife Safari · The Roof of the World",
@@ -963,6 +973,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "skardu-cold-desert": {
     slug: "skardu-cold-desert",
+    menuRegion: "skardu",
     href: "/tours/skardu-cold-desert",
     title: "Skardu Cold Desert Expedition",
     tagline: "Desert Expedition · Dunes Above the Clouds",
@@ -1066,6 +1077,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "shigar-heritage-trail": {
     slug: "shigar-heritage-trail",
+    menuRegion: "skardu",
     href: "/tours/shigar-heritage-trail",
     title: "Shigar Valley Heritage Trail",
     tagline: "Heritage Trail · Forts & Orchards",
@@ -1163,6 +1175,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "attabad-karimabad-escape": {
     slug: "attabad-karimabad-escape",
+    menuRegion: "hunza",
     href: "/tours/attabad-karimabad-escape",
     title: "Attabad & Karimabad Lake Escape",
     tagline: "Lake Escape · Turquoise Waters",
@@ -1254,6 +1267,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "khunjerab-border-expedition": {
     slug: "khunjerab-border-expedition",
+    menuRegion: "hunza",
     href: "/tours/khunjerab-border-expedition",
     title: "Khunjerab Pass Border Expedition",
     tagline: "Border Expedition · The Roof of the Highway",
@@ -1340,6 +1354,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
 
   "phander-naltar-circuit": {
     slug: "phander-naltar-circuit",
+    menuRegion: "ghizer",
     href: "/tours/phander-naltar-circuit",
     title: "Phander & Naltar Lakes Circuit",
     tagline: "Lake Circuit · Valleys of Blue",
