@@ -1,6 +1,8 @@
 import { DESTINATIONS } from "./destinations";
 import { DESTINATION_MENU_REGIONS } from "./destinationMenu";
-import { getTourDetail } from "./tourDetails";
+import { EVENTS } from "./events";
+import { getAllTourSlugs, getTourDetail } from "./tourDetails";
+import { formatDay, formatMonth, formatRange, isUpcoming, monthKey, parseDateRange, parseIsoDay, today } from "./tripDates";
 
 /**
  * Content of the two header dropdowns ("Destinations" and "Upcoming Tours &
@@ -17,16 +19,26 @@ export type NavMenuItem = {
   detail?: string;
 };
 
-/** One region of a two-level menu: a row in the dropdown that opens a flyout of its places. */
+/** One group of a two-level menu (a region, a month…): a row in the dropdown that opens a flyout of its items. */
 export type NavRegion = {
   id: string;
   label: string;
-  /** Where the region name itself goes. */
+  /** Where the group name itself goes. */
   href: string;
   /** Small muted second line, e.g. "6 places". */
   detail: string;
   items: NavMenuItem[];
-  viewAll: { href: string; label: string };
+  /** Closing row in the flyout — leave out for no row. */
+  viewAll?: { href: string; label: string };
+};
+
+/** A block of groups in a two-level menu, with its own small heading. */
+export type NavSection = {
+  /** Small uppercase heading above the section's groups. The menu's own eyebrow is used when the first section has none. */
+  eyebrow?: string;
+  groups: NavRegion[];
+  /** Shown instead of the groups when there are none. */
+  emptyText?: string;
 };
 
 export type NavMenu = {
@@ -35,9 +47,11 @@ export type NavMenu = {
   /** Small uppercase heading at the top of the panel. */
   eyebrow: string;
   items: NavMenuItem[];
-  /** When present, the header shows these regions (each with a flyout of places) instead of `items`. The footer keeps using `items`. */
-  regions?: NavRegion[];
+  /** When present, the header shows these two-level sections (each group opens a flyout) instead of `items`. The footer keeps using `items`. */
+  sections?: NavSection[];
   viewAll: { href: string; label: string };
+  /** The header dropdown's closing row, when it should differ from the footer's `viewAll`. */
+  dropdownViewAll?: { href: string; label: string };
 };
 
 // A spread across Hunza, Skardu and Diamer — the same places the homepage
@@ -80,6 +94,81 @@ function getDestinationRegions(): NavRegion[] {
   }));
 }
 
+const plural = (count: number, one: string, many: string) => `${count} ${count === 1 ? one : many}`;
+
+/**
+ * Upcoming tours grouped by the region they start in (same regions and order as
+ * the Destinations menu). Tours whose dates have passed — or can't be read —
+ * are left out, soonest first, and a region with no tours left disappears.
+ */
+function getTourGroups(): NavRegion[] {
+  const now = today();
+
+  const upcoming = getAllTourSlugs().flatMap((slug) => {
+    const tour = getTourDetail(slug);
+    const range = tour ? parseDateRange(tour.dateRange) : null;
+    return tour && range && isUpcoming(range, now) ? [{ tour, range }] : [];
+  });
+
+  return DESTINATION_MENU_REGIONS.flatMap((region) => {
+    const tours = upcoming
+      .filter(({ tour }) => tour.menuRegion === region.id)
+      .sort((a, b) => a.range.start.getTime() - b.range.start.getTime() || a.tour.title.localeCompare(b.tour.title));
+    if (tours.length === 0) return [];
+
+    return [
+      {
+        id: `tours-${region.id}`,
+        label: region.label,
+        // There are no region pages: the tours listing is the closest real page.
+        href: "/tours",
+        detail: plural(tours.length, "tour", "tours"),
+        items: tours.map(({ tour, range }) => {
+          // "5 Days / 4 Nights" → "5 days"; hidden when the duration isn't stored in that form.
+          const days = Number(tour.duration.match(/^\s*(\d+)\s*days?/i)?.[1]);
+          return {
+            href: tour.href,
+            label: tour.title,
+            detail:
+              [formatDay(range.start, now), days > 0 ? plural(days, "day", "days") : ""].filter(Boolean).join(" · ") ||
+              undefined,
+          };
+        }),
+      },
+    ];
+  });
+}
+
+/** Upcoming events grouped by the month they start in, soonest first. */
+function getEventGroups(): NavRegion[] {
+  const now = today();
+
+  const upcoming = EVENTS.flatMap((event) => {
+    const start = parseIsoDay(event.startDate);
+    const end = event.endDate ? parseIsoDay(event.endDate) : start;
+    return start && end && isUpcoming({ start, end }, now) ? [{ event, start, end }] : [];
+  }).sort((a, b) => a.start.getTime() - b.start.getTime() || a.event.title.localeCompare(b.event.title));
+
+  const months = new Map<string, typeof upcoming>();
+  for (const entry of upcoming) {
+    const key = monthKey(entry.start);
+    months.set(key, [...(months.get(key) ?? []), entry]);
+  }
+
+  return [...months.entries()].map(([key, entries]) => ({
+    id: `events-${key}`,
+    label: formatMonth(entries[0].start),
+    // There is no events listing page: the month row opens its first event.
+    href: entries[0].event.href,
+    detail: plural(entries.length, "event", "events"),
+    items: entries.map(({ event, start, end }) => ({
+      href: event.href,
+      label: event.title,
+      detail: [formatRange({ start, end }, now), event.location].filter(Boolean).join(" · ") || undefined,
+    })),
+  }));
+}
+
 export function getNavMenus(): NavMenu[] {
   const destinationItems: NavMenuItem[] = POPULAR_DESTINATION_SLUGS.flatMap((slug) => {
     const destination = DESTINATIONS.find((d) => d.slug === slug);
@@ -98,14 +187,20 @@ export function getNavMenus(): NavMenu[] {
       label: "Destinations",
       eyebrow: "Popular destinations",
       items: destinationItems,
-      regions: getDestinationRegions(),
+      sections: [{ groups: getDestinationRegions() }],
       viewAll: { href: "/lands", label: "View all destinations" },
     },
     {
       label: "Upcoming Tours & Events",
       eyebrow: "Coming up",
       items: [...tourItems, FESTIVAL],
+      sections: [
+        { eyebrow: "Upcoming tours", groups: getTourGroups(), emptyText: "New tours coming soon" },
+        { eyebrow: "Events", groups: getEventGroups(), emptyText: "New events coming soon" },
+      ],
+      // The footer keeps its own label; the header dropdown's closing row is the tours listing.
       viewAll: { href: "/tours", label: "View all tours & events" },
+      dropdownViewAll: { href: "/tours", label: "View all tours" },
     },
   ];
 }

@@ -25,8 +25,11 @@ export type MenuPlace = {
   slug?: string;
 };
 
+/** The five regions the navbar menus group by. Tours (lib/tourDetails.ts) point at one of these. */
+export type MenuRegionId = "hunza" | "skardu" | "diamer" | "ghizer" | "astore";
+
 export type MenuRegion = {
-  id: string;
+  id: MenuRegionId;
   label: string;
   href: string;
   places: MenuPlace[];
