@@ -260,7 +260,7 @@ export default function WhyChooseUs() {
        "centered max-w-6xl inside a padded section" box. */
     <section
       id="why-choose-us"
-      className="relative w-full overflow-hidden bg-cream pb-16 pt-40 sm:pb-20 sm:pt-24 lg:pb-24 lg:pt-28"
+      className="section-b relative w-full overflow-hidden bg-cream pt-40 sm:pt-24 lg:pt-28"
     >
       <div
         aria-hidden

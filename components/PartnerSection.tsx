@@ -94,7 +94,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
 
   if (featured) {
     return (
-      <div className="flex flex-col gap-6 rounded-[22px] border border-forest/10 bg-white p-7 shadow-sm sm:col-span-2 sm:flex-row sm:items-center sm:gap-8 sm:p-9 lg:col-span-3">
+      <div className="flex flex-col gap-6 rounded-[22px] border border-forest/10 bg-white shadow-sm sm:col-span-2 sm:flex-row sm:items-center sm:gap-8 lg:col-span-3 p-5 sm:p-6">
         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-cream ring-1 ring-forest/10 sm:h-24 sm:w-24">
           <Image
             src={logo}
@@ -107,7 +107,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
         </div>
 
         <div className="flex-1">
-          <h3 className="font-serif text-2xl leading-tight text-forest">{name}</h3>
+          <h3 className="font-serif text-xl leading-tight text-forest sm:text-2xl">{name}</h3>
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted sm:text-base">{description}</p>
         </div>
 
@@ -126,14 +126,14 @@ function PartnerCard({ partner }: { partner: Partner }) {
   }
 
   return (
-    <div className="flex flex-col gap-5 rounded-[22px] border border-forest/10 bg-white p-6 shadow-sm sm:p-7">
+    <div className="flex flex-col gap-5 rounded-[22px] border border-forest/10 bg-white shadow-sm p-5 sm:p-6">
       <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-cream ring-1 ring-forest/10">
         <Image src={logo} alt={`${name} logo`} fill quality={90} sizes="56px" className="object-contain p-2" />
       </div>
 
       <div>
-        <h3 className="font-serif text-xl leading-tight text-forest">{name}</h3>
-        <p className="mt-2 text-sm leading-relaxed text-muted">{description}</p>
+        <h3 className="font-serif text-xl leading-tight text-forest sm:text-[22px]">{name}</h3>
+        <p className="mt-2 text-[15px] leading-[1.55] text-muted">{description}</p>
       </div>
 
       <LinkButton
@@ -152,7 +152,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
 
 function ComingSoonCard() {
   return (
-    <div className="flex flex-col items-center gap-4 rounded-[22px] border border-dashed border-forest/20 bg-white/60 p-10 text-center sm:col-span-2 lg:col-span-3">
+    <div className="flex flex-col items-center gap-4 rounded-[22px] border border-dashed border-forest/20 bg-white/60 text-center sm:col-span-2 lg:col-span-3 p-5 sm:p-6">
       <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest/[0.06] text-forest/60">
         <HandshakeIcon size={22} />
       </span>
@@ -189,7 +189,7 @@ export default function PartnerSection({
     // no horizontal padding on the section — it lives on the max-w-6xl
     // wrapper (px-5 sm:px-6 lg:px-8). Bottom padding matches the shared
     // py-16 sm:py-20 lg:py-24 rhythm; top padding is trimmed.
-    <section id="partners" className="relative w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
+    <section id="partners" className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <div className="max-w-2xl">
           <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
@@ -206,7 +206,7 @@ export default function PartnerSection({
           <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">{description}</p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+        <div className="card-grid head-gap">
           {partners.length > 0 ? (
             partners.map((partner) => <PartnerCard key={partner.id} partner={partner} />)
           ) : (

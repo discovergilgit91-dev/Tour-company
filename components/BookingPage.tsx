@@ -246,14 +246,14 @@ export default function BookingPage({
       </section>
 
       {/* ---------------- Form + Summary ---------------- */}
-      <section className="relative w-full bg-cream py-14 sm:py-16 lg:py-20">
+      <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:gap-14">
             {/* Form column */}
             <div>
               <Reveal>
               {submitted ? (
-                <div className="flex min-h-[420px] flex-col items-center justify-center rounded-[22px] border border-forest/10 bg-white p-10 text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)]">
+                <div className="flex flex-col items-center justify-center rounded-[22px] border border-forest/10 bg-white text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
                     <CheckIcon size={28} />
                   </span>
@@ -339,7 +339,7 @@ export default function BookingPage({
 
                     setSubmitted(true);
                   }}
-                  className="rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-8"
+                  className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6"
                 >
                   <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
                     Traveller details
@@ -489,7 +489,7 @@ export default function BookingPage({
 
               {/* Booking FAQ */}
               <Reveal delay={80}>
-                <div className="mt-10 rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-8">
+                <div className="mt-10 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
                     Common questions
                   </p>
@@ -521,7 +521,7 @@ export default function BookingPage({
                             }`}
                           >
                             <div className="overflow-hidden">
-                              <p className="pb-4 pr-10 text-sm leading-relaxed text-muted">{faq.answer}</p>
+                              <p className="pb-4 pr-10 text-[15px] leading-[1.55] text-muted">{faq.answer}</p>
                             </div>
                           </div>
                         </div>
@@ -533,7 +533,7 @@ export default function BookingPage({
 
               {/* Prefer to talk to someone? */}
               <Reveal delay={140}>
-                <div className="mt-6 rounded-[22px] border border-forest/10 bg-forest p-6 sm:p-8">
+                <div className="mt-6 rounded-[22px] border border-forest/10 bg-forest p-5 sm:p-6">
                   <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
                     Prefer to talk it through?
                   </p>
@@ -658,12 +658,12 @@ export default function BookingPage({
                       </div>
                     </div>
                   ) : (
-                    <div className="rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.07)]">
+                    <div className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] p-5 sm:p-6">
                       <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
                         Not sure which trip yet?
                       </p>
                       <h3 className="mt-1.5 font-serif text-xl text-forest">Browse the full calendar</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">
+                      <p className="mt-2 text-[15px] leading-[1.55] text-muted">
                         Filter every guided tour and seasonal event by region, duration, or budget.
                       </p>
                       <LinkButton href="/tours" variant="primary" className="group mt-5 w-full gap-2">
@@ -695,7 +695,7 @@ export default function BookingPage({
       </section>
 
       {/* ---------------- Trust strip ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-16 sm:py-20">
+      <section className="relative w-full overflow-hidden bg-forest section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
             {TRUST_POINTS.map(({ Icon, title, description }, index) => (
@@ -706,7 +706,7 @@ export default function BookingPage({
                   </span>
                   <div>
                     <h3 className="font-serif text-lg text-cream">{title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-cream/65">{description}</p>
+                    <p className="mt-1.5 text-[15px] leading-[1.55] text-cream/65">{description}</p>
                   </div>
                 </div>
               </Reveal>

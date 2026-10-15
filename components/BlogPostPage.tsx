@@ -117,7 +117,7 @@ function renderBlock(block: BlogBlock, index: number) {
       return (
         <aside
           key={index}
-          className="relative mt-12 flex gap-4 overflow-hidden rounded-[22px] border border-gold/30 bg-gold/[0.07] p-5 sm:gap-5 sm:p-7"
+          className="relative mt-12 flex gap-4 overflow-hidden rounded-[22px] border border-gold/30 bg-gold/[0.07] sm:gap-5 p-5 sm:p-6"
         >
           <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-gold" />
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-white/60 text-gold">
@@ -193,7 +193,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           <div className="relative z-10 mx-auto flex min-h-[72svh] max-w-6xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[76svh] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
             <Link
               href="/blog"
-              className="group mb-auto inline-flex w-fit items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
+              className="group mb-auto inline-flex w-fit items-center gap-2 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
             >
               <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
                 <ArrowIcon size={13} />
@@ -240,7 +240,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
             </div>
 
             {post.related.length > 0 && (
-              <div className="mt-10 rounded-[22px] border border-forest/10 bg-white p-5 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-7">
+              <div className="mt-10 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
                 <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Plan it</h2>
                 <ul className="mt-3 divide-y divide-forest/10">
                   {post.related.map((link) => (
@@ -270,7 +270,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
 
       {/* ---------------- More reading ---------------- */}
       {more.length > 0 && (
-        <section className="pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28">
+        <section className="section-y">
           <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
@@ -280,7 +280,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
               More from the <span className="text-green">blog</span>
             </h2>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-7 lg:gap-y-12">
+            <div className="card-grid head-gap">
               {more.map((item, index) => (
                 <BlogCard key={item.slug} post={item} delay={index * 90} />
               ))}
@@ -291,7 +291,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
 
       {/* ---------------- Closing call to action — same banner pattern as the homepage ---------------- */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative min-h-[420px] w-full bg-night sm:min-h-[460px]">
+        <div className="relative min-h-[320px] w-full bg-night sm:min-h-[360px]">
           <Image
             src={ctaImage.src}
             alt=""
@@ -304,8 +304,8 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           <div className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/60 to-night/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-          <div className="relative z-10 mx-auto flex min-h-[420px] w-full max-w-6xl items-center px-5 sm:min-h-[460px] sm:px-6 lg:px-8">
-            <div className="max-w-xl py-16 sm:py-20">
+          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-6xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
+            <div className="section-y max-w-xl">
               {pick ? (
                 <>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">Take this trip</p>

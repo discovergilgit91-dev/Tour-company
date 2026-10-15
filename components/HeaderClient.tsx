@@ -121,7 +121,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
             setOpen((value) => !value);
             setExpandedMenu(null);
           }}
-          className="flex h-10 w-10 items-center justify-center rounded-full lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-full lg:hidden"
         >
           <MenuIcon open={open} />
         </button>

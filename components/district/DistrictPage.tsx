@@ -169,7 +169,7 @@ export default function DistrictPage({ district }: { district: District }) {
             </div>
           </div>
 
-          <dl className="mt-10 grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4 head-gap">
             {facts.map((fact) => (
               <div
                 key={fact.label}
@@ -184,7 +184,7 @@ export default function DistrictPage({ district }: { district: District }) {
       </header>
 
       {/* ---------------- 2. Why visit ---------------- */}
-      <section id="why" className="relative bg-cream py-16 sm:py-20 lg:py-24">
+      <section id="why" className="relative bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
             <Reveal>
@@ -202,7 +202,7 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
           </div>
 
-          <ul className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mt-12 lg:grid-cols-3">
+          <ul className="card-grid head-gap">
             {district.why.highlights.map((item, index) => {
               const Icon = DISTRICT_ICONS[item.icon];
               return (
@@ -212,8 +212,8 @@ export default function DistrictPage({ district }: { district: District }) {
                       <span className="flex h-11 w-11 items-center justify-center rounded-full bg-green/10 text-green transition-colors duration-300 group-hover:bg-green group-hover:text-white">
                         <Icon size={20} />
                       </span>
-                      <h3 className="mt-4 font-serif text-xl text-forest">{item.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">{item.text}</p>
+                      <h3 className="mt-3 font-serif text-xl text-forest sm:text-[22px]">{item.title}</h3>
+                      <p className="mt-2 text-[15px] leading-[1.55] text-muted">{item.text}</p>
                     </div>
                   </Reveal>
                 </li>
@@ -224,7 +224,7 @@ export default function DistrictPage({ district }: { district: District }) {
       </section>
 
       {/* ---------------- 3. Traditions ---------------- */}
-      <section id="traditions" className="relative overflow-hidden bg-night py-16 text-cream sm:py-20 lg:py-24">
+      <section id="traditions" className="relative overflow-hidden bg-night text-cream section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-32 top-1/4 h-[420px] w-[420px] rounded-full bg-green/10 blur-3xl"
@@ -245,14 +245,14 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
           </div>
 
-          <ul className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="card-grid head-gap">
             {district.traditions.items.map((item, index) => (
               <li key={item.title}>
                 <Reveal delay={(index % 3) * 70} className="h-full">
-                  <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-6 transition-colors duration-300 hover:border-gold/30 hover:bg-cream/[0.06]">
+                  <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] transition-colors duration-300 hover:border-gold/30 hover:bg-cream/[0.06] p-5 sm:p-6">
                     <span className="font-serif text-[11px] text-gold">{String(index + 1).padStart(2, "0")}</span>
-                    <h3 className="mt-2 font-serif text-xl text-cream">{item.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-cream/70">{item.text}</p>
+                    <h3 className="mt-2 font-serif text-xl text-cream sm:text-[22px]">{item.title}</h3>
+                    <p className="mt-2 text-[15px] leading-[1.55] text-cream/70">{item.text}</p>
                   </div>
                 </Reveal>
               </li>
@@ -262,7 +262,7 @@ export default function DistrictPage({ district }: { district: District }) {
       </section>
 
       {/* ---------------- 4. Culture ---------------- */}
-      <section id="culture" className="relative bg-cream py-16 sm:py-20 lg:py-24">
+      <section id="culture" className="relative bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             <Reveal>
@@ -277,13 +277,13 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
           </div>
 
-          <ul className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 head-gap">
             {district.culture.items.map((item, index) => (
               <li key={item.title}>
                 <Reveal delay={(index % 2) * 70} className="h-full">
                   <div className={`h-full p-6 sm:p-7 ${CARD}`}>
-                    <h3 className="font-serif text-xl text-forest">{item.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted sm:text-[15px]">{item.text}</p>
+                    <h3 className="font-serif text-xl text-forest sm:text-[22px]">{item.title}</h3>
+                    <p className="mt-3 text-[15px] leading-[1.55] text-muted sm:text-[15px]">{item.text}</p>
                   </div>
                 </Reveal>
               </li>
@@ -293,7 +293,7 @@ export default function DistrictPage({ district }: { district: District }) {
       </section>
 
       {/* ---------------- 5. Food ---------------- */}
-      <section id="food" className="relative bg-white py-16 sm:py-20 lg:py-24">
+      <section id="food" className="relative bg-white section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <Eyebrow>Food</Eyebrow>
@@ -303,7 +303,7 @@ export default function DistrictPage({ district }: { district: District }) {
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">{district.food.intro}</p>
           </Reveal>
 
-          <ul className="mt-10 grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="card-grid head-gap">
             {district.food.items.map((dish, index) => (
               <li key={dish.name}>
                 <Reveal delay={(index % 3) * 70} className="h-full">
@@ -319,8 +319,8 @@ export default function DistrictPage({ district }: { district: District }) {
                       />
                     </div>
                     <div className="p-6">
-                      <h3 className="font-serif text-2xl leading-tight text-forest">{dish.name}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted">{dish.text}</p>
+                      <h3 className="font-serif text-xl leading-tight text-forest sm:text-2xl">{dish.name}</h3>
+                      <p className="mt-2 text-[15px] leading-[1.55] text-muted">{dish.text}</p>
                     </div>
                   </article>
                 </Reveal>
@@ -330,7 +330,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
           {district.food.tip && (
             <Reveal className="mt-10">
-              <aside className="relative flex gap-4 overflow-hidden rounded-[22px] border border-gold/30 bg-gold/[0.07] p-5 sm:p-7">
+              <aside className="relative flex gap-4 overflow-hidden rounded-[22px] border border-gold/30 bg-gold/[0.07] p-5 sm:p-6">
                 <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-gold" />
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-white/60 text-gold">
                   <PinIcon size={16} />
@@ -347,7 +347,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 6. Best spots ---------------- */}
       {places.length > 0 && (
-        <section id="spots" className="relative bg-cream py-16 sm:py-20 lg:py-24">
+        <section id="spots" className="relative bg-cream section-y">
           <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
             <Reveal>
               <Eyebrow>Places</Eyebrow>
@@ -359,7 +359,7 @@ export default function DistrictPage({ district }: { district: District }) {
               </p>
             </Reveal>
 
-            <div className="mt-10 grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="card-grid card-grid-loose head-gap">
               {places.map((place, index) => (
                 <DestinationCard key={place.id} destination={place} index={index} delay={(index % 3) * 90} />
               ))}
@@ -370,7 +370,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 7. Upcoming tours and events ---------------- */}
       {(tours.length > 0 || events.length > 0) && (
-        <section id="tours" className="relative bg-white py-16 sm:py-20 lg:py-24">
+        <section id="tours" className="relative bg-white section-y">
           <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
             <Reveal>
               <Eyebrow>Coming up</Eyebrow>
@@ -379,7 +379,7 @@ export default function DistrictPage({ district }: { district: District }) {
               </Heading>
             </Reveal>
 
-            <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <ul className="card-grid head-gap">
               {tours.map(({ tour, image }, index) => (
                 <li key={tour.slug}>
                   <Reveal delay={(index % 3) * 70} className="h-full">
@@ -403,7 +403,7 @@ export default function DistrictPage({ district }: { district: District }) {
                         </div>
                       )}
                       <div className="flex flex-1 flex-col p-6">
-                        <h3 className="font-serif text-xl leading-tight text-forest">{tour.title}</h3>
+                        <h3 className="font-serif text-xl leading-tight text-forest sm:text-[22px]">{tour.title}</h3>
                         <ul className="mt-4 space-y-1.5 text-sm text-forest/80">
                           <li className="flex items-center gap-2">
                             <span className="text-green">
@@ -435,12 +435,12 @@ export default function DistrictPage({ district }: { district: District }) {
                   <Reveal delay={((tours.length + index) % 3) * 70} className="h-full">
                     <Link
                       href={event.href}
-                      className="group flex h-full flex-col rounded-[22px] bg-forest p-6 text-cream shadow-[0_2px_18px_rgba(18,36,28,0.06)] outline-none transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.3)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-white motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+                      className="group flex h-full flex-col rounded-[22px] bg-forest text-cream shadow-[0_2px_18px_rgba(18,36,28,0.06)] outline-none transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.3)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 p-5 sm:p-6"
                     >
                       <span className="inline-flex w-fit items-center rounded-full bg-gold px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-forest">
                         Event
                       </span>
-                      <h3 className="mt-4 font-serif text-xl leading-tight">{event.title}</h3>
+                      <h3 className="mt-3 font-serif text-xl leading-tight sm:text-[22px]">{event.title}</h3>
                       <ul className="mt-4 space-y-1.5 text-sm text-cream/80">
                         <li className="flex items-center gap-2">
                           <span className="text-gold">
@@ -473,7 +473,7 @@ export default function DistrictPage({ district }: { district: District }) {
       )}
 
       {/* ---------------- 8. Travel tips ---------------- */}
-      <section id="tips" className="relative overflow-hidden bg-forest py-16 text-cream sm:py-20 lg:py-24">
+      <section id="tips" className="relative overflow-hidden bg-forest text-cream section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-28 top-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
@@ -487,10 +487,10 @@ export default function DistrictPage({ district }: { district: District }) {
             </Heading>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-5">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-5 head-gap">
             <Reveal className="h-full">
-              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-6 sm:p-8">
-                <h3 className="font-serif text-2xl text-cream">Best time to visit</h3>
+              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
+                <h3 className="font-serif text-xl text-cream sm:text-2xl">Best time to visit</h3>
                 <ul className="mt-5 space-y-4">
                   {district.travelTips.bestTime.map((entry) => (
                     <li key={entry.season} className="flex gap-4">
@@ -508,9 +508,9 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
 
             <Reveal delay={70} className="h-full">
-              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-6 sm:p-8">
-                <h3 className="font-serif text-2xl text-cream">How to get there</h3>
-                <p className="mt-4 text-sm leading-relaxed text-cream/75">{district.travelTips.gettingThere.intro}</p>
+              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
+                <h3 className="font-serif text-xl text-cream sm:text-2xl">How to get there</h3>
+                <p className="mt-4 text-[15px] leading-[1.55] text-cream/75">{district.travelTips.gettingThere.intro}</p>
                 <ul className="mt-4 space-y-3">
                   {district.travelTips.gettingThere.steps.map((step) => (
                     <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-cream/75">
@@ -523,8 +523,8 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
 
             <Reveal className="h-full">
-              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-6 sm:p-8">
-                <h3 className="font-serif text-2xl text-cream">What to pack</h3>
+              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
+                <h3 className="font-serif text-xl text-cream sm:text-2xl">What to pack</h3>
                 <ul className="mt-5 space-y-3">
                   {district.travelTips.pack.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-cream/75">
@@ -539,8 +539,8 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
 
             <Reveal delay={70} className="h-full">
-              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-6 sm:p-8">
-                <h3 className="font-serif text-2xl text-cream">Being a respectful visitor</h3>
+              <div className="h-full rounded-[22px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
+                <h3 className="font-serif text-xl text-cream sm:text-2xl">Being a respectful visitor</h3>
                 <ul className="mt-5 space-y-3">
                   {district.travelTips.respect.map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm leading-relaxed text-cream/75">
@@ -557,7 +557,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 9. Related reading ---------------- */}
       {posts.length > 0 && (
-        <section id="reading" className="relative bg-cream py-16 sm:py-20 lg:py-24">
+        <section id="reading" className="relative bg-cream section-y">
           <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
             <Reveal>
               <Eyebrow>Related reading</Eyebrow>
@@ -565,7 +565,7 @@ export default function DistrictPage({ district }: { district: District }) {
                 From the <span className="text-green">journal</span>
               </Heading>
             </Reveal>
-            <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-7">
+            <div className="card-grid card-grid-loose head-gap">
               {posts.map((post, index) => (
                 <BlogCard key={post.slug} post={post} delay={(index % 3) * 90} />
               ))}
@@ -576,7 +576,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 10. Closing call to action ---------------- */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative min-h-[440px] w-full bg-night sm:min-h-[480px]">
+        <div className="relative min-h-[320px] w-full bg-night sm:min-h-[360px]">
           <Image
             src={district.cta.image.src}
             alt=""
@@ -589,8 +589,8 @@ export default function DistrictPage({ district }: { district: District }) {
           <div className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/60 to-night/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-          <div className="relative z-10 mx-auto flex min-h-[440px] w-full max-w-6xl items-center px-5 sm:min-h-[480px] sm:px-6 lg:px-8">
-            <div className="max-w-xl py-16 sm:py-20">
+          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-6xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
+            <div className="section-y max-w-xl">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">Ready when you are</p>
               <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
                 {district.cta.heading}
@@ -608,7 +608,7 @@ export default function DistrictPage({ district }: { district: District }) {
                 </LinkButton>
                 <Link
                   href="/book"
-                  className="px-2 text-sm font-semibold text-cream/80 underline decoration-cream/30 underline-offset-4 transition-colors duration-300 hover:text-cream"
+                  className="px-2 py-3 text-sm font-semibold text-cream/80 underline decoration-cream/30 underline-offset-4 transition-colors duration-300 hover:text-cream"
                 >
                   Reserve a spot
                 </Link>

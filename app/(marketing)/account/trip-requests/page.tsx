@@ -34,7 +34,7 @@ export default async function TripRequestsPage() {
         {requests.length > 0 ? (
           <TripRequestList requests={requests} />
         ) : (
-          <div className="mt-8 flex flex-col items-center gap-4 rounded-[22px] border border-dashed border-forest/20 bg-white/60 p-10 text-center sm:p-14">
+          <div className="mt-8 flex flex-col items-center gap-4 rounded-[22px] border border-dashed border-forest/20 bg-white/60 text-center p-5 sm:p-6">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest/[0.06] text-forest/60">
               <CompassIcon size={22} />
             </span>

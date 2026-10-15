@@ -70,7 +70,7 @@ export default function BlogCard({
           href={`/blog/${post.slug}`}
           className={`group grid h-full overflow-hidden rounded-[22px] bg-white ring-1 ring-gold/25 lg:grid-cols-[1.15fr_1fr] ${CARD_SHADOW} ${CARD_HOVER} ${FOCUS_RING}`}
         >
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest lg:aspect-auto lg:min-h-[440px]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest lg:aspect-auto lg:min-h-[360px]">
             <Image
               src={post.featuredImage}
               alt={post.featuredImageAlt}
@@ -146,10 +146,10 @@ export default function BlogCard({
             <div className="mt-4">
               <Hairline />
             </div>
-            <h3 className="mt-4 line-clamp-2 font-serif text-2xl leading-tight tracking-tight text-forest">
+            <h3 className="mt-3 line-clamp-2 font-serif text-xl leading-tight tracking-tight text-forest sm:text-2xl">
               {post.title}
             </h3>
-            <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-muted">{post.excerpt}</p>
+            <p className="mt-3 line-clamp-3 flex-1 text-[15px] leading-[1.55] text-muted">{post.excerpt}</p>
             <p className="mt-5 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">
               Read article
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">

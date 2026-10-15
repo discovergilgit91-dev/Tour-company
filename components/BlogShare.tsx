@@ -54,7 +54,7 @@ function XIcon() {
 }
 
 const BUTTON =
-  "flex h-10 w-10 items-center justify-center rounded-full border border-forest/15 text-forest/60 transition-all duration-200 hover:border-green/40 hover:bg-green/10 hover:text-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-cream";
+  "flex h-11 w-11 items-center justify-center rounded-full border border-forest/15 text-forest/60 transition-all duration-200 hover:border-green/40 hover:bg-green/10 hover:text-green focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-2 focus-visible:ring-offset-cream";
 
 export default function BlogShare({ url, title }: { url: string; title: string }) {
   // Start from the canonical URL so the server-rendered links are valid, then

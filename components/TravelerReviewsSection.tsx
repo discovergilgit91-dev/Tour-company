@@ -100,7 +100,7 @@ export default function TravelerReviewsSection({
   reviews: Review[];
 }) {
   return (
-    <section id={id} className="relative overflow-hidden bg-cream pb-20 pt-16 sm:pb-24 sm:pt-20 lg:pb-28 lg:pt-24">
+    <section id={id} className="relative overflow-hidden bg-cream section-y">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <Reveal>
           <div className="max-w-xl">
@@ -119,15 +119,15 @@ export default function TravelerReviewsSection({
           </div>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3 head-gap">
           {reviews.map((review, index) => (
             <Reveal key={review.name} delay={index * 90}>
-              <article className="relative mt-8 flex h-full flex-col rounded-[22px] bg-white p-6 pt-12 shadow-[0_2px_18px_rgba(18,36,28,0.06)]">
+              <article className="relative mt-8 flex h-full flex-col rounded-[22px] bg-white pt-12 shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
                 <div className="absolute -top-8 left-6 h-16 w-16 overflow-hidden rounded-full border-4 border-cream shadow-[0_4px_14px_rgba(18,36,28,0.15)]">
                   <Image src={review.avatar} alt={review.name} fill sizes="64px" className="object-cover" />
                 </div>
 
-                <p className="flex-1 text-sm leading-relaxed text-forest/80">&ldquo;{review.quote}&rdquo;</p>
+                <p className="flex-1 text-[15px] leading-[1.55] text-forest/80">&ldquo;{review.quote}&rdquo;</p>
 
                 <div className="mt-6 border-t border-forest/10 pt-5">
                   <p className="font-serif text-sm text-forest">{review.name}</p>

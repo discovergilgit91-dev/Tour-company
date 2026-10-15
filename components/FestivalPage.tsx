@@ -262,7 +262,7 @@ export default function FestivalPage() {
   return (
     <main className="bg-cream">
       {/* ---------------- Five Cultures, One Celebration ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream pb-16 pt-14 sm:pb-20 sm:pt-16 lg:pb-24 lg:pt-20">
+      <section className="relative w-full overflow-hidden bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-14">
             <Reveal>
@@ -275,7 +275,7 @@ export default function FestivalPage() {
                 <br />
                 <span className="text-green">One Celebration</span>
               </h2>
-              <p className="mt-5 text-sm leading-relaxed text-muted">
+              <p className="mt-5 text-[15px] leading-[1.55] text-muted">
                 Experience the rich traditions of Shina, Balti, Burushaski, Wakhi and Khowar — each with its own
                 language, dress, dance and way of life.
               </p>
@@ -321,7 +321,7 @@ export default function FestivalPage() {
               </div>
 
               <Reveal delay={200}>
-                <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 rounded-[22px] border border-forest/10 bg-white p-6 sm:grid-cols-4 sm:p-7">
+                <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 rounded-[22px] border border-forest/10 bg-white sm:grid-cols-4 p-5 sm:p-6">
                   {CULTURE_STATS.map((stat) => (
                     <div key={stat.label}>
                       <p className="font-serif text-3xl text-forest sm:text-4xl">{stat.value}</p>
@@ -336,7 +336,7 @@ export default function FestivalPage() {
       </section>
 
       {/* ---------------- More Than a Festival ---------------- */}
-      <section className="relative w-full overflow-hidden bg-night py-14 sm:py-16 lg:py-20">
+      <section className="relative w-full overflow-hidden bg-night section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr_320px] lg:gap-12">
             <Reveal>
@@ -381,7 +381,7 @@ export default function FestivalPage() {
               <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
                 More Than a Festival
               </h2>
-              <p className="mt-5 text-sm leading-relaxed text-cream/65">
+              <p className="mt-5 text-[15px] leading-[1.55] text-cream/65">
                 The Gilgit-Baltistan Cultural Festival is not just an event, it&rsquo;s a heartfelt celebration of
                 our people, their stories, traditions, and resilient spirit. It brings together local communities,
                 artists, and visitors to promote cultural exchange and preserve our unique heritage for generations
@@ -435,7 +435,7 @@ export default function FestivalPage() {
       </section>
 
       {/* ---------------- Festival Gallery ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full overflow-hidden bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -461,7 +461,7 @@ export default function FestivalPage() {
             </div>
           </Reveal>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4 lg:mt-12">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 head-gap">
             {GALLERY_TILES.map((tile, index) => (
               <Reveal key={tile.caption} delay={index * 90}>
                 <div className="group relative aspect-square overflow-hidden rounded-[18px]">
@@ -491,7 +491,7 @@ export default function FestivalPage() {
       <TestimonialSection testimonials={TESTIMONIALS} eyebrow="What visitors say" />
 
       {/* ---------------- Closing CTA ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream py-16 text-center sm:py-20">
+      <section className="relative w-full overflow-hidden bg-cream text-center section-y">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">

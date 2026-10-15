@@ -153,9 +153,9 @@ export default function TravelerStoriesPage() {
       </section>
 
       {/* ---------------- Story cards ---------------- */}
-      <section className="relative w-full bg-cream py-14 sm:py-16 lg:py-20">
+      <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">
+          <div className="card-grid">
             {STORIES.map((story, index) => (
               <Reveal key={story.name} delay={(index % 6) * 70}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.22)]">
@@ -179,7 +179,7 @@ export default function TravelerStoriesPage() {
                       <Image src={story.avatar} alt={story.name} fill sizes="56px" className="object-cover" />
                     </div>
 
-                    <p className="flex-1 text-sm leading-relaxed text-forest/80">&ldquo;{story.quote}&rdquo;</p>
+                    <p className="flex-1 text-[15px] leading-[1.55] text-forest/80">&ldquo;{story.quote}&rdquo;</p>
 
                     <div className="mt-6 border-t border-forest/10 pt-5">
                       <p className="font-serif text-sm text-forest">{story.name}</p>
@@ -197,7 +197,7 @@ export default function TravelerStoriesPage() {
       </section>
 
       {/* ---------------- Closing CTA ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-16 text-center sm:py-20">
+      <section className="relative w-full overflow-hidden bg-forest text-center section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -left-24 top-0 h-[340px] w-[340px] rounded-full bg-gold/10 blur-3xl"

@@ -97,12 +97,12 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
   return (
     <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8 lg:pb-24 lg:pt-14">
       {/* ---------------- Category filter + search ---------------- */}
-      <div className="mb-10 flex flex-col gap-4 rounded-[22px] border border-forest/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+      <div className="flex flex-col gap-4 rounded-[22px] border border-forest/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5 head-gap-b">
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => setActiveCategory("all")}
-            className={`rounded-full px-4 py-2 text-[13px] font-semibold transition-colors duration-200 ${
+            className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-semibold sm:min-h-0 transition-colors duration-200 ${
               activeCategory === "all" ? "bg-green text-white" : "bg-forest/[0.05] text-muted hover:text-forest"
             }`}
           >
@@ -113,7 +113,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`rounded-full px-4 py-2 text-[13px] font-medium transition-colors duration-200 ${
+              className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-medium sm:min-h-0 transition-colors duration-200 ${
                 activeCategory === category ? "bg-green text-white" : "bg-forest/[0.05] text-muted hover:text-forest"
               }`}
             >
@@ -168,7 +168,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
           </div>
 
           {filteredResults && filteredResults.length > 0 ? (
-            <div className="grid grid-cols-1 gap-x-5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="card-grid card-grid-loose">
               {filteredResults.map((destination, index) => (
                 <DestinationCard
                   key={destination.id}
@@ -201,7 +201,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
                   <a
                     key={region.id}
                     href={`#${region.id}`}
-                    className={`inline-flex items-center justify-between gap-3 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors duration-300 lg:rounded-xl ${
+                    className={`inline-flex min-h-11 items-center justify-between gap-3 rounded-full border px-4 py-2.5 text-sm font-medium transition-colors duration-300 lg:rounded-xl ${
                       isActive
                         ? "border-green/30 bg-green/10 text-forest"
                         : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -271,7 +271,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
                   }}
                   className={regionIndex === 0 ? "" : "pt-14 lg:pt-16"}
                 >
-                  <div className="mb-8 flex items-end justify-between gap-4 border-b border-forest/10 pb-4 lg:mb-10">
+                  <div className="mb-8 flex items-end justify-between gap-4 border-b border-forest/10 pb-4 ">
                     <div>
                       <span className="font-serif text-lg text-green">{String(regionIndex + 1).padStart(2, "0")}</span>
                       <h3 className="mt-1 font-serif text-2xl leading-tight tracking-tight text-forest sm:text-3xl">
@@ -324,7 +324,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
             <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
               Explore All Destinations
             </h2>
-            <p className="mt-3 text-sm leading-relaxed text-cream/65">
+            <p className="mt-3 text-[15px] leading-[1.55] text-cream/65">
               From iconic mountains to hidden valleys, plan your journey through the most beautiful places in
               Gilgit-Baltistan.
             </p>

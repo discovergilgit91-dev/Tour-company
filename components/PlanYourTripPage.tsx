@@ -552,14 +552,14 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
       </section>
 
       {/* ---------------- Form + sidebar ---------------- */}
-      <section className="relative w-full bg-cream py-14 sm:py-16 lg:py-20">
+      <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:gap-14">
             {/* Form column */}
             <div>
               <Reveal>
                 {submitted ? (
-                  <div className="flex min-h-[420px] flex-col items-center justify-center rounded-[22px] border border-forest/10 bg-white p-10 text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)]">
+                  <div className="flex flex-col items-center justify-center rounded-[22px] border border-forest/10 bg-white text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
                     <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
                       <CheckIcon size={28} />
                     </span>
@@ -595,7 +595,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                   <form
                     onSubmit={handleSubmit}
                     noValidate
-                    className="rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:p-8"
+                    className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6"
                   >
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
                       Trip planning request
@@ -714,7 +714,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                                     onClick={() => toggleDestination(place)}
                                     disabled={flexibleDestination}
                                     aria-pressed={active}
-                                    className={`rounded-xl border px-3 py-2.5 text-center text-[12px] font-medium leading-snug transition-all duration-200 disabled:cursor-not-allowed ${
+                                    className={`min-h-11 rounded-xl border px-3 py-2.5 text-center text-[12px] font-medium leading-snug transition-all duration-200 disabled:cursor-not-allowed ${
                                       active
                                         ? "border-green bg-green/[0.06] text-green shadow-[0_4px_14px_-6px_rgba(31,106,76,0.4)]"
                                         : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -976,7 +976,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
             <div>
               <div className="space-y-6 lg:sticky lg:top-24">
                 <Reveal delay={100}>
-                  <div className="rounded-[22px] border border-forest/10 bg-white p-6 shadow-[0_2px_18px_rgba(18,36,28,0.07)]">
+                  <div className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] p-5 sm:p-6">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Why plan with us</p>
                     <div className="mt-5 space-y-5">
                       {TRUST_POINTS.map(({ Icon, title, description }) => (
@@ -995,11 +995,11 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                 </Reveal>
 
                 <Reveal delay={160}>
-                  <div className="rounded-[22px] border border-forest/10 bg-forest p-6">
+                  <div className="rounded-[22px] border border-forest/10 bg-forest p-5 sm:p-6">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
                       Prefer to talk it through?
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-cream/65">
+                    <p className="mt-2 text-[15px] leading-[1.55] text-cream/65">
                       Reach a local trip planner directly by phone, WhatsApp, or email.
                     </p>
                     <div className="mt-5 space-y-4">
@@ -1024,7 +1024,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
       </section>
 
       {/* ---------------- How we plan your trip ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full overflow-hidden bg-forest section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
@@ -1043,7 +1043,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
             </div>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4 lg:gap-5">
+          <div className="card-grid card-grid-4 head-gap">
             {HOW_IT_WORKS.map((step, index) => (
               <Reveal key={step.title} delay={index * 90}>
                 <div className="relative flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-5">

@@ -28,8 +28,8 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
   const gridPosts = showFeatured ? rest : visible;
 
   return (
-    <section className="relative mx-auto w-full max-w-6xl px-5 pb-20 pt-16 sm:px-6 sm:pb-24 sm:pt-20 lg:px-8 lg:pb-28">
-      <div className="mb-12 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
+    <section className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8 section-y">
+      <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between head-gap-b">
         <div>
           <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
             <span className="h-px w-8 bg-muted/60" />
@@ -50,7 +50,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
             type="button"
             onClick={() => setActiveCategory(null)}
             aria-pressed={activeCategory === null}
-            className={`inline-flex items-center rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-300 ${
+            className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
               activeCategory === null
                 ? "border-forest bg-forest text-white"
                 : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -67,7 +67,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
                 type="button"
                 onClick={() => setActiveCategory(category)}
                 aria-pressed={isActive}
-                className={`inline-flex items-center rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-300 ${
+                className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
                   isActive
                     ? "border-green/30 bg-green/10 text-forest"
                     : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -89,12 +89,12 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
       ) : (
         <>
           {showFeatured && (
-            <div className="mb-12 sm:mb-14 lg:mb-16">
+            <div className="head-gap-b">
               <BlogCard key={lead.slug} post={lead} featured />
             </div>
           )}
           {gridPosts.length > 0 && (
-            <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-7 lg:gap-y-12">
+            <div className="card-grid">
               {gridPosts.map((post, index) => (
                 <BlogCard key={post.slug} post={post} delay={(index % 6) * 90} />
               ))}

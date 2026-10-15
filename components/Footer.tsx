@@ -76,7 +76,7 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/15 text-cream/55 transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/15 sm:h-8 sm:w-8 text-cream/55 transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
     >
       {children}
     </a>
@@ -87,7 +87,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="group flex items-center justify-between gap-4 text-[11px] text-cream/60 transition-colors hover:text-cream"
+      className="group flex min-h-11 items-center justify-between gap-4 text-[11px] text-cream/60 transition-colors hover:text-cream sm:min-h-0"
     >
       <span>{children}</span>
       <ArrowIcon />
@@ -99,7 +99,7 @@ function FooterColumn({
   title,
   links,
   className = "",
-  listClassName = "space-y-2.5",
+  listClassName = "space-y-0 sm:space-y-2.5",
   viewAll,
 }: {
   title: string;
@@ -126,7 +126,7 @@ function FooterColumn({
       {viewAll && (
         <Link
           href={viewAll.href}
-          className="mt-4 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
+          className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80 sm:mt-4 sm:min-h-0"
         >
           <span>{viewAll.label}</span>
           <ArrowIcon />
@@ -177,9 +177,9 @@ export default function Footer() {
         {/* Both link rows below sit on this same grid (1 → 3 → 4 columns, same
             gap-8, same lg:pr-8 padding inside each column), so every column
             and divider lines up with the one above or below it. */}
-        <div className="grid grid-cols-1 gap-x-8 gap-y-7 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-6 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-7 lg:grid-cols-4">
           {/* BRAND */}
-          <div className="border-b border-cream/[0.08] pb-7 sm:col-span-3 lg:col-span-1 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
+          <div className="border-b border-cream/[0.08] pb-6 col-span-2 sm:col-span-3 sm:pb-7 lg:col-span-1 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
             <Logo />
 
             <p className="mt-4 max-w-[285px] text-[12px] leading-[1.7] text-cream/50">
@@ -225,7 +225,7 @@ export default function Footer() {
           </div>
 
           {/* CONTACT */}
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
               Contact
             </h3>
@@ -241,7 +241,7 @@ export default function Footer() {
                     {href ? (
                       <a
                         href={href}
-                        className="mt-0.5 block break-words text-[12px] leading-snug text-cream/70 transition-colors hover:text-cream"
+                        className="mt-0.5 block break-words py-3 text-[12px] leading-snug text-cream/70 transition-colors hover:text-cream sm:py-0"
                       >
                         {value}
                       </a>
@@ -255,7 +255,7 @@ export default function Footer() {
 
             <Link
               href="/plan-your-trip"
-              className="mt-4 inline-flex items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80"
+              className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80 sm:mt-4 sm:min-h-0"
             >
               <LogoIcon className="h-5 w-6" />
               <span>Plan your journey</span>
@@ -275,14 +275,14 @@ export default function Footer() {
             <FooterColumn
               title="Destinations"
               links={destinationsMenu.items}
-              listClassName="grid gap-y-2.5 sm:grid-cols-2 sm:gap-x-8 lg:gap-x-16"
+              listClassName="grid grid-cols-2 gap-x-6 gap-y-0 sm:gap-x-8 sm:gap-y-2.5 lg:gap-x-16"
               viewAll={destinationsMenu.viewAll}
               className="sm:col-span-2 lg:border-r lg:border-cream/[0.08] lg:pr-8"
             />
             <FooterColumn
               title="Tours & Events"
               links={toursMenu.items}
-              listClassName="grid gap-y-2.5 lg:grid-cols-2 lg:gap-x-16"
+              listClassName="grid gap-y-0 sm:gap-y-2.5 lg:grid-cols-2 lg:gap-x-16"
               viewAll={toursMenu.viewAll}
               className="lg:col-span-2 lg:pr-8"
             />
@@ -297,10 +297,10 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] text-cream/35 sm:justify-end">
-              <Link href="/terms" className="transition-colors hover:text-cream/70">
+              <Link href="/terms" className="inline-flex min-h-11 items-center transition-colors hover:text-cream/70 sm:min-h-0">
                 Terms
               </Link>
-              <Link href="/privacy" className="transition-colors hover:text-cream/70">
+              <Link href="/privacy" className="inline-flex min-h-11 items-center transition-colors hover:text-cream/70 sm:min-h-0">
                 Privacy
               </Link>
               <p>© {new Date().getFullYear()} Discover Gilgit. All rights reserved.</p>

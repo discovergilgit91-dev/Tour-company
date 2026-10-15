@@ -279,7 +279,7 @@ export default function FestivalGallery() {
   return (
     <main className="bg-cream">
       {/* ---------------- Header + Filters + Grid ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream pb-16 pt-12 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
+      <section className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <LinkButton
             href="/tours/gilgit-cultural-festival"
@@ -298,7 +298,7 @@ export default function FestivalGallery() {
               type="button"
               onClick={() => setActiveCategory(null)}
               aria-pressed={activeCategory === null}
-              className={`inline-flex items-center rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-300 ${
+              className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
                 activeCategory === null
                   ? "border-forest bg-forest text-white"
                   : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -316,7 +316,7 @@ export default function FestivalGallery() {
                   type="button"
                   onClick={() => setActiveCategory(category.id)}
                   aria-pressed={isActive}
-                  className={`inline-flex items-center rounded-full border px-4 py-2 text-[13px] font-medium transition-colors duration-300 ${
+                  className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
                     isActive
                       ? "border-green/30 bg-green/10 text-forest"
                       : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -332,7 +332,7 @@ export default function FestivalGallery() {
           {/* aligned grid — fixed row units so every tile snaps to the same
               rows/columns; featured tiles simply span two columns rather
               than floating independently the way a masonry layout would */}
-          <div className="mt-10 grid grid-flow-row-dense grid-cols-2 gap-4 auto-rows-[130px] sm:grid-cols-3 sm:auto-rows-[140px] lg:mt-12 lg:grid-cols-4 lg:auto-rows-[160px]">
+          <div className="grid grid-flow-row-dense grid-cols-2 gap-4 auto-rows-[130px] sm:grid-cols-3 sm:auto-rows-[140px] lg:grid-cols-4 lg:auto-rows-[160px] head-gap">
             {filtered.map((photo, i) => (
               <GalleryTile
                 key={photo.id}
@@ -353,7 +353,7 @@ export default function FestivalGallery() {
       </section>
 
       {/* ---------------- Behind the Lens + Stats ---------------- */}
-      <section className="relative w-full overflow-hidden bg-forest py-16 sm:py-20 lg:py-24">
+      <section className="relative w-full overflow-hidden bg-forest section-y">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-32 top-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-3xl"
@@ -384,7 +384,7 @@ export default function FestivalGallery() {
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="grid grid-cols-2 gap-6 rounded-[22px] border border-cream/10 bg-night/40 p-6 sm:p-8">
+              <div className="grid grid-cols-2 gap-6 rounded-[22px] border border-cream/10 bg-night/40 p-5 sm:p-6">
                 {GALLERY_STATS.map((stat) => (
                   <div key={stat.label}>
                     <p className="font-serif text-4xl text-gold sm:text-5xl">{stat.value}</p>
@@ -400,7 +400,7 @@ export default function FestivalGallery() {
       </section>
 
       {/* ---------------- Closing CTA ---------------- */}
-      <section className="relative w-full overflow-hidden bg-cream py-16 text-center sm:py-20">
+      <section className="relative w-full overflow-hidden bg-cream text-center section-y">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">

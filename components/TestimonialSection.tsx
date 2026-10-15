@@ -27,7 +27,7 @@ export default function TestimonialSection({
   }
 
   return (
-    <section className="relative w-full overflow-hidden border-b border-cream/10 bg-forest py-20 sm:py-24 lg:py-28">
+    <section className="relative w-full overflow-hidden border-b border-cream/10 bg-forest section-y">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-28 top-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
@@ -38,7 +38,7 @@ export default function TestimonialSection({
       />
 
       <div className="relative mx-auto w-full max-w-4xl px-5 sm:px-6 lg:px-8">
-        <div className="mx-auto mb-10 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+        <div className="mx-auto flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50 head-gap-b">
           <span className="h-px w-8 bg-cream/30" />
           {eyebrow}
           <span className="h-px w-8 bg-cream/30" />
@@ -71,7 +71,7 @@ export default function TestimonialSection({
                 type="button"
                 onClick={() => go(-1)}
                 aria-label="Previous testimonial"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/70 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/70 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
               >
                 <span className="rotate-180">
                   <ArrowIcon size={14} />
@@ -88,7 +88,7 @@ export default function TestimonialSection({
                 type="button"
                 onClick={() => go(1)}
                 aria-label="Next testimonial"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 text-cream/70 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/20 text-cream/70 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
               >
                 <ArrowIcon size={14} />
               </button>

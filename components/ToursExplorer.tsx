@@ -65,7 +65,7 @@ function FilterGroup({
               type="button"
               aria-pressed={isActive}
               onClick={() => onToggle(option)}
-              className={`inline-flex items-center rounded-full border px-3.5 py-2 text-[13px] font-medium transition-colors duration-300 ${
+              className={`inline-flex min-h-11 items-center rounded-full border px-3.5 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
                 isActive
                   ? "border-green/30 bg-green/10 text-forest"
                   : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -99,11 +99,11 @@ function TourCard({ tour, index }: { tour: Tour; index: number }) {
       ref={ref}
       href={tour.href}
       style={{ transitionDelay: visible ? `${(index % 6) * 80}ms` : "0ms" }}
-      className={`group flex h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
+      className={`group flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
-      <div className="relative flex-1 overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden">
         {tour.image ? (
           <Image
             src={tour.image}
@@ -168,9 +168,9 @@ function CustomJourneyCard() {
   return (
     <Link
       href="/build-your-trip"
-      className="group flex h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+      className="group flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
-      <div className="relative flex-1 overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden">
         <Image
           src="/Images/tours/custom.png"
           alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
@@ -269,8 +269,8 @@ function ComingSoonCard({ tour, index }: { tour: Tour; index: number }) {
         </span>
       </div>
       <div className="mt-4 flex flex-1 flex-col">
-        <h3 className="line-clamp-2 min-h-[46px] font-serif text-lg leading-tight text-forest">{tour.title}</h3>
-        <p className="mt-auto pt-1.5 text-sm leading-relaxed text-muted">{tour.location}</p>
+        <h3 className="line-clamp-2 font-serif text-lg leading-tight text-forest">{tour.title}</h3>
+        <p className="mt-auto pt-1.5 text-[15px] leading-[1.55] text-muted">{tour.location}</p>
       </div>
     </div>
   );
@@ -314,9 +314,9 @@ function ComingSoonSection({ tours }: { tours: Tour[] }) {
   if (teasers.length === 0) return null;
 
   return (
-    <section className="relative w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
+    <section className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-6 sm:mb-10 sm:flex-row sm:items-end sm:justify-between lg:mb-12">
+        <div className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between ">
           <div className="max-w-xl">
             <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
@@ -438,9 +438,9 @@ function AdvantageCard({
     <div
       ref={ref}
       style={{ transitionDelay: visible ? `${index * 100}ms` : "0ms" }}
-      className={`group relative overflow-hidden rounded-[22px] border border-forest/10 bg-white p-7 shadow-[0_2px_18px_rgba(18,36,28,0.05)] transition-[opacity,transform,box-shadow,border-color] duration-700 ease-out hover:-translate-y-1.5 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(18,36,28,0.18)] motion-reduce:transition-none ${
+      className={`group relative overflow-hidden rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.05)] transition-[opacity,transform,box-shadow,border-color] duration-700 ease-out hover:-translate-y-1.5 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(18,36,28,0.18)] motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-      }`}
+      } p-5 sm:p-6`}
     >
       <span
         aria-hidden
@@ -453,8 +453,8 @@ function AdvantageCard({
         <Icon size={22} />
       </span>
 
-      <h3 className="relative mt-5 font-serif text-xl leading-tight text-forest">{title}</h3>
-      <p className="relative mt-2 text-sm leading-relaxed text-muted">{description}</p>
+      <h3 className="relative mt-4 font-serif text-xl leading-tight text-forest sm:text-[22px]">{title}</h3>
+      <p className="relative mt-2 text-[15px] leading-[1.55] text-muted">{description}</p>
 
       <span className="relative mt-5 block h-px w-8 bg-forest/15 transition-all duration-500 ease-out group-hover:w-12 group-hover:bg-gold" />
     </div>
@@ -463,7 +463,7 @@ function AdvantageCard({
 
 function WhyTravelWithUs() {
   return (
-    <section className="relative w-full overflow-hidden bg-cream pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12">
+    <section className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
       <div
         aria-hidden
         className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-green/5 blur-3xl"
@@ -480,7 +480,7 @@ function WhyTravelWithUs() {
           </h2>
         </div>
 
-        <div className="relative mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-12 lg:grid-cols-4 lg:gap-7">
+        <div className="relative card-grid card-grid-4 head-gap">
           {/* connecting "trail" between the four pillars, echoing the route map elsewhere on this page */}
           <div className="pointer-events-none absolute left-[13%] right-[13%] top-14 hidden h-px border-t border-dashed border-forest/15 lg:block" />
 
@@ -702,7 +702,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
           </div>
 
           {filtered.length > 0 ? (
-            <div className="grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="card-grid">
               {filtered.map((tour, index) => (
                 <TourCard key={tour.id} tour={tour} index={index} />
               ))}
@@ -721,7 +721,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
                   Clear all filters
                 </button>
               </div>
-              <div className="mt-8 grid grid-cols-1 gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-8 card-grid">
                 <CustomJourneyCard />
               </div>
             </>

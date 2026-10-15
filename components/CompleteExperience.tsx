@@ -175,7 +175,7 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function CompleteExperience() {
   return (
-    <section className="relative w-full overflow-hidden border-b border-cream/10 bg-forest py-16 sm:py-20 lg:py-24">
+    <section className="relative w-full overflow-hidden border-b border-cream/10 bg-forest section-y">
       <div
         aria-hidden
         className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
@@ -206,7 +206,7 @@ export default function CompleteExperience() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 lg:gap-7">
+        <div className="card-grid head-gap">
           {SERVICES.map(({ Icon, image, focus, title, description }, index) => (
             <Reveal key={title} delay={(index % 6) * 70}>
               <div className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-cream/10 bg-cream/[0.03] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(0,0,0,0.5)]">

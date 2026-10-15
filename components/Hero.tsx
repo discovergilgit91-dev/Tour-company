@@ -645,16 +645,20 @@ export default function Hero({
             )}
 
             {resolvedSlides.length > 1 && (
-              <div className="hero-indicators mt-3 flex items-center gap-2 sm:mt-8">
+              <div className="hero-indicators mt-1 flex items-center sm:mt-6">
                 {resolvedSlides.map((slide, i) => (
                   <button
                     key={slide.src}
                     aria-label={`Show slide ${i + 1}: ${slide.alt}`}
                     onClick={() => setActive(i)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ease-out ${
-                      i === active ? "w-6 bg-cream" : "w-1.5 bg-cream/45 hover:w-3 hover:bg-cream/80"
-                    }`}
-                  />
+                    className="group flex h-11 items-center px-1"
+                  >
+                    <span
+                      className={`block h-1.5 rounded-full transition-all duration-300 ease-out ${
+                        i === active ? "w-6 bg-cream" : "w-1.5 bg-cream/45 group-hover:w-3 group-hover:bg-cream/80"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             )}

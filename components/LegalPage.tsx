@@ -52,7 +52,7 @@ export default function LegalPage({
         </div>
       </section>
 
-      <section className="py-12 sm:py-16 lg:py-20">
+      <section className="section-y">
         <div className="mx-auto w-full max-w-3xl px-5 sm:px-6 lg:px-8">
           <div className="space-y-10">
             {sections.map((section, index) => (
