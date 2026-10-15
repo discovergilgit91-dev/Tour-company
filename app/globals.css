@@ -107,6 +107,14 @@
   }
 }
 
+/* A card that sets h-full inside .card-grid would opt out of the flex stretch
+   (a percentage height against an auto-height container isn't "auto"), leaving
+   each card as tall as its own text and its footer line at a different height.
+   Unlayered so it beats the h-full utility. */
+.card-grid > * {
+  height: auto;
+}
+
 html {
   scroll-behavior: smooth;
 }
