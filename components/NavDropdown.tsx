@@ -458,7 +458,8 @@ export default function NavDropdown({
                     {region.label}
                   </p>
 
-                  <ul>
+                  {/* Long regions scroll inside the card instead of running off short screens. */}
+                  <ul className="max-h-[min(60vh,26rem)] overflow-y-auto overscroll-contain">
                     {region.items.map((item) => (
                       <li key={item.label}>
                         <Row item={item} data-flyout-link={region.id} onClick={() => onOpenChange(false)} />
