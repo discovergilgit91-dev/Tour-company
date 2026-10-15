@@ -14,9 +14,9 @@
  *                would link to its region's section on /lands.)
  *
  * Each region's `href` is where clicking the region name (and "View all in …")
- * goes. There are no per-region pages yet, so these point at the matching
- * region section on /lands (ids come from REGIONS in lib/destinations.ts);
- * swap in a dedicated region URL here whenever one exists.
+ * goes. Hunza has its district guide (lib/districts.ts); the others point at the
+ * matching region section on /lands (ids come from REGIONS in lib/destinations.ts)
+ * until their own district pages exist — then swap their href here.
  */
 
 export type MenuPlace = {
@@ -39,7 +39,7 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
   {
     id: "hunza",
     label: "Hunza",
-    href: "/lands#hunza",
+    href: "/destinations/hunza",
     places: [
       { name: "Karimabad", elevation: "2,200 m", slug: "karimabad" },
       { name: "Attabad Lake", elevation: "2,560 m", slug: "attabad-lake" },

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CheckIcon, ClockIcon, CompassIcon, PinIcon } from "./ui/icons";
 import { PeaksMotif } from "./tours/motifs";
@@ -37,11 +38,14 @@ export default function DestinationDetailPage({
   content,
   region,
   nearby,
+  district,
 }: {
   destination: Destination;
   content: DestinationDetailContent;
   region?: Region;
   nearby: Destination[];
+  /** The district guide this place belongs to, if there is one. */
+  district?: { name: string; href: string };
 }) {
   const categoryLabel = destination.category ? LAND_CATEGORY_LABELS[destination.category] : undefined;
   // The Featured tile repeats the listing-card photo, so skip it when that photo is already a gallery tile.
@@ -108,7 +112,19 @@ export default function DestinationDetailPage({
                 )}
               </div>
 
-              <h1 className="mt-5 font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-5xl md:text-[56px]">
+              {district && (
+                <Link
+                  href={district.href}
+                  className="group mt-4 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-cream/90 transition-colors duration-300 hover:text-cream [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]"
+                >
+                  Part of <span className="underline decoration-gold/70 underline-offset-4">{district.name}</span>
+                  <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
+                    <ArrowIcon size={12} />
+                  </span>
+                </Link>
+              )}
+
+              <h1 className="mt-4 font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-5xl md:text-[56px]">
                 {destination.name}
               </h1>
               <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] sm:text-base md:text-lg">

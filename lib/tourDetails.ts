@@ -1,6 +1,7 @@
 import type { StatIconId } from "@/components/tours/statIcons";
 import type { MotifShape } from "@/components/tours/motifs";
 import type { MenuRegionId } from "@/lib/destinationMenu";
+import type { DistrictSlug } from "@/lib/districts";
 
 export type TourStat = { value: string; label: string; iconId: StatIconId };
 export type TourGuide = { name: string; role: string; bio: string; from: string; to: string; avatar?: string };
@@ -23,6 +24,8 @@ export type TourDetail = {
   slug: string;
   /** The region the tour starts in — decides which group it appears under in the navbar's tours menu. */
   menuRegion: MenuRegionId;
+  /** The district the tour belongs to on its district page. Leave out to use `menuRegion` (they share names where both exist). */
+  district?: DistrictSlug;
   href: string;
   title: string;
   tagline: string;
@@ -357,6 +360,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
   "rakaposhi-trek": {
     slug: "rakaposhi-trek",
     menuRegion: "hunza",
+    district: "nagar",
     href: "/tours/rakaposhi-trek",
     title: "Rakaposhi Base Camp Trek",
     tagline: "Trekking Expedition · Glaciers & Giants",

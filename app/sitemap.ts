@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { BLOG_POSTS } from "@/lib/blog";
 import { DESTINATIONS } from "@/lib/destinations";
+import { DISTRICTS, districtHref } from "@/lib/districts";
 import { blogPostPath, BLOG_LISTING_PATH } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import { getAllTourSlugs } from "@/lib/tourDetails";
@@ -32,6 +33,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticEntries = STATIC_PATHS.map((path) => ({ url: absoluteUrl(path) }));
 
+  const districtEntries = DISTRICTS.map((district) => ({
+    url: absoluteUrl(districtHref(district)),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
+
   const destinationEntries = DESTINATIONS.filter((destination) => destination.slug).map((destination) => ({
     url: absoluteUrl(`/destinations/${destination.slug}`),
   }));
@@ -48,5 +55,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 
-  return [...staticEntries, ...destinationEntries, ...tourEntries, ...blogEntries];
+  return [...staticEntries, ...districtEntries, ...destinationEntries, ...tourEntries, ...blogEntries];
 }
