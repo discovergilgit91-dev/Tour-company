@@ -473,7 +473,7 @@ export default function NavDropdown({
                 key={region.id}
                 id={`${panelId}-${region.id}`}
                 role="group"
-                aria-label={`${region.label} places`}
+                aria-label={`${region.label} — ${region.detail}`}
                 onPointerEnter={clearRegionTimer}
                 className={`absolute top-0 z-10 ${flip ? "right-full pr-3" : "left-full pl-3"} ${
                   isActive ? "pointer-events-auto" : "pointer-events-none invisible"
