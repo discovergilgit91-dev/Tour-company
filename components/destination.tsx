@@ -4,47 +4,50 @@ import { LinkButton } from "./ui/Button";
 import { ArrowIcon } from "./ui/icons";
 import { DestinationCard, type Destination } from "./DestinationCard";
 
+// The four districts featured on the homepage. Hunza has its own guide page;
+// the others link to their section on /lands until their district pages exist
+// (then point `href` at /destinations/<district>). The elevation line is the
+// lowest-to-highest of the listed places in that area, taken from their pages.
 const DEFAULT_DESTINATIONS: Destination[] = [
   {
     id: "hunza",
     name: "Hunza Valley",
-    slug: "hunza-valley",
+    slug: "hunza",
     blurb: "Terraced orchards, ancient forts, and snow-capped peaks framing a valley of legend.",
     image: "/Images/tours/passu-cones.jpg",
     tag: "Discover Hunza",
-    href: "/destinations/karimabad",
-    altitude: "2,500 m",
-  },
-  {
-    id: "deosai",
-    name: "Deosai Plains",
-    slug: "deosai-plains",
-    blurb:
-      "The 'Land of Giants' — vast alpine plateau where brown bears roam beneath endless sky.",
-    image: "/Images/tours/deosai-plains.jpg",
-    tag: "Explore Deosai",
-    href: "/destinations/deosai-plains",
-    altitude: "4,114 m",
+    href: "/destinations/hunza",
+    altitude: "2,100 m – 4,700 m",
   },
   {
     id: "skardu",
-    name: "Skardu & Katpana",
-    slug: "skardu-katpana",
-    blurb: "Cold desert dunes beside turquoise lakes, gateway to the world's highest peaks.",
-    image: "/Images/tours/sarfaranga-desert.jpg",
-    tag: "Discover Skardu",
-    href: "/destinations/skardu-katpana",
-    altitude: "2,230 m",
+    name: "Skardu",
+    slug: "skardu",
+    blurb: "Cold desert dunes, turquoise lakes and the high plains of Deosai — gateway to the world's highest peaks.",
+    image: "/Images/tours/deosai-plains.jpg",
+    tag: "Explore Skardu",
+    href: "/lands#baltistan",
+    altitude: "2,230 m – 4,114 m",
   },
   {
-    id: "fairy-meadows",
-    name: "Fairy Meadows",
-    slug: "fairy-meadows",
-    blurb: "Alpine meadows at the foot of Nanga Parbat, wrapped in pine forest and morning mist.",
+    id: "nagar",
+    name: "Nagar",
+    slug: "nagar",
+    blurb: "Glaciers, high pastures, and the road to Rakaposhi.",
+    image: "/Images/tours/sarfaranga-desert.jpg",
+    tag: "Discover Nagar",
+    href: "/lands#nagar",
+    altitude: "2,700 m – 4,694 m",
+  },
+  {
+    id: "diamer",
+    name: "Diamer",
+    slug: "diamer",
+    blurb: "Alpine meadows and quiet lakes at the foot of Nanga Parbat, wrapped in pine forest and morning mist.",
     image: "/Images/tours/nanga-parbat.png",
-    tag: "Discover Fairy Meadows",
-    href: "/destinations/fairy-meadows",
-    altitude: "3,300 m",
+    tag: "Discover Diamer",
+    href: "/lands#diamer-astore",
+    altitude: "3,077 m – 3,300 m",
   },
 ];
 
