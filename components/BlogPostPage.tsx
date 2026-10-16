@@ -1,3 +1,4 @@
+import Slider from "./ui/Slider";
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -280,11 +281,11 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
               More from the <span className="text-green">blog</span>
             </h2>
 
-            <div className="card-grid head-gap">
+            <Slider as="div" label="more articles" className="card-grid-loose">
               {more.map((item, index) => (
                 <BlogCard key={item.slug} post={item} delay={index * 90} />
               ))}
-            </div>
+            </Slider>
           </div>
         </section>
       )}
@@ -312,7 +313,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
                   <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
                     {pick.tour.title}
                   </h2>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-cream/80 sm:text-base">
+                  <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/80 sm:text-base">
                     {pick.tour.tagline}
                   </p>
                   <ul className="mt-6 flex flex-wrap gap-2">
@@ -346,7 +347,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
                   <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
                     Turn the reading into a <span className="text-gold">journey</span>
                   </h2>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-cream/80 sm:text-base">
+                  <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/80 sm:text-base">
                     Tell us when you want to go and what you want to see — our local guides will take it from there.
                   </p>
                   <div className="mt-8 flex flex-wrap items-center gap-3">

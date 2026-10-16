@@ -45,6 +45,31 @@
   }
 }
 
+/* Desktop / laptop screens (wide AND tall enough): spacing, heading and media
+   sizes follow the screen HEIGHT so a section can fit one screen below the
+   96px sticky header. Tablet, phone and very short windows keep the flowing
+   values above. */
+@media (min-width: 64rem) and (min-height: 37.5rem) {
+  :root {
+    --header-h: 96px;
+    --space-section: clamp(2.25rem, 5.2vh, 4rem); /* 36–64px */
+    --space-section-tight: clamp(1rem, 2.5vh, 2rem);
+    --space-head: clamp(1rem, 2.8vh, 2rem);
+    --space-gap: clamp(0.75rem, 1.7vh, 1.25rem);
+    --media-h: clamp(260px, 42vh, 420px); /* photo / card rows */
+    --card-photo-h: clamp(180px, 30vh, 340px); /* photo of a card that has a caption below it */
+  }
+}
+
+/* Big section headings: shrink with the screen height. Unlayered so it wins
+   over the text-4xl / sm:text-5xl utilities on the same element. */
+@media (min-width: 64rem) and (min-height: 37.5rem) {
+  .section-title {
+    font-size: clamp(2rem, 4.5vh + 1rem, 3.5rem);
+    line-height: 1.05;
+  }
+}
+
 @utility section-y {
   padding-block: var(--space-section);
 }
@@ -113,6 +138,44 @@
    Unlayered so it beats the h-full utility. */
 .card-grid > * {
   height: auto;
+}
+
+/* Desktop / laptop: a card list inside <Slider> becomes ONE horizontal row
+   (3 cards visible, 4 for card-grid-4) that scrolls by swipe, trackpad or the
+   arrow buttons, so a long list never makes its section taller than a screen.
+   Unlayered like the rule above so it wins over utilities on the cards. */
+@media (min-width: 64rem) and (min-height: 37.5rem) {
+  .card-slider {
+    flex-wrap: nowrap;
+    justify-content: safe center;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    /* room for the hover lift / shadow that overflow would otherwise clip */
+    padding: 0.5rem 0 0.75rem;
+    margin: -0.5rem 0 -0.75rem;
+  }
+  .card-slider::-webkit-scrollbar {
+    display: none;
+  }
+  .card-slider > * {
+    scroll-snap-align: start;
+  }
+  .slider-arrow {
+    display: flex;
+  }
+}
+
+/* An item that takes two grid slots on wide screens (e.g. the lead blog
+   post inside the blog Slider); full row below that. Unlayered so it beats
+   the .card-grid > * flex-basis. */
+.card-grid > .card-span-2 {
+  flex-basis: 100%;
+}
+@media (min-width: 64rem) and (min-height: 37.5rem) {
+  .card-grid > .card-span-2 {
+    flex-basis: calc((100% - (var(--cols) - 1) * var(--space-gap)) / var(--cols) * 2 + var(--space-gap));
+  }
 }
 
 html {

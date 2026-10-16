@@ -260,7 +260,7 @@ export default function WhyChooseUs() {
        "centered max-w-6xl inside a padded section" box. */
     <section
       id="why-choose-us"
-      className="section-b relative w-full overflow-hidden bg-cream pt-40 sm:pt-24 lg:pt-28"
+      className="section-b relative w-full overflow-hidden bg-cream pt-40 sm:pt-24 lg:pt-[calc(3.5rem+var(--space-section-tight))]"
     >
       <div
         aria-hidden
@@ -268,36 +268,37 @@ export default function WhyChooseUs() {
       />
 
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end">
+        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12">
           <div className="max-w-2xl">
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.5vh]">
               <span className="h-px w-8 bg-muted/60" />
               Why choose us
             </div>
 
-            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
+            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
               Why explore Gilgit
               <br />
               <span className="text-green">with us?</span>
             </h2>
+          </div>
 
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+          <div className="max-w-md lg:pb-1">
+            <p className="text-[15px] leading-[1.55] text-muted sm:text-base">
               We are locals first and guides second. Every journey we plan draws on years
               of firsthand experience in these mountains — so you travel with confidence,
               not just a map.
             </p>
+            <p className="mt-3 flex items-center gap-2 text-xs text-muted">
+              <span className="h-px w-8 bg-muted/60" />
+              <span className="lg:hidden">Tap a photo to explore</span>
+              <span className="hidden lg:inline">Hover a photo to explore</span>
+            </p>
           </div>
-
-          <p className="flex items-center gap-2 text-xs text-muted">
-            <span className="h-px w-8 bg-muted/60" />
-            <span className="lg:hidden">Tap a photo to explore</span>
-            <span className="hidden lg:inline">Hover a photo to explore</span>
-          </p>
         </div>
 
         <div
           ref={ref}
-          className={`mt-10 flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:mt-12 lg:h-[420px] lg:flex-row ${
+          className={`mt-10 flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:mt-[var(--space-head)] lg:h-[var(--media-h)] lg:flex-row ${
             visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >

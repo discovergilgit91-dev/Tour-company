@@ -177,7 +177,7 @@ function DestinationPickCard({
       className="group relative block overflow-hidden rounded-[22px] text-left outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
       <div
-        className={`relative aspect-[4/5] w-full overflow-hidden rounded-[22px] bg-forest transition-all duration-300 ${
+        className={`relative aspect-[4/5] w-full overflow-hidden rounded-[22px] bg-forest transition-all duration-300 lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)] ${
           selected ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
@@ -428,7 +428,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                   </p>
                 </div>
 
-                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:mt-[var(--space-head)] lg:grid-cols-4">
                   {DESTINATIONS.map((destination) => (
                     <DestinationPickCard
                       key={destination.id}
@@ -453,7 +453,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                   Shape the rest of the trip
                 </h2>
 
-                <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_1fr]">
+                <div className="mt-8 grid grid-cols-1 gap-10 lg:mt-[var(--space-head)] lg:grid-cols-[1.2fr_1fr] lg:gap-8">
                   <div className="space-y-7">
                     {/* Dates */}
                     <div>
@@ -610,9 +610,9 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                   Where should we send the plan?
                 </h2>
 
-                <div className="mt-8 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] lg:mt-10 p-5 sm:p-6">
-                  <div className="space-y-5">
-                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="mt-8 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] lg:mt-[var(--space-head)] p-5 sm:p-6">
+                  <div className="space-y-5 lg:space-y-4">
+                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-4">
                       <div>
                         <label htmlFor="name" className={LABEL_CLASS}>
                           Full name
@@ -668,7 +668,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                       <textarea
                         id="notes"
                         name="notes"
-                        rows={4}
+                        rows={2}
                         value={notes}
                         onChange={(event) => setNotes(event.target.value)}
                         placeholder="Must-see places, accessibility needs, special occasions..."
@@ -677,7 +677,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                     </div>
 
                     {/* ---- Summary ---- */}
-                    <div className="rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3.5">
+                    <div className="rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3.5 lg:py-2.5">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Quick summary</p>
                       <p className="mt-1 text-[13px] leading-snug text-forest">{buildSummary()}</p>
                     </div>
@@ -695,7 +695,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
 
                     <button
                       type="submit"
-                      className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
+                      className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm lg:py-3 font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
                     >
                       {isSignedIn ? "Send My Custom Trip Request" : "Sign Up to Send Request"}
                       <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -719,7 +719,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
         <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto max-w-xl text-center">
-              <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+              <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50 lg:mb-[1.2vh]">
                 <span className="h-px w-8 bg-cream/30" />
                 Why build with us
                 <span className="h-px w-8 bg-cream/30" />

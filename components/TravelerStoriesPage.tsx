@@ -1,5 +1,6 @@
 "use client";
 
+import Slider from "./ui/Slider";
 import Image from "next/image";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon } from "./ui/icons";
@@ -155,11 +156,11 @@ export default function TravelerStoriesPage() {
       {/* ---------------- Story cards ---------------- */}
       <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          <div className="card-grid">
+          <Slider as="div" label="traveler stories" className="card-grid-loose">
             {STORIES.map((story, index) => (
               <Reveal key={story.name} delay={(index % 6) * 70}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.22)]">
-                  <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
+                  <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.6)]">
                     <Image
                       src={story.photo}
                       alt={story.region}
@@ -181,7 +182,7 @@ export default function TravelerStoriesPage() {
 
                     <p className="flex-1 text-[15px] leading-[1.55] text-forest/80">&ldquo;{story.quote}&rdquo;</p>
 
-                    <div className="mt-6 border-t border-forest/10 pt-5">
+                    <div className="mt-6 border-t border-forest/10 pt-5 lg:mt-4 lg:pt-4">
                       <p className="font-serif text-sm text-forest">{story.name}</p>
                       <p className="text-xs text-muted">{story.location}</p>
                       <div className="mt-2.5">
@@ -192,7 +193,7 @@ export default function TravelerStoriesPage() {
                 </article>
               </Reveal>
             ))}
-          </div>
+          </Slider>
         </div>
       </section>
 
@@ -212,7 +213,7 @@ export default function TravelerStoriesPage() {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
               Ready to write your <span className="heading-accent">own story?</span>
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-cream/70 sm:text-base">
+            <p className="mt-4 text-[15px] leading-relaxed text-cream/70 sm:text-base">
               Tell us what you&rsquo;re dreaming of and a local trip planner will shape the rest around you.
             </p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">

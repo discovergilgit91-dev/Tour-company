@@ -374,27 +374,27 @@ export default function FestivalPage() {
             </Reveal>
 
             <Reveal delay={100}>
-              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50 lg:mb-[1.2vh]">
                 <span className="h-px w-8 bg-cream/30" />
                 About the festival
               </div>
               <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
                 More Than a Festival
               </h2>
-              <p className="mt-5 text-[15px] leading-[1.55] text-cream/65">
+              <p className="mt-5 text-[15px] leading-[1.55] text-cream/65 lg:mt-[1.5vh]">
                 The Gilgit-Baltistan Cultural Festival is not just an event, it&rsquo;s a heartfelt celebration of
                 our people, their stories, traditions, and resilient spirit. It brings together local communities,
                 artists, and visitors to promote cultural exchange and preserve our unique heritage for generations
                 to come.
               </p>
-              <LinkButton href="/#contact" variant="outline" className="group mt-6 w-fit gap-2">
+              <LinkButton href="/#contact" variant="outline" className="group mt-6 w-fit gap-2 lg:mt-[2vh]">
                 Discover the Story
                 <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                   <ArrowIcon size={14} />
                 </span>
               </LinkButton>
 
-              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-5 border-t border-cream/10 pt-6">
+              <div className="mt-8 flex flex-wrap gap-x-8 gap-y-5 border-t border-cream/10 pt-6 lg:mt-[2vh] lg:pt-[1.5vh]">
                 {FESTIVAL_STATS.map((stat) => (
                   <div key={stat.label} className="min-w-[90px] shrink-0 grow">
                     <p className="whitespace-nowrap font-serif text-3xl text-gold sm:text-4xl">{stat.value}</p>
@@ -403,7 +403,7 @@ export default function FestivalPage() {
                 ))}
               </div>
 
-              <blockquote className="mt-6 border-l-2 border-gold/40 pl-5">
+              <blockquote className="mt-6 border-l-2 lg:mt-[1.5vh] border-gold/40 pl-5">
                 <p className="font-serif text-base italic leading-relaxed text-cream/80">
                   &ldquo;Every language sung, every dish shared, every dance performed — it all says the same
                   thing: we belong to each other.&rdquo;
@@ -426,7 +426,7 @@ export default function FestivalPage() {
                 ))}
               </div>
 
-              <div className="mt-5">
+              <div className="mt-5 lg:mt-[2vh]">
                 <EventDetailsCard />
               </div>
             </Reveal>
@@ -502,7 +502,7 @@ export default function FestivalPage() {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
               Be part of the celebration
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">
               Plan your trip around the festival and experience the culture of Gilgit-Baltistan first-hand.
             </p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">

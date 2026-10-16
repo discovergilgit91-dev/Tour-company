@@ -108,7 +108,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
 
         <div className="flex-1">
           <h3 className="font-serif text-xl leading-tight text-forest sm:text-2xl">{name}</h3>
-          <p className="mt-2 max-w-xl text-sm leading-relaxed text-muted sm:text-base">{description}</p>
+          <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">{description}</p>
         </div>
 
         <LinkButton
@@ -197,13 +197,13 @@ export default function PartnerSection({
             {eyebrow}
           </div>
 
-          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
+          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
             {heading}
             <br />
             <span className="text-green">{headingAccent}</span>
           </h2>
 
-          <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">{description}</p>
+          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">{description}</p>
         </div>
 
         <div className="card-grid head-gap">

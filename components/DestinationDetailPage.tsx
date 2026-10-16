@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LinkButton } from "./ui/Button";
+import Slider from "./ui/Slider";
 import { ArrowIcon, CheckIcon, ClockIcon, CompassIcon, PinIcon } from "./ui/icons";
 import { PeaksMotif } from "./tours/motifs";
 import { useRevealOnScroll, DestinationCard, LAND_CATEGORY_LABELS, type Destination } from "./DestinationCard";
@@ -150,14 +151,14 @@ export default function DestinationDetailPage({
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_320px] lg:gap-14">
             <div>
               <Reveal>
-                <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+                <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
                   <span className="h-px w-8 bg-muted/60" />
                   About this destination
                 </div>
-                <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+                <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
                   Why {destination.name} <span className="text-green">is special</span>
                 </h2>
-                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">{content.intro}</p>
+                <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{content.intro}</p>
               </Reveal>
 
               <Reveal delay={80}>
@@ -275,11 +276,11 @@ export default function DestinationDetailPage({
       <section className="relative w-full overflow-hidden bg-cream section-y">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
               <span className="h-px w-8 bg-muted/60" />
               Scenes from {destination.name}
             </div>
-            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
               Photo <span className="text-green">highlights</span>
             </h2>
           </Reveal>
@@ -291,7 +292,7 @@ export default function DestinationDetailPage({
           >
             {showFeatured && destination.image && (
               <Reveal className="col-span-2">
-                <div className="group relative aspect-[16/11] overflow-hidden rounded-[18px] sm:aspect-[8/5]">
+                <div className="group relative aspect-[16/11] overflow-hidden rounded-[18px] sm:aspect-[8/5] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]">
                   <Image
                     src={destination.image}
                     alt={destination.name}
@@ -324,7 +325,7 @@ export default function DestinationDetailPage({
                 >
                   <div
                     className={`group relative overflow-hidden rounded-[18px] ${
-                      isWide ? "aspect-[4/5] sm:aspect-[8/5]" : "aspect-[4/5]"
+                      isWide ? "aspect-[4/5] sm:aspect-[8/5] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]" : "aspect-[4/5] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]"
                     }`}
                   >
                     {photo.image ? (
@@ -369,20 +370,20 @@ export default function DestinationDetailPage({
         <section className="relative w-full bg-cream section-y">
           <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
             <Reveal>
-              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
                 <span className="h-px w-8 bg-muted/60" />
                 Keep exploring
               </div>
-              <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+              <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
                 Nearby in {region?.label ?? "the region"}
               </h2>
             </Reveal>
 
-            <div className="card-grid card-grid-loose head-gap">
+            <Slider as="div" label="nearby places" className="card-grid-loose">
               {nearby.map((item, index) => (
                 <DestinationCard key={item.id} destination={item} index={index} delay={(index % 3) * 90} />
               ))}
-            </div>
+            </Slider>
           </div>
         </section>
       )}
@@ -403,7 +404,7 @@ export default function DestinationDetailPage({
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
               Ready to visit <span className="heading-accent">{destination.name}?</span>
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-cream/70 sm:text-base">
+            <p className="mt-4 text-[15px] leading-relaxed text-cream/70 sm:text-base">
               Tell us what you&rsquo;re dreaming of and a local trip planner will shape the rest around you.
             </p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">

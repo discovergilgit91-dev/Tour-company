@@ -435,12 +435,12 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                   <span className="h-px w-8 bg-muted/60" />
                   {tour.aboutEyebrow}
                 </div>
-                <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+                <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
                   {tour.aboutHeadingLine1}
                   <br />
                   <span className="text-green">{tour.aboutHeadingLine2}</span>
                 </h2>
-                <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">{tour.aboutText}</p>
+                <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{tour.aboutText}</p>
               </Reveal>
 
               {/* Stats */}
@@ -493,7 +493,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                   <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
                     Local guides leading the way
                   </h2>
-                  <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">{tour.guidesIntro}</p>
+                  <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{tour.guidesIntro}</p>
                 </Reveal>
 
                 <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
@@ -554,7 +554,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                             {index + 1}
                           </span>
                           <div>
-                            <p className="font-serif text-sm text-forest sm:text-base">{day.day}</p>
+                            <p className="font-serif text-[15px] text-forest sm:text-base">{day.day}</p>
                             <span className="mt-0.5 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-green">
                               <PinIcon size={11} />
                               {day.tag}
@@ -592,14 +592,18 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
       <section className="relative w-full overflow-hidden bg-cream section-b">
         <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-              <span className="h-px w-8 bg-muted/60" />
-              Scenes from the trip
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_1fr] lg:items-end lg:gap-12">
+              <div>
+                <div className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
+                  <span className="h-px w-8 bg-muted/60" />
+                  Scenes from the trip
+                </div>
+                <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+                  Photo <span className="text-green">highlights</span>
+                </h2>
+              </div>
+              <p className="max-w-xl text-[15px] leading-[1.55] text-muted sm:text-base lg:pb-1">{tour.galleryIntro}</p>
             </div>
-            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
-              Photo <span className="text-green">highlights</span>
-            </h2>
-            <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">{tour.galleryIntro}</p>
           </Reveal>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 head-gap">
@@ -607,7 +611,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
               const Motif = index % 2 === 0 ? PeakZigzagMotif : AccentMotif;
               return (
                 <Reveal key={photo.caption} delay={(index % 6) * 80}>
-                  <div className="group relative aspect-[4/5] overflow-hidden rounded-[18px]">
+                  <div className="group relative aspect-[4/5] overflow-hidden rounded-[18px] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]">
                     {photo.image ? (
                       <Image
                         src={photo.image}
@@ -656,7 +660,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
               {tour.ctaHeading}
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{tour.ctaText}</p>
+            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">{tour.ctaText}</p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <LinkButton href={`/book?tour=${tour.slug}`} variant="primary" className="group gap-2">
                 Reserve Your Spot

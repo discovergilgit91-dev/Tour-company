@@ -68,7 +68,7 @@ export default function FeaturedEvent() {
               </span>
             </div>
 
-            <p className="mt-5 max-w-md text-sm leading-relaxed text-cream/70 sm:text-base">
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-cream/70 sm:text-base">
               {FEATURED_EVENT.description}
             </p>
 
