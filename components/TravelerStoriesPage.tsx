@@ -160,7 +160,7 @@ export default function TravelerStoriesPage() {
             {STORIES.map((story, index) => (
               <Reveal key={story.name} delay={(index % 6) * 70}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.22)]">
-                  <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.6)]">
+                  <div className="relative aspect-[4/3] min-h-[240px] w-full shrink-0 overflow-hidden">
                     <Image
                       src={story.photo}
                       alt={story.region}

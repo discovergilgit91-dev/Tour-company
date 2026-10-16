@@ -178,7 +178,7 @@ function DestinationPickCard({
       className="group relative block overflow-hidden rounded-[22px] text-left outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
       <div
-        className={`relative aspect-[4/5] w-full overflow-hidden rounded-[22px] bg-forest transition-all duration-300 lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)] ${
+        className={`relative aspect-[4/5] w-full overflow-hidden rounded-[22px] bg-forest transition-all duration-300 ${
           selected ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >

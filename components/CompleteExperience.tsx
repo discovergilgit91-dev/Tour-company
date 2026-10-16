@@ -208,7 +208,7 @@ export default function CompleteExperience() {
           {SERVICES.map(({ Icon, image, focus, title, description }, index) => (
             <Reveal key={title} delay={(index % 6) * 70}>
               <div className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-cream/10 bg-cream/[0.03] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(0,0,0,0.5)]">
-                <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.6)]">
+                <div className="relative aspect-[4/3] min-h-[240px] w-full shrink-0 overflow-hidden">
                   <Image
                     src={image}
                     alt={title}

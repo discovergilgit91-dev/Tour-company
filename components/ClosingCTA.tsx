@@ -17,7 +17,7 @@ const BASE_BUTTON =
 export default function ClosingCTA() {
   return (
     <section id="contact" className="relative w-full overflow-hidden">
-      <div className="relative min-h-[320px] w-full sm:min-h-[360px]">
+      <div className="relative min-h-[440px] w-full sm:min-h-[480px]">
         <Image
           src="/Images/tours/kutwal-lake.png"
           alt=""

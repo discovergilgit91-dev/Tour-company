@@ -192,7 +192,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
             />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[72svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[76svh] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
+          <div className="relative z-10 mx-auto flex min-h-[max(72svh,520px)] max-w-7xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[max(76svh,520px)] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
             <Link
               href="/blog"
               className="group mb-auto inline-flex w-fit items-center gap-2 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
@@ -294,7 +294,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
 
       {/* ---------------- Closing call to action — same banner pattern as the homepage ---------------- */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative min-h-[320px] w-full bg-night sm:min-h-[360px]">
+        <div className="relative min-h-[440px] w-full bg-night sm:min-h-[460px]">
           <Image
             src={ctaImage.src}
             alt=""
@@ -307,7 +307,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           <div className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/60 to-night/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[440px] w-full max-w-7xl items-center px-5 sm:min-h-[460px] sm:px-6 lg:px-8">
             <div className="section-y max-w-xl">
               {pick ? (
                 <>

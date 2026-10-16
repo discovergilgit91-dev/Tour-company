@@ -530,7 +530,7 @@ export default function Hero({
 
   return (
     <section className="relative bg-forest">
-      <div className="relative min-h-[76svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
+      <div className="relative min-h-[max(76svh,520px)] w-full sm:min-h-[max(82svh,520px)] md:min-h-[max(86svh,520px)]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           {resolvedSlides.map((slide, i) => (
             <div
@@ -583,7 +583,7 @@ export default function Hero({
         </div>
 
         <div
-          className={`relative z-10 mx-auto flex min-h-[76svh] max-w-7xl flex-col justify-center px-5 pt-28 sm:min-h-[82svh] sm:px-6 sm:pt-32 md:min-h-[86svh] md:pt-36 lg:px-8 ${
+          className={`relative z-10 mx-auto flex min-h-[max(76svh,520px)] max-w-7xl flex-col justify-center px-5 pt-28 sm:min-h-[max(82svh,520px)] sm:px-6 sm:pt-32 md:min-h-[max(86svh,520px)] md:pt-36 lg:px-8 ${
             showSearchBar
               ? "pb-40 sm:pb-16 md:pb-20"
               : "pb-16 sm:pb-20 md:pb-24"

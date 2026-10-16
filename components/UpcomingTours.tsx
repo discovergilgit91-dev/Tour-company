@@ -122,9 +122,9 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
   return (
     <Link
       href={`/tours/${tour.id}`}
-      className="group flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
     >
-      <div className="relative aspect-square overflow-hidden sm:aspect-[4/3] lg:aspect-auto lg:h-[calc(var(--card-photo-h)*1.05)]">
+      <div className="relative flex-1 overflow-hidden">
         {tour.image ? (
           <Image
             src={tour.image}
@@ -189,9 +189,9 @@ function BuildYourOwnCard() {
   return (
     <Link
       href="/build-your-trip"
-      className="group flex h-full w-full flex-col overflow-hidden rounded-[18px] border-2 border-gold bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_36px_rgba(201,161,90,0.4)] outline-none transition-shadow duration-300 hover:shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_48px_rgba(201,161,90,0.55)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] border-2 border-gold bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_36px_rgba(201,161,90,0.4)] outline-none transition-shadow duration-300 hover:shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_48px_rgba(201,161,90,0.55)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
     >
-      <div className="relative aspect-square overflow-hidden sm:aspect-[4/3] lg:aspect-auto lg:h-[calc(var(--card-photo-h)*1.05)]">
+      <div className="relative flex-1 overflow-hidden">
         <Image
           src="/Images/tours/custom.png"
           alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
@@ -241,7 +241,7 @@ function BuildYourOwnCard() {
 
 function ComingSoonCard() {
   return (
-    <article className="relative flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-forest p-5 text-white sm:p-6 lg:p-5">
+    <article className="relative flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-forest p-5 text-white sm:h-[500px] sm:p-6 lg:p-5">
       <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-white/[0.07] text-white/85 lg:mb-[1.5vh] lg:h-12 lg:w-12">
         <CalendarIcon size={24} />
       </div>

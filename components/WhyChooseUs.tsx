@@ -294,7 +294,7 @@ export default function WhyChooseUs() {
 
         <div
           ref={ref}
-          className={`flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:h-[var(--media-h)] lg:flex-row ${
+          className={`flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:h-[440px] lg:flex-row ${
             visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
