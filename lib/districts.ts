@@ -117,7 +117,7 @@ export type District = {
 };
 
 const hunzaPhoto = (file: string, alt: string, width: number, height: number, focus?: string): DistrictImage => ({
-  src: `/Images/districts/hunza/${file}`,
+  src: file.startsWith("/") ? file : `/Images/districts/hunza/${file}`,
   alt,
   width,
   height,
@@ -185,10 +185,10 @@ export const DISTRICTS: District[] = [
       intro:
         "Life in Hunza follows the seasons: sowing in spring, harvest in summer, and gatherings when the work is done. Many customs are about thanks, sharing and welcome.",
       image: hunzaPhoto(
-        "hunza-traditions.jpg",
-        "Neighbours gathered together at a seasonal celebration in a Hunza village",
+        "/Images/tours/hunza-tradition.jpg",
+        "A visitor and a Hunza elder in a traditional feathered cap, with the valley and mountains behind them",
         1400,
-        1050
+        933
       ),
       items: [
         {
@@ -218,10 +218,10 @@ export const DISTRICTS: District[] = [
       intro:
         "Hunza is home to a rich mix of communities, languages and heritage. Take your time, ask questions politely, and listen — people are usually proud to share their story.",
       image: hunzaPhoto(
-        "hunza-culture.jpg",
-        "Carved timber and stonework in a traditional Hunza home or fort",
-        1400,
-        1050
+        "/Images/tours/hunza-culture.jpg",
+        "Three Hunza women in traditional embroidered caps",
+        500,
+        331
       ),
       items: [
         {
@@ -250,27 +250,27 @@ export const DISTRICTS: District[] = [
         {
           name: "Chapshoro",
           text: "A spiced meat-filled flatbread, cooked until golden — a hearty snack to share.",
-          image: hunzaPhoto("hunza-food-chapshoro.jpg", "Chapshoro, a spiced meat-filled flatbread, cut open on a plate", 1200, 900),
+          image: hunzaPhoto("/Images/tours/chapshoro.jpeg", "Chapshoro, a spiced meat-filled flatbread, served on a wooden plate", 690, 531),
         },
         {
           name: "Diram Fitti",
           text: "A traditional Hunza wheat bread, often enjoyed with local apricot oil or butter.",
-          image: hunzaPhoto("hunza-food-diram-fitti.jpg", "Diram Fitti, a traditional Hunza wheat bread, served at the table", 1200, 900),
+          image: hunzaPhoto("/Images/tours/diram-fiti.webp", "Diram Fitti, a traditional Hunza dish, served in a bowl with a spoon", 768, 512),
         },
         {
           name: "Apricots and apricot oil",
           text: "Hunza's best-known fruit: eaten fresh in summer, dried through the year, and pressed into oil from the kernels.",
-          image: hunzaPhoto("hunza-food-apricots.jpg", "Fresh and dried Hunza apricots laid out in the sun", 1200, 900),
+          image: hunzaPhoto("/Images/tours/appricot.webp", "Apricots drying in the sun on a Hunza rooftop, with the valley and mountains behind", 1024, 576),
         },
         {
           name: "Mulberries",
           text: "Sweet mulberries are picked in summer and often dried — a chewy, honey-like snack for the road.",
-          image: hunzaPhoto("hunza-food-mulberries.jpg", "Dried mulberries from Hunza in a bowl", 1200, 900),
+          image: hunzaPhoto("/Images/tours/mulberries.jpg", "Fresh dark mulberries", 1000, 1500),
         },
         {
           name: "Local tea",
           text: "Tea is served warm and often. Accept a cup and you will usually find a conversation to go with it.",
-          image: hunzaPhoto("hunza-food-tea.jpg", "A cup of hot tea on a table with the valley in the background", 1200, 900),
+          image: hunzaPhoto("/Images/tours/hunza-tea.webp", "A glass cup of hot tea with fresh mint leaves", 2560, 1706),
         },
       ],
       tip: "Karimabad's old town has family-run cafés, and lakeside stalls at Attabad Lake grill fresh trout. In summer, apricots and mulberries are sold fresh from the tree.",
