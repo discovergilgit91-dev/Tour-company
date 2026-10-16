@@ -20,8 +20,7 @@ export default function ClosingCTA() {
       <div className="relative min-h-[440px] w-full sm:min-h-[480px]">
         <Image
           src="/Images/tours/kutwal-lake.png"
-          alt=""
-          aria-hidden
+          alt="A still alpine lake below snow-covered mountains in Gilgit-Baltistan"
           fill
           quality={85}
           sizes="100vw"

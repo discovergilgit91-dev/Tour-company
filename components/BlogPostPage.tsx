@@ -297,8 +297,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
         <div className="relative min-h-[440px] w-full bg-night sm:min-h-[460px]">
           <Image
             src={ctaImage.src}
-            alt=""
-            aria-hidden
+            alt={ctaImage.alt}
             fill
             quality={85}
             sizes="100vw"

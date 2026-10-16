@@ -132,8 +132,8 @@ const SERVICES = [
   },
   {
     Icon: FoodIcon,
-    image: "/Images/tours/service-local-food.png",
-    focus: "50% 50%",
+    image: "/Images/tours/gallery/food-table.jpg",
+    focus: "50% 55%",
     title: "Local Food",
     description: "Fresh, home-style meals rooted in Gilgit-Baltistan's own kitchens.",
   },
