@@ -189,7 +189,7 @@ function Panel({
       {/* one photo per card — the source files are collages, so crop to a single tile */}
       <Image
         src={reason.image}
-        alt=""
+        alt={`${reason.title} — ${reason.place}`}
         fill
         quality={85}
         sizes="(min-width: 1024px) 560px, 100vw"

@@ -612,8 +612,7 @@ export default function DistrictPage({ district }: { district: District }) {
         <div className="relative min-h-[440px] w-full bg-night sm:min-h-[480px]">
           <Image
             src={district.cta.image.src}
-            alt=""
-            aria-hidden
+            alt={district.cta.image.alt}
             fill
             quality={85}
             sizes="100vw"

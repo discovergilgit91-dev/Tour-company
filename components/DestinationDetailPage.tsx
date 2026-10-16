@@ -69,7 +69,7 @@ export default function DestinationDetailPage({
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
               src={destination.heroImage ?? destination.image ?? "/Images/tours/Journeys.png"}
-              alt=""
+              alt={`${destination.name}, Gilgit-Baltistan`}
               fill
               priority
               quality={90}
