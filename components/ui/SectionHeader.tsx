@@ -31,7 +31,7 @@ export default function SectionHeader({
 }) {
   const dark = tone === "dark";
   return (
-    <div className={`section-header ${className}`}>
+    <div className={`section-header ${intro || note || actions ? "" : "section-header--solo"} ${className}`}>
       <div className="min-w-0">
         <div
           className={`mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] lg:mb-[1.2vh] ${

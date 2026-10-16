@@ -201,6 +201,10 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
     column-gap: 3rem;
   }
+  /* no right-hand text: a single column, nothing reserved for it */
+  .section-header--solo {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .section-header__side {
     justify-self: end;
     width: 100%;
