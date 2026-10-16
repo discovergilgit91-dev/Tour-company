@@ -56,8 +56,6 @@
     --space-section-tight: clamp(1rem, 2.5vh, 2rem);
     --space-head: clamp(1.5rem, 3.6vh, 2.5rem);
     --space-gap: clamp(0.75rem, 1.7vh, 1.25rem);
-    --media-h: clamp(260px, 42vh, 420px); /* photo / card rows */
-    --card-photo-h: clamp(180px, 30vh, 340px); /* photo of a card that has a caption below it */
   }
 }
 
@@ -209,6 +207,47 @@
     justify-self: end;
     width: 100%;
     padding-bottom: 0.2em;
+  }
+}
+
+/* Photo gallery (components/PhotoGallery.tsx). Tiles are sized from the
+   gallery's WIDTH, never from the screen height: about 4:3, with a minimum
+   height, and a featured first tile that spans 2 columns × 2 rows. */
+.photo-gallery {
+  container-type: inline-size;
+}
+.photo-gallery__grid {
+  --gap: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--gap);
+}
+.photo-gallery__item {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  min-height: 240px;
+}
+@media (min-width: 40rem) {
+  .photo-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: max(240px, calc((100cqw - var(--gap)) / 2 * 0.8));
+  }
+  .photo-gallery__item {
+    aspect-ratio: auto;
+    min-height: 0;
+    grid-column: span var(--md-col, 1);
+    grid-row: span var(--md-row, 1);
+  }
+}
+@media (min-width: 64rem) {
+  .photo-gallery__grid {
+    --gap: 1.25rem;
+    grid-template-columns: repeat(var(--lg-cols, 3), minmax(0, 1fr));
+    grid-auto-rows: max(260px, calc((100cqw - (var(--lg-cols, 3) - 1) * var(--gap)) / var(--lg-cols, 3) * 0.8));
+  }
+  .photo-gallery__item {
+    grid-column: span var(--lg-col, 1);
+    grid-row: span var(--lg-row, 1);
   }
 }
 

@@ -121,7 +121,7 @@ export function DestinationCard({
           the whole grid; "featured" only adds a badge and a ring, never a
           different size. */}
       <div
-        className={`relative aspect-[4/3] shrink-0 overflow-hidden rounded-[22px] bg-forest sm:aspect-[4/5] lg:aspect-auto lg:h-[var(--card-photo-h)] ${
+        className={`relative aspect-[4/3] min-h-[240px] shrink-0 overflow-hidden rounded-[22px] bg-forest sm:aspect-[4/5] ${
           featured ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
@@ -270,7 +270,7 @@ export function RouteMapSection() {
           <div
             ref={mapRef}
             style={{ transitionDelay: mapVisible ? "80ms" : "0ms" }}
-            className={`order-2 mx-auto w-full max-w-[300px] lg:max-w-[calc(var(--media-h)*0.72)] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:order-1 lg:mx-0 ${
+            className={`order-2 mx-auto w-full max-w-[300px] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:order-1 lg:mx-0 ${
               mapVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >

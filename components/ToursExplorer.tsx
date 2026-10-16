@@ -100,11 +100,11 @@ function TourCard({ tour, index }: { tour: Tour; index: number }) {
       ref={ref}
       href={tour.href}
       style={{ transitionDelay: visible ? `${(index % 6) * 80}ms` : "0ms" }}
-      className={`group flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
+      className={`group flex h-full min-h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative min-h-[260px] flex-1 overflow-hidden">
         {tour.image ? (
           <Image
             src={tour.image}
@@ -169,9 +169,9 @@ function CustomJourneyCard() {
   return (
     <Link
       href="/build-your-trip"
-      className="group flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+      className="group flex h-full min-h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative min-h-[260px] flex-1 overflow-hidden">
         <Image
           src="/Images/tours/custom.png"
           alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"

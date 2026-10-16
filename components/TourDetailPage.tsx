@@ -1,6 +1,7 @@
 "use client";
 
 import SectionHeader from "./ui/SectionHeader";
+import PhotoGallery from "./PhotoGallery";
 import jsPDF from "jspdf";
 import Image from "next/image";
 import { LinkButton } from "./ui/Button";
@@ -52,7 +53,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
 
   return (
     <section className="relative bg-forest">
-      <div className="relative min-h-[76svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
+      <div className="relative min-h-[max(76svh,520px)] w-full sm:min-h-[max(82svh,520px)] md:min-h-[max(86svh,520px)]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           {heroImage ? (
             <Image
@@ -84,7 +85,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-7xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[82svh] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[86svh] md:pb-24 md:pt-36 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[max(76svh,520px)] max-w-7xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[max(82svh,520px)] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[max(86svh,520px)] md:pb-24 md:pt-36 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
               {tour.badge}
@@ -604,40 +605,20 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
             />
           </Reveal>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
-            {tour.photos.map((photo, index) => {
+          <PhotoGallery
+            photos={tour.photos.map((photo) => ({
+              src: photo.image,
+              alt: `${photo.caption} — ${tour.title}`,
+              caption: photo.caption,
+              tag: photo.tag,
+              from: photo.from,
+              to: photo.to,
+            }))}
+            renderFallback={(index) => {
               const Motif = index % 2 === 0 ? PeakZigzagMotif : AccentMotif;
-              return (
-                <Reveal key={photo.caption} delay={(index % 6) * 80}>
-                  <div className="group relative aspect-[4/5] overflow-hidden rounded-[18px] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]">
-                    {photo.image ? (
-                      <Image
-                        src={photo.image}
-                        alt={photo.caption}
-                        fill
-                        quality={85}
-                        sizes="(min-width: 1024px) 33vw, 50vw"
-                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-                      />
-                    ) : (
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
-                      >
-                        <Motif className="absolute inset-0 h-full w-full p-10 text-cream/20" />
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
-                    <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
-                      {photo.tag}
-                    </span>
-                    <span className="absolute inset-x-3 bottom-3 font-serif text-sm leading-snug text-cream sm:text-base">
-                      {photo.caption}
-                    </span>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+              return <Motif className="absolute inset-0 h-full w-full p-10 text-cream/20" />;
+            }}
+          />
         </div>
       </section>
 

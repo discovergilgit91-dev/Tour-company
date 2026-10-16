@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LinkButton } from "./ui/Button";
 import Slider from "./ui/Slider";
+import PhotoGallery from "./PhotoGallery";
 import { ArrowIcon, CheckIcon, ClockIcon, CompassIcon, PinIcon } from "./ui/icons";
 import { PeaksMotif } from "./tours/motifs";
 import { useRevealOnScroll, DestinationCard, LAND_CATEGORY_LABELS, type Destination } from "./DestinationCard";
@@ -58,7 +59,7 @@ export default function DestinationDetailPage({
     <main className="bg-cream">
       {/* ---------------- Hero ---------------- */}
       <section className="relative bg-forest">
-        <div className="relative min-h-[78svh] w-full sm:min-h-[82svh] md:min-h-[86svh]">
+        <div className="relative min-h-[max(78svh,520px)] w-full sm:min-h-[max(82svh,520px)] md:min-h-[max(86svh,520px)]">
           {/* Uses a dedicated hero photo when set, then this destination's
               own card photo (no baked-in text, so it's safe behind the
               heading below), then falls back to a shared, generic journeys
@@ -88,7 +89,7 @@ export default function DestinationDetailPage({
             <div className="absolute inset-0 bg-gradient-to-b from-forest/35 via-transparent to-forest/35" />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-7xl flex-col justify-center px-5 py-28 sm:min-h-[82svh] sm:px-6 sm:py-32 md:min-h-[86svh] md:py-36 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[max(78svh,520px)] max-w-7xl flex-col justify-center px-5 py-28 sm:min-h-[max(82svh,520px)] sm:px-6 sm:py-32 md:min-h-[max(86svh,520px)] md:py-36 lg:px-8">
             <LinkButton
               href="/lands"
               variant="dark"
@@ -287,77 +288,32 @@ export default function DestinationDetailPage({
             />
           </Reveal>
 
-          <div
-            className={`grid grid-cols-2 gap-4 ${
-              !showFeatured && content.gallery.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4"
-            }`}
-          >
-            {showFeatured && destination.image && (
-              <Reveal className="col-span-2">
-                <div className="group relative aspect-[16/11] overflow-hidden rounded-[18px] sm:aspect-[8/5] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]">
-                  <Image
-                    src={destination.image}
-                    alt={destination.name}
-                    fill
-                    quality={85}
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    style={destination.focus ? { objectPosition: destination.focus } : undefined}
-                    className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-night/5 to-transparent" />
-                  <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gold/95 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-forest">
-                    <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                      <path d="M12 2 14.9 8.9 22 9.5 16.7 14.1 18.2 21 12 17.3 5.8 21 7.3 14.1 2 9.5 9.1 8.9 12 2Z" />
-                    </svg>
-                    Featured
-                  </span>
-                  <span className="absolute inset-x-4 bottom-4 font-serif text-lg leading-snug text-cream sm:text-xl">
-                    {destination.name}
-                  </span>
-                </div>
-              </Reveal>
+          <PhotoGallery
+            photos={[
+              ...(showFeatured && destination.image
+                ? [
+                    {
+                      src: destination.image,
+                      alt: `${destination.name}, Gilgit-Baltistan`,
+                      caption: destination.name,
+                      focus: destination.focus,
+                      featured: true,
+                    },
+                  ]
+                : []),
+              ...content.gallery.map((photo) => ({
+                src: photo.image,
+                alt: `${photo.caption} — ${destination.name}`,
+                caption: photo.caption,
+                tag: photo.tag,
+                from: photo.from,
+                to: photo.to,
+              })),
+            ]}
+            renderFallback={() => (
+              <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full p-4 text-cream/15" />
             )}
-            {content.gallery.map((photo, index) => {
-              const isWide = showFeatured && index >= 2;
-              return (
-                <Reveal
-                  key={photo.caption}
-                  delay={(index % 4) * 80}
-                  className={isWide ? "sm:col-span-2" : undefined}
-                >
-                  <div
-                    className={`group relative overflow-hidden rounded-[18px] ${
-                      isWide ? "aspect-[4/5] sm:aspect-[8/5] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]" : "aspect-[4/5] lg:aspect-auto lg:h-[calc(var(--media-h)*0.55)]"
-                    }`}
-                  >
-                    {photo.image ? (
-                      <Image
-                        src={photo.image}
-                        alt={photo.caption}
-                        fill
-                        quality={85}
-                        sizes={isWide ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
-                        className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-                      />
-                    ) : (
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br ${photo.from} ${photo.to} transition-transform duration-500 ease-out group-hover:scale-[1.06]`}
-                      >
-                        <PeaksMotif className="absolute inset-x-0 bottom-0 h-2/3 w-full p-4 text-cream/15" />
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
-                    <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
-                      {photo.tag}
-                    </span>
-                    <span className="absolute inset-x-3 bottom-3 font-serif text-sm leading-snug text-cream sm:text-base">
-                      {photo.caption}
-                    </span>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+          />
         </div>
       </section>
 

@@ -70,7 +70,7 @@ export default function BlogCard({
           href={`/blog/${post.slug}`}
           className={`group grid h-full overflow-hidden rounded-[22px] bg-white ring-1 ring-gold/25 lg:grid-cols-[1.15fr_1fr] ${CARD_SHADOW} ${CARD_HOVER} ${FOCUS_RING}`}
         >
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest lg:aspect-auto lg:min-h-full">
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest lg:aspect-auto lg:min-h-[440px]">
             <Image
               src={post.featuredImage}
               alt={post.featuredImageAlt}
@@ -121,7 +121,7 @@ export default function BlogCard({
           href={`/blog/${post.slug}`}
           className={`group flex h-full flex-col overflow-hidden rounded-[22px] bg-white ${CARD_SHADOW} ${CARD_HOVER} ${FOCUS_RING}`}
         >
-          <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-forest lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.75)]">
+          <div className="relative aspect-[4/3] min-h-[240px] w-full shrink-0 overflow-hidden bg-forest">
             <Image
               src={post.featuredImage}
               alt={post.featuredImageAlt}

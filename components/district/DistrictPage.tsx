@@ -92,7 +92,7 @@ function FramedPhoto({ image, className = "" }: { image: DistrictImage; classNam
         aria-hidden
         className="pointer-events-none absolute inset-0 translate-x-3 translate-y-3 rounded-[28px] border border-gold/35 sm:translate-x-4 sm:translate-y-4"
       />
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] bg-forest lg:aspect-auto lg:h-[var(--card-photo-h)]">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] bg-forest">
         <Image
           src={image.src}
           alt={image.alt}
@@ -155,7 +155,7 @@ export default function DistrictPage({ district }: { district: District }) {
           <div className="absolute inset-0 bg-gradient-to-r from-forest/55 via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[82svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-36 sm:min-h-[86svh] sm:px-6 sm:pb-14 sm:pt-40 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[max(82svh,520px)] max-w-7xl flex-col justify-end px-5 pb-12 pt-36 sm:min-h-[max(86svh,520px)] sm:px-6 sm:pb-14 sm:pt-40 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-auto">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cream/75">
               <li>
@@ -346,7 +346,7 @@ export default function DistrictPage({ district }: { district: District }) {
               <li key={dish.name}>
                 <Reveal delay={(index % 3) * 70} className="h-full">
                   <article className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-cream shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.22)] motion-reduce:transition-none motion-reduce:hover:translate-y-0">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.75)]">
+                    <div className="relative aspect-[4/3] min-h-[240px] w-full overflow-hidden bg-forest">
                       <Image
                         src={dish.image.src}
                         alt={dish.image.alt}
@@ -415,7 +415,7 @@ export default function DistrictPage({ district }: { district: District }) {
                       className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-cream shadow-[0_2px_18px_rgba(18,36,28,0.06)] outline-none transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.22)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-white motion-reduce:transition-none motion-reduce:hover:translate-y-0"
                     >
                       {image && (
-                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-forest lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.7)]">
+                        <div className="relative aspect-[4/3] min-h-[240px] w-full overflow-hidden bg-forest">
                           <Image
                             src={image.src}
                             alt={image.alt}
@@ -609,7 +609,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 10. Closing call to action ---------------- */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative min-h-[320px] w-full bg-night sm:min-h-[360px]">
+        <div className="relative min-h-[440px] w-full bg-night sm:min-h-[480px]">
           <Image
             src={district.cta.image.src}
             alt=""
@@ -622,7 +622,7 @@ export default function DistrictPage({ district }: { district: District }) {
           <div className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/60 to-night/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[440px] w-full max-w-7xl items-center px-5 sm:min-h-[480px] sm:px-6 lg:px-8">
             <div className="section-y max-w-xl">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">Ready when you are</p>
               <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
