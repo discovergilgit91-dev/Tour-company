@@ -38,7 +38,7 @@ export default function ClosingCTA() {
             <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
               Your Next Mountain Story Starts Here.
             </h2>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-cream/80 sm:text-base">
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/80 sm:text-base">
               Explore breathtaking destinations, join our upcoming tours, and experience the real
               Gilgit-Baltistan.
             </p>

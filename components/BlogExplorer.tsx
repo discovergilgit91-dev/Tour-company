@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { BLOG_CATEGORIES, type BlogCategory, type BlogPost } from "@/lib/blog";
 import BlogCard from "./BlogCard";
+import Slider from "./ui/Slider";
 
 /**
  * Listing body: category pills (same pill style as the Festival gallery
@@ -35,7 +36,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
             <span className="h-px w-8 bg-muted/60" />
             Latest articles
           </div>
-          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
             Read before you <span className="text-green">go</span>
           </h2>
           <p role="status" className="mt-3 text-sm text-muted">
@@ -88,18 +89,12 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
         </div>
       ) : (
         <>
-          {showFeatured && (
-            <div className="head-gap-b">
-              <BlogCard key={lead.slug} post={lead} featured />
-            </div>
-          )}
-          {gridPosts.length > 0 && (
-            <div className="card-grid">
-              {gridPosts.map((post, index) => (
-                <BlogCard key={post.slug} post={post} delay={(index % 6) * 90} />
-              ))}
-            </div>
-          )}
+          <Slider as="div" label="articles" className="card-grid-loose">
+            {showFeatured && <BlogCard key={lead.slug} post={lead} featured />}
+            {gridPosts.map((post, index) => (
+              <BlogCard key={post.slug} post={post} delay={(index % 6) * 90} />
+            ))}
+          </Slider>
         </>
       )}
     </section>

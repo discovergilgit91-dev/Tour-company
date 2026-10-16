@@ -322,7 +322,7 @@ function ComingSoonSection({ tours }: { tours: Tour[] }) {
               <span className="h-px w-8 bg-muted/60" />
               Future experiences
             </div>
-            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
               Coming <span className="text-green">soon</span>
             </h2>
           </div>
@@ -475,7 +475,7 @@ function WhyTravelWithUs() {
             <span className="h-px w-8 bg-muted/60" />
             The Discover Gilgit advantage
           </div>
-          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
             Why travel <span className="text-green">with us</span>
           </h2>
         </div>
@@ -546,10 +546,10 @@ function ClosingCta() {
             <span className="h-px w-8 bg-cream/30" />
             Your next mountain story
           </div>
-          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl">
+          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl">
             <span className="heading-accent">Starts here.</span>
           </h2>
-          <p className="mt-5 max-w-md text-sm leading-relaxed text-cream/70 sm:text-base">
+          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-cream/70 sm:text-base">
             Explore our upcoming tours and events, and be part of something extraordinary.
           </p>
 

@@ -124,7 +124,7 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
       href={`/tours/${tour.id}`}
       className="group flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
-      <div className="relative aspect-square overflow-hidden sm:aspect-[4/3] lg:aspect-square">
+      <div className="relative aspect-square overflow-hidden sm:aspect-[4/3] lg:aspect-auto lg:h-[calc(var(--card-photo-h)*1.05)]">
         {tour.image ? (
           <Image
             src={tour.image}
@@ -191,7 +191,7 @@ function BuildYourOwnCard() {
       href="/build-your-trip"
       className="group flex h-full w-full flex-col overflow-hidden rounded-[18px] border-2 border-gold bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_36px_rgba(201,161,90,0.4)] outline-none transition-shadow duration-300 hover:shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_48px_rgba(201,161,90,0.55)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
-      <div className="relative aspect-square overflow-hidden sm:aspect-[4/3] lg:aspect-square">
+      <div className="relative aspect-square overflow-hidden sm:aspect-[4/3] lg:aspect-auto lg:h-[calc(var(--card-photo-h)*1.05)]">
         <Image
           src="/Images/tours/custom.png"
           alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
@@ -241,18 +241,18 @@ function BuildYourOwnCard() {
 
 function ComingSoonCard() {
   return (
-    <article className="relative flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-forest p-5 text-white sm:p-6">
-      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-white/[0.07] text-white/85">
+    <article className="relative flex h-full w-full flex-col overflow-hidden rounded-[18px] bg-forest p-5 text-white sm:p-6 lg:p-5">
+      <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-white/[0.07] text-white/85 lg:mb-[1.5vh] lg:h-12 lg:w-12">
         <CalendarIcon size={24} />
       </div>
 
-      <h3 className="relative z-10 max-w-[220px] font-serif text-[26px] leading-[1.2]">
+      <h3 className="relative z-10 max-w-[220px] font-serif text-[26px] leading-[1.2] lg:text-2xl">
         More Experiences
         <br />
         Coming Soon
       </h3>
 
-      <p className="relative z-10 mt-4 max-w-[215px] font-sans text-[14px] leading-[1.75] text-white/70">
+      <p className="relative z-10 mt-4 max-w-[215px] font-sans text-[15px] leading-[1.55] text-white/70 lg:mt-3 lg:max-w-[250px]">
         We are crafting more unforgettable journeys for you across the majestic landscapes of
         Gilgit Baltistan.
       </p>
@@ -355,7 +355,7 @@ export default function UpcomingTours() {
 
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between head-gap-b">
             <div className="max-w-xl">
-              <div className="mb-6 flex items-center gap-4">
+              <div className="mb-6 flex items-center gap-4 lg:mb-[1.5vh]">
                 <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-forest">
                   Upcoming
                 </span>
@@ -365,19 +365,19 @@ export default function UpcomingTours() {
                 </span>
               </div>
 
-              <h2 className="font-serif text-[46px] leading-[1.04] tracking-[-0.01em] text-forest sm:text-[56px] lg:text-[62px]">
+              <h2 className="section-title font-serif text-[46px] leading-[1.04] tracking-[-0.01em] text-forest sm:text-[56px] lg:text-[62px]">
                 Upcoming Tours
                 <br />
                 <span className="text-green">&amp; Events</span>
               </h2>
 
-              <p className="mt-6 max-w-[26rem] font-sans text-[15px] leading-[1.75] text-muted">
+              <p className="mt-6 max-w-[26rem] font-sans text-[15px] leading-[1.6] text-muted lg:mt-[1.5vh]">
                 Explore the unmatched beauty of Gilgit Baltistan with our carefully planned tours
                 and experiences.
               </p>
             </div>
 
-            <div className="flex items-start gap-4 lg:mt-24 lg:pr-[18%]">
+            <div className="flex items-start gap-4 lg:mt-[4vh] lg:pr-[18%]">
               <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-forest text-white">
                 <CompassIcon size={20} />
               </span>
@@ -425,7 +425,7 @@ export default function UpcomingTours() {
             </div>
           </div>
 
-          <div className="mt-10 flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between sm:gap-10">
+          <div className="mt-10 flex flex-col gap-7 lg:mt-[2.5vh] sm:flex-row sm:items-center sm:justify-between sm:gap-10">
             <div className="flex shrink-0 items-center gap-3">
               <IconButton
                 variant="outline"

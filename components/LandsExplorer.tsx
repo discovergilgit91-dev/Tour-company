@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CompassIcon } from "./ui/icons";
+import Slider from "./ui/Slider";
 import { DestinationCard, type Destination, type LandCategory, LAND_CATEGORY_LABELS } from "./DestinationCard";
 
 export type Region = {
@@ -16,14 +17,6 @@ export type Region = {
 // (see DestinationCard), but the exact same size/grid cell as every
 // other card, so all photos in the grid stay perfectly aligned.
 const FEATURED_ID = "karimabad";
-
-// Static, literal class strings so Tailwind's build-time scanner can find
-// them (it can't see through a dynamically-built `lg:grid-cols-${n}`).
-const GRID_COLS: Record<number, string> = {
-  2: "sm:grid-cols-2 lg:grid-cols-2",
-  3: "sm:grid-cols-2 lg:grid-cols-3",
-  4: "sm:grid-cols-2 lg:grid-cols-4",
-};
 
 const CATEGORY_ORDER: LandCategory[] = ["valleys", "mountains", "lakes", "cultural", "national-parks", "trekking"];
 
@@ -257,11 +250,8 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
           </aside>
 
           {/* ---------------- right: region sections ---------------- */}
-          <div>
+          <div className="min-w-0">
             {regions.map((region, regionIndex) => {
-              const totalCols = Math.min(region.ids.length, 4);
-              const gridColsClass = GRID_COLS[totalCols] ?? GRID_COLS[4];
-
               return (
                 <section
                   key={region.id}
@@ -269,9 +259,9 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
                   ref={(node) => {
                     sectionRefs.current[region.id] = node;
                   }}
-                  className={regionIndex === 0 ? "" : "pt-14 lg:pt-16"}
+                  className={regionIndex === 0 ? "" : "pt-10 lg:pt-[var(--space-section)]"}
                 >
-                  <div className="mb-8 flex items-end justify-between gap-4 border-b border-forest/10 pb-4 ">
+                  <div className="mb-6 flex items-end justify-between gap-4 border-b border-forest/10 pb-4 lg:mb-[var(--space-head)] ">
                     <div>
                       <span className="font-serif text-lg text-green">{String(regionIndex + 1).padStart(2, "0")}</span>
                       <h3 className="mt-1 font-serif text-2xl leading-tight tracking-tight text-forest sm:text-3xl">
@@ -283,7 +273,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
                     </p>
                   </div>
 
-                  <div className={`grid grid-cols-1 gap-x-5 gap-y-12 ${gridColsClass}`}>
+                  <Slider as="div" label={`${region.label} destinations`} className="card-grid-loose">
                     {region.ids.map((id) => {
                       const destination = byId.get(id);
                       if (!destination) return null;
@@ -298,7 +288,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
                         />
                       );
                     })}
-                  </div>
+                  </Slider>
                 </section>
               );
             })}

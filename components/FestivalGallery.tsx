@@ -368,7 +368,7 @@ export default function FestivalGallery() {
               <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
                 Every frame tells <span className="text-gold">a story</span>
               </h2>
-              <p className="mt-5 text-sm leading-relaxed text-cream/65 sm:text-base">
+              <p className="mt-5 text-[15px] leading-relaxed text-cream/65 sm:text-base">
                 From the first sword strike of the opening dance to the last shared plate of chapshoro, our
                 volunteers and visiting photographers capture the festival exactly as it feels — warm, loud,
                 colorful, and deeply human. This gallery grows a little more with every celebration.
@@ -411,7 +411,7 @@ export default function FestivalGallery() {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
               See it all in person
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">
               Photos only capture so much — the music, the food, and the warmth of the festival are best
               experienced firsthand.
             </p>

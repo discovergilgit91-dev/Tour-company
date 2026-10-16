@@ -243,13 +243,13 @@ export default function ToursPage() {
               All tours &amp; events
             </div>
 
-            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
+            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
               Plan your next
               <br />
               <span className="text-green">departure</span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
               From spring blossom tours to high-altitude treks, every trip on our calendar is
               guided, seasonal, and ready to book — filter below to find the one that fits.
             </p>

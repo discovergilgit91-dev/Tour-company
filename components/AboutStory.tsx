@@ -118,7 +118,7 @@ export default function AboutStory() {
   });
 
   return (
-    <section id="our-story" className="relative overflow-hidden bg-night pb-10 pt-10 text-cream sm:pb-12 sm:pt-12 lg:pb-14 lg:pt-14">
+    <section id="our-story" className="relative overflow-hidden bg-night pb-10 pt-10 text-cream sm:pb-12 sm:pt-12 lg:py-[var(--space-section)]">
       {/* background: glow + faint topographic lines */}
       <div
         aria-hidden
@@ -213,7 +213,7 @@ export default function AboutStory() {
 
         {/* ------------------------------ text side ------------------------------ */}
         <div className="order-1 lg:order-2">
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/60">
+          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/60 lg:mb-[1.5vh]">
             <span
               className={`h-px bg-cream/30 transition-[width] duration-700 ease-out motion-reduce:transition-none ${
                 inView ? "w-8" : "w-0"
@@ -223,7 +223,7 @@ export default function AboutStory() {
           </div>
 
           {/* each line slides up from behind a mask */}
-          <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl lg:text-6xl">
+          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl lg:text-6xl">
             <span className="-mb-[0.12em] block overflow-hidden pb-[0.12em]">
               <span
                 className={`block transition-transform duration-[900ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
@@ -247,7 +247,7 @@ export default function AboutStory() {
           </h2>
 
           <p
-            className={`mt-6 max-w-xl text-sm leading-relaxed text-cream/70 sm:text-base ${reveal(450).className}`}
+            className={`mt-6 max-w-xl text-[15px] leading-[1.55] text-cream/70 sm:text-base lg:mt-[2vh] ${reveal(450).className}`}
             style={reveal(450).style}
           >
             Discover Gilgit started with a simple belief: the best way to see
@@ -259,7 +259,7 @@ export default function AboutStory() {
 
           {/* the three promises from the paragraph, as a tiny route */}
           <div
-            className={`mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 ${reveal(600).className}`}
+            className={`mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 lg:mt-[2vh] ${reveal(600).className}`}
             style={reveal(600).style}
           >
             <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/45">Every route is</span>
@@ -276,7 +276,7 @@ export default function AboutStory() {
           </div>
 
           {/* stats count up, and a gold line draws across the top */}
-          <div className="relative mt-8 grid grid-cols-3 gap-6 border-t border-cream/10 pt-6">
+          <div className="relative mt-8 grid grid-cols-3 gap-6 border-t border-cream/10 pt-6 lg:mt-[2.5vh] lg:pt-[2vh]">
             <span
               aria-hidden
               className={`absolute -top-px left-0 h-px bg-gradient-to-r from-gold to-transparent transition-[width] duration-[1600ms] ease-out motion-reduce:transition-none ${
@@ -294,7 +294,7 @@ export default function AboutStory() {
             ))}
           </div>
 
-          <div className={`mt-8 ${reveal(1100).className}`} style={reveal(1100).style}>
+          <div className={`mt-8 lg:mt-[2.5vh] ${reveal(1100).className}`} style={reveal(1100).style}>
             <LinkButton href="/plan-your-trip" variant="outline" className="group">
               <LogoIcon className="-my-1.5 h-8 w-10" />
               Plan your journey

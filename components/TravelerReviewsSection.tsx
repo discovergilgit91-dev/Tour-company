@@ -108,8 +108,8 @@ export default function TravelerReviewsSection({
               <span className="h-px w-8 bg-muted/60" />
               {eyebrow}
             </div>
-            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">{heading}</h2>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{subtitle}</p>
+            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">{heading}</h2>
+            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">{subtitle}</p>
             <LinkButton href={ctaHref} variant="primary" className="group mt-7 gap-2">
               {ctaLabel}
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">

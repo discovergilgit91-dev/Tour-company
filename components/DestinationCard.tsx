@@ -121,7 +121,7 @@ export function DestinationCard({
           the whole grid; "featured" only adds a badge and a ring, never a
           different size. */}
       <div
-        className={`relative aspect-[4/3] shrink-0 overflow-hidden rounded-[22px] bg-forest sm:aspect-[4/5] ${
+        className={`relative aspect-[4/3] shrink-0 overflow-hidden rounded-[22px] bg-forest sm:aspect-[4/5] lg:aspect-auto lg:h-[var(--card-photo-h)] ${
           featured ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
@@ -270,7 +270,7 @@ export function RouteMapSection() {
           <div
             ref={mapRef}
             style={{ transitionDelay: mapVisible ? "80ms" : "0ms" }}
-            className={`order-2 mx-auto w-full max-w-[300px] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:order-1 lg:mx-0 ${
+            className={`order-2 mx-auto w-full max-w-[300px] lg:max-w-[calc(var(--media-h)*0.72)] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:order-1 lg:mx-0 ${
               mapVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
@@ -301,7 +301,7 @@ export function RouteMapSection() {
               Islamabad to <span className="text-gold">Khunjerab Pass</span>
             </h2>
 
-            <ul className="mt-5 space-y-2">
+            <ul className="mt-5 space-y-2 lg:mt-[1.5vh]">
               {HIGHLIGHTS.map((line) => (
                 <li key={line} className="flex items-start gap-2.5 text-sm leading-relaxed text-cream/60">
                   <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-gold" />
@@ -310,7 +310,7 @@ export function RouteMapSection() {
               ))}
             </ul>
 
-            <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4">
+            <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4 lg:mt-[2.5vh]">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cream/40">Distance</p>
                 <p className="mt-0.5 font-serif text-xl text-cream">~{TOTAL_KM.toLocaleString()} km</p>
@@ -339,7 +339,7 @@ export function RouteMapSection() {
         </div>
 
         {/* itinerary strip — horizontal scroll instead of a long vertical list */}
-        <div className="relative mt-12 lg:mt-14">
+        <div className="relative mt-12 lg:mt-[var(--space-head)]">
           <div className="mb-4 flex items-center justify-between">
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/40">
               The full itinerary

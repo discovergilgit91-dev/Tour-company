@@ -1,5 +1,6 @@
 "use client";
 
+import Slider from "./ui/Slider";
 import Image from "next/image";
 import { useRevealOnScroll } from "./DestinationCard";
 
@@ -189,7 +190,7 @@ export default function CompleteExperience() {
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
-            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+            <div className="mx-auto mb-5 flex w-fit items-center gap-3 lg:mb-[1.2vh] text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
               <span className="h-px w-8 bg-cream/30" />
               Complete experience
               <span className="h-px w-8 bg-cream/30" />
@@ -199,18 +200,18 @@ export default function CompleteExperience() {
               <br />
               <span className="heading-accent">One Trusted Team.</span>
             </h2>
-            <p className="mt-4 text-sm leading-relaxed text-cream/65 sm:text-base">
+            <p className="mt-4 text-[15px] leading-[1.55] text-cream/65 sm:text-base lg:mt-[1.5vh]">
               From the moment you land to the moment you leave, every detail is planned, guided, and looked
               after by people who call these mountains home.
             </p>
           </div>
         </Reveal>
 
-        <div className="card-grid head-gap">
+        <Slider as="div" label="services">
           {SERVICES.map(({ Icon, image, focus, title, description }, index) => (
             <Reveal key={title} delay={(index % 6) * 70}>
               <div className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-cream/10 bg-cream/[0.03] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(0,0,0,0.5)]">
-                <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden">
+                <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.6)]">
                   <Image
                     src={image}
                     alt={title}
@@ -228,12 +229,12 @@ export default function CompleteExperience() {
                     <Icon size={20} />
                   </span>
                   <h3 className="font-serif text-lg leading-snug text-cream">{title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-cream/60">{description}</p>
+                  <p className="mt-2 text-[15px] leading-[1.5] text-cream/60">{description}</p>
                 </div>
               </div>
             </Reveal>
           ))}
-        </div>
+        </Slider>
       </div>
     </section>
   );

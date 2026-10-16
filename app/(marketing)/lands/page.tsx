@@ -73,13 +73,13 @@ export default function LandsPage() {
               All destinations
             </div>
 
-            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
+            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
               Find your next
               <br />
               <span className="text-green">horizon</span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-muted sm:text-base">
+            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
               From the orchards of Hunza to the quiet valleys of Ghizer, explore the places that
               reveal the beauty, culture, and wild landscapes of Gilgit-Baltistan.
             </p>

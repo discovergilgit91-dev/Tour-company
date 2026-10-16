@@ -61,7 +61,7 @@ export default function BlogCard({
     <div
       ref={ref}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
-      className={`h-full transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${
+      className={`h-full transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none ${featured ? "card-span-2" : ""} ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
@@ -70,7 +70,7 @@ export default function BlogCard({
           href={`/blog/${post.slug}`}
           className={`group grid h-full overflow-hidden rounded-[22px] bg-white ring-1 ring-gold/25 lg:grid-cols-[1.15fr_1fr] ${CARD_SHADOW} ${CARD_HOVER} ${FOCUS_RING}`}
         >
-          <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest lg:aspect-auto lg:min-h-[360px]">
+          <div className="relative aspect-[4/3] w-full overflow-hidden bg-forest lg:aspect-auto lg:min-h-full">
             <Image
               src={post.featuredImage}
               alt={post.featuredImageAlt}
@@ -90,25 +90,25 @@ export default function BlogCard({
             </div>
           </div>
 
-          <div className="relative flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
+          <div className="relative flex flex-col justify-center px-6 py-8 sm:px-10 sm:py-10 lg:px-8 lg:py-[3vh]">
             <span
               aria-hidden
               className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-gold/70 via-gold/20 to-transparent"
             />
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
               <span className="h-px w-8 bg-muted/60" />
               Latest article
             </div>
 
-            <h3 className="font-serif text-[28px] leading-[1.1] tracking-tight text-forest sm:text-4xl">{post.title}</h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{post.excerpt}</p>
+            <h3 className="font-serif text-[28px] leading-[1.1] tracking-tight text-forest sm:text-4xl lg:text-[clamp(1.5rem,3.4vh+0.5rem,2.25rem)]">{post.title}</h3>
+            <p className="mt-4 text-[15px] leading-[1.55] text-muted sm:text-base lg:mt-[1.5vh]">{post.excerpt}</p>
 
-            <div className="mt-6">
+            <div className="mt-6 lg:mt-[2vh]">
               <Hairline />
             </div>
-            <Meta post={post} className="mt-4" />
+            <Meta post={post} className="mt-4 lg:mt-[1.5vh]" />
 
-            <span className="mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-green px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-300 group-hover:bg-green-dark">
+            <span className="mt-7 inline-flex lg:mt-[2.5vh] w-fit items-center gap-2 rounded-full bg-green px-6 py-3 font-sans text-sm font-semibold text-white transition-colors duration-300 group-hover:bg-green-dark">
               Read article
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
                 <ArrowIcon size={14} />
@@ -121,7 +121,7 @@ export default function BlogCard({
           href={`/blog/${post.slug}`}
           className={`group flex h-full flex-col overflow-hidden rounded-[22px] bg-white ${CARD_SHADOW} ${CARD_HOVER} ${FOCUS_RING}`}
         >
-          <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-forest">
+          <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-forest lg:aspect-auto lg:h-[calc(var(--card-photo-h)*0.75)]">
             <Image
               src={post.featuredImage}
               alt={post.featuredImageAlt}
