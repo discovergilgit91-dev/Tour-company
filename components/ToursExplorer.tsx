@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -315,22 +316,16 @@ function ComingSoonSection({ tours }: { tours: Tour[] }) {
 
   return (
     <section className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between ">
-          <div className="max-w-xl">
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-              <span className="h-px w-8 bg-muted/60" />
-              Future experiences
-            </div>
-            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Future experiences"
+          heading={
+            <>
               Coming <span className="text-green">soon</span>
-            </h2>
-          </div>
-
-          <div className="flex items-center gap-6">
-            <p className="max-w-[220px] text-sm leading-relaxed text-muted">
-              More incredible tours and events are on the way. Stay tuned for new adventures!
-            </p>
+            </>
+          }
+          intro="More incredible tours and events are on the way. Stay tuned for new adventures!"
+          actions={
             <div className="flex shrink-0 items-center gap-2">
               <IconButton
                 variant="outline"
@@ -350,8 +345,8 @@ function ComingSoonSection({ tours }: { tours: Tour[] }) {
                 <ArrowIcon size={16} />
               </IconButton>
             </div>
-          </div>
-        </div>
+          }
+        />
 
         <div
           ref={trackRef}
@@ -469,18 +464,17 @@ function WhyTravelWithUs() {
         className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-green/5 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="max-w-xl">
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-            <span className="h-px w-8 bg-muted/60" />
-            The Discover Gilgit advantage
-          </div>
-          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
-            Why travel <span className="text-green">with us</span>
-          </h2>
-        </div>
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="The Discover Gilgit advantage"
+          heading={
+            <>
+              Why travel <span className="text-green">with us</span>
+            </>
+          }
+        />
 
-        <div className="relative card-grid card-grid-4 head-gap">
+        <div className="relative card-grid card-grid-4">
           {/* connecting "trail" between the four pillars, echoing the route map elsewhere on this page */}
           <div className="pointer-events-none absolute left-[13%] right-[13%] top-14 hidden h-px border-t border-dashed border-forest/15 lg:block" />
 
@@ -519,7 +513,7 @@ function ClosingCta() {
       <div
         ref={ref}
         style={{ transitionDelay: visible ? "80ms" : "0ms" }}
-        className={`relative mx-auto w-full max-w-6xl px-5 py-16 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none sm:px-6 sm:py-20 lg:px-8 lg:py-24 ${
+        className={`relative mx-auto w-full max-w-7xl px-5 py-16 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none sm:px-6 sm:py-20 lg:px-8 lg:py-24 ${
           visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >
@@ -619,7 +613,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
       <FeaturedEvent />
       <ComingSoonSection tours={tours} />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-2 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
+      <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-2 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr] lg:gap-14">
         {/* ---------------- left sidebar: filters + quick facts ---------------- */}
         <aside className="lg:sticky lg:top-28 lg:self-start">

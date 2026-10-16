@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import Image from "next/image";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon } from "./ui/icons";
@@ -101,25 +102,24 @@ export default function TravelerReviewsSection({
 }) {
   return (
     <section id={id} className="relative overflow-hidden bg-cream section-y">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="max-w-xl">
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-              <span className="h-px w-8 bg-muted/60" />
-              {eyebrow}
-            </div>
-            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">{heading}</h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">{subtitle}</p>
-            <LinkButton href={ctaHref} variant="primary" className="group mt-7 gap-2">
-              {ctaLabel}
-              <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
-                <ArrowIcon size={14} />
-              </span>
-            </LinkButton>
-          </div>
+          <SectionHeader
+            eyebrow={eyebrow}
+            heading={heading}
+            intro={subtitle}
+            actions={
+              <LinkButton href={ctaHref} variant="primary" className="group gap-2">
+                {ctaLabel}
+                <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
+                  <ArrowIcon size={14} />
+                </span>
+              </LinkButton>
+            }
+          />
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3 head-gap">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-3">
           {reviews.map((review, index) => (
             <Reveal key={review.name} delay={index * 90}>
               <article className="relative mt-8 flex h-full flex-col rounded-[22px] bg-white pt-12 shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">

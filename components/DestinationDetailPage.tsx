@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import Image from "next/image";
 import Link from "next/link";
 import { LinkButton } from "./ui/Button";
@@ -87,7 +88,7 @@ export default function DestinationDetailPage({
             <div className="absolute inset-0 bg-gradient-to-b from-forest/35 via-transparent to-forest/35" />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-6xl flex-col justify-center px-5 py-28 sm:min-h-[82svh] sm:px-6 sm:py-32 md:min-h-[86svh] md:py-36 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-7xl flex-col justify-center px-5 py-28 sm:min-h-[82svh] sm:px-6 sm:py-32 md:min-h-[86svh] md:py-36 lg:px-8">
             <LinkButton
               href="/lands"
               variant="dark"
@@ -147,7 +148,7 @@ export default function DestinationDetailPage({
 
       {/* ---------------- About + quick facts ---------------- */}
       <section className="relative w-full bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_320px] lg:gap-14">
             <div>
               <Reveal>
@@ -242,7 +243,7 @@ export default function DestinationDetailPage({
           aria-hidden
           className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
         />
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto max-w-xl text-center">
               <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
@@ -274,21 +275,22 @@ export default function DestinationDetailPage({
 
       {/* ---------------- Photo gallery ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
-              <span className="h-px w-8 bg-muted/60" />
-              Scenes from {destination.name}
-            </div>
-            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
-              Photo <span className="text-green">highlights</span>
-            </h2>
+            <SectionHeader
+              eyebrow={`Scenes from ${destination.name}`}
+              heading={
+                <>
+                  Photo <span className="text-green">highlights</span>
+                </>
+              }
+            />
           </Reveal>
 
           <div
             className={`grid grid-cols-2 gap-4 ${
               !showFeatured && content.gallery.length === 3 ? "sm:grid-cols-3" : "sm:grid-cols-4"
-            } head-gap`}
+            }`}
           >
             {showFeatured && destination.image && (
               <Reveal className="col-span-2">
@@ -368,15 +370,12 @@ export default function DestinationDetailPage({
       {/* ---------------- Nearby destinations ---------------- */}
       {nearby.length > 0 && (
         <section className="relative w-full bg-cream section-y">
-          <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
             <Reveal>
-              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
-                <span className="h-px w-8 bg-muted/60" />
-                Keep exploring
-              </div>
-              <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
-                Nearby in {region?.label ?? "the region"}
-              </h2>
+              <SectionHeader
+                eyebrow="Keep exploring"
+                heading={<>Nearby in {region?.label ?? "the region"}</>}
+              />
             </Reveal>
 
             <Slider as="div" label="nearby places" className="card-grid-loose">

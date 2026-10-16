@@ -46,7 +46,7 @@ export default function LandsPage() {
           className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
         />
 
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           {/* photo — same fade-in treatment as the "Upcoming Tours &
               Events" hero image: a full-bleed photo blending into the
               cream background via gradient, rather than a boxed card
@@ -93,7 +93,7 @@ export default function LandsPage() {
           because the sidebar tracks scroll position to highlight the
           active region. */}
       {DISTRICT_CARDS.length > 0 && (
-        <section className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8 section-t-tight">
+        <section className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 section-t-tight">
           <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
             <span className="h-px w-8 bg-muted/60" />
             Explore by district

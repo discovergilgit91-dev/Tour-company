@@ -1,3 +1,4 @@
+import SectionHeader from "./ui/SectionHeader";
 import Image from "next/image";
 import { LinkButton } from "./ui/Button";
 
@@ -186,27 +187,24 @@ export default function PartnerSection({
 }) {
   return (
     // Same structure as FeaturedDestinations / WhyChooseUs / UpcomingTours:
-    // no horizontal padding on the section — it lives on the max-w-6xl
+    // no horizontal padding on the section — it lives on the max-w-7xl
     // wrapper (px-5 sm:px-6 lg:px-8). Bottom padding matches the shared
     // py-16 sm:py-20 lg:py-24 rhythm; top padding is trimmed.
     <section id="partners" className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-            <span className="h-px w-8 bg-muted/60" />
-            {eyebrow}
-          </div>
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={eyebrow}
+          heading={
+            <>
+              {heading}
+              <br />
+              <span className="text-green">{headingAccent}</span>
+            </>
+          }
+          intro={description}
+        />
 
-          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
-            {heading}
-            <br />
-            <span className="text-green">{headingAccent}</span>
-          </h2>
-
-          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">{description}</p>
-        </div>
-
-        <div className="card-grid head-gap">
+        <div className="card-grid">
           {partners.length > 0 ? (
             partners.map((partner) => <PartnerCard key={partner.id} partner={partner} />)
           ) : (

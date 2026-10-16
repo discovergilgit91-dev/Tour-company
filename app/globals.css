@@ -54,7 +54,7 @@
     --header-h: 96px;
     --space-section: clamp(2.25rem, 5.2vh, 4rem); /* 36–64px */
     --space-section-tight: clamp(1rem, 2.5vh, 2rem);
-    --space-head: clamp(1rem, 2.8vh, 2rem);
+    --space-head: clamp(1.5rem, 3.6vh, 2.5rem);
     --space-gap: clamp(0.75rem, 1.7vh, 1.25rem);
     --media-h: clamp(260px, 42vh, 420px); /* photo / card rows */
     --card-photo-h: clamp(180px, 30vh, 340px); /* photo of a card that has a caption below it */
@@ -175,6 +175,36 @@
 @media (min-width: 64rem) and (min-height: 37.5rem) {
   .card-grid > .card-span-2 {
     flex-basis: calc((100% - (var(--cols) - 1) * var(--space-gap)) / var(--cols) * 2 + var(--space-gap));
+  }
+}
+
+/* Shared section header (components/ui/SectionHeader.tsx). Stacked and
+   left-aligned below 1024px; two bottom-aligned columns above it, with the
+   right column flush with the container's right edge. */
+.section-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: var(--space-head);
+}
+.section-header__side {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+  max-width: 28rem; /* ~52 characters per line */
+  text-align: left;
+}
+@media (min-width: 64rem) {
+  .section-header {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
+    column-gap: 3rem;
+  }
+  .section-header__side {
+    justify-self: end;
+    width: 100%;
+    padding-bottom: 0.2em;
   }
 }
 

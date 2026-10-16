@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { BLOG_CATEGORIES, type BlogCategory, type BlogPost } from "@/lib/blog";
+import SectionHeader from "./ui/SectionHeader";
 import BlogCard from "./BlogCard";
 import Slider from "./ui/Slider";
 
@@ -29,23 +30,22 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
   const gridPosts = showFeatured ? rest : visible;
 
   return (
-    <section className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8 section-y">
-      <div className="flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between head-gap-b">
-        <div>
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-            <span className="h-px w-8 bg-muted/60" />
-            Latest articles
-          </div>
-          <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+    <section className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 section-y">
+      <SectionHeader
+        eyebrow="Latest articles"
+        heading={
+          <>
             Read before you <span className="text-green">go</span>
-          </h2>
-          <p role="status" className="mt-3 text-sm text-muted">
+          </>
+        }
+        note={
+          <span role="status">
             <span className="font-semibold text-forest">{visible.length}</span>{" "}
             {visible.length === 1 ? "article" : "articles"}
             {activeCategory ? ` in ${activeCategory}` : ""}
-          </p>
-        </div>
-
+          </span>
+        }
+        actions={
         <div role="group" aria-label="Filter articles by category" className="flex flex-wrap gap-2">
           <button
             type="button"
@@ -80,7 +80,8 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
             );
           })}
         </div>
-      </div>
+        }
+      />
 
       {visible.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-[22px] border border-dashed border-forest/15 bg-white py-16 text-center">

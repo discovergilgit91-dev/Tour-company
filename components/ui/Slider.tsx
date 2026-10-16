@@ -14,6 +14,7 @@ export default function Slider({
   className = "",
   label,
   as = "ul",
+  spaced = false,
 }: {
   children: ReactNode;
   /** Extra grid classes, e.g. "card-grid-4" */
@@ -22,6 +23,8 @@ export default function Slider({
   label: string;
   /** "div" when the children are not <li> elements */
   as?: "ul" | "div";
+  /** Add the standard heading→content gap above the row (when no SectionHeader sits right above it) */
+  spaced?: boolean;
 }) {
   const track = useRef<HTMLUListElement & HTMLDivElement>(null);
   const Tag = as as "ul";
@@ -62,7 +65,7 @@ export default function Slider({
     "absolute top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-forest/10 bg-cream text-forest shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 hover:bg-green hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green";
 
   return (
-    <div className="slider relative head-gap">
+    <div className={`slider relative ${spaced ? "head-gap" : ""}`}>
       <Tag ref={track} aria-label={label} className={`card-grid card-slider ${className}`}>
         {children}
       </Tag>

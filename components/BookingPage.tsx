@@ -205,7 +205,7 @@ export default function BookingPage({
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
           <div className="max-w-2xl">
             {tour ? (
               <LinkButton
@@ -247,7 +247,7 @@ export default function BookingPage({
 
       {/* ---------------- Form + Summary ---------------- */}
       <section className="relative w-full bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:gap-14">
             {/* Form column */}
             <div>
@@ -696,7 +696,7 @@ export default function BookingPage({
 
       {/* ---------------- Trust strip ---------------- */}
       <section className="relative w-full overflow-hidden bg-forest section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-10">
             {TRUST_POINTS.map(({ Icon, title, description }, index) => (
               <Reveal key={title} delay={index * 90}>

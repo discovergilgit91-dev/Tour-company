@@ -166,9 +166,9 @@ export default function Footer() {
       />
 
       {/* Same container as every section above (WhyChooseUs, AboutStory, UpcomingTours, ...):
-          max-w-6xl + px-5 sm:px-6 lg:px-8, so the footer's edges line up with
+          max-w-7xl + px-5 sm:px-6 lg:px-8, so the footer's edges line up with
           the rest of the page at every width. */}
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 py-8 sm:px-6 sm:py-9 lg:px-8 lg:py-10">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-8 sm:px-6 sm:py-9 lg:px-8 lg:py-10">
         {/* Brand gets its own full-width row at every breakpoint below
             desktop (sm:grid-cols-3 + sm:col-span-3), with Explore/Account/
             Contact sharing the row below it — two rows instead of the four

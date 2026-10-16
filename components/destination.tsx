@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon } from "./ui/icons";
 import { DestinationCard, type Destination } from "./DestinationCard";
@@ -70,7 +71,7 @@ export default function FeaturedDestinations({
 }) {
   return (
     /* Same structure as WhyChooseUs / UpcomingTours / Header / Hero:
-       no horizontal padding on the section — it lives on the max-w-6xl wrapper
+       no horizontal padding on the section — it lives on the max-w-7xl wrapper
        (px-5 sm:px-6 lg:px-8). Bottom padding matches the shared py-16 sm:py-20
        lg:py-24 rhythm; top padding is trimmed so sections don't stack extra
        dead space below the header. */
@@ -83,31 +84,23 @@ export default function FeaturedDestinations({
         className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end lg:gap-12 head-gap-b">
-          <div className="max-w-2xl lg:max-w-none lg:shrink-0">
-            <div className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.5vh]">
-              <span className="h-px w-8 bg-muted/60" />
-              {eyebrow}
-            </div>
-
-            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:whitespace-nowrap lg:text-6xl">
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow={eyebrow}
+          heading={
+            <>
               {heading}
               <br className="lg:hidden" /> <span className="text-green">{headingAccent}</span>
-            </h2>
-          </div>
-
-          <div className="flex max-w-xl flex-col items-start gap-4 lg:items-end lg:pb-1 lg:text-right">
-            <p className="text-[15px] leading-[1.55] text-muted sm:text-base">
-              From legendary mountain valleys to landscapes that feel untouched by time —
-              discover the places that make Pakistan unforgettable.
-            </p>
+            </>
+          }
+          intro="From legendary mountain valleys to landscapes that feel untouched by time — discover the places that make Pakistan unforgettable."
+          actions={
             <LinkButton href={ctaHref} variant="dark" className="group w-fit shrink-0 text-[11px] uppercase tracking-[0.12em]">
               {ctaLabel}
               <ArrowIcon size={14} />
             </LinkButton>
-          </div>
-        </div>
+          }
+        />
 
         <div className="card-grid card-grid-4 card-grid-loose">
           {destinations.map((destination, index) => (

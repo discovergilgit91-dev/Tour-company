@@ -21,7 +21,7 @@ export default function FeaturedEvent() {
 
   return (
     <section className="relative w-full overflow-hidden bg-cream pb-10 pt-2 sm:pb-12">
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         <div
           ref={ref}
           style={{ transitionDelay: visible ? "80ms" : "0ms" }}

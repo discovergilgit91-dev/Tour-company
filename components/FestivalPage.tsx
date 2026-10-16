@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import Image from "next/image";
 import { LinkButton } from "./ui/Button";
 import { ArrowIcon, CalendarIcon } from "./ui/icons";
@@ -263,7 +264,7 @@ export default function FestivalPage() {
     <main className="bg-cream">
       {/* ---------------- Five Cultures, One Celebration ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-14">
             <Reveal>
               <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
@@ -337,7 +338,7 @@ export default function FestivalPage() {
 
       {/* ---------------- More Than a Festival ---------------- */}
       <section className="relative w-full overflow-hidden bg-night section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr_320px] lg:gap-12">
             <Reveal>
               <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] border border-cream/10 bg-gradient-to-br from-green-dark to-night shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] lg:aspect-auto lg:h-full">
@@ -436,32 +437,31 @@ export default function FestivalPage() {
 
       {/* ---------------- Festival Gallery ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-                  <span className="h-px w-8 bg-muted/60" />
-                  Festival gallery
-                </div>
-                <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-forest">
+            <SectionHeader
+              eyebrow="Festival gallery"
+              heading={
+                <>
                   Moments, colors <span className="text-green">and culture</span>
-                </h2>
-              </div>
-              <LinkButton
-                href="/tours/gilgit-cultural-festival/gallery"
-                variant="dark"
-                className="group gap-2 text-[11px] uppercase tracking-[0.12em]"
-              >
-                View All Photos
-                <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
-                  <ArrowIcon size={13} />
-                </span>
-              </LinkButton>
-            </div>
+                </>
+              }
+              actions={
+                <LinkButton
+                  href="/tours/gilgit-cultural-festival/gallery"
+                  variant="dark"
+                  className="group gap-2 text-[11px] uppercase tracking-[0.12em]"
+                >
+                  View All Photos
+                  <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
+                    <ArrowIcon size={13} />
+                  </span>
+                </LinkButton>
+              }
+            />
           </Reveal>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 head-gap">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {GALLERY_TILES.map((tile, index) => (
               <Reveal key={tile.caption} delay={index * 90}>
                 <div className="group relative aspect-square overflow-hidden rounded-[18px]">

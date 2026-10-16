@@ -50,7 +50,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
       }`}
     >
       <div
-        className={`mx-auto flex max-w-6xl items-center justify-between px-5 transition-[padding] duration-300 sm:px-6 lg:px-8 ${
+        className={`mx-auto flex max-w-7xl items-center justify-between px-5 transition-[padding] duration-300 sm:px-6 lg:px-8 ${
           scrolled ? "py-3" : "py-4"
         }`}
       >

@@ -52,7 +52,7 @@ export default async function Home() {
 
       {!error && tours && tours.length > 0 ? (
         <section className="bg-cream">
-          <div className="mx-auto w-full max-w-6xl px-5 section-b sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-5 section-b sm:px-6 lg:px-8">
             <h3 className="mb-8 font-serif text-2xl text-forest">More tours from our team</h3>
             <div className="card-grid">
               {tours.map((tour) => (

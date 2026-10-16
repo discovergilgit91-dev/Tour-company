@@ -280,7 +280,7 @@ export default function FestivalGallery() {
     <main className="bg-cream">
       {/* ---------------- Header + Filters + Grid ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <LinkButton
             href="/tours/gilgit-cultural-festival"
             variant="dark"
@@ -358,7 +358,7 @@ export default function FestivalGallery() {
           aria-hidden
           className="pointer-events-none absolute -right-32 top-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-3xl"
         />
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             <Reveal>
               <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
