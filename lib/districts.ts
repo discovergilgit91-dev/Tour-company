@@ -124,7 +124,9 @@ const hunzaPhoto = (file: string, alt: string, width: number, height: number, fo
   focus,
 });
 
-export const DISTRICTS: District[] = [
+import { MORE_DISTRICTS } from "./districtsMore";
+
+const HUNZA: District[] = [
   {
     slug: "hunza",
     name: "Hunza Valley",
@@ -351,6 +353,10 @@ export const DISTRICTS: District[] = [
     },
   },
 ];
+
+/** Every district guide (Hunza first, then the others from lib/districtsMore.ts). */
+export const DISTRICTS: District[] = [...HUNZA, ...MORE_DISTRICTS];
+
 
 export function getDistrict(slug: string): District | undefined {
   return DISTRICTS.find((district) => district.slug === slug);

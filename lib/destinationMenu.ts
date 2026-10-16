@@ -14,9 +14,7 @@
  *                would link to its region's section on /lands.)
  *
  * Each region's `href` is where clicking the region name (and "View all in …")
- * goes. Hunza has its district guide (lib/districts.ts); the others point at the
- * matching region section on /lands (ids come from REGIONS in lib/destinations.ts)
- * until their own district pages exist — then swap their href here.
+ * goes: its district guide (lib/districts.ts + lib/districtsMore.ts).
  */
 
 export type MenuPlace = {
@@ -25,8 +23,8 @@ export type MenuPlace = {
   slug?: string;
 };
 
-/** The five regions the navbar menus group by. Tours (lib/tourDetails.ts) point at one of these. */
-export type MenuRegionId = "hunza" | "skardu" | "diamer" | "ghizer" | "astore";
+/** The regions the navbar menus group by. Tours (lib/tourDetails.ts) point at one of these. */
+export type MenuRegionId = "hunza" | "nagar" | "skardu" | "shigar" | "diamer" | "ghizer" | "astore" | "gilgit";
 
 export type MenuRegion = {
   id: MenuRegionId;
@@ -47,10 +45,17 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
       { name: "Baltit Fort", elevation: "2,220 m", slug: "baltit-fort" },
       { name: "Altit Fort", elevation: "2,100 m", slug: "altit-fort" },
       { name: "Khunjerab Pass", elevation: "4,700 m", slug: "khunjerab-pass" },
-      { name: "Hopar Glacier", elevation: "2,700 m", slug: "hopar-glacier" },
       { name: "Borith Lake", elevation: "2,600 m", slug: "borith-lake" },
       { name: "Shimshal Valley", elevation: "3,100 m", slug: "shimshal-valley" },
+    ],
+  },
+  {
+    id: "nagar",
+    label: "Nagar",
+    href: "/destinations/nagar",
+    places: [
       { name: "Rakaposhi Base Camp", elevation: "3,200 m", slug: "rakaposhi-base-camp" },
+      { name: "Hopar Glacier", elevation: "2,700 m", slug: "hopar-glacier" },
       { name: "Minapin Glacier", elevation: "2,800 m", slug: "minapin-glacier" },
       { name: "Rush Lake", elevation: "4,694 m", slug: "rush-lake" },
     ],
@@ -58,18 +63,23 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
   {
     id: "skardu",
     label: "Skardu",
-    href: "/lands#baltistan",
+    href: "/destinations/skardu",
     places: [
       { name: "Skardu & Katpana", elevation: "2,230 m", slug: "skardu-katpana" },
       { name: "Deosai Plains", elevation: "4,114 m", slug: "deosai-plains" },
       { name: "Shangrila & Kachura Lakes", elevation: "2,500 m", slug: "kachura-lake" },
-      { name: "Shigar Valley", elevation: "2,290 m", slug: "shigar-valley" },
     ],
+  },
+  {
+    id: "shigar",
+    label: "Shigar",
+    href: "/destinations/shigar",
+    places: [{ name: "Shigar Valley", elevation: "2,290 m", slug: "shigar-valley" }],
   },
   {
     id: "diamer",
     label: "Diamer",
-    href: "/lands#diamer-astore",
+    href: "/destinations/diamer",
     places: [
       { name: "Fairy Meadows", elevation: "3,300 m", slug: "fairy-meadows" },
       { name: "Kutwal Lake", elevation: "3,077 m", slug: "kutwal-lake" },
@@ -78,21 +88,26 @@ export const DESTINATION_MENU_REGIONS: MenuRegion[] = [
   {
     id: "ghizer",
     label: "Ghizer",
-    href: "/lands#gilgit-ghizer",
+    href: "/destinations/ghizer",
     places: [
       { name: "Ghizer Valley", elevation: "2,150 m", slug: "ghizer-valley" },
       { name: "Yasin Valley", elevation: "2,500 m", slug: "yasin-valley" },
       { name: "Phander Lake", elevation: "2,900 m", slug: "phander-valley" },
-      { name: "Naltar Valley", elevation: "2,800 m", slug: "naltar-valley" },
     ],
   },
   {
     id: "astore",
     label: "Astore",
-    href: "/lands#diamer-astore",
+    href: "/destinations/astore",
     places: [
       { name: "Rama Meadows & Lake", elevation: "3,300 m", slug: "rama-lake" },
       { name: "Harmosh Valley", elevation: "3,100 m", slug: "harmosh-valley" },
     ],
+  },
+  {
+    id: "gilgit",
+    label: "Gilgit",
+    href: "/destinations/gilgit",
+    places: [{ name: "Naltar Valley", elevation: "2,800 m", slug: "naltar-valley" }],
   },
 ];
