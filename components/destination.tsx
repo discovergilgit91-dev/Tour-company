@@ -93,9 +93,8 @@ export default function FeaturedDestinations({
               <br className="lg:hidden" /> <span className="text-green">{headingAccent}</span>
             </>
           }
-          intro="From legendary mountain valleys to landscapes that feel untouched by time — discover the places that make Pakistan unforgettable."
           actions={
-            <LinkButton href={ctaHref} variant="dark" className="group w-fit shrink-0 text-[11px] uppercase tracking-[0.12em]">
+            <LinkButton href={ctaHref} variant="dark" className="group w-fit shrink-0 self-start text-[11px] uppercase tracking-[0.12em] lg:self-end">
               {ctaLabel}
               <ArrowIcon size={14} />
             </LinkButton>

@@ -229,7 +229,7 @@ function Panel({
           active ? "pointer-events-none opacity-0" : "opacity-100 delay-300"
         }`}
       >
-        <span className="absolute inset-y-0 left-12 right-16 flex items-center font-serif text-lg text-white lg:static lg:inset-auto lg:whitespace-nowrap lg:[writing-mode:vertical-rl] lg:rotate-180">
+        <span className="absolute inset-y-0 left-12 right-16 flex items-center font-serif text-lg text-white lg:static lg:inset-auto lg:max-h-[calc(100%-5.5rem)] lg:leading-tight lg:[writing-mode:vertical-rl] lg:rotate-180">
           {reason.title}
         </span>
       </div>
@@ -288,13 +288,6 @@ export default function WhyChooseUs() {
               Why explore Gilgit
               <br />
               <span className="text-green">with us?</span>
-            </>
-          }
-          intro="We are locals first and guides second. Every journey we plan draws on years of firsthand experience in these mountains — so you travel with confidence, not just a map."
-          note={
-            <>
-              <span className="lg:hidden">Tap a photo to explore</span>
-              <span className="hidden lg:inline">Hover a photo to explore</span>
             </>
           }
         />
