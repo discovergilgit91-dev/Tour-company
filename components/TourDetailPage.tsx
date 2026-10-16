@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import jsPDF from "jspdf";
 import Image from "next/image";
 import { LinkButton } from "./ui/Button";
@@ -83,7 +84,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[82svh] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[86svh] md:pb-24 md:pt-36 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[76svh] max-w-7xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[82svh] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[86svh] md:pb-24 md:pt-36 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
               {tour.badge}
@@ -422,7 +423,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
            clipping — the decorative accent's slight bleed is fine inside
            the section's own padding. */}
       <section className="relative w-full bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_340px] lg:gap-14">
             <div className="relative">
               <AccentMotif
@@ -590,23 +591,20 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
 
       {/* ---------------- Photo Highlights ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream section-b">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_1fr] lg:items-end lg:gap-12">
-              <div>
-                <div className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
-                  <span className="h-px w-8 bg-muted/60" />
-                  Scenes from the trip
-                </div>
-                <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
+            <SectionHeader
+              eyebrow="Scenes from the trip"
+              heading={
+                <>
                   Photo <span className="text-green">highlights</span>
-                </h2>
-              </div>
-              <p className="max-w-xl text-[15px] leading-[1.55] text-muted sm:text-base lg:pb-1">{tour.galleryIntro}</p>
-            </div>
+                </>
+              }
+              intro={tour.galleryIntro}
+            />
           </Reveal>
 
-          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 head-gap">
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             {tour.photos.map((photo, index) => {
               const Motif = index % 2 === 0 ? PeakZigzagMotif : AccentMotif;
               return (

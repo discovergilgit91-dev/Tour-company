@@ -139,7 +139,7 @@ export default function AboutStory() {
 
       <div
         ref={ref}
-        className="relative mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8"
+        className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-5 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8"
       >
         {/* ------------------------------ photo side ------------------------------ */}
         <div className="relative order-2 w-full lg:order-1">

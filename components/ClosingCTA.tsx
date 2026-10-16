@@ -30,7 +30,7 @@ export default function ClosingCTA() {
         <div className="absolute inset-0 bg-gradient-to-r from-night/85 via-night/55 to-night/15" />
         <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-        <div className="relative z-10 mx-auto flex h-full w-full max-w-6xl items-center px-5 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-5 sm:px-6 lg:px-8">
           <div className="section-y max-w-xl">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
               Ready for your next adventure?

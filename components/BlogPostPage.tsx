@@ -1,3 +1,4 @@
+import SectionHeader from "./ui/SectionHeader";
 import Slider from "./ui/Slider";
 import Image from "next/image";
 import Link from "next/link";
@@ -191,7 +192,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
             />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[72svh] max-w-6xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[76svh] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
+          <div className="relative z-10 mx-auto flex min-h-[72svh] max-w-7xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[76svh] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
             <Link
               href="/blog"
               className="group mb-auto inline-flex w-fit items-center gap-2 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
@@ -272,14 +273,15 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
       {/* ---------------- More reading ---------------- */}
       {more.length > 0 && (
         <section className="section-y">
-          <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
-              <span className="h-px w-8 bg-muted/60" />
-              Keep reading
-            </div>
-            <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
-              More from the <span className="text-green">blog</span>
-            </h2>
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+            <SectionHeader
+              eyebrow="Keep reading"
+              heading={
+                <>
+                  More from the <span className="text-green">blog</span>
+                </>
+              }
+            />
 
             <Slider as="div" label="more articles" className="card-grid-loose">
               {more.map((item, index) => (
@@ -305,7 +307,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           <div className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/60 to-night/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-6xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
             <div className="section-y max-w-xl">
               {pick ? (
                 <>

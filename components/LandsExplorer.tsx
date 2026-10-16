@@ -88,7 +88,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
   let cardIndex = 0;
 
   return (
-    <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8 lg:pb-24 lg:pt-14">
+    <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8 lg:pb-24 lg:pt-14">
       {/* ---------------- Category filter + search ---------------- */}
       <div className="flex flex-col gap-4 rounded-[22px] border border-forest/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5 head-gap-b">
         <div className="flex flex-wrap items-center gap-2">

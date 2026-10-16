@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -533,7 +534,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
           <div className="max-w-2xl">
             <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
               START PLANNING
@@ -553,7 +554,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
 
       {/* ---------------- Form + sidebar ---------------- */}
       <section className="relative w-full bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:gap-14">
             {/* Form column */}
             <div>
@@ -1029,21 +1030,20 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
           aria-hidden
           className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
         />
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mx-auto max-w-xl text-center">
-              <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
-                <span className="h-px w-8 bg-cream/30" />
-                How it works
-                <span className="h-px w-8 bg-cream/30" />
-              </div>
-              <h2 className="font-serif text-3xl leading-[1.12] tracking-tight text-cream sm:text-4xl">
-                Your journey, <span className="heading-accent">planned in 4 steps</span>
-              </h2>
-            </div>
+            <SectionHeader
+              tone="dark"
+              eyebrow="How it works"
+              heading={
+                <>
+                  Your journey, <span className="heading-accent">planned in 4 steps</span>
+                </>
+              }
+            />
           </Reveal>
 
-          <div className="card-grid card-grid-4 head-gap">
+          <div className="card-grid card-grid-4">
             {HOW_IT_WORKS.map((step, index) => (
               <Reveal key={step.title} delay={index * 90}>
                 <div className="relative flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-5">

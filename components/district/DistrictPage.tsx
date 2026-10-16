@@ -6,6 +6,7 @@ import BlogCard from "../BlogCard";
 import JsonLd from "../JsonLd";
 import { LinkButton } from "../ui/Button";
 import Slider from "../ui/Slider";
+import SectionHeader from "../ui/SectionHeader";
 import { ArrowIcon, CalendarIcon, CheckIcon, ClockIcon, PinIcon } from "../ui/icons";
 import { PeaksMotif } from "../tours/motifs";
 import { DISTRICT_ICONS } from "./icons";
@@ -54,7 +55,7 @@ function Eyebrow({ children, tone = "light" }: { children: ReactNode; tone?: "li
 function Heading({ children, tone = "light" }: { children: ReactNode; tone?: "light" | "dark" }) {
   return (
     <h2
-      className={`section-title font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl ${
+      className={`section-title font-serif text-4xl leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl ${
         tone === "dark" ? "text-cream" : "text-forest"
       }`}
     >
@@ -63,10 +64,6 @@ function Heading({ children, tone = "light" }: { children: ReactNode; tone?: "li
   );
 }
 
-/**
- * Label + two-colour heading on the left, intro (and any side note) on the
- * right of the same row on wide screens; stacked on tablet and phones.
- */
 function SectionHead({
   eyebrow,
   tone = "light",
@@ -82,22 +79,7 @@ function SectionHead({
 }) {
   return (
     <Reveal>
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-12">
-        <div>
-          <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
-          <Heading tone={tone}>{heading}</Heading>
-        </div>
-        {(intro || aside) && (
-          <div className="max-w-xl space-y-3 lg:pb-1">
-            {intro && (
-              <p className={`text-[15px] leading-[1.55] sm:text-base ${tone === "dark" ? "text-cream/70" : "text-muted"}`}>
-                {intro}
-              </p>
-            )}
-            {aside}
-          </div>
-        )}
-      </div>
+      <SectionHeader eyebrow={eyebrow} tone={tone} heading={heading} intro={intro} actions={aside} />
     </Reveal>
   );
 }
@@ -173,7 +155,7 @@ export default function DistrictPage({ district }: { district: District }) {
           <div className="absolute inset-0 bg-gradient-to-r from-forest/55 via-transparent to-transparent" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[82svh] max-w-6xl flex-col justify-end px-5 pb-12 pt-36 sm:min-h-[86svh] sm:px-6 sm:pb-14 sm:pt-40 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[82svh] max-w-7xl flex-col justify-end px-5 pb-12 pt-36 sm:min-h-[86svh] sm:px-6 sm:pb-14 sm:pt-40 lg:px-8">
           <nav aria-label="Breadcrumb" className="mb-auto">
             <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cream/75">
               <li>
@@ -238,22 +220,22 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 2. Why visit ---------------- */}
       <section id="why" className="relative bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-            <Reveal>
-              <Eyebrow>Why visit</Eyebrow>
-              <Heading>
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+          <SectionHead
+            eyebrow="Why visit"
+            heading={
+              <>
                 Why visit <span className="text-green">{district.shortName}</span>
-              </Heading>
-            </Reveal>
-            <Reveal delay={80}>
-              <div className="space-y-4 text-sm leading-relaxed text-muted sm:text-base lg:pt-0">
+              </>
+            }
+            intro={
+              <>
                 {district.why.intro.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-              </div>
-            </Reveal>
-          </div>
+              </>
+            }
+          />
 
           <Slider label="highlights">
             {district.why.highlights.map((item, index) => {
@@ -282,7 +264,7 @@ export default function DistrictPage({ district }: { district: District }) {
           aria-hidden
           className="pointer-events-none absolute -left-32 top-1/4 h-[420px] w-[420px] rounded-full bg-green/10 blur-3xl"
         />
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <Reveal className="order-2 lg:order-1">
               <FramedPhoto image={district.traditions.image} />
@@ -298,7 +280,7 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
           </div>
 
-          <Slider label="traditions">
+          <Slider label="traditions" spaced>
             {district.traditions.items.map((item, index) => (
               <li key={item.title}>
                 <Reveal delay={(index % 3) * 70} className="h-full">
@@ -316,7 +298,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 4. Culture ---------------- */}
       <section id="culture" className="relative bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             <Reveal>
               <Eyebrow>Culture</Eyebrow>
@@ -330,7 +312,7 @@ export default function DistrictPage({ district }: { district: District }) {
             </Reveal>
           </div>
 
-          <Slider label="culture">
+          <Slider label="culture" spaced>
             {district.culture.items.map((item, index) => (
               <li key={item.title}>
                 <Reveal delay={(index % 2) * 70} className="h-full">
@@ -347,7 +329,7 @@ export default function DistrictPage({ district }: { district: District }) {
 
       {/* ---------------- 5. Food ---------------- */}
       <section id="food" className="relative bg-white section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <SectionHead
             eyebrow="Food"
             heading={
@@ -391,7 +373,7 @@ export default function DistrictPage({ district }: { district: District }) {
       {/* ---------------- 6. Best spots ---------------- */}
       {places.length > 0 && (
         <section id="spots" className="relative bg-cream section-y">
-          <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
             <SectionHead
               eyebrow="Places"
               heading={
@@ -414,7 +396,7 @@ export default function DistrictPage({ district }: { district: District }) {
       {/* ---------------- 7. Upcoming tours and events ---------------- */}
       {(tours.length > 0 || events.length > 0) && (
         <section id="tours" className="relative bg-white section-y">
-          <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
             <SectionHead
               eyebrow="Coming up"
               heading={
@@ -524,7 +506,7 @@ export default function DistrictPage({ district }: { district: District }) {
           className="pointer-events-none absolute -right-28 top-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
         />
         <PeaksMotif className="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 w-full text-cream/[0.04]" />
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <SectionHead
             eyebrow="Travel tips"
             tone="dark"
@@ -606,7 +588,7 @@ export default function DistrictPage({ district }: { district: District }) {
       {/* ---------------- 9. Related reading ---------------- */}
       {posts.length > 0 && (
         <section id="reading" className="relative bg-cream section-y">
-          <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
             <SectionHead
               eyebrow="Related reading"
               heading={
@@ -640,7 +622,7 @@ export default function DistrictPage({ district }: { district: District }) {
           <div className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/60 to-night/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-6xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[320px] w-full max-w-7xl items-center px-5 sm:min-h-[360px] sm:px-6 lg:px-8">
             <div className="section-y max-w-xl">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">Ready when you are</p>
               <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">

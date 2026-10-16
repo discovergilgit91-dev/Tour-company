@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import SectionHeader from "./ui/SectionHeader";
 
 type Reason = {
   id: string;
@@ -11,6 +12,8 @@ type Reason = {
   image: string;
   /** Small label on the photo */
   place: string;
+  /** The source files are photo collages — this crops to ONE photo of the collage (CSS object-view-box inset: top right bottom left) */
+  crop?: string;
   Icon: (props: { size?: number }) => React.JSX.Element;
 };
 
@@ -100,6 +103,7 @@ const REASONS: Reason[] = [
     id: "hidden-gems",
     Icon: IconGem,
     image: "/Images/tours/hidden-gems.png",
+    crop: "0.7% 37.5% 32.2% 18.5%",
     place: "Passu Cones",
     title: "Explore Hidden Gems",
     description:
@@ -109,6 +113,7 @@ const REASONS: Reason[] = [
     id: "guidance",
     Icon: IconShieldCheck,
     image: "/Images/tours/local-guidance.png",
+    crop: "0 0 48.4% 0",
     place: "Rakaposhi",
     title: "Trusted Local Guidance",
     description:
@@ -118,6 +123,7 @@ const REASONS: Reason[] = [
     id: "adventure",
     Icon: IconMountainSun,
     image: "/Images/tours/adventure.png",
+    crop: "51.8% 33.9% 0.5% 33.9%",
     place: "Nanga Parbat",
     title: "Adventure & Nature",
     description:
@@ -176,55 +182,65 @@ function Panel({
         "relative isolate overflow-hidden rounded-[24px] bg-forest",
         "transition-[flex,height,box-shadow] duration-700 ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none",
         active
-          ? "h-[290px] shadow-[0_24px_55px_rgba(20,35,31,0.28)] ring-1 ring-gold/50 lg:h-full lg:flex-[3.4]"
+          ? "h-[340px] shadow-[0_24px_55px_rgba(20,35,31,0.28)] ring-1 ring-gold/50 lg:h-full lg:flex-[3.4]"
           : "h-[76px] shadow-[0_2px_18px_rgba(18,36,28,0.10)] lg:h-full lg:flex-1",
       ].join(" ")}
     >
-      {/* photo */}
+      {/* one photo per card — the source files are collages, so crop to a single tile */}
       <Image
         src={reason.image}
-        alt={reason.place}
+        alt=""
         fill
         quality={85}
-        sizes="(min-width: 1024px) 600px, 100vw"
+        sizes="(min-width: 1024px) 560px, 100vw"
+        style={reason.crop ? ({ objectViewBox: `inset(${reason.crop})` } as React.CSSProperties) : undefined}
         className={`object-cover transition-transform duration-[1400ms] ease-out motion-reduce:transition-none ${
-          active ? "scale-100" : "scale-110"
+          active ? "scale-100" : "scale-[1.04]"
         }`}
       />
 
-      {/* shading: always a bottom gradient for text, plus a dimmer veil while collapsed */}
-      <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest/90 via-forest/25 to-forest/10" />
+      {/* same dark overlay on every card: transparent at the top, ~80% dark at the bottom */}
       <div
         aria-hidden
-        className={`absolute inset-0 bg-forest/50 transition-opacity duration-700 ${active ? "opacity-0" : "opacity-100"}`}
+        className="absolute inset-0 bg-gradient-to-t from-night/85 via-night/35 to-night/5"
+      />
+      {/* collapsed cards sit a little darker so their vertical title always reads */}
+      <div
+        aria-hidden
+        className={`absolute inset-0 bg-night/25 transition-opacity duration-700 ${active ? "opacity-0" : "opacity-100"}`}
       />
 
-      {/* number (large screens) + icon */}
-      <span className="absolute left-6 top-6 z-10 hidden font-serif text-sm text-cream/75 lg:block">{number}</span>
-      <span className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-cream/20 bg-cream/10 text-cream backdrop-blur-md lg:right-5 lg:top-5">
-        <Icon size={19} />
-      </span>
+      {/* number + icon share one top line and the same 24px padding in every card */}
+      <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-4 lg:p-6">
+        <span className="font-serif text-sm text-white lg:text-base">{number}</span>
+        <span
+          className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-500 ${
+            active ? "border-gold/70 bg-black/40 text-gold" : "border-white/30 bg-black/25 text-white"
+          }`}
+        >
+          <Icon size={19} />
+        </span>
+      </div>
 
-      {/* collapsed label — horizontal on phones, vertical on large screens */}
+      {/* collapsed title — identical in every collapsed card: solid white, same size, same left/bottom offset */}
       <div
-        aria-hidden
-        className={`absolute inset-0 z-10 flex items-center gap-3 px-5 pr-16 transition-opacity duration-500 lg:items-end lg:px-6 lg:pb-6 lg:pr-6 ${
-          active ? "opacity-0" : "opacity-100 delay-300"
+        aria-hidden={active}
+        className={`absolute inset-0 z-10 flex items-end px-5 pb-0 transition-opacity duration-300 lg:px-6 lg:pb-6 ${
+          active ? "pointer-events-none opacity-0" : "opacity-100 delay-300"
         }`}
       >
-        <span className="font-serif text-sm text-cream/70 lg:hidden">{number}</span>
-        <span className="font-serif text-base text-cream lg:whitespace-nowrap lg:text-lg lg:[writing-mode:vertical-rl] lg:rotate-180">
+        <span className="absolute inset-y-0 left-12 right-16 flex items-center font-serif text-lg text-white lg:static lg:inset-auto lg:whitespace-nowrap lg:[writing-mode:vertical-rl] lg:rotate-180">
           {reason.title}
         </span>
       </div>
 
-      {/* expanded content (fixed width on large screens so the text never reflows while the panel grows) */}
+      {/* expanded text — fades in only once the card has finished growing, bottom-left at the same 24px inset */}
       <div
-        className={`absolute inset-x-0 bottom-0 z-10 p-5 transition-all duration-500 sm:p-7 lg:w-[430px] lg:p-8 ${
-          active ? "translate-y-0 opacity-100 delay-300" : "pointer-events-none translate-y-3 opacity-0"
+        className={`absolute bottom-0 left-0 z-10 p-5 transition-opacity lg:w-[min(100%,30rem)] lg:p-6 ${
+          active ? "opacity-100 duration-300 delay-[650ms]" : "pointer-events-none opacity-0 duration-150"
         }`}
       >
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-cream/25 bg-cream/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z" />
             <circle cx="12" cy="9.5" r="2.3" />
@@ -232,8 +248,8 @@ function Panel({
           {reason.place}
         </span>
 
-        <h3 className="mt-3 font-serif text-2xl leading-tight text-cream sm:text-3xl">{reason.title}</h3>
-        <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/80">{reason.description}</p>
+        <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">{reason.title}</h3>
+        <p className="mt-2 max-w-md text-[15px] leading-[1.5] text-white/90">{reason.description}</p>
       </div>
 
       {/* one button covers the panel: click, tap or keyboard focus opens it */}
@@ -254,10 +270,6 @@ export default function WhyChooseUs() {
   const { ref, visible } = useRevealOnScroll<HTMLDivElement>();
 
   return (
-    /* Horizontal padding lives on this same div as max-w-6xl (not on the
-       section), matching Header/Hero/UpcomingTours exactly, so content
-       here lines up with the logo/Sign Up edges instead of the wider
-       "centered max-w-6xl inside a padded section" box. */
     <section
       id="why-choose-us"
       className="section-b relative w-full overflow-hidden bg-cream pt-40 sm:pt-24 lg:pt-[calc(3.5rem+var(--space-section-tight))]"
@@ -267,38 +279,29 @@ export default function WhyChooseUs() {
         className="pointer-events-none absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-gold/5 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-        <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-end lg:gap-12">
-          <div className="max-w-2xl">
-            <div className="mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.5vh]">
-              <span className="h-px w-8 bg-muted/60" />
-              Why choose us
-            </div>
-
-            <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl lg:text-6xl">
+      {/* shared page container: same width and side padding as every other section */}
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Why choose us"
+          heading={
+            <>
               Why explore Gilgit
               <br />
               <span className="text-green">with us?</span>
-            </h2>
-          </div>
-
-          <div className="max-w-md lg:pb-1">
-            <p className="text-[15px] leading-[1.55] text-muted sm:text-base">
-              We are locals first and guides second. Every journey we plan draws on years
-              of firsthand experience in these mountains — so you travel with confidence,
-              not just a map.
-            </p>
-            <p className="mt-3 flex items-center gap-2 text-xs text-muted">
-              <span className="h-px w-8 bg-muted/60" />
+            </>
+          }
+          intro="We are locals first and guides second. Every journey we plan draws on years of firsthand experience in these mountains — so you travel with confidence, not just a map."
+          note={
+            <>
               <span className="lg:hidden">Tap a photo to explore</span>
               <span className="hidden lg:inline">Hover a photo to explore</span>
-            </p>
-          </div>
-        </div>
+            </>
+          }
+        />
 
         <div
           ref={ref}
-          className={`mt-10 flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:mt-[var(--space-head)] lg:h-[var(--media-h)] lg:flex-row ${
+          className={`flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:h-[var(--media-h)] lg:flex-row ${
             visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >

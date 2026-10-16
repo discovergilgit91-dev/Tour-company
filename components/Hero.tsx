@@ -583,7 +583,7 @@ export default function Hero({
         </div>
 
         <div
-          className={`relative z-10 mx-auto flex min-h-[76svh] max-w-6xl flex-col justify-center px-5 pt-28 sm:min-h-[82svh] sm:px-6 sm:pt-32 md:min-h-[86svh] md:pt-36 lg:px-8 ${
+          className={`relative z-10 mx-auto flex min-h-[76svh] max-w-7xl flex-col justify-center px-5 pt-28 sm:min-h-[82svh] sm:px-6 sm:pt-32 md:min-h-[86svh] md:pt-36 lg:px-8 ${
             showSearchBar
               ? "pb-40 sm:pb-16 md:pb-20"
               : "pb-16 sm:pb-20 md:pb-24"
@@ -671,8 +671,8 @@ export default function Hero({
           the wrapper left most of the bar sitting inside the still-dark
           buffer instead of overlapping 50/50 onto the section that follows. */}
       {showSearchBar && (
-        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2 px-5 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl">
+        <div className="absolute inset-x-0 bottom-0 z-30 translate-y-1/2">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
             <SearchBar />
           </div>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 
+import SectionHeader from "./ui/SectionHeader";
 import Slider from "./ui/Slider";
 import Image from "next/image";
 import { useRevealOnScroll } from "./DestinationCard";
@@ -187,24 +188,20 @@ export default function CompleteExperience() {
       />
       <MountainBanner className="absolute inset-x-0 bottom-0 h-[40%] w-full text-cream/[0.04]" />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="mx-auto max-w-2xl text-center">
-            <div className="mx-auto mb-5 flex w-fit items-center gap-3 lg:mb-[1.2vh] text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
-              <span className="h-px w-8 bg-cream/30" />
-              Complete experience
-              <span className="h-px w-8 bg-cream/30" />
-            </div>
-            <h2 className="font-serif text-3xl leading-[1.12] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
-              Everything You Need.
-              <br />
-              <span className="heading-accent">One Trusted Team.</span>
-            </h2>
-            <p className="mt-4 text-[15px] leading-[1.55] text-cream/65 sm:text-base lg:mt-[1.5vh]">
-              From the moment you land to the moment you leave, every detail is planned, guided, and looked
-              after by people who call these mountains home.
-            </p>
-          </div>
+          <SectionHeader
+            tone="dark"
+            eyebrow="Complete experience"
+            heading={
+              <>
+                Everything You Need.
+                <br />
+                <span className="heading-accent">One Trusted Team.</span>
+              </>
+            }
+            intro="From the moment you land to the moment you leave, every detail is planned, guided, and looked after by people who call these mountains home."
+          />
         </Reveal>
 
         <Slider as="div" label="services">

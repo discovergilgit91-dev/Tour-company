@@ -40,7 +40,7 @@ export default function LegalPage({
             className="pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
           />
         </div>
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pb-20 lg:pt-40">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pb-20 lg:pt-40">
           <span className="inline-flex items-center rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
             {eyebrow}
           </span>

@@ -135,7 +135,7 @@ export default function TravelerStoriesPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
           <div className="max-w-2xl">
             <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
               TRAVELER STORIES
@@ -155,8 +155,8 @@ export default function TravelerStoriesPage() {
 
       {/* ---------------- Story cards ---------------- */}
       <section className="relative w-full bg-cream section-y">
-        <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
-          <Slider as="div" label="traveler stories" className="card-grid-loose">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
+          <Slider as="div" spaced label="traveler stories" className="card-grid-loose">
             {STORIES.map((story, index) => (
               <Reveal key={story.name} delay={(index % 6) * 70}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.22)]">

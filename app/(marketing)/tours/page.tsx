@@ -217,7 +217,7 @@ export default function ToursPage() {
           </g>
         </svg>
 
-        <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           {/* photo — same fade-in treatment as the /lands "Find your next
               horizon" intro: a full-bleed photo blending into the cream
               background via gradient, rather than a boxed card with a

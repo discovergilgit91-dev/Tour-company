@@ -327,14 +327,14 @@ export default function UpcomingTours() {
 
   return (
     /* Section itself carries no horizontal padding — it lives on the
-       max-w-6xl + px-5 sm:px-6 lg:px-8 container below, the same one
+       max-w-7xl + px-5 sm:px-6 lg:px-8 container below, the same one
        Header, Hero and every other section use, so this section's
        content lines up edge-to-edge with the rest of the page. */
     <section
       id="tours"
       className="relative isolate w-full overflow-hidden bg-cream section-b section-t-tight"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* Decorative image/contours are positioned against this wrapper's
             edges, i.e. the same content edge the cards align to. */}
         <div className="relative">

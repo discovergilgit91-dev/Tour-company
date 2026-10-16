@@ -263,7 +263,7 @@ export function RouteMapSection() {
         className="pointer-events-none absolute -left-32 top-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* header + map + highlights */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,300px)_1fr] lg:items-center lg:gap-14">
           {/* map card */}
