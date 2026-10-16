@@ -156,6 +156,7 @@ const RAW_POSTS: RawPost[] = [
   /* ------------------------------------------------------------------ */
   {
     slug: "fairy-meadows-trek-nanga-parbat",
+    districts: ["diamer"],
     title: "Fairy Meadows and the trek to Nanga Parbat",
     excerpt:
       "A jeep ride, a short trek and one of the closest views of an 8,000-metre peak anywhere in Pakistan — what to expect at Fairy Meadows and on the way to Base Camp.",
@@ -254,6 +255,7 @@ const RAW_POSTS: RawPost[] = [
   /* ------------------------------------------------------------------ */
   {
     slug: "deosai-plains-land-of-giants",
+    districts: ["skardu"],
     title: "Deosai Plains: the Land of Giants",
     excerpt:
       "A plateau above 4,000 metres that is open only from July to September — brown bears, wildflowers and Sheosar Lake on one of the highest plateaus in the world.",

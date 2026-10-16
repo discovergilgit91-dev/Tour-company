@@ -1082,6 +1082,7 @@ export const TOUR_DETAILS: Record<string, TourDetail> = {
   "shigar-heritage-trail": {
     slug: "shigar-heritage-trail",
     menuRegion: "skardu",
+    district: "shigar",
     href: "/tours/shigar-heritage-trail",
     title: "Shigar Valley Heritage Trail",
     tagline: "Heritage Trail · Forts & Orchards",
