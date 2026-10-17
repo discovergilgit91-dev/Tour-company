@@ -95,7 +95,7 @@ export function PasswordField({
           type="button"
           onClick={() => setVisible((v) => !v)}
           aria-label={visible ? "Hide password" : "Show password"}
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-forest/35 transition-colors hover:text-forest"
+          className="absolute right-0 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center text-forest/45 transition-colors hover:text-forest"
         >
           {visible ? <EyeOffIcon size={17} /> : <EyeIcon size={17} />}
         </button>
@@ -113,7 +113,7 @@ export function PasswordField({
               />
             ))}
           </div>
-          <span className="w-10 shrink-0 text-right text-[10px] font-semibold uppercase tracking-[0.06em] text-muted">
+          <span className="w-10 shrink-0 text-right text-[11px] font-semibold uppercase tracking-[0.06em] text-muted">
             {meta.label}
           </span>
         </div>

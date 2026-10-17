@@ -87,6 +87,8 @@ export default function DestinationDetailPage({
                 elements below carry their own shadow/backing for
                 legibility instead of a flat wash over the whole image. */}
             <div className="absolute inset-0 bg-gradient-to-b from-forest/35 via-transparent to-forest/35" />
+            {/* readable heading on bright photos (pale rock, snow): a soft dark wash on the text side only */}
+            <div className="absolute inset-0 bg-gradient-to-r from-forest/60 via-forest/25 to-transparent max-sm:via-forest/40 max-sm:to-forest/30" />
           </div>
 
           <div className="relative z-10 mx-auto flex min-h-[max(78svh,520px)] max-w-7xl flex-col justify-center px-5 py-28 sm:min-h-[max(82svh,520px)] sm:px-6 sm:py-32 md:min-h-[max(86svh,520px)] md:py-36 lg:px-8">
@@ -104,12 +106,12 @@ export default function DestinationDetailPage({
             <div className="max-w-2xl">
               <div className="flex flex-wrap items-center gap-2">
                 {region && (
-                  <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
+                  <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
                     {region.label}
                   </span>
                 )}
                 {categoryLabel && (
-                  <span className="inline-flex items-center rounded-full border border-cream/30 bg-night/20 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm sm:text-xs [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
+                  <span className="inline-flex items-center rounded-full border border-cream/30 bg-night/20 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm sm:text-xs [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
                     {categoryLabel}
                   </span>
                 )}
@@ -118,7 +120,7 @@ export default function DestinationDetailPage({
               {district && (
                 <Link
                   href={district.href}
-                  className="group mt-4 inline-flex items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-cream/90 transition-colors duration-300 hover:text-cream [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]"
+                  className="group mt-1 inline-flex min-h-11 items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-cream/90 transition-colors duration-300 hover:text-cream [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]"
                 >
                   Part of <span className="underline decoration-gold/70 underline-offset-4">{district.name}</span>
                   <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">

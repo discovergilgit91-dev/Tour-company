@@ -296,7 +296,7 @@ export default function ChatWidget() {
         {showInvite && !isOpen && (
           <span className="absolute -right-1 -top-1 flex h-5 min-w-5" aria-hidden="true">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75 motion-reduce:animate-none" />
-            <span className="relative flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-cream bg-gold px-1 text-[10px] font-bold leading-none text-forest">
+            <span className="relative flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-cream bg-gold px-1 text-[11px] font-bold leading-none text-forest">
               1
             </span>
           </span>
@@ -335,7 +335,7 @@ export default function ChatWidget() {
             <div className="flex min-w-0 items-center gap-3">
               <LogoBadge box={44} mark={30} ring />
               <div className="min-w-0">
-                <p className="text-[9px] font-semibold uppercase tracking-[0.18em] text-gold/80">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold/80">
                   Your travel concierge
                 </p>
                 <p className="truncate font-serif text-[15px] leading-tight text-cream">

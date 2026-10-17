@@ -48,7 +48,7 @@ export default function BlogPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24 lg:pt-44">
           <div className="max-w-2xl">
-            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
               THE JOURNAL
             </span>
 

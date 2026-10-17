@@ -536,7 +536,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
           <div className="max-w-2xl">
-            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
               START PLANNING
             </span>
 
@@ -793,7 +793,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                                 type="button"
                                 onClick={() => setDateMode("exact")}
                                 aria-pressed={dateMode === "exact"}
-                                className={`flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                                className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[13px] font-medium transition-all duration-200 ${
                                   dateMode === "exact"
                                     ? "border-green bg-green/[0.06] text-green"
                                     : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -805,7 +805,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                                 type="button"
                                 onClick={() => setDateMode("flexible")}
                                 aria-pressed={dateMode === "flexible"}
-                                className={`flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                                className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[13px] font-medium transition-all duration-200 ${
                                   dateMode === "flexible"
                                     ? "border-green bg-green/[0.06] text-green"
                                     : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -820,7 +820,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                                 <div>
                                   <label
                                     htmlFor="startDate"
-                                    className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                                    className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
                                   >
                                     Start date
                                   </label>
@@ -836,7 +836,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                                 <div>
                                   <label
                                     htmlFor="endDate"
-                                    className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                                    className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
                                   >
                                     End date
                                   </label>
@@ -939,7 +939,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                       {/* ---- Summary + consent + submit ---- */}
                       <div className="border-t border-forest/8 pt-7">
                         <div className="rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3.5">
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gold">
                             Quick summary
                           </p>
                           <p className="mt-1 text-[13px] leading-snug text-forest">{buildSummary()}</p>
@@ -1010,7 +1010,7 @@ export default function PlanYourTripPage({ sessionProfile }: { sessionProfile: S
                             <Icon size={14} />
                           </span>
                           <div className="min-w-0">
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/50">{label}</p>
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/50">{label}</p>
                             <p className="mt-0.5 text-[13px] leading-snug text-cream/85">{value}</p>
                           </div>
                         </div>

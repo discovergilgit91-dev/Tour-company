@@ -76,7 +76,7 @@ function SocialIcon({ href, label, children }: { href: string; label: string; ch
       aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/15 sm:h-8 sm:w-8 text-cream/55 transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/15 lg:h-8 lg:w-8 text-cream/55 transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-gold"
     >
       {children}
     </a>
@@ -87,7 +87,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="group flex min-h-11 items-center justify-between gap-4 text-[11px] text-cream/60 transition-colors hover:text-cream sm:min-h-0"
+      className="group flex min-h-11 items-center justify-between gap-4 text-[13px] text-cream/60 transition-colors hover:text-cream lg:min-h-0"
     >
       <span>{children}</span>
       <ArrowIcon />
@@ -99,7 +99,7 @@ function FooterColumn({
   title,
   links,
   className = "",
-  listClassName = "space-y-0 sm:space-y-2.5",
+  listClassName = "space-y-0 lg:space-y-2.5",
   viewAll,
 }: {
   title: string;
@@ -126,7 +126,7 @@ function FooterColumn({
       {viewAll && (
         <Link
           href={viewAll.href}
-          className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80 sm:mt-4 sm:min-h-0"
+          className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[13px] font-medium text-gold transition-colors hover:text-gold/80 lg:mt-4 lg:min-h-0"
         >
           <span>{viewAll.label}</span>
           <ArrowIcon />
@@ -168,7 +168,7 @@ export default function Footer() {
       {/* Same container as every section above (WhyChooseUs, AboutStory, UpcomingTours, ...):
           max-w-7xl + px-5 sm:px-6 lg:px-8, so the footer's edges line up with
           the rest of the page at every width. */}
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 py-8 sm:px-6 sm:py-9 lg:px-8 lg:py-10">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pt-8 pb-[calc(env(safe-area-inset-bottom)+5rem)] sm:px-6 sm:pt-9 lg:px-8 lg:pt-10">
         {/* Brand gets its own full-width row at every breakpoint below
             desktop (sm:grid-cols-3 + sm:col-span-3), with Explore/Account/
             Contact sharing the row below it — two rows instead of the four
@@ -182,7 +182,7 @@ export default function Footer() {
           <div className="border-b border-cream/[0.08] pb-6 col-span-2 sm:col-span-3 sm:pb-7 lg:col-span-1 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
             <Logo />
 
-            <p className="mt-4 max-w-[285px] text-[12px] leading-[1.7] text-cream/50">
+            <p className="mt-4 max-w-[285px] text-[13px] leading-[1.7] text-cream/60">
               Guided journeys through the valleys, rivers, villages, and peaks of
               Gilgit-Baltistan.
             </p>
@@ -190,10 +190,10 @@ export default function Footer() {
             <div className="mt-5 flex w-full max-w-[302px] items-center gap-3 rounded-xl border border-cream/[0.09] bg-cream/[0.025] px-3.5 py-3">
               <CompassIcon />
               <div className="min-w-0">
-                <p className="text-[8px] font-semibold uppercase tracking-[0.22em] text-gold">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
                   Our Home
                 </p>
-                <p className="mt-1 truncate text-[11px] text-cream/60">
+                <p className="mt-1 truncate text-[13px] text-cream/60">
                   Gilgit-Baltistan, Pakistan
                 </p>
               </div>
@@ -237,16 +237,16 @@ export default function Footer() {
                     <Icon size={14} />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.14em] text-cream/40">{label}</p>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/50">{label}</p>
                     {href ? (
                       <a
                         href={href}
-                        className="mt-0.5 block break-words py-3 text-[12px] leading-snug text-cream/70 transition-colors hover:text-cream sm:py-0"
+                        className="mt-0.5 flex min-h-11 items-center break-words text-[13px] leading-snug text-cream/70 transition-colors hover:text-cream lg:min-h-0"
                       >
                         {value}
                       </a>
                     ) : (
-                      <p className="mt-0.5 text-[12px] leading-snug text-cream/70">{value}</p>
+                      <p className="mt-0.5 text-[13px] leading-snug text-cream/70">{value}</p>
                     )}
                   </div>
                 </li>
@@ -255,7 +255,7 @@ export default function Footer() {
 
             <Link
               href="/plan-your-trip"
-              className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[11px] font-medium text-gold transition-colors hover:text-gold/80 sm:mt-4 sm:min-h-0"
+              className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[13px] font-medium text-gold transition-colors hover:text-gold/80 lg:mt-4 lg:min-h-0"
             >
               <LogoIcon className="h-5 w-6" />
               <span>Plan your journey</span>
@@ -275,14 +275,14 @@ export default function Footer() {
             <FooterColumn
               title="Destinations"
               links={destinationsMenu.items}
-              listClassName="grid grid-cols-2 gap-x-6 gap-y-0 sm:gap-x-8 sm:gap-y-2.5 lg:gap-x-16"
+              listClassName="grid grid-cols-2 gap-x-6 gap-y-0 sm:gap-x-8 lg:gap-y-2.5 lg:gap-x-16"
               viewAll={destinationsMenu.viewAll}
               className="sm:col-span-2 lg:border-r lg:border-cream/[0.08] lg:pr-8"
             />
             <FooterColumn
               title="Tours & Events"
               links={toursMenu.items}
-              listClassName="grid gap-y-0 sm:gap-y-2.5 lg:grid-cols-2 lg:gap-x-16"
+              listClassName="grid gap-y-0 lg:gap-y-2.5 lg:grid-cols-2 lg:gap-x-16"
               viewAll={toursMenu.viewAll}
               className="lg:col-span-2 lg:pr-8"
             />
@@ -291,16 +291,16 @@ export default function Footer() {
 
         <div className="mt-7 border-t border-cream/[0.08] pt-4 sm:mt-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2.5 text-[9px] text-cream/35">
+            <div className="flex items-center gap-2.5 text-[12px] text-cream/50">
               <CompassIcon />
               <span>35.9° N, 74.3° E — Gilgit-Baltistan</span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[9px] text-cream/35 sm:justify-end">
-              <Link href="/terms" className="inline-flex min-h-11 items-center transition-colors hover:text-cream/70 sm:min-h-0">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-cream/50 sm:justify-end">
+              <Link href="/terms" className="inline-flex min-h-11 items-center transition-colors hover:text-cream/70 lg:min-h-0">
                 Terms
               </Link>
-              <Link href="/privacy" className="inline-flex min-h-11 items-center transition-colors hover:text-cream/70 sm:min-h-0">
+              <Link href="/privacy" className="inline-flex min-h-11 items-center transition-colors hover:text-cream/70 lg:min-h-0">
                 Privacy
               </Link>
               <p>© {new Date().getFullYear()} Discover Gilgit. All rights reserved.</p>

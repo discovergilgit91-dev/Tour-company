@@ -113,7 +113,7 @@ function TourPhotoPlaceholder() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-forest to-night text-cream/50">
       <IconPeaks size={30} />
-      <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
     </div>
   );
 }
@@ -147,7 +147,7 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
               {tour.location}
             </span>
           </div>
@@ -210,7 +210,7 @@ function BuildYourOwnCard() {
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
               ANYWHERE IN GILGIT-BALTISTAN
             </span>
           </div>

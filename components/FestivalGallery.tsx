@@ -155,11 +155,11 @@ function GalleryTile({ photo, category, onOpen }: { photo: Photo; category: Cate
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-transparent to-transparent" />
       {photo.featured && (
-        <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-gold px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-forest">
+        <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-gold px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-forest">
           Featured
         </span>
       )}
-      <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
+      <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
         {category.label}
       </span>
       <span className="absolute inset-x-3 bottom-3 font-serif text-sm leading-snug text-cream sm:text-base">
@@ -237,7 +237,7 @@ function Lightbox({
           <Image src={photo.src} alt={photo.alt} fill quality={85} sizes="448px" className="object-contain" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent" />
-        <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-night/50 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/85 backdrop-blur-sm">
+        <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-night/50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/85 backdrop-blur-sm">
           {category.label}
         </span>
         <div className="absolute inset-x-5 bottom-5">
@@ -298,7 +298,7 @@ export default function FestivalGallery() {
               type="button"
               onClick={() => setActiveCategory(null)}
               aria-pressed={activeCategory === null}
-              className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
+              className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
                 activeCategory === null
                   ? "border-forest bg-forest text-white"
                   : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -316,7 +316,7 @@ export default function FestivalGallery() {
                   type="button"
                   onClick={() => setActiveCategory(category.id)}
                   aria-pressed={isActive}
-                  className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
+                  className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
                     isActive
                       ? "border-green/30 bg-green/10 text-forest"
                       : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"

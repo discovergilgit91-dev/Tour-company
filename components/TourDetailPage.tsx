@@ -68,7 +68,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
           ) : (
             <div className={`h-full w-full bg-gradient-to-br ${tour.theme.heroFrom} via-forest to-night`} />
           )}
-          <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent max-sm:via-forest/50 max-sm:to-forest/35 sm:from-forest/65 sm:via-forest/25" />
           <div
             aria-hidden
             className={`pointer-events-none absolute -left-24 top-16 h-[420px] w-[420px] rounded-full ${tour.theme.blob} blur-3xl`}
@@ -87,7 +87,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
 
         <div className="relative z-10 mx-auto flex min-h-[max(76svh,520px)] max-w-7xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[max(82svh,520px)] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[max(86svh,520px)] md:pb-24 md:pt-36 lg:px-8">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
               {tour.badge}
             </span>
 
@@ -105,28 +105,28 @@ function TourHero({ tour }: { tour: TourDetail }) {
               <div className="flex items-center gap-2.5 text-cream/90">
                 <ClockIcon size={16} />
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.1em] text-cream/50">Duration</p>
+                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Duration</p>
                   <p className="text-[13px] font-semibold">{tour.duration}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 text-cream/90">
                 <PinIcon size={16} />
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.1em] text-cream/50">Start / End</p>
+                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Start / End</p>
                   <p className="text-[13px] font-semibold">{tour.route}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 text-cream/90">
                 <UsersIcon size={16} />
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.1em] text-cream/50">Group Size</p>
+                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Group Size</p>
                   <p className="text-[13px] font-semibold">{tour.groupSize}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 text-cream/90">
                 <GaugeIcon size={16} />
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.1em] text-cream/50">Physical Level</p>
+                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Physical Level</p>
                   <p className="text-[13px] font-semibold">{tour.level}</p>
                 </div>
               </div>
@@ -557,7 +557,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                           </span>
                           <div>
                             <p className="font-serif text-[15px] text-forest sm:text-base">{day.day}</p>
-                            <span className="mt-0.5 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.08em] text-green">
+                            <span className="mt-0.5 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-green">
                               <PinIcon size={11} />
                               {day.tag}
                             </span>

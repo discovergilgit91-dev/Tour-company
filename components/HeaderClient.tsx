@@ -165,7 +165,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                         ? menu.sections.map((section, sectionIndex) => (
                             <div key={sectionIndex}>
                               {section.eyebrow && (
-                                <p className="px-2 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+                                <p className="px-2 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70">
                                   {section.eyebrow}
                                 </p>
                               )}

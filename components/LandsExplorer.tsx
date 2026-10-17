@@ -95,7 +95,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
           <button
             type="button"
             onClick={() => setActiveCategory("all")}
-            className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-semibold sm:min-h-0 transition-colors duration-200 ${
+            className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-semibold lg:min-h-0 transition-colors duration-200 ${
               activeCategory === "all" ? "bg-green text-white" : "bg-forest/[0.05] text-muted hover:text-forest"
             }`}
           >
@@ -106,7 +106,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-medium sm:min-h-0 transition-colors duration-200 ${
+              className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-medium lg:min-h-0 transition-colors duration-200 ${
                 activeCategory === category ? "bg-green text-white" : "bg-forest/[0.05] text-muted hover:text-forest"
               }`}
             >
@@ -124,7 +124,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search destinations..."
-            className="w-full rounded-full border border-forest/12 bg-cream/40 py-2.5 pl-10 pr-9 text-sm text-forest placeholder:text-muted/50 outline-none transition-colors focus:border-green/50"
+            className="min-h-11 w-full rounded-full border border-forest/12 bg-cream/40 py-2.5 pl-10 pr-9 text-sm text-forest placeholder:text-muted/50 outline-none transition-colors focus:border-green/50"
           />
           {search && (
             <button

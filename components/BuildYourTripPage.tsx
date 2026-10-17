@@ -373,7 +373,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
           <div className="max-w-2xl">
-            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
               CUSTOM TRIP
             </span>
 
@@ -491,7 +491,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           <div>
                             <label
                               htmlFor="startDate"
-                              className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                              className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
                             >
                               Start date
                             </label>
@@ -507,7 +507,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           <div>
                             <label
                               htmlFor="endDate"
-                              className="mb-1.5 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                              className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
                             >
                               End date
                             </label>
@@ -679,7 +679,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
 
                     {/* ---- Summary ---- */}
                     <div className="rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3.5 lg:py-2.5">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-gold">Quick summary</p>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gold">Quick summary</p>
                       <p className="mt-1 text-[13px] leading-snug text-forest">{buildSummary()}</p>
                     </div>
 

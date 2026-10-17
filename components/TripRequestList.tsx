@@ -34,7 +34,7 @@ export default function TripRequestList({ requests }: { requests: MyTripRequest[
             >
               <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                 <span
-                  className={`inline-flex items-center rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] ${tag.className}`}
+                  className={`inline-flex items-center rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] ${tag.className}`}
                 >
                   {tag.label}
                 </span>

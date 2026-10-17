@@ -158,7 +158,7 @@ export default function ResetPasswordForm() {
               <ArrowIcon size={14} />
             </span>
           </LinkButton>
-          <Link href="/sign-in" className="mt-4 text-sm font-semibold text-green hover:text-green-dark">
+          <Link href="/sign-in" className="mt-2 inline-flex min-h-11 items-center text-sm font-semibold text-green hover:text-green-dark">
             Back to sign in
           </Link>
         </div>

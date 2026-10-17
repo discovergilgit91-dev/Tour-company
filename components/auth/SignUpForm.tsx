@@ -136,7 +136,7 @@ export default function SignUpForm() {
             We&apos;ve sent a confirmation link to <span className="font-semibold text-forest">{email}</span>. Open it to
             activate your account{pendingLabel ? ` and pick up your ${pendingLabel} right where you left off` : ""}.
           </p>
-          <Link href="/sign-in" className="mt-6 text-sm font-semibold text-green hover:text-green-dark">
+          <Link href="/sign-in" className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-green hover:text-green-dark">
             Back to sign in
           </Link>
         </div>
