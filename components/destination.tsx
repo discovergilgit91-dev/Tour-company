@@ -81,7 +81,7 @@ export default function FeaturedDestinations({
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-40 top-20 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
+        className="pointer-events-none absolute -right-40 top-20 h-[31.25rem] w-[31.25rem] rounded-full bg-green/5 blur-3xl"
       />
 
       <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -94,7 +94,7 @@ export default function FeaturedDestinations({
             </>
           }
           actions={
-            <LinkButton href={ctaHref} variant="dark" className="group w-fit shrink-0 self-start text-[11px] uppercase tracking-[0.12em] lg:self-end">
+            <LinkButton href={ctaHref} variant="dark" className="group w-fit shrink-0 self-start text-[0.6875rem] uppercase tracking-[0.12em] lg:self-end">
               {ctaLabel}
               <ArrowIcon size={14} />
             </LinkButton>

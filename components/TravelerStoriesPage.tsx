@@ -129,7 +129,7 @@ export default function TravelerStoriesPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+            className="pointer-events-none absolute -right-24 top-10 h-[23.75rem] w-[23.75rem] rounded-full bg-gold/10 blur-3xl"
           />
           <PeaksMotif className="absolute inset-x-0 bottom-0 h-[55%] w-full text-cream/[0.05]" />
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
@@ -137,15 +137,15 @@ export default function TravelerStoriesPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
           <div className="max-w-2xl">
-            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
               TRAVELER STORIES
             </span>
 
-            <h1 className="font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
+            <h1 className="font-serif text-[1.875rem] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
               Real trips. <span className="heading-accent">Real stories.</span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">
+            <p className="mt-5 max-w-xl text-[0.8438rem] leading-relaxed text-cream/85 sm:text-base md:text-lg">
               Honest words from the people who&rsquo;ve walked these valleys with us — no scripts, no stock
               reviews, just what they told us afterward.
             </p>
@@ -159,8 +159,8 @@ export default function TravelerStoriesPage() {
           <Slider as="div" spaced label="traveler stories" className="card-grid-loose">
             {STORIES.map((story, index) => (
               <Reveal key={story.name} delay={(index % 6) * 70}>
-                <article className="group flex h-full flex-col overflow-hidden rounded-[22px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.22)]">
-                  <div className="relative aspect-[4/3] min-h-[240px] w-full shrink-0 overflow-hidden">
+                <article className="group flex h-full flex-col overflow-hidden rounded-[1.375rem] bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_1.375rem_2.75rem_-1.125rem_rgba(18,36,28,0.22)]">
+                  <div className="relative aspect-[4/3] min-h-[15rem] w-full shrink-0 overflow-hidden">
                     <Image
                       src={story.photo}
                       alt={story.region}
@@ -170,17 +170,17 @@ export default function TravelerStoriesPage() {
                       className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/5 to-transparent" />
-                    <span className="absolute left-4 top-4 inline-flex items-center rounded-full border border-white/25 bg-night/40 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-cream backdrop-blur-sm">
+                    <span className="absolute left-4 top-4 inline-flex items-center rounded-full border border-white/25 bg-night/40 px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-cream backdrop-blur-sm">
                       {story.region}
                     </span>
                   </div>
 
                   <div className="relative flex flex-1 flex-col px-6 pb-6 pt-9">
-                    <div className="absolute -top-7 left-6 h-14 w-14 overflow-hidden rounded-full border-4 border-white shadow-[0_4px_14px_rgba(18,36,28,0.18)]">
+                    <div className="absolute -top-7 left-6 h-14 w-14 overflow-hidden rounded-full border-4 border-white shadow-[0_0.25rem_0.875rem_rgba(18,36,28,0.18)]">
                       <Image src={story.avatar} alt={story.name} fill sizes="56px" className="object-cover" />
                     </div>
 
-                    <p className="flex-1 text-[15px] leading-[1.55] text-forest/80">&ldquo;{story.quote}&rdquo;</p>
+                    <p className="flex-1 text-[0.9375rem] leading-[1.55] text-forest/80">&ldquo;{story.quote}&rdquo;</p>
 
                     <div className="mt-6 border-t border-forest/10 pt-5 lg:mt-4 lg:pt-4">
                       <p className="font-serif text-sm text-forest">{story.name}</p>
@@ -201,11 +201,11 @@ export default function TravelerStoriesPage() {
       <section className="relative w-full overflow-hidden bg-forest text-center section-y">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-24 top-0 h-[340px] w-[340px] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -left-24 top-0 h-[21.25rem] w-[21.25rem] rounded-full bg-gold/10 blur-3xl"
         />
         <div className="relative mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/50">
               <span className="h-px w-8 bg-cream/30" />
               Your turn
               <span className="h-px w-8 bg-cream/30" />
@@ -213,7 +213,7 @@ export default function TravelerStoriesPage() {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
               Ready to write your <span className="heading-accent">own story?</span>
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-cream/70 sm:text-base">
+            <p className="mt-4 text-[0.9375rem] leading-relaxed text-cream/70 sm:text-base">
               Tell us what you&rsquo;re dreaming of and a local trip planner will shape the rest around you.
             </p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">

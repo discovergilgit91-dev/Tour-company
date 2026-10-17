@@ -113,7 +113,7 @@ export function PasswordField({
               />
             ))}
           </div>
-          <span className="w-10 shrink-0 text-right text-[11px] font-semibold uppercase tracking-[0.06em] text-muted">
+          <span className="w-10 shrink-0 text-right text-[0.6875rem] font-semibold uppercase tracking-[0.06em] text-muted">
             {meta.label}
           </span>
         </div>

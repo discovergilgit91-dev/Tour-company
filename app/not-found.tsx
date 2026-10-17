@@ -17,14 +17,14 @@ export default function NotFound() {
       <main className="relative overflow-hidden bg-forest">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -left-24 top-10 h-[23.75rem] w-[23.75rem] rounded-full bg-gold/10 blur-3xl"
         />
-        <div className="relative z-10 mx-auto flex min-h-[max(70svh,520px)] w-full max-w-7xl flex-col justify-center px-5 pb-16 pt-32 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[max(70svh,32.5rem)] w-full max-w-7xl flex-col justify-center px-5 pb-16 pt-32 sm:px-6 lg:px-8">
           <p className="font-serif text-6xl font-semibold text-gold sm:text-7xl">404</p>
           <h1 className="mt-4 font-serif text-3xl font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
             This trail doesn&rsquo;t lead anywhere
           </h1>
-          <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-cream/80 sm:text-base">
+          <p className="mt-4 max-w-xl text-[0.8438rem] leading-relaxed text-cream/80 sm:text-base">
             The page you&rsquo;re looking for has moved or never existed. Pick one of these and you&rsquo;ll be back on
             the path.
           </p>

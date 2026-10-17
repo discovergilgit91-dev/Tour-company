@@ -34,7 +34,7 @@ export default function SectionHeader({
     <div className={`section-header ${intro || note || actions ? "" : "section-header--solo"} ${className}`}>
       <div className="min-w-0">
         <div
-          className={`mb-3 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] lg:mb-[1.2vh] ${
+          className={`mb-3 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] lg:mb-[1.2vh] ${
             dark ? "text-cream/60" : "text-muted"
           }`}
         >
@@ -53,7 +53,7 @@ export default function SectionHeader({
       {(intro || note || actions) && (
         <div className="section-header__side">
           {intro && (
-            <div className={`space-y-3 text-[15px] leading-[1.6] sm:text-base ${dark ? "text-cream/70" : "text-muted"}`}>
+            <div className={`space-y-3 text-[0.9375rem] leading-[1.6] sm:text-base ${dark ? "text-cream/70" : "text-muted"}`}>
               {typeof intro === "string" ? <p>{intro}</p> : intro}
             </div>
           )}

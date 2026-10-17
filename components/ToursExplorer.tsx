@@ -56,7 +56,7 @@ function FilterGroup({
 
   return (
     <div className="border-t border-forest/10 pt-5 first:border-t-0 first:pt-0">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
+      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">{label}</p>
       <div className="mt-3 flex flex-wrap gap-2">
         {options.map((option) => {
           const isActive = active.includes(option);
@@ -66,7 +66,7 @@ function FilterGroup({
               type="button"
               aria-pressed={isActive}
               onClick={() => onToggle(option)}
-              className={`inline-flex min-h-11 items-center rounded-full border px-3.5 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
+              className={`inline-flex min-h-11 items-center rounded-full border px-3.5 py-2 text-[0.8125rem] lg:min-h-0 font-medium transition-colors duration-300 ${
                 isActive
                   ? "border-green/30 bg-green/10 text-forest"
                   : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -87,7 +87,7 @@ function PhotoPlaceholder() {
       <svg width="28" height="18" viewBox="0 0 50 30" fill="none" aria-hidden="true">
         <path d="M2 27 17 6l8 11 6-7 15 17H2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
       </svg>
-      <span className="text-[11px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+      <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
     </div>
   );
 }
@@ -100,11 +100,11 @@ function TourCard({ tour, index }: { tour: Tour; index: number }) {
       ref={ref}
       href={tour.href}
       style={{ transitionDelay: visible ? `${(index % 6) * 80}ms` : "0ms" }}
-      className={`group flex h-full min-h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
+      className={`group flex h-full min-h-[26.875rem] w-full flex-col overflow-hidden rounded-[1.125rem] bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07)] outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
-      <div className="relative min-h-[260px] flex-1 overflow-hidden">
+      <div className="relative min-h-[16.25rem] flex-1 overflow-hidden">
         {tour.image ? (
           <Image
             src={tour.image}
@@ -119,36 +119,36 @@ function TourCard({ tour, index }: { tour: Tour; index: number }) {
 
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
 
-        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-forest/90 px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-white backdrop-blur-sm">
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-forest/90 px-3.5 py-2 font-sans text-[0.6875rem] font-semibold tracking-[0.06em] text-white backdrop-blur-sm">
           <ClockIcon size={14} />
           {tour.duration} {tour.duration === 1 ? "DAY" : "DAYS"}
         </div>
 
-        <div className="absolute right-4 top-4 inline-flex items-center rounded-full bg-gold px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-forest">
+        <div className="absolute right-4 top-4 inline-flex items-center rounded-full bg-gold px-3.5 py-2 font-sans text-[0.6875rem] font-semibold tracking-[0.06em] text-forest">
           From ${tour.price}
         </div>
 
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.13em]">
               {tour.location}
             </span>
           </div>
 
-          <h3 className="font-serif text-[23px] leading-[1.15] text-white">{tour.title}</h3>
+          <h3 className="font-serif text-[1.4375rem] leading-[1.15] text-white">{tour.title}</h3>
 
-          {tour.subtitle && <p className="mt-1 font-sans text-[14px] text-white/85">{tour.subtitle}</p>}
+          {tour.subtitle && <p className="mt-1 font-sans text-[0.875rem] text-white/85">{tour.subtitle}</p>}
         </div>
       </div>
 
       <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
         <div className="flex min-w-0 items-center gap-2.5 text-forest">
           <CalendarIcon size={16} />
-          <span className="truncate font-sans text-[13px]">{tour.dateRange}</span>
+          <span className="truncate font-sans text-[0.8125rem]">{tour.dateRange}</span>
         </div>
 
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_0.375rem_1.25rem_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
           <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
             <ArrowIcon size={16} />
           </span>
@@ -169,9 +169,9 @@ function CustomJourneyCard() {
   return (
     <Link
       href="/build-your-trip"
-      className="group flex h-full min-h-[430px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+      className="group flex h-full min-h-[26.875rem] w-full flex-col overflow-hidden rounded-[1.125rem] bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
-      <div className="relative min-h-[260px] flex-1 overflow-hidden">
+      <div className="relative min-h-[16.25rem] flex-1 overflow-hidden">
         <Image
           src="/Images/tours/custom.png"
           alt="A river winding through green terraced fields in a Gilgit-Baltistan valley"
@@ -182,7 +182,7 @@ function CustomJourneyCard() {
 
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
 
-        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-gold px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-forest">
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-gold px-3.5 py-2 font-sans text-[0.6875rem] font-semibold tracking-[0.06em] text-forest">
           <CompassIcon size={14} />
           CUSTOM
         </div>
@@ -190,14 +190,14 @@ function CustomJourneyCard() {
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.13em]">
               ANYWHERE IN GILGIT-BALTISTAN
             </span>
           </div>
 
-          <h3 className="font-serif text-[23px] leading-[1.15] text-white">Design Your Own Journey</h3>
+          <h3 className="font-serif text-[1.4375rem] leading-[1.15] text-white">Design Your Own Journey</h3>
 
-          <p className="mt-1 font-sans text-[14px] leading-snug text-white/85">
+          <p className="mt-1 font-sans text-[0.875rem] leading-snug text-white/85">
             Pick your destinations, dates, and pace — we&rsquo;ll build the trip around you.
           </p>
         </div>
@@ -206,10 +206,10 @@ function CustomJourneyCard() {
       <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
         <div className="flex min-w-0 items-center gap-2.5 text-forest">
           <CalendarIcon size={16} />
-          <span className="truncate font-sans text-[13px]">Fully customizable</span>
+          <span className="truncate font-sans text-[0.8125rem]">Fully customizable</span>
         </div>
 
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_0.375rem_1.25rem_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
           <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
             <ArrowIcon size={16} />
           </span>
@@ -259,19 +259,19 @@ function ComingSoonCard({ tour, index }: { tour: Tour; index: number }) {
       ref={ref}
       data-coming-card
       style={{ transitionDelay: visible ? `${(index % 4) * 90}ms` : "0ms" }}
-      className={`flex h-full w-full shrink-0 snap-start flex-col transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)] ${
+      className={`flex h-full w-full shrink-0 snap-start flex-col transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-3.75rem)/4)] ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       }`}
     >
-      <div className="relative aspect-[4/3] shrink-0 overflow-hidden rounded-[18px]">
+      <div className="relative aspect-[4/3] shrink-0 overflow-hidden rounded-[1.125rem]">
         <MountainBackdrop />
-        <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-cream/95 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-forest">
+        <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-cream/95 px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-forest">
           Coming Soon
         </span>
       </div>
       <div className="mt-4 flex flex-1 flex-col">
         <h3 className="line-clamp-2 font-serif text-lg leading-tight text-forest">{tour.title}</h3>
-        <p className="mt-auto pt-1.5 text-[15px] leading-[1.55] text-muted">{tour.location}</p>
+        <p className="mt-auto pt-1.5 text-[0.9375rem] leading-[1.55] text-muted">{tour.location}</p>
       </div>
     </div>
   );
@@ -433,7 +433,7 @@ function AdvantageCard({
     <div
       ref={ref}
       style={{ transitionDelay: visible ? `${index * 100}ms` : "0ms" }}
-      className={`group relative overflow-hidden rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.05)] transition-[opacity,transform,box-shadow,border-color] duration-700 ease-out hover:-translate-y-1.5 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(18,36,28,0.18)] motion-reduce:transition-none ${
+      className={`group relative overflow-hidden rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.05)] transition-[opacity,transform,box-shadow,border-color] duration-700 ease-out hover:-translate-y-1.5 hover:border-gold/30 hover:shadow-[0_1.25rem_2.5rem_-1rem_rgba(18,36,28,0.18)] motion-reduce:transition-none ${
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
       } p-5 sm:p-6`}
     >
@@ -448,8 +448,8 @@ function AdvantageCard({
         <Icon size={22} />
       </span>
 
-      <h3 className="relative mt-4 font-serif text-xl leading-tight text-forest sm:text-[22px]">{title}</h3>
-      <p className="relative mt-2 text-[15px] leading-[1.55] text-muted">{description}</p>
+      <h3 className="relative mt-4 font-serif text-xl leading-tight text-forest sm:text-[1.375rem]">{title}</h3>
+      <p className="relative mt-2 text-[0.9375rem] leading-[1.55] text-muted">{description}</p>
 
       <span className="relative mt-5 block h-px w-8 bg-forest/15 transition-all duration-500 ease-out group-hover:w-12 group-hover:bg-gold" />
     </div>
@@ -461,7 +461,7 @@ function WhyTravelWithUs() {
     <section className="relative w-full overflow-hidden bg-cream section-b section-t-tight">
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-40 top-10 h-[420px] w-[420px] rounded-full bg-green/5 blur-3xl"
+        className="pointer-events-none absolute -left-40 top-10 h-[26.25rem] w-[26.25rem] rounded-full bg-green/5 blur-3xl"
       />
 
       <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -519,7 +519,7 @@ function ClosingCta() {
       >
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-24 top-1/2 hidden h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-gold/10 blur-3xl lg:block"
+          className="pointer-events-none absolute -right-24 top-1/2 hidden h-[26.25rem] w-[26.25rem] -translate-y-1/2 rounded-full bg-gold/10 blur-3xl lg:block"
         />
         <svg
           aria-hidden
@@ -536,14 +536,14 @@ function ClosingCta() {
         </svg>
 
         <div className="relative max-w-xl">
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/60">
+          <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/60">
             <span className="h-px w-8 bg-cream/30" />
             Your next mountain story
           </div>
           <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-cream sm:text-5xl">
             <span className="heading-accent">Starts here.</span>
           </h2>
-          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-cream/70 sm:text-base">
+          <p className="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-cream/70 sm:text-base">
             Explore our upcoming tours and events, and be part of something extraordinary.
           </p>
 
@@ -614,16 +614,16 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
       <ComingSoonSection tours={tours} />
 
       <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-2 sm:px-6 sm:pb-20 lg:px-8 lg:pb-24">
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr] lg:gap-14">
+      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[16.25rem_1fr] lg:gap-14">
         {/* ---------------- left sidebar: filters + quick facts ---------------- */}
         <aside className="lg:sticky lg:top-28 lg:self-start">
           <div className="flex items-center justify-between gap-3">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Filter tours</p>
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">Filter tours</p>
             {activeCount > 0 && (
               <button
                 type="button"
                 onClick={clearAll}
-                className="text-[11px] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
+                className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
               >
                 Clear ({activeCount})
               </button>
@@ -648,7 +648,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
           </div>
 
           <div className="mt-6 rounded-2xl border border-forest/10 bg-white p-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">At a glance</p>
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">At a glance</p>
             <dl className="mt-4 space-y-3 text-sm">
               <div className="flex items-center justify-between gap-3">
                 <dt className="text-muted">Tours &amp; events</dt>
@@ -678,7 +678,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
           <LinkButton
             href="/#contact"
             variant="dark"
-            className="group mt-5 w-full justify-center gap-2 text-[11px] uppercase tracking-[0.12em]"
+            className="group mt-5 w-full justify-center gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
           >
             Need a custom itinerary?
             <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -710,7 +710,7 @@ export default function ToursExplorer({ tours }: { tours: Tour[] }) {
                 <button
                   type="button"
                   onClick={clearAll}
-                  className="mt-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
+                  className="mt-5 inline-flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green underline-offset-4 hover:underline"
                 >
                   Clear all filters
                 </button>

@@ -225,20 +225,20 @@ function EventDetailsCard() {
   }
 
   return (
-    <div className="rounded-[22px] border border-cream/10 bg-night p-5">
+    <div className="rounded-[1.375rem] border border-cream/10 bg-night p-5">
       <dl className="space-y-4">
         <div>
-          <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Event Dates</dt>
+          <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-gold">Event Dates</dt>
           <dd className="mt-1 font-serif text-lg text-cream">12 Aug – 14 Aug, 2027</dd>
           <dd className="mt-0.5 text-xs text-cream/50">3 Days of Culture, Music &amp; Celebration</dd>
         </div>
         <div className="border-t border-cream/10 pt-4">
-          <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Location</dt>
+          <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-gold">Location</dt>
           <dd className="mt-1 font-serif text-lg text-cream">Gilgit City</dd>
           <dd className="mt-0.5 text-xs text-cream/50">Gilgit-Baltistan, Pakistan</dd>
         </div>
         <div className="border-t border-cream/10 pt-4">
-          <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Organized By</dt>
+          <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-gold">Organized By</dt>
           <dd className="mt-1 font-serif text-lg text-cream">Gilgit-Baltistan Cultural Council</dd>
           <dd className="mt-0.5 text-xs text-cream/50">Preserving Heritage, Inspiring Unity</dd>
         </div>
@@ -247,7 +247,7 @@ function EventDetailsCard() {
       <button
         type="button"
         onClick={handleAddToCalendar}
-        className="group mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-6px_rgba(201,161,90,0.5)] active:translate-y-0 active:scale-[0.97]"
+        className="group mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_0.75rem_1.75rem_-0.375rem_rgba(201,161,90,0.5)] active:translate-y-0 active:scale-[0.97]"
       >
         <CalendarIcon size={16} />
         Add to Calendar
@@ -265,9 +265,9 @@ export default function FestivalPage() {
       {/* ---------------- Five Cultures, One Celebration ---------------- */}
       <section className="relative w-full overflow-hidden bg-cream section-y">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,280px)_1fr] lg:gap-14">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,17.5rem)_1fr] lg:gap-14">
             <Reveal>
-              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+              <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
                 <span className="h-px w-8 bg-muted/60" />
                 The highlights
               </div>
@@ -276,7 +276,7 @@ export default function FestivalPage() {
                 <br />
                 <span className="text-green">One Celebration</span>
               </h2>
-              <p className="mt-5 text-[15px] leading-[1.55] text-muted">
+              <p className="mt-5 text-[0.9375rem] leading-[1.55] text-muted">
                 Experience the rich traditions of Shina, Balti, Burushaski, Wakhi and Khowar — each with its own
                 language, dress, dance and way of life.
               </p>
@@ -287,7 +287,7 @@ export default function FestivalPage() {
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest/[0.06] text-forest">
                       <Icon size={19} />
                     </span>
-                    <p className="text-[11px] font-semibold uppercase leading-snug tracking-[0.1em] text-muted">
+                    <p className="text-[0.6875rem] font-semibold uppercase leading-snug tracking-[0.1em] text-muted">
                       {label}
                     </p>
                   </div>
@@ -300,7 +300,7 @@ export default function FestivalPage() {
                 {CULTURES.map((culture, index) => (
                   <Reveal key={culture.name} delay={index * 90}>
                     <div className="group">
-                      <div className="relative aspect-[3/4] overflow-hidden rounded-[18px] bg-forest/10 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+                      <div className="relative aspect-[3/4] overflow-hidden rounded-[1.125rem] bg-forest/10 transition-transform duration-500 ease-out group-hover:scale-[1.03]">
                         <Image
                           src={culture.src}
                           alt={culture.alt}
@@ -322,7 +322,7 @@ export default function FestivalPage() {
               </div>
 
               <Reveal delay={200}>
-                <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 rounded-[22px] border border-forest/10 bg-white sm:grid-cols-4 p-5 sm:p-6">
+                <div className="mt-8 grid grid-cols-2 gap-x-6 gap-y-6 rounded-[1.375rem] border border-forest/10 bg-white sm:grid-cols-4 p-5 sm:p-6">
                   {CULTURE_STATS.map((stat) => (
                     <div key={stat.label}>
                       <p className="font-serif text-3xl text-forest sm:text-4xl">{stat.value}</p>
@@ -339,9 +339,9 @@ export default function FestivalPage() {
       {/* ---------------- More Than a Festival ---------------- */}
       <section className="relative w-full overflow-hidden bg-night section-y">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr_320px] lg:gap-12">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr_20rem] lg:gap-12">
             <Reveal>
-              <div className="relative aspect-[4/5] overflow-hidden rounded-[22px] border border-cream/10 bg-gradient-to-br from-green-dark to-night shadow-[0_24px_60px_-24px_rgba(0,0,0,0.5)] lg:aspect-auto lg:h-full">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[1.375rem] border border-cream/10 bg-gradient-to-br from-green-dark to-night shadow-[0_1.5rem_3.75rem_-1.5rem_rgba(0,0,0,0.5)] lg:aspect-auto lg:h-full">
                 <svg
                   viewBox="0 0 500 600"
                   preserveAspectRatio="xMidYMid slice"
@@ -375,14 +375,14 @@ export default function FestivalPage() {
             </Reveal>
 
             <Reveal delay={100}>
-              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50 lg:mb-[1.2vh]">
+              <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/50 lg:mb-[1.2vh]">
                 <span className="h-px w-8 bg-cream/30" />
                 About the festival
               </div>
               <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
                 More Than a Festival
               </h2>
-              <p className="mt-5 text-[15px] leading-[1.55] text-cream/65 lg:mt-[1.5vh]">
+              <p className="mt-5 text-[0.9375rem] leading-[1.55] text-cream/65 lg:mt-[1.5vh]">
                 The Gilgit-Baltistan Cultural Festival is not just an event, it&rsquo;s a heartfelt celebration of
                 our people, their stories, traditions, and resilient spirit. It brings together local communities,
                 artists, and visitors to promote cultural exchange and preserve our unique heritage for generations
@@ -397,7 +397,7 @@ export default function FestivalPage() {
 
               <div className="mt-8 flex flex-wrap gap-x-8 gap-y-5 border-t border-cream/10 pt-6 lg:mt-[2vh] lg:pt-[1.5vh]">
                 {FESTIVAL_STATS.map((stat) => (
-                  <div key={stat.label} className="min-w-[90px] shrink-0 grow">
+                  <div key={stat.label} className="min-w-[5.625rem] shrink-0 grow">
                     <p className="whitespace-nowrap font-serif text-3xl text-gold sm:text-4xl">{stat.value}</p>
                     <p className="mt-1.5 text-xs leading-snug text-cream/50">{stat.label}</p>
                   </div>
@@ -450,7 +450,7 @@ export default function FestivalPage() {
                 <LinkButton
                   href="/tours/gilgit-cultural-festival/gallery"
                   variant="dark"
-                  className="group gap-2 text-[11px] uppercase tracking-[0.12em]"
+                  className="group gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
                 >
                   View All Photos
                   <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -464,7 +464,7 @@ export default function FestivalPage() {
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {GALLERY_TILES.map((tile, index) => (
               <Reveal key={tile.caption} delay={index * 90}>
-                <div className="group relative aspect-square overflow-hidden rounded-[18px]">
+                <div className="group relative aspect-square overflow-hidden rounded-[1.125rem]">
                   <Image
                     src={tile.src}
                     alt={tile.alt}
@@ -475,7 +475,7 @@ export default function FestivalPage() {
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-transparent to-transparent" />
-                  <span className="absolute inset-x-4 bottom-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/85">
+                  <span className="absolute inset-x-4 bottom-4 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-cream/85">
                     {tile.caption}
                   </span>
                 </div>
@@ -494,7 +494,7 @@ export default function FestivalPage() {
       <section className="relative w-full overflow-hidden bg-cream text-center section-y">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
               Join us
               <span className="h-px w-8 bg-muted/60" />
@@ -502,7 +502,7 @@ export default function FestivalPage() {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
               Be part of the celebration
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">
+            <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted sm:text-base">
               Plan your trip around the festival and experience the culture of Gilgit-Baltistan first-hand.
             </p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">

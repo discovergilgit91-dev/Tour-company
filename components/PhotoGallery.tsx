@@ -231,7 +231,7 @@ export default function PhotoGallery({
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-night/5 to-transparent" />
               {isFeatured ? (
-                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gold/95 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-forest">
+                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gold/95 px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-forest">
                   <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12 2 14.9 8.9 22 9.5 16.7 14.1 18.2 21 12 17.3 5.8 21 7.3 14.1 2 9.5 9.1 8.9 12 2Z" />
                   </svg>
@@ -239,7 +239,7 @@ export default function PhotoGallery({
                 </span>
               ) : (
                 photo.tag && (
-                  <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/55 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-cream/90 backdrop-blur-sm">
+                  <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/55 px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-cream/90 backdrop-blur-sm">
                     {photo.tag}
                   </span>
                 )
@@ -261,12 +261,12 @@ export default function PhotoGallery({
                   type="button"
                   onClick={() => setOpenIndex(lightboxIndex)}
                   aria-label={`Open photo: ${photo.caption}`}
-                  className="group relative block h-full w-full cursor-zoom-in overflow-hidden rounded-[18px] outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+                  className="group relative block h-full w-full cursor-zoom-in overflow-hidden rounded-[1.125rem] outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
                 >
                   {inner}
                 </button>
               ) : (
-                <div className="group relative block h-full w-full overflow-hidden rounded-[18px]">{inner}</div>
+                <div className="group relative block h-full w-full overflow-hidden rounded-[1.125rem]">{inner}</div>
               )}
             </Reveal>
           );

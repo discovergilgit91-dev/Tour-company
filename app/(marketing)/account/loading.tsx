@@ -5,7 +5,7 @@ export default function Loading() {
         <div className="h-3 w-24 rounded-full bg-forest/10" />
         <div className="mt-3 h-9 w-64 rounded-lg bg-forest/10" />
 
-        <div className="mt-8 rounded-[22px] border border-forest/10 bg-white shadow-sm p-5 sm:p-6">
+        <div className="mt-8 rounded-[1.375rem] border border-forest/10 bg-white shadow-sm p-5 sm:p-6">
           <div className="flex items-center gap-5">
             <div className="h-20 w-20 shrink-0 rounded-full bg-forest/10" />
             <div className="min-w-0 flex-1 space-y-2">
@@ -19,7 +19,7 @@ export default function Loading() {
           </div>
         </div>
 
-        <div className="mt-6 h-24 rounded-[22px] border border-forest/10 bg-white shadow-sm sm:h-28" />
+        <div className="mt-6 h-24 rounded-[1.375rem] border border-forest/10 bg-white shadow-sm sm:h-28" />
       </div>
     </main>
   );

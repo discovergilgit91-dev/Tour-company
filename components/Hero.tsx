@@ -121,7 +121,7 @@ function VideoModal({ label, onClose }: { label: string; onClose: () => void }) 
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl overflow-hidden rounded-[22px] border border-cream/10 bg-forest shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)]"
+        className="relative w-full max-w-3xl overflow-hidden rounded-[1.375rem] border border-cream/10 bg-forest shadow-[0_2.5rem_5rem_-1.25rem_rgba(0,0,0,0.6)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -203,7 +203,7 @@ function usePopoverClose(open: boolean, onClose: () => void, ref: React.RefObjec
 }
 
 const TOGGLE_BUTTON_CLASS = (active: boolean) =>
-  `flex-1 rounded-xl border px-3 py-2 text-[12px] font-medium transition-all duration-200 ${
+  `flex-1 rounded-xl border px-3 py-2 text-[0.75rem] font-medium transition-all duration-200 ${
     active
       ? "border-green bg-green/[0.06] text-green"
       : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -260,14 +260,14 @@ export function SearchBar() {
 
   return (
     <div className="hero-search w-full">
-      <div className="flex flex-col items-stretch gap-1.5 rounded-2xl bg-white p-1.5 shadow-[0_15px_40px_-12px_rgba(20,35,31,0.35)] sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:p-2 sm:shadow-[0_25px_60px_-15px_rgba(20,35,31,0.4)]">
+      <div className="flex flex-col items-stretch gap-1.5 rounded-2xl bg-white p-1.5 shadow-[0_0.9375rem_2.5rem_-0.75rem_rgba(20,35,31,0.35)] sm:flex-row sm:items-center sm:gap-0 sm:rounded-full sm:p-2 sm:shadow-[0_1.5625rem_3.75rem_-0.9375rem_rgba(20,35,31,0.4)]">
         <div ref={destinationRef} className="relative flex min-w-0 flex-1 items-center gap-3 px-3.5 py-2 sm:px-4">
           <svg
             width="17"
             height="17"
             viewBox="0 0 24 24"
             fill="none"
-            className="shrink-0 text-green sm:h-[18px] sm:w-[18px]"
+            className="shrink-0 text-green sm:h-[1.125rem] sm:w-[1.125rem]"
             stroke="currentColor"
             strokeWidth="1.8"
           >
@@ -275,7 +275,7 @@ export function SearchBar() {
             <circle cx="12" cy="9.5" r="2.3" />
           </svg>
           <div className="flex min-w-0 flex-1 flex-col">
-            <span className="text-[12.5px] font-semibold text-forest sm:text-[13px]">
+            <span className="text-[0.78125rem] font-semibold text-forest sm:text-[0.8125rem]">
               Where do you want to go?
             </span>
             <input
@@ -288,12 +288,12 @@ export function SearchBar() {
               onFocus={() => setDestinationOpen(true)}
               placeholder="Search destination..."
               autoComplete="off"
-              className="w-full min-w-0 bg-transparent text-[13px] text-forest/50 outline-none placeholder:text-forest/40 max-lg:-my-1.5 max-lg:min-h-11"
+              className="w-full min-w-0 bg-transparent text-[0.8125rem] text-forest/50 outline-none placeholder:text-forest/40 max-lg:-my-1.5 max-lg:min-h-11"
             />
           </div>
 
           {destinationOpen && (
-            <div className="absolute left-0 top-full z-[60] mt-2 max-h-64 w-full min-w-[220px] overflow-y-auto rounded-2xl bg-white p-2 shadow-[0_20px_45px_-12px_rgba(7,23,25,0.35)] ring-1 ring-black/5">
+            <div className="absolute left-0 top-full z-[60] mt-2 max-h-64 w-full min-w-[13.75rem] overflow-y-auto rounded-2xl bg-white p-2 shadow-[0_1.25rem_2.8125rem_-0.75rem_rgba(7,23,25,0.35)] ring-1 ring-black/5">
               {filteredDestinations.length > 0 ? (
                 filteredDestinations.map((place) => (
                   <button
@@ -303,13 +303,13 @@ export function SearchBar() {
                       setDestination(place);
                       setDestinationOpen(false);
                     }}
-                    className="flex w-full items-center rounded-xl px-3 py-2 text-left text-[13px] text-forest/80 transition-colors hover:bg-forest/[0.06] hover:text-forest"
+                    className="flex w-full items-center rounded-xl px-3 py-2 text-left text-[0.8125rem] text-forest/80 transition-colors hover:bg-forest/[0.06] hover:text-forest"
                   >
                     {place}
                   </button>
                 ))
               ) : (
-                <p className="px-3 py-2 text-[12.5px] text-forest/40">No matching destinations</p>
+                <p className="px-3 py-2 text-[0.78125rem] text-forest/40">No matching destinations</p>
               )}
             </div>
           )}
@@ -324,7 +324,7 @@ export function SearchBar() {
             height="17"
             viewBox="0 0 24 24"
             fill="none"
-            className="shrink-0 text-green sm:h-[18px] sm:w-[18px]"
+            className="shrink-0 text-green sm:h-[1.125rem] sm:w-[1.125rem]"
             stroke="currentColor"
             strokeWidth="1.8"
           >
@@ -336,16 +336,16 @@ export function SearchBar() {
             onClick={() => setDatesOpen((prev) => !prev)}
             className="flex min-w-0 flex-1 flex-col justify-center text-left max-lg:min-h-11"
           >
-            <span className="text-[12.5px] font-semibold text-forest sm:text-[13px]">
+            <span className="text-[0.78125rem] font-semibold text-forest sm:text-[0.8125rem]">
               Select Dates
             </span>
-            <span className="w-full min-w-0 truncate text-[12.5px] text-forest/50 sm:text-[13px]">
+            <span className="w-full min-w-0 truncate text-[0.78125rem] text-forest/50 sm:text-[0.8125rem]">
               {datesLabel || <span className="text-forest/40">Check in – Check out</span>}
             </span>
           </button>
 
           {datesOpen && (
-            <div className="absolute left-0 top-full z-[60] mt-2 w-[290px] rounded-2xl bg-white p-4 shadow-[0_20px_45px_-12px_rgba(7,23,25,0.35)] ring-1 ring-black/5">
+            <div className="absolute left-0 top-full z-[60] mt-2 w-[18.125rem] rounded-2xl bg-white p-4 shadow-[0_1.25rem_2.8125rem_-0.75rem_rgba(7,23,25,0.35)] ring-1 ring-black/5">
               <div className="flex gap-2">
                 <button
                   type="button"
@@ -370,7 +370,7 @@ export function SearchBar() {
                   <div>
                     <label
                       htmlFor="hero-start-date"
-                      className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                      className="mb-1 block text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-muted/70"
                     >
                       Start
                     </label>
@@ -379,13 +379,13 @@ export function SearchBar() {
                       type="date"
                       value={startDate}
                       onChange={(event) => setStartDate(event.target.value)}
-                      className="w-full cursor-pointer rounded-lg border border-forest/12 bg-white px-2.5 py-2 text-[12px] text-forest outline-none focus:border-green/50"
+                      className="w-full cursor-pointer rounded-lg border border-forest/12 bg-white px-2.5 py-2 text-[0.75rem] text-forest outline-none focus:border-green/50"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="hero-end-date"
-                      className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                      className="mb-1 block text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-muted/70"
                     >
                       End
                     </label>
@@ -395,7 +395,7 @@ export function SearchBar() {
                       value={endDate}
                       min={startDate || undefined}
                       onChange={(event) => setEndDate(event.target.value)}
-                      className="w-full cursor-pointer rounded-lg border border-forest/12 bg-white px-2.5 py-2 text-[12px] text-forest outline-none focus:border-green/50"
+                      className="w-full cursor-pointer rounded-lg border border-forest/12 bg-white px-2.5 py-2 text-[0.75rem] text-forest outline-none focus:border-green/50"
                     />
                   </div>
                 </div>
@@ -404,7 +404,7 @@ export function SearchBar() {
               <button
                 type="button"
                 onClick={() => setDatesOpen(false)}
-                className="mt-3 w-full rounded-xl bg-forest/[0.06] py-2 text-[12px] font-semibold text-forest transition-colors hover:bg-forest/[0.1]"
+                className="mt-3 w-full rounded-xl bg-forest/[0.06] py-2 text-[0.75rem] font-semibold text-forest transition-colors hover:bg-forest/[0.1]"
               >
                 Done
               </button>
@@ -421,7 +421,7 @@ export function SearchBar() {
             height="17"
             viewBox="0 0 24 24"
             fill="none"
-            className="shrink-0 text-green sm:h-[18px] sm:w-[18px]"
+            className="shrink-0 text-green sm:h-[1.125rem] sm:w-[1.125rem]"
             stroke="currentColor"
             strokeWidth="1.8"
           >
@@ -431,13 +431,13 @@ export function SearchBar() {
             <path d="M15 12.5c1.8.4 3.2 1.8 3.5 4" />
           </svg>
           <div className="flex min-w-0 flex-1 flex-col">
-            <span className="text-[12.5px] font-semibold text-forest sm:text-[13px]">
+            <span className="text-[0.78125rem] font-semibold text-forest sm:text-[0.8125rem]">
               Travelers
             </span>
             <select
               value={travelers}
               onChange={(event) => setTravelers(event.target.value)}
-              className="w-full min-w-0 cursor-pointer appearance-none bg-transparent text-[13px] text-forest/50 outline-none max-lg:-my-1.5 max-lg:min-h-11"
+              className="w-full min-w-0 cursor-pointer appearance-none bg-transparent text-[0.8125rem] text-forest/50 outline-none max-lg:-my-1.5 max-lg:min-h-11"
             >
               {TRAVELER_OPTIONS.map((option) => (
                 <option key={option}>{option}</option>
@@ -460,7 +460,7 @@ export function SearchBar() {
         <button
           type="button"
           onClick={handleSearch}
-          className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-green px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out hover:bg-green-dark hover:shadow-[0_10px_24px_-4px_rgba(31,106,76,0.5)] active:scale-[0.97] sm:px-6"
+          className="flex shrink-0 items-center justify-center gap-2 rounded-full bg-green px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out hover:bg-green-dark hover:shadow-[0_0.625rem_1.5rem_-0.25rem_rgba(31,106,76,0.5)] active:scale-[0.97] sm:px-6"
         >
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
             <circle cx="11" cy="11" r="7" />
@@ -530,7 +530,7 @@ export default function Hero({
 
   return (
     <section className="relative bg-forest">
-      <div className="relative min-h-[max(76svh,520px)] w-full sm:min-h-[max(82svh,520px)] md:min-h-[max(86svh,520px)]">
+      <div className="relative min-h-[max(76svh,32.5rem)] w-full sm:min-h-[max(82svh,32.5rem)] md:min-h-[max(86svh,32.5rem)]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           {resolvedSlides.map((slide, i) => (
             <div
@@ -583,7 +583,7 @@ export default function Hero({
         </div>
 
         <div
-          className={`relative z-10 mx-auto flex min-h-[max(76svh,520px)] max-w-7xl flex-col justify-center px-5 pt-28 sm:min-h-[max(82svh,520px)] sm:px-6 sm:pt-32 md:min-h-[max(86svh,520px)] md:pt-36 lg:px-8 ${
+          className={`relative z-10 mx-auto flex min-h-[max(76svh,32.5rem)] max-w-7xl flex-col justify-center px-5 pt-28 sm:min-h-[max(82svh,32.5rem)] sm:px-6 sm:pt-32 md:min-h-[max(86svh,32.5rem)] md:pt-36 lg:px-8 ${
             showSearchBar
               ? "pb-40 sm:pb-16 md:pb-20"
               : "pb-16 sm:pb-20 md:pb-24"
@@ -592,14 +592,14 @@ export default function Hero({
           <div key={active} className="hero-content max-w-3xl motion-reduce:animate-none">
             {currentSlide.badge && (
               <div className="hero-badge">
-                <span className="inline-block rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+                <span className="inline-block rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
                   {currentSlide.badge}
                 </span>
               </div>
             )}
 
             <div className="mt-4 overflow-hidden sm:mt-5">
-              <h1 className="hero-heading font-serif text-[30px] font-semibold leading-[1.12] tracking-tight sm:text-5xl">
+              <h1 className="hero-heading font-serif text-[1.875rem] font-semibold leading-[1.12] tracking-tight sm:text-5xl">
                 <span className="text-cream">{currentSlide.titleLine1}</span>
                 {currentSlide.titleLine2 && (
                   <>
@@ -612,7 +612,7 @@ export default function Hero({
 
             {currentSlide.description && (
               <div className="overflow-hidden">
-                <p className="hero-description mt-4 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:mt-5 sm:text-base md:text-lg">
+                <p className="hero-description mt-4 max-w-xl text-[0.8438rem] leading-relaxed text-cream/85 sm:mt-5 sm:text-base md:text-lg">
                   {currentSlide.description}
                 </p>
               </div>

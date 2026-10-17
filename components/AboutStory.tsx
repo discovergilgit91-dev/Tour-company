@@ -122,7 +122,7 @@ export default function AboutStory() {
       {/* background: glow + faint topographic lines */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 top-1/3 h-[420px] w-[420px] rounded-full bg-green/10 blur-3xl"
+        className="pointer-events-none absolute -left-32 top-1/3 h-[26.25rem] w-[26.25rem] rounded-full bg-green/10 blur-3xl"
       />
       <svg
         aria-hidden
@@ -146,7 +146,7 @@ export default function AboutStory() {
           {/* offset gold frame that slides out from behind the photo */}
           <div
             aria-hidden
-            className={`pointer-events-none absolute inset-0 rounded-[28px] border border-gold/35 transition-all duration-[1400ms] ease-out motion-reduce:transition-none ${
+            className={`pointer-events-none absolute inset-0 rounded-[1.75rem] border border-gold/35 transition-all duration-[1400ms] ease-out motion-reduce:transition-none ${
               inView
                 ? "translate-x-3 translate-y-3 opacity-100 sm:translate-x-4 sm:translate-y-4"
                 : "translate-x-0 translate-y-0 opacity-0"
@@ -156,7 +156,7 @@ export default function AboutStory() {
 
           {/* the photo: revealed like a curtain, with a slow settle-in zoom */}
           <div
-            className={`relative aspect-[4/3] w-full overflow-hidden rounded-[28px] transition-[clip-path] duration-[1400ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
+            className={`relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] transition-[clip-path] duration-[1400ms] ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none ${
               inView ? "[clip-path:inset(0_0_0_0)]" : "[clip-path:inset(100%_0_0_0)]"
             }`}
           >
@@ -183,8 +183,8 @@ export default function AboutStory() {
                 <CompassIcon size={18} />
               </span>
               <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">On the trail</p>
-                <p className="mt-0.5 truncate text-[11px] text-cream/70">35.9° N, 74.3° E — Gilgit-Baltistan</p>
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">On the trail</p>
+                <p className="mt-0.5 truncate text-[0.6875rem] text-cream/70">35.9° N, 74.3° E — Gilgit-Baltistan</p>
               </div>
             </div>
           </div>
@@ -207,13 +207,13 @@ export default function AboutStory() {
                 </textPath>
               </text>
             </svg>
-            <LogoIcon className="relative h-[54px] w-[54px] sm:h-[68px] sm:w-[68px] lg:h-[76px] lg:w-[76px]" sizes="152px" quality={90} />
+            <LogoIcon className="relative h-[3.375rem] w-[3.375rem] sm:h-[4.25rem] sm:w-[4.25rem] lg:h-[4.75rem] lg:w-[4.75rem]" sizes="152px" quality={90} />
           </div>
         </div>
 
         {/* ------------------------------ text side ------------------------------ */}
         <div className="order-1 lg:order-2">
-          <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/60 lg:mb-[1.5vh]">
+          <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/60 lg:mb-[1.5vh]">
             <span
               className={`h-px bg-cream/30 transition-[width] duration-700 ease-out motion-reduce:transition-none ${
                 inView ? "w-8" : "w-0"
@@ -247,7 +247,7 @@ export default function AboutStory() {
           </h2>
 
           <p
-            className={`mt-6 max-w-xl text-[15px] leading-[1.55] text-cream/70 sm:text-base lg:mt-[2vh] ${reveal(450).className}`}
+            className={`mt-6 max-w-xl text-[0.9375rem] leading-[1.55] text-cream/70 sm:text-base lg:mt-[2vh] ${reveal(450).className}`}
             style={reveal(450).style}
           >
             Discover Gilgit started with a simple belief: the best way to see
@@ -262,12 +262,12 @@ export default function AboutStory() {
             className={`mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 lg:mt-[2vh] ${reveal(600).className}`}
             style={reveal(600).style}
           >
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/45">Every route is</span>
+            <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/45">Every route is</span>
             {STEPS.map((step, i) => (
               <Fragment key={step}>
                 {i > 0 && <span aria-hidden className="h-px w-4 bg-gold/40" />}
                 <span className="inline-flex items-center gap-2 rounded-full border border-cream/15 bg-cream/[0.04] px-3 py-1.5 text-xs text-cream/85 transition-colors duration-300 hover:border-gold/50 hover:text-gold">
-                  <span className="font-serif text-[11px] text-gold">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="font-serif text-[0.6875rem] text-gold">{String(i + 1).padStart(2, "0")}</span>
                   {step}
                 </span>
               </Fragment>
@@ -289,7 +289,7 @@ export default function AboutStory() {
                 <p className="font-serif text-2xl tabular-nums text-gold sm:text-3xl">
                   <CountUp to={stat.value} suffix={stat.suffix} start={inView} />
                 </p>
-                <p className="mt-1 text-[11px] leading-snug text-cream/55">{stat.label}</p>
+                <p className="mt-1 text-[0.6875rem] leading-snug text-cream/55">{stat.label}</p>
               </div>
             ))}
           </div>

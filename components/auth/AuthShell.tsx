@@ -23,7 +23,7 @@ function RotatingBadge() {
   return (
     // Gold ring + layered shadow lift the badge off the photo; it is larger
     // from lg up (where it is shown) and bigger again on wide screens.
-    <div className="relative flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-2 border-gold/70 bg-night/60 shadow-[0_14px_32px_-6px_rgba(0,0,0,0.6),0_2px_8px_rgba(0,0,0,0.35),0_0_0_5px_rgba(201,161,90,0.12)] backdrop-blur-md xl:h-32 xl:w-32">
+    <div className="relative flex h-28 w-28 shrink-0 items-center justify-center rounded-full border-2 border-gold/70 bg-night/60 shadow-[0_0.875rem_2rem_-0.375rem_rgba(0,0,0,0.6),0_0.125rem_0.5rem_rgba(0,0,0,0.35),0_0_0_0.3125rem_rgba(201,161,90,0.12)] backdrop-blur-md xl:h-32 xl:w-32">
       <svg viewBox="0 0 120 120" className="auth-spin absolute inset-0 h-full w-full text-cream/70">
         <defs>
           <path id="auth-ring" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0" />
@@ -115,22 +115,22 @@ export function AuthShell({
               Its bottom margin keeps the gap above the quote card from being
               squeezed by the logo's margin above. */}
           <div className="relative z-10 hidden max-w-md lg:mb-9 lg:block">
-            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
               {eyebrow}
             </span>
-            <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
+            <h1 className="mt-5 font-serif text-[1.875rem] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
               {title}
               <br />
               <span className="heading-accent">{titleAccent}</span>
             </h1>
-            <p className="mt-4 max-w-sm text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">{tagline}</p>
+            <p className="mt-4 max-w-sm text-[0.8438rem] leading-relaxed text-cream/85 sm:text-base md:text-lg">{tagline}</p>
 
             {stats && (
               <div className="mt-8 flex items-center gap-6 border-t border-cream/15 pt-6">
                 {stats.map((stat) => (
                   <div key={stat.label}>
                     <p className="font-serif text-2xl text-gold">{stat.value}</p>
-                    <p className="mt-1 text-[11px] leading-snug text-cream/55">{stat.label}</p>
+                    <p className="mt-1 text-[0.6875rem] leading-snug text-cream/55">{stat.label}</p>
                   </div>
                 ))}
               </div>
@@ -138,17 +138,17 @@ export function AuthShell({
           </div>
 
           {/* compact mobile/tablet tagline (single line, no card) */}
-          <p className="relative z-10 max-w-sm text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg lg:hidden">
+          <p className="relative z-10 max-w-sm text-[0.8438rem] leading-relaxed text-cream/85 sm:text-base md:text-lg lg:hidden">
             {tagline}
           </p>
 
           {/* bottom: quote card + rotating badge, desktop only */}
           <div className="relative z-10 hidden items-end justify-between gap-6 lg:flex">
             {quote ? (
-              <div className="max-w-[260px] rounded-2xl border border-cream/15 bg-night/35 p-5 backdrop-blur-md">
-                <p className="font-serif text-[15px] italic leading-snug text-cream/90">&ldquo;{quote.text}&rdquo;</p>
-                <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-gold">{quote.author}</p>
-                <p className="text-[11px] text-cream/50">{quote.role}</p>
+              <div className="max-w-[16.25rem] rounded-2xl border border-cream/15 bg-night/35 p-5 backdrop-blur-md">
+                <p className="font-serif text-[0.9375rem] italic leading-snug text-cream/90">&ldquo;{quote.text}&rdquo;</p>
+                <p className="mt-3 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-gold">{quote.author}</p>
+                <p className="text-[0.6875rem] text-cream/50">{quote.role}</p>
               </div>
             ) : (
               <span />

@@ -14,7 +14,7 @@ const FLYOUT_SPACE_PX = 288 + 12;
 const VIEWPORT_MARGIN_PX = 16;
 
 const CARD_CLASSES =
-  "overflow-hidden rounded-2xl bg-white p-2 shadow-[0_28px_60px_-20px_rgba(7,23,25,0.32),0_4px_14px_-4px_rgba(7,23,25,0.08)] ring-1 ring-forest/[0.06]";
+  "overflow-hidden rounded-2xl bg-white p-2 shadow-[0_1.75rem_3.75rem_-1.25rem_rgba(7,23,25,0.32),0_0.25rem_0.875rem_-0.25rem_rgba(7,23,25,0.08)] ring-1 ring-forest/[0.06]";
 
 /**
  * One dropdown / flyout row: label, optional muted detail line, a gold accent
@@ -37,7 +37,7 @@ function Row({
       {/* gold accent that grows in on hover / keyboard focus */}
       <span
         aria-hidden
-        className={`absolute bottom-2.5 left-0 top-2.5 w-[3px] origin-center rounded-full bg-gold transition-transform duration-300 ease-out group-hover:scale-y-100 group-focus-visible:scale-y-100 motion-reduce:transition-none ${
+        className={`absolute bottom-2.5 left-0 top-2.5 w-[0.1875rem] origin-center rounded-full bg-gold transition-transform duration-300 ease-out group-hover:scale-y-100 group-focus-visible:scale-y-100 motion-reduce:transition-none ${
           active ? "scale-y-100" : "scale-y-0"
         }`}
       />
@@ -171,9 +171,11 @@ export default function NavDropdown({
     function measure() {
       const rect = panelRef.current?.getBoundingClientRect();
       if (!rect) return;
+      // the flyout is rem-wide, so its pixel width follows the root font size (80% on laptop screens)
+      const scale = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16 || 1;
       const spaceRight = window.innerWidth - rect.right - VIEWPORT_MARGIN_PX;
       const spaceLeft = rect.left - VIEWPORT_MARGIN_PX;
-      setFlip(spaceRight < FLYOUT_SPACE_PX && spaceLeft > spaceRight);
+      setFlip(spaceRight < FLYOUT_SPACE_PX * scale && spaceLeft > spaceRight);
     }
     measure();
     window.addEventListener("resize", measure);
@@ -332,7 +334,7 @@ export default function NavDropdown({
         }}
         onClick={handleTriggerClick}
         onKeyDown={handleTriggerKeyDown}
-        className={`flex items-center gap-1 whitespace-nowrap font-sans text-[12px] xl:text-[13px] font-medium transition-colors ${open ? activeClassName : toneClassName}`}
+        className={`flex items-center gap-1 whitespace-nowrap font-sans text-[0.75rem] xl:text-[0.8125rem] font-medium transition-colors ${open ? activeClassName : toneClassName}`}
       >
         {menu.label}
         <span className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}>
@@ -361,7 +363,7 @@ export default function NavDropdown({
             }`}
           >
             {!sections?.[0]?.eyebrow && (
-              <p className="px-3.5 pb-1.5 pt-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+              <p className="px-3.5 pb-1.5 pt-2.5 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-muted/70">
                 {menu.eyebrow}
               </p>
             )}
@@ -373,7 +375,7 @@ export default function NavDropdown({
                   <div key={sectionIndex}>
                     {section.eyebrow && (
                       <p
-                        className={`px-3.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70 ${
+                        className={`px-3.5 pb-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-muted/70 ${
                           sectionIndex > 0 ? "mt-2 border-t border-forest/[0.08] pt-3.5" : "pt-2.5"
                         }`}
                       >
@@ -454,7 +456,7 @@ export default function NavDropdown({
                 href={(menu.dropdownViewAll ?? menu.viewAll).href}
                 onClick={() => onOpenChange(false)}
                 onFocus={() => setActiveRegion(null)}
-                className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
+                className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[0.8125rem] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
               >
                 {(menu.dropdownViewAll ?? menu.viewAll).label}
                 <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">
@@ -484,7 +486,7 @@ export default function NavDropdown({
                     isActive ? "translate-x-0 opacity-100" : flip ? "translate-x-1.5 opacity-0" : "-translate-x-1.5 opacity-0"
                   }`}
                 >
-                  <p className="px-3.5 pb-1.5 pt-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+                  <p className="px-3.5 pb-1.5 pt-2.5 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-muted/70">
                     {region.label}
                   </p>
 
@@ -503,7 +505,7 @@ export default function NavDropdown({
                         href={region.viewAll.href}
                         data-flyout-link={region.id}
                         onClick={() => onOpenChange(false)}
-                        className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[13px] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
+                        className="group flex items-center justify-between rounded-xl px-3.5 py-2 text-[0.8125rem] font-medium text-forest/60 transition-colors duration-200 hover:bg-white hover:text-forest focus-visible:bg-white focus-visible:text-forest focus-visible:outline-none"
                       >
                         {region.viewAll.label}
                         <span className="text-gold transition-transform duration-300 ease-out group-hover:translate-x-1 group-focus-visible:translate-x-1 motion-reduce:transition-none">

@@ -30,16 +30,16 @@ export default function TripRequestList({ requests }: { requests: MyTripRequest[
           return (
             <li
               key={`${request.source}-${request.submittedAt ?? "undated"}-${index}`}
-              className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6"
+              className="rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] p-5 sm:p-6"
             >
               <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
                 <span
-                  className={`inline-flex items-center rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] ${tag.className}`}
+                  className={`inline-flex items-center rounded-full px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] ${tag.className}`}
                 >
                   {tag.label}
                 </span>
                 {submitted && (
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-muted">
                     Sent{" "}
                     <time dateTime={request.submittedAt ?? undefined} className="text-forest/70">
                       {submitted}

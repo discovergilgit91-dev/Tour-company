@@ -30,29 +30,29 @@ export default function TestimonialSection({
     <section className="relative w-full overflow-hidden border-b border-cream/10 bg-forest section-y">
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-28 top-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+        className="pointer-events-none absolute -right-28 top-0 h-[23.75rem] w-[23.75rem] rounded-full bg-gold/10 blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 bottom-0 h-[320px] w-[320px] rounded-full bg-green/10 blur-3xl"
+        className="pointer-events-none absolute -left-24 bottom-0 h-[20rem] w-[20rem] rounded-full bg-green/10 blur-3xl"
       />
 
       <div className="relative mx-auto w-full max-w-4xl px-5 sm:px-6 lg:px-8">
-        <div className="mx-auto flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50 head-gap-b">
+        <div className="mx-auto flex w-fit items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/50 head-gap-b">
           <span className="h-px w-8 bg-cream/30" />
           {eyebrow}
           <span className="h-px w-8 bg-cream/30" />
         </div>
 
-        <div className="relative rounded-[28px] border border-cream/10 bg-cream/[0.035] px-6 py-12 text-center sm:px-12 sm:py-14 lg:px-16 lg:py-16">
+        <div className="relative rounded-[1.75rem] border border-cream/10 bg-cream/[0.035] px-6 py-12 text-center sm:px-12 sm:py-14 lg:px-16 lg:py-16">
           <span
             aria-hidden
-            className="pointer-events-none absolute left-5 top-1 select-none font-serif text-[100px] leading-none text-gold/15 sm:left-8 sm:text-[130px]"
+            className="pointer-events-none absolute left-5 top-1 select-none font-serif text-[6.25rem] leading-none text-gold/15 sm:left-8 sm:text-[8.125rem]"
           >
             &ldquo;
           </span>
 
-          <p className="relative mx-auto max-w-2xl font-serif text-2xl italic leading-snug text-cream sm:text-[28px] lg:text-3xl">
+          <p className="relative mx-auto max-w-2xl font-serif text-2xl italic leading-snug text-cream sm:text-[1.75rem] lg:text-3xl">
             {current.quote}
           </p>
 
@@ -61,7 +61,7 @@ export default function TestimonialSection({
             <span className="h-1.5 w-1.5 rotate-45 bg-gold/70" />
             <span className="h-px w-10 bg-gold/40" />
           </div>
-          <p className="relative mt-5 text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/55">
+          <p className="relative mt-5 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-cream/55">
             &mdash; {current.author}
           </p>
 
@@ -78,7 +78,7 @@ export default function TestimonialSection({
                 </span>
               </button>
 
-              <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">
+              <div className="flex items-center gap-2 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-cream/40">
                 <span className="text-gold">{String(index + 1).padStart(2, "0")}</span>
                 <span className="h-px w-6 bg-cream/20" />
                 <span>{String(testimonials.length).padStart(2, "0")}</span>

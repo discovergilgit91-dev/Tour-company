@@ -127,7 +127,7 @@ export default function SignUpForm() {
       notice={!submitted && pendingLabel ? `Create an account to complete your ${pendingLabel}.` : undefined}
     >
       {submitted ? (
-        <div className="flex min-h-[380px] flex-col items-center justify-center text-center">
+        <div className="flex min-h-[23.75rem] flex-col items-center justify-center text-center">
           <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
             <CheckCircleIcon size={34} />
           </span>
@@ -142,7 +142,7 @@ export default function SignUpForm() {
         </div>
       ) : (
         <>
-          <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
+          <div className="mb-8 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
             <span className="h-px w-8 bg-muted/60" />
             Start your journey
           </div>
@@ -251,7 +251,7 @@ export default function SignUpForm() {
 
           <div className="my-7 flex items-center gap-4">
             <span className="h-px flex-1 bg-forest/10" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Or</span>
+            <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">Or</span>
             <span className="h-px flex-1 bg-forest/10" />
           </div>
 

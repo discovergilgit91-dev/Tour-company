@@ -104,7 +104,7 @@ export default function BlogShare({ url, title }: { url: string; title: string }
 
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Share this article</p>
+      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">Share this article</p>
       <div className="flex items-center gap-2.5">
         <button type="button" onClick={copy} aria-label="Copy link" className={BUTTON}>
           {copied ? <CheckIcon size={16} /> : <LinkIcon />}

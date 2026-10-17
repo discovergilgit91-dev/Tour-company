@@ -51,7 +51,7 @@
    values above. */
 @media (min-width: 64rem) and (min-height: 37.5rem) {
   :root {
-    --header-h: 96px;
+    --header-h: 6rem;
     --space-section: clamp(2.25rem, 5.2vh, 4rem); /* 36–64px */
     --space-section-tight: clamp(1rem, 2.5vh, 2rem);
     --space-head: clamp(1.5rem, 3.6vh, 2.5rem);
@@ -65,6 +65,60 @@
   .section-title {
     font-size: clamp(2rem, 4.5vh + 1rem, 3.5rem);
     line-height: 1.05;
+  }
+}
+
+/* =========================================================
+   LAPTOP SCALE — 1024–1700px wide screens.
+   Every size in the app is rem-based (fonts, spacing, cards, image
+   heights, navbar, buttons, icons), so shrinking the root font size
+   scales the whole UI uniformly — it looks like the page at 80% browser
+   zoom, with the layout, colours, fonts and image proportions unchanged.
+   Phones, tablets and 1700px+ screens keep the normal 100% root size.
+   (Media-query breakpoints are rem too, but browsers resolve those
+   against the default 16px, so the layout switches don't move.)
+========================================================= */
+@media (min-width: 1024px) and (max-width: 1700px) {
+  html {
+    font-size: 80%;
+  }
+
+  /* Icons carry their size in width/height attributes (px). Base layer, so
+     Tailwind size utilities on an icon still win. */
+  @layer base {
+    svg[width="9"] { width: 0.5625rem; }
+    svg[width="10"] { width: 0.625rem; }
+    svg[width="11"] { width: 0.6875rem; }
+    svg[width="12"] { width: 0.75rem; }
+    svg[width="13"] { width: 0.8125rem; }
+    svg[width="14"] { width: 0.875rem; }
+    svg[width="15"] { width: 0.9375rem; }
+    svg[width="16"] { width: 1rem; }
+    svg[width="17"] { width: 1.0625rem; }
+    svg[width="18"] { width: 1.125rem; }
+    svg[width="19"] { width: 1.1875rem; }
+    svg[width="20"] { width: 1.25rem; }
+    svg[width="22"] { width: 1.375rem; }
+    svg[width="24"] { width: 1.5rem; }
+    svg[width="28"] { width: 1.75rem; }
+    svg[width="30"] { width: 1.875rem; }
+    svg[width="300"] { width: 18.75rem; }
+    svg[height="9"] { height: 0.5625rem; }
+    svg[height="10"] { height: 0.625rem; }
+    svg[height="11"] { height: 0.6875rem; }
+    svg[height="12"] { height: 0.75rem; }
+    svg[height="13"] { height: 0.8125rem; }
+    svg[height="14"] { height: 0.875rem; }
+    svg[height="15"] { height: 0.9375rem; }
+    svg[height="16"] { height: 1rem; }
+    svg[height="16.8"] { height: 1.05rem; }
+    svg[height="17"] { height: 1.0625rem; }
+    svg[height="18"] { height: 1.125rem; }
+    svg[height="19"] { height: 1.1875rem; }
+    svg[height="20"] { height: 1.25rem; }
+    svg[height="22"] { height: 1.375rem; }
+    svg[height="24"] { height: 1.5rem; }
+    svg[height="156"] { height: 9.75rem; }
   }
 }
 
@@ -225,12 +279,12 @@
 .photo-gallery__item {
   position: relative;
   aspect-ratio: 4 / 3;
-  min-height: 240px;
+  min-height: 15rem;
 }
 @media (min-width: 40rem) {
   .photo-gallery__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: max(240px, calc((100cqw - var(--gap)) / 2 * 0.8));
+    grid-auto-rows: max(15rem, calc((100cqw - var(--gap)) / 2 * 0.8));
   }
   .photo-gallery__item {
     aspect-ratio: auto;
@@ -243,7 +297,7 @@
   .photo-gallery__grid {
     --gap: 1.25rem;
     grid-template-columns: repeat(var(--lg-cols, 3), minmax(0, 1fr));
-    grid-auto-rows: max(260px, calc((100cqw - (var(--lg-cols, 3) - 1) * var(--gap)) / var(--lg-cols, 3) * 0.8));
+    grid-auto-rows: max(16.25rem, calc((100cqw - (var(--lg-cols, 3) - 1) * var(--gap)) / var(--lg-cols, 3) * 0.8));
   }
   .photo-gallery__item {
     grid-column: span var(--lg-col, 1);
@@ -258,7 +312,7 @@ html {
 /* Offsets anchor-scrolled sections so the fixed header never covers
    their heading. */
 [id] {
-  scroll-margin-top: 88px;
+  scroll-margin-top: 5.5rem;
 }
 
 body {
@@ -339,7 +393,7 @@ a {
 @keyframes heroReveal {
   from {
     opacity: 0;
-    transform: translate3d(0, 24px, 0) scale(0.99);
+    transform: translate3d(0, 1.5rem, 0) scale(0.99);
   }
   to {
     opacity: 1;
@@ -353,7 +407,7 @@ a {
 
 .destination-card {
   opacity: 0;
-  transform: translateY(45px) scale(0.98);
+  transform: translateY(2.8125rem) scale(0.98);
 }
 
 .destination-card-visible {
@@ -363,7 +417,7 @@ a {
 @keyframes destinationReveal {
   from {
     opacity: 0;
-    transform: translateY(45px) scale(0.98);
+    transform: translateY(2.8125rem) scale(0.98);
   }
   to {
     opacity: 1;
@@ -373,7 +427,7 @@ a {
 
 @media (max-width: 639px) {
   .destination-card {
-    min-height: 340px;
+    min-height: 21.25rem;
   }
 }
 
@@ -388,7 +442,7 @@ a {
 @keyframes authReveal {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(1rem);
   }
   to {
     opacity: 1;
@@ -417,7 +471,7 @@ a {
 @keyframes chatBubbleIn {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.98);
+    transform: translateY(0.5rem) scale(0.98);
   }
   to {
     opacity: 1;
@@ -445,7 +499,7 @@ a {
     opacity: 0.4;
   }
   30% {
-    transform: translateY(-4px);
+    transform: translateY(-0.25rem);
     opacity: 1;
   }
 }

@@ -70,7 +70,7 @@ export default function ForgotPasswordForm() {
       ]}
     >
       {sent ? (
-        <div className="flex min-h-[380px] flex-col items-center justify-center text-center">
+        <div className="flex min-h-[23.75rem] flex-col items-center justify-center text-center">
           <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
             <CheckCircleIcon size={34} />
           </span>
@@ -93,7 +93,7 @@ export default function ForgotPasswordForm() {
         </div>
       ) : (
         <>
-          <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
+          <div className="mb-8 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
             <span className="h-px w-8 bg-muted/60" />
             Account help
           </div>

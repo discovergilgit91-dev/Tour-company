@@ -26,7 +26,7 @@ export default async function TripRequestsPage() {
           ← My Account
         </Link>
 
-        <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-green">My Trip Requests</p>
+        <p className="mt-4 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-green">My Trip Requests</p>
         <h1 className="mt-2 font-serif text-3xl text-forest sm:text-4xl">Your journeys with us</h1>
 
         {/* Rows from the lookup, or — when there are none or the lookup failed —
@@ -34,7 +34,7 @@ export default async function TripRequestsPage() {
         {requests.length > 0 ? (
           <TripRequestList requests={requests} />
         ) : (
-          <div className="mt-8 flex flex-col items-center gap-4 rounded-[22px] border border-dashed border-forest/20 bg-white/60 text-center p-5 sm:p-6">
+          <div className="mt-8 flex flex-col items-center gap-4 rounded-[1.375rem] border border-dashed border-forest/20 bg-white/60 text-center p-5 sm:p-6">
             <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest/[0.06] text-forest/60">
               <CompassIcon size={22} />
             </span>

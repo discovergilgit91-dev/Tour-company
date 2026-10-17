@@ -45,7 +45,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         solid
-          ? "bg-cream/95 text-forest backdrop-blur-md shadow-[0_4px_20px_rgba(7,23,25,0.1)]"
+          ? "bg-cream/95 text-forest backdrop-blur-md shadow-[0_0.25rem_1.25rem_rgba(7,23,25,0.1)]"
           : "bg-transparent text-cream"
       }`}
     >
@@ -80,7 +80,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
               <Link
                 key={link.href}
                 href={navHref(link.href)}
-                className={`whitespace-nowrap font-sans text-[12px] font-medium xl:text-[13px] transition-colors ${toneClassName}`}
+                className={`whitespace-nowrap font-sans text-[0.75rem] font-medium xl:text-[0.8125rem] transition-colors ${toneClassName}`}
               >
                 {link.label}
               </Link>
@@ -100,7 +100,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
             <>
               <Link
                 href="/sign-in"
-                className={`whitespace-nowrap font-sans text-[12px] font-medium xl:text-[13px] transition-colors ${
+                className={`whitespace-nowrap font-sans text-[0.75rem] font-medium xl:text-[0.8125rem] transition-colors ${
                   solid ? "text-forest/75 hover:text-forest" : "text-cream/75 hover:text-cream"
                 }`}
               >
@@ -165,7 +165,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                         ? menu.sections.map((section, sectionIndex) => (
                             <div key={sectionIndex}>
                               {section.eyebrow && (
-                                <p className="px-2 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+                                <p className="px-2 pb-1 pt-2 text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-muted/70">
                                   {section.eyebrow}
                                 </p>
                               )}
@@ -221,7 +221,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                                               <Link
                                                 href={region.viewAll.href}
                                                 onClick={closeAll}
-                                                className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[13px] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
+                                                className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[0.8125rem] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
                                               >
                                                 {region.viewAll.label}
                                                 <span className="text-gold">
@@ -251,7 +251,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
                         <Link
                           href={(menu.dropdownViewAll ?? menu.viewAll).href}
                           onClick={closeAll}
-                          className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[13px] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
+                          className="flex items-center justify-between rounded-lg px-2 py-2 font-sans text-[0.8125rem] font-medium text-forest/60 hover:bg-forest/5 hover:text-forest"
                         >
                           {(menu.dropdownViewAll ?? menu.viewAll).label}
                           <span className="text-gold">

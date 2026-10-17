@@ -37,17 +37,17 @@ export default function LegalPage({
           <div className="absolute inset-0 bg-gradient-to-t from-forest/55 via-transparent to-forest/20" />
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+            className="pointer-events-none absolute -left-24 top-10 h-[23.75rem] w-[23.75rem] rounded-full bg-gold/10 blur-3xl"
           />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pb-20 lg:pt-40">
-          <span className="inline-flex items-center rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+          <span className="inline-flex items-center rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
             {eyebrow}
           </span>
-          <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
+          <h1 className="mt-5 font-serif text-[1.875rem] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
             {title}
           </h1>
-          <p className="mt-4 max-w-2xl text-[13.5px] leading-relaxed text-cream/80 sm:text-base">{intro}</p>
+          <p className="mt-4 max-w-2xl text-[0.8438rem] leading-relaxed text-cream/80 sm:text-base">{intro}</p>
           <p className="mt-4 text-xs text-cream/50">Last updated {updated}</p>
         </div>
       </section>

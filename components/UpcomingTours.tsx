@@ -113,7 +113,7 @@ function TourPhotoPlaceholder() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-forest to-night text-cream/50">
       <IconPeaks size={30} />
-      <span className="text-[11px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+      <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
     </div>
   );
 }
@@ -122,7 +122,7 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
   return (
     <Link
       href={`/tours/${tour.id}`}
-      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
+      className="group flex h-[29.375rem] w-full flex-col overflow-hidden rounded-[1.125rem] bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07)] outline-none transition-shadow duration-300 focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[31.25rem]"
     >
       <div className="relative flex-1 overflow-hidden">
         {tour.image ? (
@@ -139,7 +139,7 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
 
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
 
-        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-forest/90 px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-white backdrop-blur-sm">
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-forest/90 px-3.5 py-2 font-sans text-[0.6875rem] font-semibold tracking-[0.06em] text-white backdrop-blur-sm">
           <ClockIcon size={14} />
           {tour.duration}
         </div>
@@ -147,17 +147,17 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.13em]">
               {tour.location}
             </span>
           </div>
 
-          <h3 className="font-serif text-[25px] leading-[1.15] text-white sm:text-[27px]">
+          <h3 className="font-serif text-[1.5625rem] leading-[1.15] text-white sm:text-[1.6875rem]">
             {tour.title}
           </h3>
 
           {tour.subtitle && (
-            <p className="mt-1 font-sans text-[14px] text-white/85">{tour.subtitle}</p>
+            <p className="mt-1 font-sans text-[0.875rem] text-white/85">{tour.subtitle}</p>
           )}
         </div>
       </div>
@@ -165,10 +165,10 @@ function TourCard({ tour }: { tour: (typeof TOURS)[number] }) {
       <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
         <div className="flex min-w-0 items-center gap-2.5 text-forest">
           <CalendarIcon size={16} />
-          <span className="truncate font-sans text-[13px]">{tour.date}</span>
+          <span className="truncate font-sans text-[0.8125rem]">{tour.date}</span>
         </div>
 
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_0.375rem_1.25rem_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
           <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
             <ArrowIcon size={17} />
           </span>
@@ -189,7 +189,7 @@ function BuildYourOwnCard() {
   return (
     <Link
       href="/build-your-trip"
-      className="group flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] border-2 border-gold bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_36px_rgba(201,161,90,0.4)] outline-none transition-shadow duration-300 hover:shadow-[0_2px_18px_rgba(18,36,28,0.07),0_0_48px_rgba(201,161,90,0.55)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[500px]"
+      className="group flex h-[29.375rem] w-full flex-col overflow-hidden rounded-[1.125rem] border-2 border-gold bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07),0_0_2.25rem_rgba(201,161,90,0.4)] outline-none transition-shadow duration-300 hover:shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07),0_0_3rem_rgba(201,161,90,0.55)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream sm:h-[31.25rem]"
     >
       <div className="relative flex-1 overflow-hidden">
         <Image
@@ -202,7 +202,7 @@ function BuildYourOwnCard() {
 
         <div className="absolute inset-0 bg-gradient-to-t from-forest via-forest/25 to-transparent" />
 
-        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-gold px-3.5 py-2 font-sans text-[11px] font-semibold tracking-[0.06em] text-forest">
+        <div className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-gold px-3.5 py-2 font-sans text-[0.6875rem] font-semibold tracking-[0.06em] text-forest">
           <CompassIcon size={14} />
           CUSTOM
         </div>
@@ -210,14 +210,14 @@ function BuildYourOwnCard() {
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.13em]">
               ANYWHERE IN GILGIT-BALTISTAN
             </span>
           </div>
 
-          <h3 className="font-serif text-[25px] leading-[1.15] text-white sm:text-[27px]">Design Your Own Journey</h3>
+          <h3 className="font-serif text-[1.5625rem] leading-[1.15] text-white sm:text-[1.6875rem]">Design Your Own Journey</h3>
 
-          <p className="mt-1 font-sans text-[13px] leading-snug text-white/85">
+          <p className="mt-1 font-sans text-[0.8125rem] leading-snug text-white/85">
             Pick your destinations, dates, and pace — we&rsquo;ll build the trip around you.
           </p>
         </div>
@@ -226,10 +226,10 @@ function BuildYourOwnCard() {
       <div className="flex shrink-0 items-center justify-between gap-3 bg-white px-5 py-4">
         <div className="flex min-w-0 items-center gap-2.5 text-forest">
           <CalendarIcon size={16} />
-          <span className="truncate font-sans text-[13px]">Fully customizable</span>
+          <span className="truncate font-sans text-[0.8125rem]">Fully customizable</span>
         </div>
 
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-forest text-white shadow-[0_0.375rem_1.25rem_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green">
           <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
             <ArrowIcon size={17} />
           </span>
@@ -241,18 +241,18 @@ function BuildYourOwnCard() {
 
 function ComingSoonCard() {
   return (
-    <article className="relative flex h-[470px] w-full flex-col overflow-hidden rounded-[18px] bg-forest p-5 text-white sm:h-[500px] sm:p-6 lg:p-5">
+    <article className="relative flex h-[29.375rem] w-full flex-col overflow-hidden rounded-[1.125rem] bg-forest p-5 text-white sm:h-[31.25rem] sm:p-6 lg:p-5">
       <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-white/[0.07] text-white/85 lg:mb-[1.5vh] lg:h-12 lg:w-12">
         <CalendarIcon size={24} />
       </div>
 
-      <h3 className="relative z-10 max-w-[220px] font-serif text-[26px] leading-[1.2] lg:text-2xl">
+      <h3 className="relative z-10 max-w-[13.75rem] font-serif text-[1.625rem] leading-[1.2] lg:text-2xl">
         More Experiences
         <br />
         Coming Soon
       </h3>
 
-      <p className="relative z-10 mt-4 max-w-[215px] font-sans text-[15px] leading-[1.55] text-white/70 lg:mt-3 lg:max-w-[250px]">
+      <p className="relative z-10 mt-4 max-w-[13.4375rem] font-sans text-[0.9375rem] leading-[1.55] text-white/70 lg:mt-3 lg:max-w-[15.625rem]">
         We are crafting more unforgettable journeys for you across the majestic landscapes of
         Gilgit Baltistan.
       </p>
@@ -338,7 +338,7 @@ export default function UpcomingTours() {
         {/* Decorative image/contours are positioned against this wrapper's
             edges, i.e. the same content edge the cards align to. */}
         <div className="relative">
-          <div className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-[340px] w-[56%] select-none overflow-hidden rounded-[18px] lg:block">
+          <div className="pointer-events-none absolute right-0 top-0 -z-10 hidden h-[21.25rem] w-[56%] select-none overflow-hidden rounded-[1.125rem] lg:block">
             <Image
               src={HERO_IMAGE}
               alt=""
@@ -351,12 +351,12 @@ export default function UpcomingTours() {
             <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-cream to-transparent" />
           </div>
 
-          <ArtContours className="pointer-events-none absolute right-[38%] top-0 -z-10 hidden h-[320px] w-[36%] text-gold/20 lg:block" />
+          <ArtContours className="pointer-events-none absolute right-[38%] top-0 -z-10 hidden h-[20rem] w-[36%] text-gold/20 lg:block" />
 
           <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between head-gap-b">
             <div className="max-w-xl">
               <div className="mb-6 flex items-center gap-4 lg:mb-[1.5vh]">
-                <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-forest">
+                <span className="font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.2em] text-forest">
                   Upcoming
                 </span>
                 <span className="h-px w-8 bg-forest/35" />
@@ -365,13 +365,13 @@ export default function UpcomingTours() {
                 </span>
               </div>
 
-              <h2 className="section-title font-serif text-[46px] leading-[1.04] tracking-[-0.01em] text-forest sm:text-[56px] lg:text-[62px]">
+              <h2 className="section-title font-serif text-[2.875rem] leading-[1.04] tracking-[-0.01em] text-forest sm:text-[3.5rem] lg:text-[3.875rem]">
                 Upcoming Tours
                 <br />
                 <span className="text-green">&amp; Events</span>
               </h2>
 
-              <p className="mt-6 max-w-[26rem] font-sans text-[15px] leading-[1.6] text-muted lg:mt-[1.5vh]">
+              <p className="mt-6 max-w-[26rem] font-sans text-[0.9375rem] leading-[1.6] text-muted lg:mt-[1.5vh]">
                 Explore the unmatched beauty of Gilgit Baltistan with our carefully planned tours
                 and experiences.
               </p>
@@ -382,7 +382,7 @@ export default function UpcomingTours() {
                 <CompassIcon size={20} />
               </span>
               <div>
-                <p className="max-w-[190px] font-sans text-[15px] leading-[1.5] text-forest">
+                <p className="max-w-[11.875rem] font-sans text-[0.9375rem] leading-[1.5] text-forest">
                   Extraordinary Journeys in the Land of Giants
                 </p>
                 <span className="mt-4 block h-px w-10 bg-gold" />
@@ -399,7 +399,7 @@ export default function UpcomingTours() {
               <div
                 key={tour.id}
                 data-tour-card
-                className="w-full shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]"
+                className="w-full shrink-0 snap-start sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
               >
                 <TourCard tour={tour} />
               </div>
@@ -412,14 +412,14 @@ export default function UpcomingTours() {
                 click. */}
             <div
               data-tour-card
-              className="w-full shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]"
+              className="w-full shrink-0 snap-start sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
             >
               <BuildYourOwnCard />
             </div>
 
             <div
               data-tour-card
-              className="w-full shrink-0 snap-start sm:w-[calc((100%-20px)/2)] lg:w-[calc((100%-60px)/4)]"
+              className="w-full shrink-0 snap-start sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-3.75rem)/4)]"
             >
               <ComingSoonCard />
             </div>
@@ -454,7 +454,7 @@ export default function UpcomingTours() {
               />
             </div>
 
-            <LinkButton href="/tours" variant="dark" className="group shrink-0 gap-4 rounded-[10px] text-[12px] uppercase tracking-[0.12em]">
+            <LinkButton href="/tours" variant="dark" className="group shrink-0 gap-4 rounded-[0.625rem] text-[0.75rem] uppercase tracking-[0.12em]">
               <span>View all tours &amp; events</span>
               <span className="text-forest/70">
                 <IconPeaks size={28} />

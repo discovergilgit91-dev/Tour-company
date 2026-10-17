@@ -195,7 +195,7 @@ export default function BookingPage({
           {tour && (
             <div
               aria-hidden
-              className={`pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full ${tour.theme.blob} blur-3xl`}
+              className={`pointer-events-none absolute -left-24 top-10 h-[23.75rem] w-[23.75rem] rounded-full ${tour.theme.blob} blur-3xl`}
             />
           )}
           <PeaksMotif className="absolute inset-x-0 bottom-0 h-[55%] w-full text-cream/[0.05]" />
@@ -211,7 +211,7 @@ export default function BookingPage({
               <LinkButton
                 href={`/tours/${tour.slug}`}
                 variant="dark"
-                className="group mb-7 gap-2 text-[11px] uppercase tracking-[0.12em]"
+                className="group mb-7 gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
               >
                 <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
                   <ArrowIcon size={13} />
@@ -219,12 +219,12 @@ export default function BookingPage({
                 Back to {tour.title}
               </LinkButton>
             ) : (
-              <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+              <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
                 RESERVE YOUR SPOT
               </span>
             )}
 
-            <h1 className="font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
+            <h1 className="font-serif text-[1.875rem] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
               {tour ? (
                 <>
                   Reserve <span className="heading-accent">{tour.title}</span>
@@ -236,7 +236,7 @@ export default function BookingPage({
               )}
             </h1>
 
-            <p className="mt-5 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">
+            <p className="mt-5 max-w-xl text-[0.8438rem] leading-relaxed text-cream/85 sm:text-base md:text-lg">
               {tour
                 ? `${tour.dateRange} · ${tour.duration} · Starting from ${tour.price} per person.`
                 : "Tell us which trip you're interested in and how many are travelling — a local trip planner will confirm availability and reply within one working day."}
@@ -248,12 +248,12 @@ export default function BookingPage({
       {/* ---------------- Form + Summary ---------------- */}
       <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_360px] lg:gap-14">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_22.5rem] lg:gap-14">
             {/* Form column */}
             <div>
               <Reveal>
               {submitted ? (
-                <div className="flex flex-col items-center justify-center rounded-[22px] border border-forest/10 bg-white text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
+                <div className="flex flex-col items-center justify-center rounded-[1.375rem] border border-forest/10 bg-white text-center shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] p-5 sm:p-6">
                   <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
                     <CheckIcon size={28} />
                   </span>
@@ -339,9 +339,9 @@ export default function BookingPage({
 
                     setSubmitted(true);
                   }}
-                  className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6"
+                  className="rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] p-5 sm:p-6"
                 >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">
                     Traveller details
                   </p>
                   <h2 className="mt-1.5 font-serif text-2xl text-forest sm:text-3xl">
@@ -475,7 +475,7 @@ export default function BookingPage({
                     <button
                       type="submit"
                       disabled={submitting}
-                      className="group flex w-full disabled:cursor-wait disabled:opacity-70 items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
+                      className="group flex w-full disabled:cursor-wait disabled:opacity-70 items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_0.75rem_1.75rem_-0.375rem_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
                     >
                       {isSignedIn ? "Submit Reservation Request" : "Sign Up to Reserve"}
                       <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -489,8 +489,8 @@ export default function BookingPage({
 
               {/* Booking FAQ */}
               <Reveal delay={80}>
-                <div className="mt-10 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                <div className="mt-10 rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] p-5 sm:p-6">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">
                     Common questions
                   </p>
                   <h3 className="mt-1.5 font-serif text-2xl text-forest">Before you submit</h3>
@@ -521,7 +521,7 @@ export default function BookingPage({
                             }`}
                           >
                             <div className="overflow-hidden">
-                              <p className="pb-4 pr-10 text-[15px] leading-[1.55] text-muted">{faq.answer}</p>
+                              <p className="pb-4 pr-10 text-[0.9375rem] leading-[1.55] text-muted">{faq.answer}</p>
                             </div>
                           </div>
                         </div>
@@ -533,8 +533,8 @@ export default function BookingPage({
 
               {/* Prefer to talk to someone? */}
               <Reveal delay={140}>
-                <div className="mt-6 rounded-[22px] border border-forest/10 bg-forest p-5 sm:p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+                <div className="mt-6 rounded-[1.375rem] border border-forest/10 bg-forest p-5 sm:p-6">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-gold">
                     Prefer to talk it through?
                   </p>
                   <h3 className="mt-1.5 font-serif text-xl text-cream sm:text-2xl">
@@ -546,12 +546,12 @@ export default function BookingPage({
 
                   <div className="mt-6 flex flex-wrap gap-x-10 gap-y-5">
                     {CONTACT_DETAILS.map(({ label, value, Icon }) => (
-                      <div key={label} className="flex min-w-[220px] grow items-start gap-3">
+                      <div key={label} className="flex min-w-[13.75rem] grow items-start gap-3">
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream/[0.07] text-gold">
                           <Icon size={16} />
                         </span>
                         <div className="min-w-0">
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/50">
+                          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-cream/50">
                             {label}
                           </p>
                           <p className="mt-0.5 text-sm leading-snug text-cream/85">{value}</p>
@@ -568,7 +568,7 @@ export default function BookingPage({
               <div className="lg:sticky lg:top-24">
                 <Reveal delay={100}>
                   {tour ? (
-                    <div className="overflow-hidden rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)]">
+                    <div className="overflow-hidden rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07)]">
                       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-forest to-night">
                         {tour.photos[3]?.image ? (
                           <>
@@ -591,7 +591,7 @@ export default function BookingPage({
                       </div>
 
                       <div className="p-6">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                        <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">
                           Booking Summary
                         </p>
                         <h3 className="mt-1.5 font-serif text-xl text-forest">{tour.title}</h3>
@@ -608,7 +608,7 @@ export default function BookingPage({
                               className="flex items-center justify-between gap-3 border-t border-forest/8 pt-3 first:border-t-0 first:pt-0"
                             >
                               <dt className="text-xs text-muted">{label}</dt>
-                              <dd className="text-right text-[13px] font-semibold text-forest">{value}</dd>
+                              <dd className="text-right text-[0.8125rem] font-semibold text-forest">{value}</dd>
                             </div>
                           ))}
                         </dl>
@@ -627,13 +627,13 @@ export default function BookingPage({
                               <span className="ml-1 text-xs font-sans font-normal text-muted">USD</span>
                             </span>
                           </div>
-                          <p className="mt-2 text-[11px] leading-relaxed text-muted/80">
+                          <p className="mt-2 text-[0.6875rem] leading-relaxed text-muted/80">
                             An estimate only — your local trip planner will confirm final pricing when they reach out.
                           </p>
                         </div>
 
                         <div className="mt-5 border-t border-forest/8 pt-5">
-                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-green">Included</p>
+                          <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-green">Included</p>
                           <ul className="mt-3 space-y-2">
                             {INCLUDED.map((item) => (
                               <li key={item} className="flex items-start gap-2 text-xs leading-relaxed text-muted">
@@ -644,7 +644,7 @@ export default function BookingPage({
                               </li>
                             ))}
                           </ul>
-                          <p className="mt-4 text-[11px] font-semibold uppercase tracking-[0.14em] text-muted/70">
+                          <p className="mt-4 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted/70">
                             Not included
                           </p>
                           <ul className="mt-2 space-y-1.5">
@@ -658,12 +658,12 @@ export default function BookingPage({
                       </div>
                     </div>
                   ) : (
-                    <div className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)] p-5 sm:p-6">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+                    <div className="rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07)] p-5 sm:p-6">
+                      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">
                         Not sure which trip yet?
                       </p>
                       <h3 className="mt-1.5 font-serif text-xl text-forest">Browse the full calendar</h3>
-                      <p className="mt-2 text-[15px] leading-[1.55] text-muted">
+                      <p className="mt-2 text-[0.9375rem] leading-[1.55] text-muted">
                         Filter every guided tour and seasonal event by region, duration, or budget.
                       </p>
                       <LinkButton href="/tours" variant="primary" className="group mt-5 w-full gap-2">
@@ -706,7 +706,7 @@ export default function BookingPage({
                   </span>
                   <div>
                     <h3 className="font-serif text-lg text-cream">{title}</h3>
-                    <p className="mt-1.5 text-[15px] leading-[1.55] text-cream/65">{description}</p>
+                    <p className="mt-1.5 text-[0.9375rem] leading-[1.55] text-cream/65">{description}</p>
                   </div>
                 </div>
               </Reveal>

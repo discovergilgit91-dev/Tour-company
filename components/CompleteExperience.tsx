@@ -180,11 +180,11 @@ export default function CompleteExperience() {
     <section className="relative w-full overflow-hidden border-b border-cream/10 bg-forest section-y">
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
+        className="pointer-events-none absolute -right-28 top-0 h-[22.5rem] w-[22.5rem] rounded-full bg-gold/10 blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-24 bottom-0 h-[300px] w-[300px] rounded-full bg-green/10 blur-3xl"
+        className="pointer-events-none absolute -left-24 bottom-0 h-[18.75rem] w-[18.75rem] rounded-full bg-green/10 blur-3xl"
       />
       <MountainBanner className="absolute inset-x-0 bottom-0 h-[40%] w-full text-cream/[0.04]" />
 
@@ -207,8 +207,8 @@ export default function CompleteExperience() {
         <Slider as="div" label="services">
           {SERVICES.map(({ Icon, image, focus, title, description }, index) => (
             <Reveal key={title} delay={(index % 6) * 70}>
-              <div className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-cream/10 bg-cream/[0.03] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_20px_40px_-16px_rgba(0,0,0,0.5)]">
-                <div className="relative aspect-[4/3] min-h-[240px] w-full shrink-0 overflow-hidden">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-[1.25rem] border border-cream/10 bg-cream/[0.03] transition-all duration-300 ease-out hover:-translate-y-1 hover:border-gold/30 hover:shadow-[0_1.25rem_2.5rem_-1rem_rgba(0,0,0,0.5)]">
+                <div className="relative aspect-[4/3] min-h-[15rem] w-full shrink-0 overflow-hidden">
                   <Image
                     src={image}
                     alt={title}
@@ -222,11 +222,11 @@ export default function CompleteExperience() {
                 </div>
 
                 <div className="relative flex flex-1 flex-col px-5 pb-6 pt-9 text-left">
-                  <span className="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-forest text-gold shadow-[0_10px_24px_-8px_rgba(0,0,0,0.6)] transition-colors duration-300 group-hover:bg-gold group-hover:text-forest">
+                  <span className="absolute -top-6 left-5 flex h-12 w-12 items-center justify-center rounded-full border border-gold/30 bg-forest text-gold shadow-[0_0.625rem_1.5rem_-0.5rem_rgba(0,0,0,0.6)] transition-colors duration-300 group-hover:bg-gold group-hover:text-forest">
                     <Icon size={20} />
                   </span>
                   <h3 className="font-serif text-lg leading-snug text-cream">{title}</h3>
-                  <p className="mt-2 text-[15px] leading-[1.5] text-cream/60">{description}</p>
+                  <p className="mt-2 text-[0.9375rem] leading-[1.5] text-cream/60">{description}</p>
                 </div>
               </div>
             </Reveal>
