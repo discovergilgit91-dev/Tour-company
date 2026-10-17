@@ -34,7 +34,7 @@ function RotatingBadge() {
           </textPath>
         </text>
       </svg>
-      <LogoIcon className="relative h-11 w-11 xl:h-14 xl:w-14" sizes="112px" quality={90} />
+      <LogoIcon className="relative h-11 w-11 xl:h-14 xl:w-14" sizes="112px" quality={90} tone="light" />
     </div>
   );
 }

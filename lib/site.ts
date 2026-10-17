@@ -13,7 +13,7 @@ export const SITE_NAME = "Discover Gilgit";
 export const SITE_LEGAL_NAME = "Discover Gilgit-Baltistan";
 
 /** Publisher logo for structured data (the same artwork the header uses). */
-export const SITE_LOGO_PATH = "/Images/tours/logo-icon.png";
+export const SITE_LOGO_PATH = "/Images/tours/logo-dark.png";
 
 /** Turns a site path ("/blog", "/Images/a(1).png") into a full, URL-encoded absolute URL. */
 export function absoluteUrl(path: string): string {

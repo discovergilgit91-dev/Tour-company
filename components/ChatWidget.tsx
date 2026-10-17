@@ -107,7 +107,7 @@ function LogoBadge({ box = 28, mark = 20, ring = false }: { box?: number; mark?:
       style={{ height: `${box / 16}rem`, width: `${box / 16}rem` }}
     >
       <span className="relative" style={{ height: `${mark / 16}rem`, width: `${mark / 16}rem` }}>
-        <Image src="/Images/tours/logo-icon.png" alt="" aria-hidden fill sizes="40px" className="object-contain" />
+        <Image src="/Images/tours/crest-dark.png" alt="" aria-hidden fill sizes="40px" className="object-contain" />
       </span>
     </span>
   );

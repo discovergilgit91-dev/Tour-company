@@ -207,7 +207,7 @@ export default function AboutStory() {
                 </textPath>
               </text>
             </svg>
-            <LogoIcon className="relative h-[3.375rem] w-[3.375rem] sm:h-[4.25rem] sm:w-[4.25rem] lg:h-[4.75rem] lg:w-[4.75rem]" sizes="152px" quality={90} />
+            <LogoIcon className="relative h-[3.375rem] w-[3.375rem] sm:h-[4.25rem] sm:w-[4.25rem] lg:h-[4.75rem] lg:w-[4.75rem]" sizes="152px" quality={90} tone="light" />
           </div>
         </div>
 
@@ -296,7 +296,7 @@ export default function AboutStory() {
 
           <div className={`mt-8 lg:mt-[2.5vh] ${reveal(1100).className}`} style={reveal(1100).style}>
             <LinkButton href="/plan-your-trip" variant="outline" className="group">
-              <LogoIcon className="-my-1.5 h-8 w-10" />
+              <LogoIcon className="-my-1.5 h-8 w-10" tone="light" />
               Plan your journey
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">→</span>
             </LinkButton>

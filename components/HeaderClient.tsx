@@ -54,7 +54,7 @@ export default function HeaderClient({ user, menus }: { user: HeaderUser | null;
           scrolled ? "py-3" : "py-4"
         }`}
       >
-        <Logo compact={scrolled} />
+        <Logo compact={scrolled} tone={solid ? "dark" : "light"} />
 
         <nav className="hidden items-center gap-3 lg:flex xl:gap-7">
           {NAV_LINKS.map((link) => {
