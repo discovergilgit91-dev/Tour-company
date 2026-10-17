@@ -51,7 +51,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
             type="button"
             onClick={() => setActiveCategory(null)}
             aria-pressed={activeCategory === null}
-            className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
+            className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
               activeCategory === null
                 ? "border-forest bg-forest text-white"
                 : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -68,7 +68,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
                 type="button"
                 onClick={() => setActiveCategory(category)}
                 aria-pressed={isActive}
-                className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
+                className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
                   isActive
                     ? "border-green/30 bg-green/10 text-forest"
                     : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"

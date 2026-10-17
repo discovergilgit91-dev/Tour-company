@@ -41,7 +41,7 @@ export default function LegalPage({
           />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-36 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pb-20 lg:pt-40">
-          <span className="inline-flex items-center rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+          <span className="inline-flex items-center rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
             {eyebrow}
           </span>
           <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">

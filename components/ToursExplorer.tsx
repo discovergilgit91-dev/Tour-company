@@ -66,7 +66,7 @@ function FilterGroup({
               type="button"
               aria-pressed={isActive}
               onClick={() => onToggle(option)}
-              className={`inline-flex min-h-11 items-center rounded-full border px-3.5 py-2 text-[13px] sm:min-h-0 font-medium transition-colors duration-300 ${
+              className={`inline-flex min-h-11 items-center rounded-full border px-3.5 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
                 isActive
                   ? "border-green/30 bg-green/10 text-forest"
                   : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -87,7 +87,7 @@ function PhotoPlaceholder() {
       <svg width="28" height="18" viewBox="0 0 50 30" fill="none" aria-hidden="true">
         <path d="M2 27 17 6l8 11 6-7 15 17H2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
       </svg>
-      <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
     </div>
   );
 }
@@ -131,7 +131,7 @@ function TourCard({ tour, index }: { tour: Tour; index: number }) {
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
               {tour.location}
             </span>
           </div>
@@ -190,7 +190,7 @@ function CustomJourneyCard() {
         <div className="absolute inset-x-0 bottom-0 p-5">
           <div className="mb-2.5 flex items-center gap-2 text-white">
             <PinIcon size={15} />
-            <span className="font-sans text-[10.5px] font-semibold uppercase tracking-[0.13em]">
+            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.13em]">
               ANYWHERE IN GILGIT-BALTISTAN
             </span>
           </div>
@@ -265,7 +265,7 @@ function ComingSoonCard({ tour, index }: { tour: Tour; index: number }) {
     >
       <div className="relative aspect-[4/3] shrink-0 overflow-hidden rounded-[18px]">
         <MountainBackdrop />
-        <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-cream/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-forest">
+        <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-cream/95 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-forest">
           Coming Soon
         </span>
       </div>

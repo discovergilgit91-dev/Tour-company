@@ -65,7 +65,7 @@ export default async function Home() {
                   ) : null}
 
                   <div className="p-6">
-                    <p className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.18em] text-green">
+                    <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-green">
                       {tour.location}
                     </p>
 

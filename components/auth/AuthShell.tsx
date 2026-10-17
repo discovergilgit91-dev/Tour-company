@@ -115,7 +115,7 @@ export function AuthShell({
               Its bottom margin keeps the gap above the quote card from being
               squeezed by the logo's margin above. */}
           <div className="relative z-10 hidden max-w-md lg:mb-9 lg:block">
-            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
               {eyebrow}
             </span>
             <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
@@ -158,7 +158,7 @@ export function AuthShell({
         </div>
 
         {/* ---------------- form panel ---------------- */}
-        <div className="flex flex-1 items-center justify-center px-5 py-10 sm:px-8 sm:py-14 lg:px-16">
+        <div className="flex flex-1 items-center justify-center px-5 pt-10 pb-[calc(env(safe-area-inset-bottom)+5rem)] sm:px-8 sm:pt-14 lg:px-16">
           <div className="auth-fade-in w-full max-w-md motion-reduce:animate-none">
             {notice && (
               <div className="mb-6 rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3 text-sm leading-relaxed text-forest">

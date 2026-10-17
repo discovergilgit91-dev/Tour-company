@@ -181,7 +181,7 @@ export default function DistrictPage({ district }: { district: District }) {
           </nav>
 
           <div className="mt-10 max-w-3xl">
-            <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
+            <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
               District guide
             </span>
             <h1 className="mt-5 font-serif text-[40px] font-semibold leading-[1.05] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-6xl md:text-7xl">
@@ -210,7 +210,7 @@ export default function DistrictPage({ district }: { district: District }) {
                 key={fact.label}
                 className="rounded-2xl border border-cream/15 bg-night/45 px-4 py-3 backdrop-blur-md"
               >
-                <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">{fact.label}</dt>
+                <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">{fact.label}</dt>
                 <dd className="mt-1 font-serif text-base leading-snug text-cream sm:text-lg">{fact.value}</dd>
               </div>
             ))}
@@ -424,7 +424,7 @@ export default function DistrictPage({ district }: { district: District }) {
                             sizes="(min-width: 1024px) 384px, (min-width: 640px) 50vw, 100vw"
                             className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
                           />
-                          <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-gold px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-forest">
+                          <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-gold px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-forest">
                             Tour
                           </span>
                         </div>
@@ -464,7 +464,7 @@ export default function DistrictPage({ district }: { district: District }) {
                       href={event.href}
                       className="group flex h-full flex-col rounded-[22px] bg-forest text-cream shadow-[0_2px_18px_rgba(18,36,28,0.06)] outline-none transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_22px_44px_-18px_rgba(18,36,28,0.3)] focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-white motion-reduce:transition-none motion-reduce:hover:translate-y-0 p-5 sm:p-6"
                     >
-                      <span className="inline-flex w-fit items-center rounded-full bg-gold px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-forest">
+                      <span className="inline-flex w-fit items-center rounded-full bg-gold px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-forest">
                         Event
                       </span>
                       <h3 className="mt-3 font-serif text-xl leading-tight sm:text-[22px]">{event.title}</h3>

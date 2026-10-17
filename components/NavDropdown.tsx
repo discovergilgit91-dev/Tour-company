@@ -361,7 +361,7 @@ export default function NavDropdown({
             }`}
           >
             {!sections?.[0]?.eyebrow && (
-              <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+              <p className="px-3.5 pb-1.5 pt-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70">
                 {menu.eyebrow}
               </p>
             )}
@@ -373,7 +373,7 @@ export default function NavDropdown({
                   <div key={sectionIndex}>
                     {section.eyebrow && (
                       <p
-                        className={`px-3.5 pb-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70 ${
+                        className={`px-3.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70 ${
                           sectionIndex > 0 ? "mt-2 border-t border-forest/[0.08] pt-3.5" : "pt-2.5"
                         }`}
                       >
@@ -484,7 +484,7 @@ export default function NavDropdown({
                     isActive ? "translate-x-0 opacity-100" : flip ? "translate-x-1.5 opacity-0" : "-translate-x-1.5 opacity-0"
                   }`}
                 >
-                  <p className="px-3.5 pb-1.5 pt-2.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-muted/70">
+                  <p className="px-3.5 pb-1.5 pt-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted/70">
                     {region.label}
                   </p>
 

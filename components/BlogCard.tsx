@@ -81,10 +81,10 @@ export default function BlogCard({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
             <div className="absolute left-4 top-4 flex flex-wrap items-center gap-2 sm:left-5 sm:top-5">
-              <span className="inline-flex items-center rounded-full bg-gold px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-forest shadow-[0_4px_14px_rgba(0,0,0,0.18)]">
+              <span className="inline-flex items-center rounded-full bg-gold px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-forest shadow-[0_4px_14px_rgba(0,0,0,0.18)]">
                 {post.category}
               </span>
-              <span className="inline-flex items-center rounded-full border border-cream/25 bg-night/40 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm">
+              <span className="inline-flex items-center rounded-full border border-cream/25 bg-night/40 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream backdrop-blur-sm">
                 Latest
               </span>
             </div>
@@ -131,7 +131,7 @@ export default function BlogCard({
               className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-gold px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-forest shadow-[0_4px_14px_rgba(0,0,0,0.18)]">
+            <span className="absolute left-4 top-4 inline-flex items-center rounded-full bg-gold px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-forest shadow-[0_4px_14px_rgba(0,0,0,0.18)]">
               {post.category}
             </span>
             <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-cream text-forest shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green group-hover:text-white">

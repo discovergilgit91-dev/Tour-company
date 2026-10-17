@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef } from "react";
 export type ButtonVariant = "primary" | "outline" | "dark";
 
 const BASE =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 max-sm:min-h-11 font-sans text-sm font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-40";
+  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 max-lg:min-h-11 font-sans text-sm font-semibold transition-all duration-300 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-40";
 
 const VARIANTS: Record<ButtonVariant, string> = {
   primary:

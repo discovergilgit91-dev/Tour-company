@@ -288,7 +288,7 @@ export function SearchBar() {
               onFocus={() => setDestinationOpen(true)}
               placeholder="Search destination..."
               autoComplete="off"
-              className="w-full min-w-0 bg-transparent text-[12.5px] text-forest/50 outline-none placeholder:text-forest/40 sm:text-[13px]"
+              className="w-full min-w-0 bg-transparent text-[13px] text-forest/50 outline-none placeholder:text-forest/40 max-lg:-my-1.5 max-lg:min-h-11"
             />
           </div>
 
@@ -334,7 +334,7 @@ export function SearchBar() {
           <button
             type="button"
             onClick={() => setDatesOpen((prev) => !prev)}
-            className="flex min-w-0 flex-1 flex-col text-left"
+            className="flex min-w-0 flex-1 flex-col justify-center text-left max-lg:min-h-11"
           >
             <span className="text-[12.5px] font-semibold text-forest sm:text-[13px]">
               Select Dates
@@ -370,7 +370,7 @@ export function SearchBar() {
                   <div>
                     <label
                       htmlFor="hero-start-date"
-                      className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                      className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
                     >
                       Start
                     </label>
@@ -385,7 +385,7 @@ export function SearchBar() {
                   <div>
                     <label
                       htmlFor="hero-end-date"
-                      className="mb-1 block text-[10px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                      className="mb-1 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
                     >
                       End
                     </label>
@@ -437,7 +437,7 @@ export function SearchBar() {
             <select
               value={travelers}
               onChange={(event) => setTravelers(event.target.value)}
-              className="w-full min-w-0 cursor-pointer appearance-none bg-transparent text-[12.5px] text-forest/50 outline-none sm:text-[13px]"
+              className="w-full min-w-0 cursor-pointer appearance-none bg-transparent text-[13px] text-forest/50 outline-none max-lg:-my-1.5 max-lg:min-h-11"
             >
               {TRAVELER_OPTIONS.map((option) => (
                 <option key={option}>{option}</option>
@@ -578,7 +578,7 @@ export default function Hero({
             </div>
           ))}
 
-          <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent max-sm:via-forest/50 max-sm:to-forest/35 sm:from-forest/65 sm:via-forest/25" />
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
@@ -592,7 +592,7 @@ export default function Hero({
           <div key={active} className="hero-content max-w-3xl motion-reduce:animate-none">
             {currentSlide.badge && (
               <div className="hero-badge">
-                <span className="inline-block rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+                <span className="inline-block rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
                   {currentSlide.badge}
                 </span>
               </div>
@@ -651,7 +651,7 @@ export default function Hero({
                     key={slide.src}
                     aria-label={`Show slide ${i + 1}: ${slide.alt}`}
                     onClick={() => setActive(i)}
-                    className="group flex h-11 items-center px-1"
+                    className="group flex h-11 items-center px-2.5"
                   >
                     <span
                       className={`block h-1.5 rounded-full transition-all duration-300 ease-out ${

@@ -40,7 +40,7 @@ export default function FeaturedEvent() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/10 to-transparent" />
             <span className="absolute left-5 top-5 flex flex-col items-center rounded-2xl bg-cream px-4 py-2.5 leading-none shadow-lg">
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-green">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-green">
                 {FEATURED_EVENT.month}
               </span>
               <span className="mt-1 font-serif text-2xl text-forest">{FEATURED_EVENT.day}</span>

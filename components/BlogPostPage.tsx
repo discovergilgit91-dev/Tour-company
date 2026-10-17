@@ -195,7 +195,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           <div className="relative z-10 mx-auto flex min-h-[max(72svh,520px)] max-w-7xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[max(76svh,520px)] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
             <Link
               href="/blog"
-              className="group mb-auto inline-flex w-fit items-center gap-2 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
+              className="group mb-auto inline-flex min-h-11 w-fit items-center gap-2 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
             >
               <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
                 <ArrowIcon size={13} />
@@ -205,7 +205,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
 
             <div className="mt-10 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
+                <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
                   {post.category}
                 </span>
                 <p className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-cream/20 bg-night/40 px-3.5 py-1.5 text-[11px] font-semibold text-cream/90 backdrop-blur-sm sm:text-xs">

@@ -82,7 +82,7 @@ function PhotoPlaceholder() {
       <svg width="28" height="18" viewBox="0 0 50 30" fill="none" aria-hidden="true">
         <path d="M2 27 17 6l8 11 6-7 15 17H2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
       </svg>
-      <span className="text-[10px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
     </div>
   );
 }
@@ -141,7 +141,7 @@ export function DestinationCard({
 
         {badgeLabel && (
           <span
-            className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] ${
+            className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] ${
               featured
                 ? "border border-cream/25 bg-night/40 text-cream backdrop-blur-sm"
                 : "bg-gold text-forest shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
@@ -226,7 +226,7 @@ function StopChip({ index, stop }: { index: number; stop: (typeof ROUTE_STOPS)[n
           {number}
         </span>
         {index > 0 && (
-          <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/35">+{stop.km} km</span>
+          <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/35">+{stop.km} km</span>
         )}
       </div>
       <div>
@@ -275,7 +275,7 @@ export function RouteMapSection() {
             }`}
           >
             <div className="relative overflow-hidden rounded-[22px] border border-cream/10 shadow-[0_24px_50px_-16px_rgba(0,0,0,0.6)]">
-              <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-cream/20 bg-night/70 px-2.5 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm">
+              <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-cream/20 bg-night/70 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm">
                 Tourist map
               </span>
               <div className="relative aspect-[3/4] w-full bg-forest">
@@ -312,15 +312,15 @@ export function RouteMapSection() {
 
             <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4 lg:mt-[2.5vh]">
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cream/40">Distance</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Distance</p>
                 <p className="mt-0.5 font-serif text-xl text-cream">~{TOTAL_KM.toLocaleString()} km</p>
               </div>
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cream/40">Landmarks</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Landmarks</p>
                 <p className="mt-0.5 font-serif text-xl text-cream">{ROUTE_STOPS.length}</p>
               </div>
               <div>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-cream/40">Highest</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Highest</p>
                 <p className="mt-0.5 font-serif text-xl text-cream">4,700 m</p>
               </div>
 
@@ -349,7 +349,7 @@ export function RouteMapSection() {
                 type="button"
                 onClick={() => scrollStrip(-220)}
                 aria-label="Scroll to previous stops"
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/15 text-cream/60 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/15 text-cream/60 transition-colors duration-300 hover:border-gold/40 hover:text-gold lg:h-8 lg:w-8"
               >
                 <span className="rotate-180">
                   <ArrowIcon size={13} />
@@ -359,7 +359,7 @@ export function RouteMapSection() {
                 type="button"
                 onClick={() => scrollStrip(220)}
                 aria-label="Scroll to next stops"
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-cream/15 text-cream/60 transition-colors duration-300 hover:border-gold/40 hover:text-gold"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-cream/15 text-cream/60 transition-colors duration-300 hover:border-gold/40 hover:text-gold lg:h-8 lg:w-8"
               >
                 <ArrowIcon size={13} />
               </button>

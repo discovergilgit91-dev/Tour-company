@@ -228,17 +228,17 @@ function EventDetailsCard() {
     <div className="rounded-[22px] border border-cream/10 bg-night p-5">
       <dl className="space-y-4">
         <div>
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Event Dates</dt>
+          <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Event Dates</dt>
           <dd className="mt-1 font-serif text-lg text-cream">12 Aug – 14 Aug, 2027</dd>
           <dd className="mt-0.5 text-xs text-cream/50">3 Days of Culture, Music &amp; Celebration</dd>
         </div>
         <div className="border-t border-cream/10 pt-4">
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Location</dt>
+          <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Location</dt>
           <dd className="mt-1 font-serif text-lg text-cream">Gilgit City</dd>
           <dd className="mt-0.5 text-xs text-cream/50">Gilgit-Baltistan, Pakistan</dd>
         </div>
         <div className="border-t border-cream/10 pt-4">
-          <dt className="text-[10px] font-semibold uppercase tracking-[0.14em] text-gold">Organized By</dt>
+          <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">Organized By</dt>
           <dd className="mt-1 font-serif text-lg text-cream">Gilgit-Baltistan Cultural Council</dd>
           <dd className="mt-0.5 text-xs text-cream/50">Preserving Heritage, Inspiring Unity</dd>
         </div>
@@ -475,7 +475,7 @@ export default function FestivalPage() {
                     className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-transparent to-transparent" />
-                  <span className="absolute inset-x-4 bottom-4 text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/85">
+                  <span className="absolute inset-x-4 bottom-4 text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/85">
                     {tile.caption}
                   </span>
                 </div>

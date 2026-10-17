@@ -219,7 +219,7 @@ export default function BookingPage({
                 Back to {tour.title}
               </LinkButton>
             ) : (
-              <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[10px] font-semibold tracking-wide text-green sm:text-xs">
+              <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
                 RESERVE YOUR SPOT
               </span>
             )}
@@ -551,7 +551,7 @@ export default function BookingPage({
                           <Icon size={16} />
                         </span>
                         <div className="min-w-0">
-                          <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-cream/50">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/50">
                             {label}
                           </p>
                           <p className="mt-0.5 text-sm leading-snug text-cream/85">{value}</p>
@@ -673,12 +673,12 @@ export default function BookingPage({
                         </span>
                       </LinkButton>
 
-                      <div className="mt-6 space-y-3 border-t border-forest/8 pt-5">
+                      <div className="mt-6 space-y-0 border-t border-forest/8 pt-3">
                         {allTours.slice(0, 4).map((t) => (
                           <a
                             key={t.slug}
                             href={`/book?tour=${t.slug}`}
-                            className="flex items-center justify-between gap-2 text-sm text-forest transition-colors duration-200 hover:text-green"
+                            className="flex min-h-11 items-center justify-between gap-2 text-sm text-forest transition-colors duration-200 hover:text-green"
                           >
                             {t.title}
                             <ArrowIcon size={13} />

@@ -231,7 +231,7 @@ export default function PhotoGallery({
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-night/5 to-transparent" />
               {isFeatured ? (
-                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gold/95 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-forest">
+                <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-gold/95 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-forest">
                   <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M12 2 14.9 8.9 22 9.5 16.7 14.1 18.2 21 12 17.3 5.8 21 7.3 14.1 2 9.5 9.1 8.9 12 2Z" />
                   </svg>
@@ -239,7 +239,7 @@ export default function PhotoGallery({
                 </span>
               ) : (
                 photo.tag && (
-                  <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/55 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-cream/90 backdrop-blur-sm">
+                  <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/55 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-cream/90 backdrop-blur-sm">
                     {photo.tag}
                   </span>
                 )

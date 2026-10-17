@@ -87,7 +87,7 @@ export default function ForgotPasswordForm() {
           >
             Use a different email
           </button>
-          <Link href="/sign-in" className="mt-3 text-sm font-semibold text-green hover:text-green-dark">
+          <Link href="/sign-in" className="mt-1 inline-flex min-h-11 items-center text-sm font-semibold text-green hover:text-green-dark">
             Back to sign in
           </Link>
         </div>

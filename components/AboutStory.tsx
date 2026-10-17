@@ -183,7 +183,7 @@ export default function AboutStory() {
                 <CompassIcon size={18} />
               </span>
               <div className="min-w-0">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gold">On the trail</p>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">On the trail</p>
                 <p className="mt-0.5 truncate text-[11px] text-cream/70">35.9° N, 74.3° E — Gilgit-Baltistan</p>
               </div>
             </div>
@@ -262,7 +262,7 @@ export default function AboutStory() {
             className={`mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 lg:mt-[2vh] ${reveal(600).className}`}
             style={reveal(600).style}
           >
-            <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cream/45">Every route is</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/45">Every route is</span>
             {STEPS.map((step, i) => (
               <Fragment key={step}>
                 {i > 0 && <span aria-hidden className="h-px w-4 bg-gold/40" />}
