@@ -48,7 +48,7 @@ export function Logo({
   // anti-aliasing (and the drop-shadow below) blurs into what reads as the
   // wordmark overlapping the icon. Laying them out as two elements with an
   // explicit `mt` gives a gap in real CSS pixels that can't shrink away.
-  const iconSize = compact ? "h-11 w-14 sm:h-[50px] sm:w-16" : "h-16 w-20 sm:h-[76px] sm:w-24";
+  const iconSize = compact ? "h-11 w-14 sm:h-[3.125rem] sm:w-16" : "h-16 w-20 sm:h-[4.75rem] sm:w-24";
   const textSize = compact ? "h-3.5 w-14 sm:h-4 sm:w-16" : "h-5 w-20 sm:h-6 sm:w-24";
 
   return (
@@ -69,7 +69,7 @@ export function Logo({
           priority
           quality={90}
           sizes="96px"
-          className="object-contain drop-shadow-[0_3px_8px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105"
+          className="object-contain drop-shadow-[0_0.1875rem_0.5rem_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105"
         />
       </span>
       <span className={`relative mt-1.5 block shrink-0 ${textSize}`}>
@@ -79,7 +79,7 @@ export function Logo({
           fill
           quality={90}
           sizes="96px"
-          className="object-contain drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+          className="object-contain drop-shadow-[0_0.125rem_0.375rem_rgba(0,0,0,0.5)]"
         />
       </span>
     </Link>

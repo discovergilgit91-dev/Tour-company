@@ -95,7 +95,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
 
   if (featured) {
     return (
-      <div className="flex flex-col gap-6 rounded-[22px] border border-forest/10 bg-white shadow-sm sm:col-span-2 sm:flex-row sm:items-center sm:gap-8 lg:col-span-3 p-5 sm:p-6">
+      <div className="flex flex-col gap-6 rounded-[1.375rem] border border-forest/10 bg-white shadow-sm sm:col-span-2 sm:flex-row sm:items-center sm:gap-8 lg:col-span-3 p-5 sm:p-6">
         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl bg-cream ring-1 ring-forest/10 sm:h-24 sm:w-24">
           <Image
             src={logo}
@@ -109,7 +109,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
 
         <div className="flex-1">
           <h3 className="font-serif text-xl leading-tight text-forest sm:text-2xl">{name}</h3>
-          <p className="mt-2 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">{description}</p>
+          <p className="mt-2 max-w-xl text-[0.9375rem] leading-relaxed text-muted sm:text-base">{description}</p>
         </div>
 
         <LinkButton
@@ -117,7 +117,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
           target="_blank"
           rel="noopener noreferrer"
           variant="dark"
-          className="w-fit shrink-0 gap-2 text-[11px] uppercase tracking-[0.12em]"
+          className="w-fit shrink-0 gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
         >
           Visit partner
           <ExternalLinkIcon size={14} />
@@ -127,14 +127,14 @@ function PartnerCard({ partner }: { partner: Partner }) {
   }
 
   return (
-    <div className="flex flex-col gap-5 rounded-[22px] border border-forest/10 bg-white shadow-sm p-5 sm:p-6">
+    <div className="flex flex-col gap-5 rounded-[1.375rem] border border-forest/10 bg-white shadow-sm p-5 sm:p-6">
       <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-xl bg-cream ring-1 ring-forest/10">
         <Image src={logo} alt={`${name} logo`} fill quality={90} sizes="56px" className="object-contain p-2" />
       </div>
 
       <div>
-        <h3 className="font-serif text-xl leading-tight text-forest sm:text-[22px]">{name}</h3>
-        <p className="mt-2 text-[15px] leading-[1.55] text-muted">{description}</p>
+        <h3 className="font-serif text-xl leading-tight text-forest sm:text-[1.375rem]">{name}</h3>
+        <p className="mt-2 text-[0.9375rem] leading-[1.55] text-muted">{description}</p>
       </div>
 
       <LinkButton
@@ -142,7 +142,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
         target="_blank"
         rel="noopener noreferrer"
         variant="dark"
-        className="mt-auto w-fit gap-2 text-[11px] uppercase tracking-[0.12em]"
+        className="mt-auto w-fit gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
       >
         Visit partner
         <ExternalLinkIcon size={14} />
@@ -153,7 +153,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
 
 function ComingSoonCard() {
   return (
-    <div className="flex flex-col items-center gap-4 rounded-[22px] border border-dashed border-forest/20 bg-white/60 text-center sm:col-span-2 lg:col-span-3 p-5 sm:p-6">
+    <div className="flex flex-col items-center gap-4 rounded-[1.375rem] border border-dashed border-forest/20 bg-white/60 text-center sm:col-span-2 lg:col-span-3 p-5 sm:p-6">
       <span className="flex h-12 w-12 items-center justify-center rounded-full bg-forest/[0.06] text-forest/60">
         <HandshakeIcon size={22} />
       </span>

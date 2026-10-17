@@ -51,7 +51,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
             type="button"
             onClick={() => setActiveCategory(null)}
             aria-pressed={activeCategory === null}
-            className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
+            className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[0.8125rem] lg:min-h-0 font-medium transition-colors duration-300 ${
               activeCategory === null
                 ? "border-forest bg-forest text-white"
                 : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -68,7 +68,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
                 type="button"
                 onClick={() => setActiveCategory(category)}
                 aria-pressed={isActive}
-                className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
+                className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[0.8125rem] lg:min-h-0 font-medium transition-colors duration-300 ${
                   isActive
                     ? "border-green/30 bg-green/10 text-forest"
                     : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -84,7 +84,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
       />
 
       {visible.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-[22px] border border-dashed border-forest/15 bg-white py-16 text-center">
+        <div className="flex flex-col items-center justify-center rounded-[1.375rem] border border-dashed border-forest/15 bg-white py-16 text-center">
           <p className="font-serif text-xl text-forest">No articles here yet</p>
           <p className="mt-2 max-w-sm text-sm text-muted">Try another category — or head back to all articles.</p>
         </div>

@@ -82,7 +82,7 @@ function PhotoPlaceholder() {
       <svg width="28" height="18" viewBox="0 0 50 30" fill="none" aria-hidden="true">
         <path d="M2 27 17 6l8 11 6-7 15 17H2Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
       </svg>
-      <span className="text-[11px] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
+      <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em]">Photo coming soon</span>
     </div>
   );
 }
@@ -110,7 +110,7 @@ export function DestinationCard({
       href={href}
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
       className={[
-        "group flex h-full flex-col rounded-[22px] outline-none",
+        "group flex h-full flex-col rounded-[1.375rem] outline-none",
         "focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream",
         "transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none",
         visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0",
@@ -121,7 +121,7 @@ export function DestinationCard({
           the whole grid; "featured" only adds a badge and a ring, never a
           different size. */}
       <div
-        className={`relative aspect-[4/3] min-h-[240px] shrink-0 overflow-hidden rounded-[22px] bg-forest sm:aspect-[4/5] ${
+        className={`relative aspect-[4/3] min-h-[15rem] shrink-0 overflow-hidden rounded-[1.375rem] bg-forest sm:aspect-[4/5] ${
           featured ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
@@ -141,17 +141,17 @@ export function DestinationCard({
 
         {badgeLabel && (
           <span
-            className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] ${
+            className={`absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] ${
               featured
                 ? "border border-cream/25 bg-night/40 text-cream backdrop-blur-sm"
-                : "bg-gold text-forest shadow-[0_4px_14px_rgba(0,0,0,0.18)]"
+                : "bg-gold text-forest shadow-[0_0.25rem_0.875rem_rgba(0,0,0,0.18)]"
             }`}
           >
             {badgeLabel}
           </span>
         )}
 
-        <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-cream text-forest shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green group-hover:text-white">
+        <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-cream text-forest shadow-[0_0.375rem_1.25rem_rgba(0,0,0,0.18)] transition-colors duration-300 group-hover:bg-green group-hover:text-white">
           <span className="transition-transform duration-300 ease-out group-hover:-rotate-45">
             <ArrowIcon size={16} />
           </span>
@@ -163,7 +163,7 @@ export function DestinationCard({
           content above the tag is identical — the tag can sit at a plain fixed offset and
           still start on the same line as its neighbors, whether it wraps to one line or two. */}
       <div className="mt-4 flex flex-1 flex-col">
-        <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
+        <div className="flex items-center justify-between text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">
           <span>{number}</span>
           <span className="flex items-center gap-1.5">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true" className="text-green">
@@ -180,8 +180,8 @@ export function DestinationCard({
         <h3 className="mt-3 line-clamp-2 font-serif text-xl leading-tight tracking-tight text-forest sm:text-2xl">
           {name}
         </h3>
-        <p className="mt-2 line-clamp-4 flex-1 text-[15px] leading-[1.55] text-muted">{blurb}</p>
-        <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
+        <p className="mt-2 line-clamp-4 flex-1 text-[0.9375rem] leading-[1.55] text-muted">{blurb}</p>
+        <p className="mt-3 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-green">{tag}</p>
       </div>
     </Link>
   );
@@ -220,13 +220,13 @@ function StopChip({ index, stop }: { index: number; stop: (typeof ROUTE_STOPS)[n
   const number = String(index + 1).padStart(2, "0");
 
   return (
-    <li className="group flex w-[168px] shrink-0 snap-start flex-col gap-4 rounded-2xl border border-cream/10 bg-cream/[0.03] p-4 transition-colors duration-300 hover:border-gold/30 hover:bg-cream/[0.06] sm:w-[188px]">
+    <li className="group flex w-[10.5rem] shrink-0 snap-start flex-col gap-4 rounded-2xl border border-cream/10 bg-cream/[0.03] p-4 transition-colors duration-300 hover:border-gold/30 hover:bg-cream/[0.06] sm:w-[11.75rem]">
       <div className="flex items-center justify-between">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 text-[11px] font-semibold text-gold">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 text-[0.6875rem] font-semibold text-gold">
           {number}
         </span>
         {index > 0 && (
-          <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/35">+{stop.km} km</span>
+          <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-cream/35">+{stop.km} km</span>
         )}
       </div>
       <div>
@@ -260,22 +260,22 @@ export function RouteMapSection() {
       </svg>
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-32 top-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-3xl"
+        className="pointer-events-none absolute -left-32 top-0 h-[26.25rem] w-[26.25rem] rounded-full bg-gold/10 blur-3xl"
       />
 
       <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
         {/* header + map + highlights */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,300px)_1fr] lg:items-center lg:gap-14">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,18.75rem)_1fr] lg:items-center lg:gap-14">
           {/* map card */}
           <div
             ref={mapRef}
             style={{ transitionDelay: mapVisible ? "80ms" : "0ms" }}
-            className={`order-2 mx-auto w-full max-w-[300px] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:order-1 lg:mx-0 ${
+            className={`order-2 mx-auto w-full max-w-[18.75rem] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:order-1 lg:mx-0 ${
               mapVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            <div className="relative overflow-hidden rounded-[22px] border border-cream/10 shadow-[0_24px_50px_-16px_rgba(0,0,0,0.6)]">
-              <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-cream/20 bg-night/70 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm">
+            <div className="relative overflow-hidden rounded-[1.375rem] border border-cream/10 shadow-[0_1.5rem_3.125rem_-1rem_rgba(0,0,0,0.6)]">
+              <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 rounded-full border border-cream/20 bg-night/70 px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm">
                 Tourist map
               </span>
               <div className="relative aspect-[3/4] w-full bg-forest">
@@ -293,7 +293,7 @@ export function RouteMapSection() {
 
           {/* header + highlights + stats */}
           <div className="order-1 lg:order-2">
-            <div className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+            <div className="mb-4 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">
               <CompassIcon size={16} />
               Plan your route
             </div>
@@ -312,22 +312,22 @@ export function RouteMapSection() {
 
             <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-4 lg:mt-[2.5vh]">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Distance</p>
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-cream/40">Distance</p>
                 <p className="mt-0.5 font-serif text-xl text-cream">~{TOTAL_KM.toLocaleString()} km</p>
               </div>
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Landmarks</p>
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-cream/40">Landmarks</p>
                 <p className="mt-0.5 font-serif text-xl text-cream">{ROUTE_STOPS.length}</p>
               </div>
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/40">Highest</p>
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-cream/40">Highest</p>
                 <p className="mt-0.5 font-serif text-xl text-cream">4,700 m</p>
               </div>
 
               <LinkButton
                 href="/plan-your-trip"
                 variant="outline"
-                className="group ml-auto gap-2 text-[11px] uppercase tracking-[0.12em]"
+                className="group ml-auto gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
               >
                 Plan this route
                 <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -341,7 +341,7 @@ export function RouteMapSection() {
         {/* itinerary strip — horizontal scroll instead of a long vertical list */}
         <div className="relative mt-12 lg:mt-[var(--space-head)]">
           <div className="mb-4 flex items-center justify-between">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cream/40">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-cream/40">
               The full itinerary
             </p>
             <div className="hidden gap-2 sm:flex">

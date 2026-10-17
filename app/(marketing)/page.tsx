@@ -56,7 +56,7 @@ export default async function Home() {
             <h3 className="mb-8 font-serif text-2xl text-forest">More tours from our team</h3>
             <div className="card-grid">
               {tours.map((tour) => (
-                <article key={tour.id} className="overflow-hidden rounded-[28px] bg-white shadow-sm">
+                <article key={tour.id} className="overflow-hidden rounded-[1.75rem] bg-white shadow-sm">
                   {tour.image_url ? (
                     <div className="relative h-56 w-full overflow-hidden">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -65,7 +65,7 @@ export default async function Home() {
                   ) : null}
 
                   <div className="p-6">
-                    <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-green">
+                    <p className="mb-2 font-sans text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-green">
                       {tour.location}
                     </p>
 

@@ -59,7 +59,7 @@ export default function DestinationDetailPage({
     <main className="bg-cream">
       {/* ---------------- Hero ---------------- */}
       <section className="relative bg-forest">
-        <div className="relative min-h-[max(78svh,520px)] w-full sm:min-h-[max(82svh,520px)] md:min-h-[max(86svh,520px)]">
+        <div className="relative min-h-[max(78svh,32.5rem)] w-full sm:min-h-[max(82svh,32.5rem)] md:min-h-[max(86svh,32.5rem)]">
           {/* Uses a dedicated hero photo when set, then this destination's
               own card photo (no baked-in text, so it's safe behind the
               heading below), then falls back to a shared, generic journeys
@@ -91,11 +91,11 @@ export default function DestinationDetailPage({
             <div className="absolute inset-0 bg-gradient-to-r from-forest/60 via-forest/25 to-transparent max-sm:via-forest/40 max-sm:to-forest/30" />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[max(78svh,520px)] max-w-7xl flex-col justify-center px-5 py-28 sm:min-h-[max(82svh,520px)] sm:px-6 sm:py-32 md:min-h-[max(86svh,520px)] md:py-36 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[max(78svh,32.5rem)] max-w-7xl flex-col justify-center px-5 py-28 sm:min-h-[max(82svh,32.5rem)] sm:px-6 sm:py-32 md:min-h-[max(86svh,32.5rem)] md:py-36 lg:px-8">
             <LinkButton
               href="/lands"
               variant="dark"
-              className="group mb-6 w-fit gap-2 text-[11px] uppercase tracking-[0.12em]"
+              className="group mb-6 w-fit gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
             >
               <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
                 <ArrowIcon size={13} />
@@ -106,12 +106,12 @@ export default function DestinationDetailPage({
             <div className="max-w-2xl">
               <div className="flex flex-wrap items-center gap-2">
                 {region && (
-                  <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
+                  <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
                     {region.label}
                   </span>
                 )}
                 {categoryLabel && (
-                  <span className="inline-flex items-center rounded-full border border-cream/30 bg-night/20 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm sm:text-xs [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
+                  <span className="inline-flex items-center rounded-full border border-cream/30 bg-night/20 px-3.5 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-cream backdrop-blur-sm sm:text-xs [text-shadow:0_0.0625rem_0.25rem_rgba(0,0,0,0.5)]">
                     {categoryLabel}
                   </span>
                 )}
@@ -120,7 +120,7 @@ export default function DestinationDetailPage({
               {district && (
                 <Link
                   href={district.href}
-                  className="group mt-1 inline-flex min-h-11 items-center gap-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-cream/90 transition-colors duration-300 hover:text-cream [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]"
+                  className="group mt-1 inline-flex min-h-11 items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.12em] text-cream/90 transition-colors duration-300 hover:text-cream [text-shadow:0_0.0625rem_0.375rem_rgba(0,0,0,0.5)]"
                 >
                   Part of <span className="underline decoration-gold/70 underline-offset-4">{district.name}</span>
                   <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -129,20 +129,20 @@ export default function DestinationDetailPage({
                 </Link>
               )}
 
-              <h1 className="mt-4 font-serif text-[32px] font-semibold leading-[1.1] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-5xl md:text-[56px]">
+              <h1 className="mt-4 font-serif text-[2rem] font-semibold leading-[1.1] tracking-tight text-cream [text-shadow:0_0.125rem_1rem_rgba(0,0,0,0.5)] sm:text-5xl md:text-[3.5rem]">
                 {destination.name}
               </h1>
-              <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] sm:text-base md:text-lg">
+              <p className="mt-4 max-w-xl text-[0.8438rem] leading-relaxed text-cream/85 [text-shadow:0_0.0625rem_0.625rem_rgba(0,0,0,0.5)] sm:text-base md:text-lg">
                 {content.tagline}
               </p>
 
-              <div className="mt-7 flex items-center gap-2.5 text-cream/90 [text-shadow:0_1px_6px_rgba(0,0,0,0.5)]">
+              <div className="mt-7 flex items-center gap-2.5 text-cream/90 [text-shadow:0_0.0625rem_0.375rem_rgba(0,0,0,0.5)]">
                 <span className="text-green">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                     <path d="M2 20 9.5 7l4 6.5L16 10l6 10H2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
                   </svg>
                 </span>
-                <span className="text-[13px] font-semibold">{destination.altitude} above sea level</span>
+                <span className="text-[0.8125rem] font-semibold">{destination.altitude} above sea level</span>
               </div>
             </div>
           </div>
@@ -152,17 +152,17 @@ export default function DestinationDetailPage({
       {/* ---------------- About + quick facts ---------------- */}
       <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_320px] lg:gap-14">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_20rem] lg:gap-14">
             <div>
               <Reveal>
-                <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
+                <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted lg:mb-[1.2vh]">
                   <span className="h-px w-8 bg-muted/60" />
                   About this destination
                 </div>
                 <h2 className="section-title font-serif text-4xl leading-[1.05] tracking-tight text-forest sm:text-5xl">
                   Why {destination.name} <span className="text-green">is special</span>
                 </h2>
-                <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{content.intro}</p>
+                <p className="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-muted sm:text-base">{content.intro}</p>
               </Reveal>
 
               <Reveal delay={80}>
@@ -175,7 +175,7 @@ export default function DestinationDetailPage({
                       <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-green/10 text-green">
                         <CheckIcon size={13} />
                       </span>
-                      <p className="text-[15px] leading-[1.55] text-forest/80">{highlight}</p>
+                      <p className="text-[0.9375rem] leading-[1.55] text-forest/80">{highlight}</p>
                     </div>
                   ))}
                 </div>
@@ -185,8 +185,8 @@ export default function DestinationDetailPage({
             {/* ---------------- Quick facts sidebar ---------------- */}
             <div>
               <Reveal delay={120}>
-                <div className="rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] lg:sticky lg:top-24 p-5 sm:p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Trip planning</p>
+                <div className="rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] lg:sticky lg:top-24 p-5 sm:p-6">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">Trip planning</p>
                   <h3 className="mt-1.5 font-serif text-xl text-forest">Quick facts</h3>
 
                   <dl className="mt-5 space-y-4">
@@ -195,7 +195,7 @@ export default function DestinationDetailPage({
                         <PinIcon size={16} />
                       </span>
                       <div>
-                        <dt className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">Region</dt>
+                        <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-muted">Region</dt>
                         <dd className="mt-0.5 text-sm font-semibold text-forest">{region?.label ?? "Gilgit-Baltistan"}</dd>
                       </div>
                     </div>
@@ -204,7 +204,7 @@ export default function DestinationDetailPage({
                         <ClockIcon size={16} />
                       </span>
                       <div>
-                        <dt className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
+                        <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-muted">
                           Best time to visit
                         </dt>
                         <dd className="mt-0.5 text-sm font-semibold text-forest">{content.bestTime}</dd>
@@ -215,7 +215,7 @@ export default function DestinationDetailPage({
                         <CompassIcon size={16} />
                       </span>
                       <div>
-                        <dt className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">
+                        <dt className="text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-muted">
                           How to reach
                         </dt>
                         <dd className="mt-0.5 text-sm leading-relaxed text-forest">{content.howToReach}</dd>
@@ -244,12 +244,12 @@ export default function DestinationDetailPage({
       <section className="relative w-full overflow-hidden bg-forest section-y">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -right-28 top-0 h-[22.5rem] w-[22.5rem] rounded-full bg-gold/10 blur-3xl"
         />
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <Reveal>
             <div className="mx-auto max-w-xl text-center">
-              <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+              <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/50">
                 <span className="h-px w-8 bg-cream/30" />
                 What it&rsquo;s famous for
                 <span className="h-px w-8 bg-cream/30" />
@@ -263,12 +263,12 @@ export default function DestinationDetailPage({
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-5 head-gap">
             {content.famousFor.map((item, index) => (
               <Reveal key={item.title} delay={index * 90}>
-                <div className="flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
+                <div className="flex h-full flex-col rounded-[1.125rem] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gold/40 font-serif text-sm text-gold">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-4 font-serif text-lg leading-snug text-cream">{item.title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-cream/60">{item.text}</p>
+                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-cream/60">{item.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -349,11 +349,11 @@ export default function DestinationDetailPage({
       <section className="relative w-full overflow-hidden bg-forest text-center section-y">
         <div
           aria-hidden
-          className="pointer-events-none absolute -left-24 top-0 h-[340px] w-[340px] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -left-24 top-0 h-[21.25rem] w-[21.25rem] rounded-full bg-gold/10 blur-3xl"
         />
         <div className="relative mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/50">
               <span className="h-px w-8 bg-cream/30" />
               Ready when you are
               <span className="h-px w-8 bg-cream/30" />
@@ -361,7 +361,7 @@ export default function DestinationDetailPage({
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
               Ready to visit <span className="heading-accent">{destination.name}?</span>
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-cream/70 sm:text-base">
+            <p className="mt-4 text-[0.9375rem] leading-relaxed text-cream/70 sm:text-base">
               Tell us what you&rsquo;re dreaming of and a local trip planner will shape the rest around you.
             </p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">

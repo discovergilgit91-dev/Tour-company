@@ -133,7 +133,7 @@ export default function ResetPasswordForm() {
       {status === "checking" && (
         <div
           role="status"
-          className="flex min-h-[380px] flex-col items-center justify-center text-center text-sm text-muted"
+          className="flex min-h-[23.75rem] flex-col items-center justify-center text-center text-sm text-muted"
         >
           <span className="text-green">
             <SpinnerIcon size={26} />
@@ -143,7 +143,7 @@ export default function ResetPasswordForm() {
       )}
 
       {status === "invalid" && (
-        <div className="flex min-h-[380px] flex-col items-center justify-center text-center">
+        <div className="flex min-h-[23.75rem] flex-col items-center justify-center text-center">
           <span className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
             <AlertIcon size={30} />
           </span>
@@ -166,7 +166,7 @@ export default function ResetPasswordForm() {
 
       {status === "ready" && (
         <>
-          <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
+          <div className="mb-8 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
             <span className="h-px w-8 bg-muted/60" />
             Almost there
           </div>

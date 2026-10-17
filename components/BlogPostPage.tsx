@@ -26,7 +26,7 @@ function renderInline(text: string): ReactNode[] {
       <Link
         key={start}
         href={match[2]}
-        className="font-medium text-green underline decoration-green/30 underline-offset-[3px] transition-colors duration-300 hover:text-green-dark hover:decoration-green-dark/60"
+        className="font-medium text-green underline decoration-green/30 underline-offset-[0.1875rem] transition-colors duration-300 hover:text-green-dark hover:decoration-green-dark/60"
       >
         {match[1]}
       </Link>
@@ -58,7 +58,7 @@ function renderListItem(item: string): ReactNode {
 const GOLD_BUTTON =
   "group inline-flex items-center justify-center gap-2 rounded-full bg-gold px-6 py-3 font-sans text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-gold/90 active:translate-y-0 active:scale-[0.97]";
 
-const BODY_TEXT = "text-[16px] leading-[1.85] text-forest/80 sm:text-[17.5px] sm:leading-[1.9]";
+const BODY_TEXT = "text-[1rem] leading-[1.85] text-forest/80 sm:text-[1.0938rem] sm:leading-[1.9]";
 
 function renderBlock(block: BlogBlock, index: number) {
   switch (block.type) {
@@ -66,7 +66,7 @@ function renderBlock(block: BlogBlock, index: number) {
       return (
         <h2
           key={index}
-          className="mt-14 font-serif text-[28px] leading-[1.15] tracking-tight text-forest before:mb-5 before:block before:h-[3px] before:w-10 before:rounded-full before:bg-gold before:content-[''] sm:mt-16 sm:text-[34px]"
+          className="mt-14 font-serif text-[1.75rem] leading-[1.15] tracking-tight text-forest before:mb-5 before:block before:h-[0.1875rem] before:w-10 before:rounded-full before:bg-gold before:content-[''] sm:mt-16 sm:text-[2.125rem]"
         >
           {block.text}
         </h2>
@@ -92,15 +92,15 @@ function renderBlock(block: BlogBlock, index: number) {
       return (
         <figure
           key={index}
-          className="relative mt-12 overflow-hidden rounded-[22px] border border-forest/10 bg-white px-6 py-9 text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)] sm:px-10 sm:py-11"
+          className="relative mt-12 overflow-hidden rounded-[1.375rem] border border-forest/10 bg-white px-6 py-9 text-center shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] sm:px-10 sm:py-11"
         >
           <span
             aria-hidden
-            className="pointer-events-none absolute left-4 top-0 select-none font-serif text-[96px] leading-none text-gold/20 sm:left-7 sm:text-[120px]"
+            className="pointer-events-none absolute left-4 top-0 select-none font-serif text-[6rem] leading-none text-gold/20 sm:left-7 sm:text-[7.5rem]"
           >
             &ldquo;
           </span>
-          <blockquote className="relative font-serif text-xl italic leading-snug text-forest sm:text-[26px]">
+          <blockquote className="relative font-serif text-xl italic leading-snug text-forest sm:text-[1.625rem]">
             {block.text}
           </blockquote>
           {block.cite && (
@@ -110,7 +110,7 @@ function renderBlock(block: BlogBlock, index: number) {
                 <span className="h-1.5 w-1.5 rotate-45 bg-gold/70" />
                 <span className="h-px w-8 bg-gold/40" />
               </span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted">{block.cite}</span>
+              <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.16em] text-muted">{block.cite}</span>
             </figcaption>
           )}
         </figure>
@@ -119,22 +119,22 @@ function renderBlock(block: BlogBlock, index: number) {
       return (
         <aside
           key={index}
-          className="relative mt-12 flex gap-4 overflow-hidden rounded-[22px] border border-gold/30 bg-gold/[0.07] sm:gap-5 p-5 sm:p-6"
+          className="relative mt-12 flex gap-4 overflow-hidden rounded-[1.375rem] border border-gold/30 bg-gold/[0.07] sm:gap-5 p-5 sm:p-6"
         >
-          <span aria-hidden className="absolute inset-y-0 left-0 w-[3px] bg-gold" />
+          <span aria-hidden className="absolute inset-y-0 left-0 w-[0.1875rem] bg-gold" />
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-white/60 text-gold">
             <CompassIcon size={18} />
           </span>
           <div className="min-w-0">
             <h3 className="font-serif text-xl leading-snug text-forest">{block.title}</h3>
-            <p className="mt-2 text-[15px] leading-relaxed text-forest/80 sm:text-base">{renderInline(block.text)}</p>
+            <p className="mt-2 text-[0.9375rem] leading-relaxed text-forest/80 sm:text-base">{renderInline(block.text)}</p>
           </div>
         </aside>
       );
     default:
       // The opening paragraph reads as a standfirst: larger and darker than the body copy.
       return index === 0 ? (
-        <p key={index} className="text-[19px] leading-[1.7] text-forest/90 sm:text-[22px] sm:leading-[1.65]">
+        <p key={index} className="text-[1.1875rem] leading-[1.7] text-forest/90 sm:text-[1.375rem] sm:leading-[1.65]">
           {renderInline(block.text)}
         </p>
       ) : (
@@ -188,14 +188,14 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
             <div className="absolute inset-0 bg-gradient-to-r from-forest/60 via-forest/10 to-transparent" />
             <div
               aria-hidden
-              className="pointer-events-none absolute -left-24 bottom-0 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+              className="pointer-events-none absolute -left-24 bottom-0 h-[23.75rem] w-[23.75rem] rounded-full bg-gold/10 blur-3xl"
             />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[max(72svh,520px)] max-w-7xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[max(76svh,520px)] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
+          <div className="relative z-10 mx-auto flex min-h-[max(72svh,32.5rem)] max-w-7xl flex-col justify-end px-5 pb-24 pt-40 sm:min-h-[max(76svh,32.5rem)] sm:px-6 sm:pb-28 sm:pt-44 lg:px-8 lg:pb-32">
             <Link
               href="/blog"
-              className="group mb-auto inline-flex min-h-11 w-fit items-center gap-2 py-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
+              className="group mb-auto inline-flex min-h-11 w-fit items-center gap-2 py-3 text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-cream/75 transition-colors duration-300 hover:text-cream"
             >
               <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
                 <ArrowIcon size={13} />
@@ -205,10 +205,10 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
 
             <div className="mt-10 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
+                <span className="inline-flex items-center rounded-full bg-cream/95 px-3.5 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green sm:text-xs">
                   {post.category}
                 </span>
-                <p className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-cream/20 bg-night/40 px-3.5 py-1.5 text-[11px] font-semibold text-cream/90 backdrop-blur-sm sm:text-xs">
+                <p className="inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-cream/20 bg-night/40 px-3.5 py-1.5 text-[0.6875rem] font-semibold text-cream/90 backdrop-blur-sm sm:text-xs">
                   <span className="inline-flex items-center gap-1.5">
                     <CalendarIcon size={13} />
                     <time dateTime={post.publishDate}>{formatBlogDate(post.publishDate)}</time>
@@ -221,11 +221,11 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
                 </p>
               </div>
 
-              <h1 className="mt-6 font-serif text-[34px] font-semibold leading-[1.08] tracking-tight text-cream [text-shadow:0_2px_16px_rgba(0,0,0,0.5)] sm:text-5xl md:text-6xl">
+              <h1 className="mt-6 font-serif text-[2.125rem] font-semibold leading-[1.08] tracking-tight text-cream [text-shadow:0_0.125rem_1rem_rgba(0,0,0,0.5)] sm:text-5xl md:text-6xl">
                 {post.title}
               </h1>
               <span aria-hidden className="mt-6 block h-px w-16 bg-gold/70" />
-              <p className="mt-5 max-w-2xl text-[13.5px] leading-relaxed text-cream/85 [text-shadow:0_1px_10px_rgba(0,0,0,0.5)] sm:text-base md:text-lg">
+              <p className="mt-5 max-w-2xl text-[0.8438rem] leading-relaxed text-cream/85 [text-shadow:0_0.0625rem_0.625rem_rgba(0,0,0,0.5)] sm:text-base md:text-lg">
                 {post.excerpt}
               </p>
             </div>
@@ -233,8 +233,8 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
         </header>
 
         {/* ---------------- Article body — sits over the hero's lower edge ---------------- */}
-        <div className="relative -mt-10 rounded-t-[32px] bg-cream pb-8 pt-12 sm:-mt-12 sm:pt-16 lg:pt-20">
-          <div className="mx-auto w-full max-w-[776px] px-5 sm:px-6 lg:px-8">
+        <div className="relative -mt-10 rounded-t-[2rem] bg-cream pb-8 pt-12 sm:-mt-12 sm:pt-16 lg:pt-20">
+          <div className="mx-auto w-full max-w-[48.5rem] px-5 sm:px-6 lg:px-8">
             <div>{post.body.map(renderBlock)}</div>
 
             <div className="mt-16 border-t border-forest/10 pt-8">
@@ -242,8 +242,8 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
             </div>
 
             {post.related.length > 0 && (
-              <div className="mt-10 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Plan it</h2>
+              <div className="mt-10 rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] p-5 sm:p-6">
+                <h2 className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">Plan it</h2>
                 <ul className="mt-3 divide-y divide-forest/10">
                   {post.related.map((link) => (
                     <li key={link.href}>
@@ -294,7 +294,7 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
 
       {/* ---------------- Closing call to action — same banner pattern as the homepage ---------------- */}
       <section className="relative w-full overflow-hidden">
-        <div className="relative min-h-[440px] w-full bg-night sm:min-h-[460px]">
+        <div className="relative min-h-[27.5rem] w-full bg-night sm:min-h-[28.75rem]">
           <Image
             src={ctaImage.src}
             alt={ctaImage.alt}
@@ -306,15 +306,15 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
           <div className="absolute inset-0 bg-gradient-to-r from-night/90 via-night/60 to-night/20" />
           <div className="absolute inset-0 bg-gradient-to-t from-night/50 via-transparent to-transparent" />
 
-          <div className="relative z-10 mx-auto flex min-h-[440px] w-full max-w-7xl items-center px-5 sm:min-h-[460px] sm:px-6 lg:px-8">
+          <div className="relative z-10 mx-auto flex min-h-[27.5rem] w-full max-w-7xl items-center px-5 sm:min-h-[28.75rem] sm:px-6 lg:px-8">
             <div className="section-y max-w-xl">
               {pick ? (
                 <>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">Take this trip</p>
-                  <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">Take this trip</p>
+                  <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[2.75rem]">
                     {pick.tour.title}
                   </h2>
-                  <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/80 sm:text-base">
+                  <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-cream/80 sm:text-base">
                     {pick.tour.tagline}
                   </p>
                   <ul className="mt-6 flex flex-wrap gap-2">
@@ -344,11 +344,11 @@ export default function BlogPostPage({ post }: { post: BlogPost }) {
                 </>
               ) : (
                 <>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">Ready when you are</p>
-                  <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
+                  <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">Ready when you are</p>
+                  <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[2.75rem]">
                     Turn the reading into a <span className="text-gold">journey</span>
                   </h2>
-                  <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/80 sm:text-base">
+                  <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-cream/80 sm:text-base">
                     Tell us when you want to go and what you want to see — our local guides will take it from there.
                   </p>
                   <div className="mt-8 flex flex-wrap items-center gap-3">

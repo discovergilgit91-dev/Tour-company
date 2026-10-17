@@ -67,7 +67,7 @@ export default function AccountMenu({
       <div
         role="menu"
         aria-label="Account"
-        className={`absolute right-0 top-full z-[60] mt-3 w-64 origin-top-right rounded-2xl bg-white p-2 shadow-[0_20px_45px_-12px_rgba(7,23,25,0.35)] ring-1 ring-black/5 transition-all duration-200 ease-out motion-reduce:transition-none ${
+        className={`absolute right-0 top-full z-[60] mt-3 w-64 origin-top-right rounded-2xl bg-white p-2 shadow-[0_1.25rem_2.8125rem_-0.75rem_rgba(7,23,25,0.35)] ring-1 ring-black/5 transition-all duration-200 ease-out motion-reduce:transition-none ${
           open ? "pointer-events-auto scale-100 opacity-100" : "pointer-events-none scale-95 opacity-0"
         }`}
       >

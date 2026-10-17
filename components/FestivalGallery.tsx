@@ -135,7 +135,7 @@ function GalleryTile({ photo, category, onOpen }: { photo: Photo; category: Cate
       ref={ref}
       type="button"
       onClick={onOpen}
-      className={`group relative row-span-2 block h-full w-full overflow-hidden rounded-[16px] text-left outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
+      className={`group relative row-span-2 block h-full w-full overflow-hidden rounded-[1rem] text-left outline-none transition-[opacity,transform] duration-700 ease-out focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-4 focus-visible:ring-offset-cream motion-reduce:transition-none ${
         photo.featured ? "col-span-2" : ""
       } ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
     >
@@ -155,11 +155,11 @@ function GalleryTile({ photo, category, onOpen }: { photo: Photo; category: Cate
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-night/75 via-transparent to-transparent" />
       {photo.featured && (
-        <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-gold px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-forest">
+        <span className="absolute right-3 top-3 inline-flex items-center rounded-full bg-gold px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-forest">
           Featured
         </span>
       )}
-      <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
+      <span className="absolute left-3 top-3 inline-flex items-center rounded-full bg-night/50 px-2.5 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-cream/85 backdrop-blur-sm">
         {category.label}
       </span>
       <span className="absolute inset-x-3 bottom-3 font-serif text-sm leading-snug text-cream sm:text-base">
@@ -228,7 +228,7 @@ function Lightbox({
       </button>
 
       <div
-        className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-[22px] border border-cream/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] sm:aspect-[3/4]"
+        className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-[1.375rem] border border-cream/10 shadow-[0_2.5rem_5rem_-1.25rem_rgba(0,0,0,0.6)] sm:aspect-[3/4]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="absolute inset-0 bg-night">
@@ -237,7 +237,7 @@ function Lightbox({
           <Image src={photo.src} alt={photo.alt} fill quality={85} sizes="448px" className="object-contain" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent" />
-        <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-night/50 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.1em] text-cream/85 backdrop-blur-sm">
+        <span className="absolute left-5 top-5 inline-flex items-center rounded-full bg-night/50 px-3 py-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.1em] text-cream/85 backdrop-blur-sm">
           {category.label}
         </span>
         <div className="absolute inset-x-5 bottom-5">
@@ -284,7 +284,7 @@ export default function FestivalGallery() {
           <LinkButton
             href="/tours/gilgit-cultural-festival"
             variant="dark"
-            className="group gap-2 text-[11px] uppercase tracking-[0.12em]"
+            className="group gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
           >
             <span className="rotate-180 transition-transform duration-300 ease-out group-hover:-translate-x-1">
               <ArrowIcon size={13} />
@@ -298,7 +298,7 @@ export default function FestivalGallery() {
               type="button"
               onClick={() => setActiveCategory(null)}
               aria-pressed={activeCategory === null}
-              className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
+              className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[0.8125rem] lg:min-h-0 font-medium transition-colors duration-300 ${
                 activeCategory === null
                   ? "border-forest bg-forest text-white"
                   : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -316,7 +316,7 @@ export default function FestivalGallery() {
                   type="button"
                   onClick={() => setActiveCategory(category.id)}
                   aria-pressed={isActive}
-                  className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[13px] lg:min-h-0 font-medium transition-colors duration-300 ${
+                  className={`inline-flex min-h-11 items-center rounded-full border px-4 py-2 text-[0.8125rem] lg:min-h-0 font-medium transition-colors duration-300 ${
                     isActive
                       ? "border-green/30 bg-green/10 text-forest"
                       : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -332,7 +332,7 @@ export default function FestivalGallery() {
           {/* aligned grid — fixed row units so every tile snaps to the same
               rows/columns; featured tiles simply span two columns rather
               than floating independently the way a masonry layout would */}
-          <div className="grid grid-flow-row-dense grid-cols-2 gap-4 auto-rows-[130px] sm:grid-cols-3 sm:auto-rows-[140px] lg:grid-cols-4 lg:auto-rows-[160px] head-gap">
+          <div className="grid grid-flow-row-dense grid-cols-2 gap-4 auto-rows-[8.125rem] sm:grid-cols-3 sm:auto-rows-[8.75rem] lg:grid-cols-4 lg:auto-rows-[10rem] head-gap">
             {filtered.map((photo, i) => (
               <GalleryTile
                 key={photo.id}
@@ -356,19 +356,19 @@ export default function FestivalGallery() {
       <section className="relative w-full overflow-hidden bg-forest section-y">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-32 top-0 h-[420px] w-[420px] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -right-32 top-0 h-[26.25rem] w-[26.25rem] rounded-full bg-gold/10 blur-3xl"
         />
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
             <Reveal>
-              <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-cream/50">
+              <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-cream/50">
                 <span className="h-px w-8 bg-cream/30" />
                 Behind the lens
               </div>
               <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
                 Every frame tells <span className="text-gold">a story</span>
               </h2>
-              <p className="mt-5 text-[15px] leading-relaxed text-cream/65 sm:text-base">
+              <p className="mt-5 text-[0.9375rem] leading-relaxed text-cream/65 sm:text-base">
                 From the first sword strike of the opening dance to the last shared plate of chapshoro, our
                 volunteers and visiting photographers capture the festival exactly as it feels — warm, loud,
                 colorful, and deeply human. This gallery grows a little more with every celebration.
@@ -376,7 +376,7 @@ export default function FestivalGallery() {
               <button
                 type="button"
                 onClick={handleCopyLink}
-                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-6px_rgba(201,161,90,0.5)] active:translate-y-0 active:scale-[0.97]"
+                className="group mt-7 inline-flex items-center gap-2 rounded-full bg-gold px-6 py-3 text-sm font-semibold text-forest transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_0.75rem_1.75rem_-0.375rem_rgba(201,161,90,0.5)] active:translate-y-0 active:scale-[0.97]"
               >
                 <LinkIcon size={15} />
                 {copied ? "Link Copied!" : "Share This Gallery"}
@@ -384,7 +384,7 @@ export default function FestivalGallery() {
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="grid grid-cols-2 gap-6 rounded-[22px] border border-cream/10 bg-night/40 p-5 sm:p-6">
+              <div className="grid grid-cols-2 gap-6 rounded-[1.375rem] border border-cream/10 bg-night/40 p-5 sm:p-6">
                 {GALLERY_STATS.map((stat) => (
                   <div key={stat.label}>
                     <p className="font-serif text-4xl text-gold sm:text-5xl">{stat.value}</p>
@@ -403,7 +403,7 @@ export default function FestivalGallery() {
       <section className="relative w-full overflow-hidden bg-cream text-center section-y">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
               Join us
               <span className="h-px w-8 bg-muted/60" />
@@ -411,7 +411,7 @@ export default function FestivalGallery() {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
               See it all in person
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">
+            <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted sm:text-base">
               Photos only capture so much — the music, the food, and the warmth of the festival are best
               experienced firsthand.
             </p>

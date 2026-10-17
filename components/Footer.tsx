@@ -87,7 +87,7 @@ function FooterLink({ href, children }: { href: string; children: React.ReactNod
   return (
     <Link
       href={href}
-      className="group flex min-h-11 items-center justify-between gap-4 text-[13px] text-cream/60 transition-colors hover:text-cream lg:min-h-0"
+      className="group flex min-h-11 items-center justify-between gap-4 text-[0.8125rem] text-cream/60 transition-colors hover:text-cream lg:min-h-0"
     >
       <span>{children}</span>
       <ArrowIcon />
@@ -112,7 +112,7 @@ function FooterColumn({
 }) {
   return (
     <div className={className}>
-      <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
+      <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[0.8125rem] font-semibold text-gold">
         {title}
       </h3>
       <ul className={`mt-4 ${listClassName}`}>
@@ -126,7 +126,7 @@ function FooterColumn({
       {viewAll && (
         <Link
           href={viewAll.href}
-          className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[13px] font-medium text-gold transition-colors hover:text-gold/80 lg:mt-4 lg:min-h-0"
+          className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[0.8125rem] font-medium text-gold transition-colors hover:text-gold/80 lg:mt-4 lg:min-h-0"
         >
           <span>{viewAll.label}</span>
           <ArrowIcon />
@@ -158,11 +158,11 @@ export default function Footer() {
     <footer className="relative overflow-hidden bg-night text-cream">
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-40 -top-40 h-[420px] w-[420px] rounded-full bg-green/[0.06] blur-3xl"
+        className="pointer-events-none absolute -right-40 -top-40 h-[26.25rem] w-[26.25rem] rounded-full bg-green/[0.06] blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-40 -left-40 h-[350px] w-[350px] rounded-full bg-gold/[0.04] blur-3xl"
+        className="pointer-events-none absolute -bottom-40 -left-40 h-[21.875rem] w-[21.875rem] rounded-full bg-gold/[0.04] blur-3xl"
       />
 
       {/* Same container as every section above (WhyChooseUs, AboutStory, UpcomingTours, ...):
@@ -182,18 +182,18 @@ export default function Footer() {
           <div className="border-b border-cream/[0.08] pb-6 col-span-2 sm:col-span-3 sm:pb-7 lg:col-span-1 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8">
             <Logo />
 
-            <p className="mt-4 max-w-[285px] text-[13px] leading-[1.7] text-cream/60">
+            <p className="mt-4 max-w-[17.8125rem] text-[0.8125rem] leading-[1.7] text-cream/60">
               Guided journeys through the valleys, rivers, villages, and peaks of
               Gilgit-Baltistan.
             </p>
 
-            <div className="mt-5 flex w-full max-w-[302px] items-center gap-3 rounded-xl border border-cream/[0.09] bg-cream/[0.025] px-3.5 py-3">
+            <div className="mt-5 flex w-full max-w-[18.875rem] items-center gap-3 rounded-xl border border-cream/[0.09] bg-cream/[0.025] px-3.5 py-3">
               <CompassIcon />
               <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">
                   Our Home
                 </p>
-                <p className="mt-1 truncate text-[13px] text-cream/60">
+                <p className="mt-1 truncate text-[0.8125rem] text-cream/60">
                   Gilgit-Baltistan, Pakistan
                 </p>
               </div>
@@ -226,7 +226,7 @@ export default function Footer() {
 
           {/* CONTACT */}
           <div className="col-span-2 sm:col-span-1">
-            <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[13px] font-semibold text-gold">
+            <h3 className="inline-block border-b border-gold/40 pb-2 font-serif text-[0.8125rem] font-semibold text-gold">
               Contact
             </h3>
 
@@ -237,16 +237,16 @@ export default function Footer() {
                     <Icon size={14} />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-cream/50">{label}</p>
+                    <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-cream/50">{label}</p>
                     {href ? (
                       <a
                         href={href}
-                        className="mt-0.5 flex min-h-11 items-center break-words text-[13px] leading-snug text-cream/70 transition-colors hover:text-cream lg:min-h-0"
+                        className="mt-0.5 flex min-h-11 items-center break-words text-[0.8125rem] leading-snug text-cream/70 transition-colors hover:text-cream lg:min-h-0"
                       >
                         {value}
                       </a>
                     ) : (
-                      <p className="mt-0.5 text-[13px] leading-snug text-cream/70">{value}</p>
+                      <p className="mt-0.5 text-[0.8125rem] leading-snug text-cream/70">{value}</p>
                     )}
                   </div>
                 </li>
@@ -255,7 +255,7 @@ export default function Footer() {
 
             <Link
               href="/plan-your-trip"
-              className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[13px] font-medium text-gold transition-colors hover:text-gold/80 lg:mt-4 lg:min-h-0"
+              className="mt-2 inline-flex min-h-11 items-center gap-2.5 text-[0.8125rem] font-medium text-gold transition-colors hover:text-gold/80 lg:mt-4 lg:min-h-0"
             >
               <LogoIcon className="h-5 w-6" />
               <span>Plan your journey</span>
@@ -291,12 +291,12 @@ export default function Footer() {
 
         <div className="mt-7 border-t border-cream/[0.08] pt-4 sm:mt-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-2.5 text-[12px] text-cream/50">
+            <div className="flex items-center gap-2.5 text-[0.75rem] text-cream/50">
               <CompassIcon />
               <span>35.9° N, 74.3° E — Gilgit-Baltistan</span>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[12px] text-cream/50 sm:justify-end">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.75rem] text-cream/50 sm:justify-end">
               <Link href="/terms" className="inline-flex min-h-11 items-center transition-colors hover:text-cream/70 lg:min-h-0">
                 Terms
               </Link>

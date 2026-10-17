@@ -202,7 +202,7 @@ export default function ToursPage() {
       <section className="relative isolate w-full overflow-hidden bg-cream pb-8 section-t">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
+          className="pointer-events-none absolute -right-40 top-0 h-[31.25rem] w-[31.25rem] rounded-full bg-green/5 blur-3xl"
         />
         <svg
           aria-hidden
@@ -224,7 +224,7 @@ export default function ToursPage() {
               shadow. right-8 aligns with this section's own lg:px-8
               padding (right-0 would ignore it and hug the viewport edge
               instead). */}
-          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[240px] w-[280px] select-none overflow-hidden rounded-[18px] lg:block xl:w-[380px]">
+          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[15rem] w-[17.5rem] select-none overflow-hidden rounded-[1.125rem] lg:block xl:w-[23.75rem]">
             <Image
               src="/Images/tours/ramalake(2).png"
               alt="Sunlight on an alpine lake ringed by snow-capped peaks"
@@ -238,7 +238,7 @@ export default function ToursPage() {
           </div>
 
           <div className="max-w-2xl">
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
               All tours &amp; events
             </div>
@@ -249,7 +249,7 @@ export default function ToursPage() {
               <span className="text-green">departure</span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
+            <p className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-muted sm:text-base">
               From spring blossom tours to high-altitude treks, every trip on our calendar is
               guided, seasonal, and ready to book — filter below to find the one that fits.
             </p>

@@ -83,10 +83,10 @@ const TRUST_POINTS = [
 function SectionHeading({ index, title }: { index: number; title: string }) {
   return (
     <div className="mb-4 flex items-center gap-2.5">
-      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-gold/40 font-serif text-[11px] text-gold">
+      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-gold/40 font-serif text-[0.6875rem] text-gold">
         {index}
       </span>
-      <h3 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">{title}</h3>
+      <h3 className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">{title}</h3>
     </div>
   );
 }
@@ -102,7 +102,7 @@ function fieldClass(hasError?: boolean) {
 
 function FieldError({ message }: { message?: string }) {
   if (!message) return null;
-  return <p className="mt-1.5 text-[11px] font-medium text-red-600">{message}</p>;
+  return <p className="mt-1.5 text-[0.6875rem] font-medium text-red-600">{message}</p>;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -175,10 +175,10 @@ function DestinationPickCard({
       type="button"
       onClick={onToggle}
       aria-pressed={selected}
-      className="group relative block overflow-hidden rounded-[22px] text-left outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
+      className="group relative block overflow-hidden rounded-[1.375rem] text-left outline-none focus-visible:ring-2 focus-visible:ring-green focus-visible:ring-offset-4 focus-visible:ring-offset-cream"
     >
       <div
-        className={`relative aspect-[4/5] w-full overflow-hidden rounded-[22px] bg-forest transition-all duration-300 ${
+        className={`relative aspect-[4/5] w-full overflow-hidden rounded-[1.375rem] bg-forest transition-all duration-300 ${
           selected ? "ring-2 ring-gold ring-offset-2 ring-offset-cream" : ""
         }`}
       >
@@ -365,7 +365,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
           <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent sm:from-forest/65 sm:via-forest/25" />
           <div
             aria-hidden
-            className="pointer-events-none absolute -left-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+            className="pointer-events-none absolute -left-24 top-10 h-[23.75rem] w-[23.75rem] rounded-full bg-gold/10 blur-3xl"
           />
           <PeaksMotif className="absolute inset-x-0 bottom-0 h-[55%] w-full text-cream/[0.05]" />
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
@@ -373,15 +373,15 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-14 pt-28 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8 lg:pt-36">
           <div className="max-w-2xl">
-            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
               CUSTOM TRIP
             </span>
 
-            <h1 className="font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
+            <h1 className="font-serif text-[1.875rem] font-semibold leading-[1.12] tracking-tight text-cream sm:text-5xl">
               Build a trip that&rsquo;s <span className="heading-accent">entirely yours</span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">
+            <p className="mt-5 max-w-xl text-[0.8438rem] leading-relaxed text-cream/85 sm:text-base md:text-lg">
               Pick the places that call to you, tell us your pace and budget, and a local trip planner will turn it
               into a real itinerary — no fixed packages, no compromises.
             </p>
@@ -392,7 +392,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
       {submitted ? (
         <section className="relative w-full bg-cream section-y">
           <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
-            <div className="flex flex-col items-center rounded-[22px] border border-forest/10 bg-white text-center shadow-[0_2px_18px_rgba(18,36,28,0.06)] p-5 sm:p-6">
+            <div className="flex flex-col items-center rounded-[1.375rem] border border-forest/10 bg-white text-center shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] p-5 sm:p-6">
               <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green/10 text-green">
                 <CheckIcon size={28} />
               </span>
@@ -464,7 +464,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           type="button"
                           onClick={() => setDateMode("exact")}
                           aria-pressed={dateMode === "exact"}
-                          className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                          className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[0.78125rem] font-medium transition-all duration-200 ${
                             dateMode === "exact"
                               ? "border-green bg-green/[0.06] text-green"
                               : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -476,7 +476,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           type="button"
                           onClick={() => setDateMode("flexible")}
                           aria-pressed={dateMode === "flexible"}
-                          className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[12.5px] font-medium transition-all duration-200 ${
+                          className={`min-h-11 flex-1 rounded-xl border px-4 py-2.5 text-[0.78125rem] font-medium transition-all duration-200 ${
                             dateMode === "flexible"
                               ? "border-green bg-green/[0.06] text-green"
                               : "border-forest/12 bg-white text-muted hover:border-forest/25 hover:text-forest"
@@ -491,7 +491,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           <div>
                             <label
                               htmlFor="startDate"
-                              className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                              className="mb-1.5 block text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-muted/70"
                             >
                               Start date
                             </label>
@@ -507,7 +507,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                           <div>
                             <label
                               htmlFor="endDate"
-                              className="mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.08em] text-muted/70"
+                              className="mb-1.5 block text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-muted/70"
                             >
                               End date
                             </label>
@@ -541,14 +541,14 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                               aria-pressed={active}
                               className={`rounded-xl border px-4 py-3.5 text-left transition-all duration-200 ${
                                 active
-                                  ? "border-green bg-green/[0.06] shadow-[0_4px_14px_-6px_rgba(31,106,76,0.4)]"
+                                  ? "border-green bg-green/[0.06] shadow-[0_0.25rem_0.875rem_-0.375rem_rgba(31,106,76,0.4)]"
                                   : "border-forest/12 bg-white hover:border-forest/25"
                               }`}
                             >
-                              <span className={`block text-[13px] font-semibold ${active ? "text-green" : "text-forest"}`}>
+                              <span className={`block text-[0.8125rem] font-semibold ${active ? "text-green" : "text-forest"}`}>
                                 {option.label}
                               </span>
-                              <span className="mt-1 block text-[11.5px] leading-snug text-muted">
+                              <span className="mt-1 block text-[0.7188rem] leading-snug text-muted">
                                 {option.description}
                               </span>
                             </button>
@@ -611,7 +611,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
                   Where should we send the plan?
                 </h2>
 
-                <div className="mt-8 rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.06)] lg:mt-[var(--space-head)] p-5 sm:p-6">
+                <div className="mt-8 rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] lg:mt-[var(--space-head)] p-5 sm:p-6">
                   <div className="space-y-5 lg:space-y-4">
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:gap-4">
                       <div>
@@ -679,8 +679,8 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
 
                     {/* ---- Summary ---- */}
                     <div className="rounded-xl border border-gold/25 bg-gold/[0.06] px-4 py-3.5 lg:py-2.5">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-gold">Quick summary</p>
-                      <p className="mt-1 text-[13px] leading-snug text-forest">{buildSummary()}</p>
+                      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-gold">Quick summary</p>
+                      <p className="mt-1 text-[0.8125rem] leading-snug text-forest">{buildSummary()}</p>
                     </div>
 
                     <label className="flex items-start gap-3 text-xs leading-relaxed text-muted">
@@ -696,7 +696,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
 
                     <button
                       type="submit"
-                      className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm lg:py-3 font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_12px_28px_-6px_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
+                      className="group flex w-full items-center justify-center gap-2 rounded-full bg-green px-6 py-3.5 text-sm lg:py-3 font-semibold text-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-green-dark hover:shadow-[0_0.75rem_1.75rem_-0.375rem_rgba(31,106,76,0.5)] active:translate-y-0 active:scale-[0.97]"
                     >
                       {isSignedIn ? "Send My Custom Trip Request" : "Sign Up to Send Request"}
                       <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -715,7 +715,7 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
       <section className="relative w-full overflow-hidden bg-forest section-y">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-28 top-0 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -right-28 top-0 h-[22.5rem] w-[22.5rem] rounded-full bg-gold/10 blur-3xl"
         />
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
           <Reveal>
@@ -733,12 +733,12 @@ export default function BuildYourTripPage({ sessionProfile }: { sessionProfile: 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 lg:gap-8">
             {TRUST_POINTS.map(({ Icon, title, description }, index) => (
               <Reveal key={title} delay={index * 90}>
-                <div className="flex h-full flex-col rounded-[18px] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
+                <div className="flex h-full flex-col rounded-[1.125rem] border border-cream/10 bg-cream/[0.04] p-5 sm:p-6">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/10 text-gold">
                     <Icon size={19} />
                   </span>
                   <h3 className="mt-4 font-serif text-lg leading-snug text-cream">{title}</h3>
-                  <p className="mt-2 text-[13px] leading-relaxed text-cream/60">{description}</p>
+                  <p className="mt-2 text-[0.8125rem] leading-relaxed text-cream/60">{description}</p>
                 </div>
               </Reveal>
             ))}

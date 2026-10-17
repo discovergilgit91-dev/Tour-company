@@ -17,7 +17,7 @@ const BASE_BUTTON =
 export default function ClosingCTA() {
   return (
     <section id="contact" className="relative w-full overflow-hidden">
-      <div className="relative min-h-[440px] w-full sm:min-h-[480px]">
+      <div className="relative min-h-[27.5rem] w-full sm:min-h-[30rem]">
         <Image
           src="/Images/tours/kutwal-lake.png"
           alt="A still alpine lake below snow-covered mountains in Gilgit-Baltistan"
@@ -31,13 +31,13 @@ export default function ClosingCTA() {
 
         <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl items-center px-5 sm:px-6 lg:px-8">
           <div className="section-y max-w-xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">
               Ready for your next adventure?
             </p>
-            <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[44px]">
+            <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl lg:text-[2.75rem]">
               Your Next Mountain Story Starts Here.
             </h2>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/80 sm:text-base">
+            <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-cream/80 sm:text-base">
               Explore breathtaking destinations, join our upcoming tours, and experience the real
               Gilgit-Baltistan.
             </p>

@@ -5,7 +5,7 @@ export default function Loading() {
         <div className="h-4 w-24 rounded-full bg-forest/10" />
         <div className="mt-4 h-3 w-32 rounded-full bg-forest/10" />
         <div className="mt-3 h-9 w-72 rounded-lg bg-forest/10" />
-        <div className="mt-8 h-64 rounded-[22px] border border-dashed border-forest/20 bg-white/60" />
+        <div className="mt-8 h-64 rounded-[1.375rem] border border-dashed border-forest/20 bg-white/60" />
       </div>
     </main>
   );

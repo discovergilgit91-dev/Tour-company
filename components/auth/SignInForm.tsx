@@ -111,7 +111,7 @@ export default function SignInForm({
       ]}
       notice={pendingLabel ? `Sign in to complete your ${pendingLabel}.` : undefined}
     >
-      <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
+      <div className="mb-8 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted lg:hidden">
         <span className="h-px w-8 bg-muted/60" />
         Welcome back
       </div>
@@ -203,7 +203,7 @@ export default function SignInForm({
 
       <div className="my-7 flex items-center gap-4">
         <span className="h-px flex-1 bg-forest/10" />
-        <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Or</span>
+        <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">Or</span>
         <span className="h-px flex-1 bg-forest/10" />
       </div>
 

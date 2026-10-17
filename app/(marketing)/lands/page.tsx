@@ -43,7 +43,7 @@ export default function LandsPage() {
       <section className="relative isolate w-full overflow-hidden bg-cream pb-8 section-t">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-green/5 blur-3xl"
+          className="pointer-events-none absolute -right-40 top-0 h-[31.25rem] w-[31.25rem] rounded-full bg-green/5 blur-3xl"
         />
 
         <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
@@ -54,7 +54,7 @@ export default function LandsPage() {
               to align with the filter bar below; right-0 would ignore
               this section's own lg:px-8 padding — see the filter bar's
               alignment for why). */}
-          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[240px] w-[280px] select-none overflow-hidden rounded-[18px] lg:block xl:w-[380px]">
+          <div className="pointer-events-none absolute right-8 top-0 -z-10 hidden h-[15rem] w-[17.5rem] select-none overflow-hidden rounded-[1.125rem] lg:block xl:w-[23.75rem]">
             <Image
               src="/Images/tours/shimsal-valley2.png"
               alt="A wide valley horizon ringed by snow-capped peaks in Gilgit-Baltistan"
@@ -68,7 +68,7 @@ export default function LandsPage() {
           </div>
 
           <div className="max-w-2xl">
-            <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
               All destinations
             </div>
@@ -79,7 +79,7 @@ export default function LandsPage() {
               <span className="text-green">horizon</span>
             </h2>
 
-            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted sm:text-base">
+            <p className="mt-5 max-w-xl text-[0.9375rem] leading-relaxed text-muted sm:text-base">
               From the orchards of Hunza to the quiet valleys of Ghizer, explore the places that
               reveal the beauty, culture, and wild landscapes of Gilgit-Baltistan.
             </p>
@@ -94,7 +94,7 @@ export default function LandsPage() {
           active region. */}
       {DISTRICT_CARDS.length > 0 && (
         <section className="relative mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 section-t-tight">
-          <div className="mb-8 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+          <div className="mb-8 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
             <span className="h-px w-8 bg-muted/60" />
             Explore by district
           </div>

@@ -53,7 +53,7 @@ function TourHero({ tour }: { tour: TourDetail }) {
 
   return (
     <section className="relative bg-forest">
-      <div className="relative min-h-[max(76svh,520px)] w-full sm:min-h-[max(82svh,520px)] md:min-h-[max(86svh,520px)]">
+      <div className="relative min-h-[max(76svh,32.5rem)] w-full sm:min-h-[max(82svh,32.5rem)] md:min-h-[max(86svh,32.5rem)]">
         <div className="absolute inset-0 z-0 overflow-hidden">
           {heroImage ? (
             <Image
@@ -71,11 +71,11 @@ function TourHero({ tour }: { tour: TourDetail }) {
           <div className="absolute inset-0 bg-gradient-to-r from-forest/70 via-forest/30 to-transparent max-sm:via-forest/50 max-sm:to-forest/35 sm:from-forest/65 sm:via-forest/25" />
           <div
             aria-hidden
-            className={`pointer-events-none absolute -left-24 top-16 h-[420px] w-[420px] rounded-full ${tour.theme.blob} blur-3xl`}
+            className={`pointer-events-none absolute -left-24 top-16 h-[26.25rem] w-[26.25rem] rounded-full ${tour.theme.blob} blur-3xl`}
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute right-0 top-1/3 h-[360px] w-[360px] rounded-full bg-gold/10 blur-3xl"
+            className="pointer-events-none absolute right-0 top-1/3 h-[22.5rem] w-[22.5rem] rounded-full bg-gold/10 blur-3xl"
           />
           <PeaksMotif className="absolute inset-x-0 bottom-0 h-[45%] w-full text-cream/[0.05]" />
           <Motif
@@ -85,19 +85,19 @@ function TourHero({ tour }: { tour: TourDetail }) {
           <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-forest/10" />
         </div>
 
-        <div className="relative z-10 mx-auto flex min-h-[max(76svh,520px)] max-w-7xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[max(82svh,520px)] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[max(86svh,520px)] md:pb-24 md:pt-36 lg:px-8">
+        <div className="relative z-10 mx-auto flex min-h-[max(76svh,32.5rem)] max-w-7xl flex-col justify-center px-5 pt-28 pb-16 sm:min-h-[max(82svh,32.5rem)] sm:px-6 sm:pb-20 sm:pt-32 md:min-h-[max(86svh,32.5rem)] md:pb-24 md:pt-36 lg:px-8">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
               {tour.badge}
             </span>
 
-            <h1 className="mt-5 font-serif text-[30px] font-semibold leading-[1.12] tracking-tight text-cream sm:mt-6 sm:text-5xl">
+            <h1 className="mt-5 font-serif text-[1.875rem] font-semibold leading-[1.12] tracking-tight text-cream sm:mt-6 sm:text-5xl">
               {tour.title}
               <br />
               <span className="heading-accent">{tour.heroAccentLine}</span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:mt-6 sm:text-base md:text-lg">
+            <p className="mt-5 max-w-xl text-[0.8438rem] leading-relaxed text-cream/85 sm:mt-6 sm:text-base md:text-lg">
               {tour.heroDescription}
             </p>
 
@@ -105,29 +105,29 @@ function TourHero({ tour }: { tour: TourDetail }) {
               <div className="flex items-center gap-2.5 text-cream/90">
                 <ClockIcon size={16} />
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Duration</p>
-                  <p className="text-[13px] font-semibold">{tour.duration}</p>
+                  <p className="text-[0.6875rem] uppercase tracking-[0.1em] text-cream/50">Duration</p>
+                  <p className="text-[0.8125rem] font-semibold">{tour.duration}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 text-cream/90">
                 <PinIcon size={16} />
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Start / End</p>
-                  <p className="text-[13px] font-semibold">{tour.route}</p>
+                  <p className="text-[0.6875rem] uppercase tracking-[0.1em] text-cream/50">Start / End</p>
+                  <p className="text-[0.8125rem] font-semibold">{tour.route}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 text-cream/90">
                 <UsersIcon size={16} />
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Group Size</p>
-                  <p className="text-[13px] font-semibold">{tour.groupSize}</p>
+                  <p className="text-[0.6875rem] uppercase tracking-[0.1em] text-cream/50">Group Size</p>
+                  <p className="text-[0.8125rem] font-semibold">{tour.groupSize}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 text-cream/90">
                 <GaugeIcon size={16} />
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.1em] text-cream/50">Physical Level</p>
-                  <p className="text-[13px] font-semibold">{tour.level}</p>
+                  <p className="text-[0.6875rem] uppercase tracking-[0.1em] text-cream/50">Physical Level</p>
+                  <p className="text-[0.8125rem] font-semibold">{tour.level}</p>
                 </div>
               </div>
             </div>
@@ -341,7 +341,7 @@ function TripOverviewCard({ tour }: { tour: TourDetail }) {
   }
 
   return (
-    <div className="overflow-hidden rounded-[22px] border border-forest/10 bg-white shadow-[0_2px_18px_rgba(18,36,28,0.07)]">
+    <div className="overflow-hidden rounded-[1.375rem] border border-forest/10 bg-white shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.07)]">
       <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-forest to-night">
         {tour.photos[3]?.image ? (
           <>
@@ -364,7 +364,7 @@ function TripOverviewCard({ tour }: { tour: TourDetail }) {
       </div>
 
       <div className="p-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">Trip Overview</p>
+        <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">Trip Overview</p>
 
         <dl className="mt-4 space-y-3.5">
           {[
@@ -377,7 +377,7 @@ function TripOverviewCard({ tour }: { tour: TourDetail }) {
           ].map(([label, value]) => (
             <div key={label} className="flex items-center justify-between gap-3 border-t border-forest/8 pt-3.5 first:border-t-0 first:pt-0">
               <dt className="text-xs text-muted">{label}</dt>
-              <dd className="text-right text-[13px] font-semibold text-forest">{value}</dd>
+              <dd className="text-right text-[0.8125rem] font-semibold text-forest">{value}</dd>
             </div>
           ))}
         </dl>
@@ -425,7 +425,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
            the section's own padding. */}
       <section className="relative w-full bg-cream section-y">
         <div className="mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_340px] lg:gap-14">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_21.25rem] lg:gap-14">
             <div className="relative">
               <AccentMotif
                 className={`pointer-events-none absolute -right-6 -top-10 hidden h-32 w-32 opacity-25 lg:block ${tour.theme.motifTint}`}
@@ -433,7 +433,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
 
               {/* About */}
               <Reveal>
-                <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+                <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
                   <span className="h-px w-8 bg-muted/60" />
                   {tour.aboutEyebrow}
                 </div>
@@ -442,22 +442,22 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                   <br />
                   <span className="text-green">{tour.aboutHeadingLine2}</span>
                 </h2>
-                <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{tour.aboutText}</p>
+                <p className="mt-5 max-w-2xl text-[0.9375rem] leading-relaxed text-muted sm:text-base">{tour.aboutText}</p>
               </Reveal>
 
               {/* Stats */}
               <Reveal delay={100}>
-                <div className="relative mt-8 rounded-[22px] border border-forest/10 bg-white p-5 sm:p-6">
+                <div className="relative mt-8 rounded-[1.375rem] border border-forest/10 bg-white p-5 sm:p-6">
                   <div className="flex flex-col gap-5 border-b border-forest/8 pb-6 sm:flex-row sm:items-center sm:gap-8">
                     <div className="sm:flex-1">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-green">
+                      <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-green">
                         {tour.statsEyebrow}
                       </p>
                       <h3 className="mt-1.5 font-serif text-xl leading-tight text-forest sm:text-2xl">
                         {tour.statsHeading}
                       </h3>
                     </div>
-                    <p className="text-sm leading-relaxed text-muted sm:max-w-[220px] sm:shrink-0 sm:border-l sm:border-forest/10 sm:pl-8">
+                    <p className="text-sm leading-relaxed text-muted sm:max-w-[13.75rem] sm:shrink-0 sm:border-l sm:border-forest/10 sm:pl-8">
                       {tour.statsDescription}
                     </p>
                   </div>
@@ -466,7 +466,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                     {tour.stats.map((stat) => {
                       const Icon = STAT_ICON_COMPONENTS[stat.iconId];
                       return (
-                        <div key={stat.label} className="group min-w-[130px] shrink-0 grow">
+                        <div key={stat.label} className="group min-w-[8.125rem] shrink-0 grow">
                           <span
                             className={`flex h-10 w-10 items-center justify-center rounded-full ${tour.theme.statIconBg} ${tour.theme.statIconText} ${tour.theme.statIconHoverBg} transition-colors duration-300 group-hover:text-white`}
                           >
@@ -488,20 +488,20 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
               {/* Guides */}
               <div className="mt-16">
                 <Reveal>
-                  <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+                  <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
                     <span className="h-px w-8 bg-muted/60" />
                     The guides
                   </div>
                   <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
                     Local guides leading the way
                   </h2>
-                  <p className="mt-4 max-w-2xl text-[15px] leading-relaxed text-muted sm:text-base">{tour.guidesIntro}</p>
+                  <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-muted sm:text-base">{tour.guidesIntro}</p>
                 </Reveal>
 
                 <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2">
                   {tour.guides.map((guide, index) => (
                     <Reveal key={guide.name} delay={index * 90}>
-                      <div className="flex h-full gap-4 rounded-[18px] border border-forest/10 bg-white p-5 shadow-[0_2px_18px_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_28px_-8px_rgba(18,36,28,0.16)]">
+                      <div className="flex h-full gap-4 rounded-[1.125rem] border border-forest/10 bg-white p-5 shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_0.625rem_1.75rem_-0.5rem_rgba(18,36,28,0.16)]">
                         <div
                           className={`relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br ${guide.from} ${guide.to} font-serif text-lg text-white`}
                         >
@@ -525,7 +525,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                           <p className="mt-0.5 text-xs font-semibold uppercase leading-snug tracking-[0.06em] text-green">
                             {guide.role}
                           </p>
-                          <p className="mt-2 line-clamp-3 text-[13px] leading-[1.55] text-muted">
+                          <p className="mt-2 line-clamp-3 text-[0.8125rem] leading-[1.55] text-muted">
                             {guide.bio}
                           </p>
                         </div>
@@ -538,7 +538,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
               {/* Itinerary */}
               <div className="mt-16">
                 <Reveal>
-                  <div className="mb-5 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+                  <div className="mb-5 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
                     <span className="h-px w-8 bg-muted/60" />
                     The itinerary
                   </div>
@@ -550,14 +550,14 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                 <div className="mt-8 divide-y divide-forest/8 border-t border-forest/8">
                   {tour.itinerary.map((day, index) => (
                     <Reveal key={day.day} delay={index * 70}>
-                      <div className="grid grid-cols-1 gap-4 rounded-2xl py-6 transition-colors duration-300 hover:bg-forest/[0.025] sm:-mx-4 sm:grid-cols-[110px_1fr] sm:gap-6 sm:px-4 p-5 sm:p-6">
+                      <div className="grid grid-cols-1 gap-4 rounded-2xl py-6 transition-colors duration-300 hover:bg-forest/[0.025] sm:-mx-4 sm:grid-cols-[6.875rem_1fr] sm:gap-6 sm:px-4 p-5 sm:p-6">
                         <div className="flex items-center gap-3 sm:flex-col sm:items-start sm:gap-2.5">
                           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-forest font-serif text-base text-cream">
                             {index + 1}
                           </span>
                           <div>
-                            <p className="font-serif text-[15px] text-forest sm:text-base">{day.day}</p>
-                            <span className="mt-0.5 inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-green">
+                            <p className="font-serif text-[0.9375rem] text-forest sm:text-base">{day.day}</p>
+                            <span className="mt-0.5 inline-flex items-center gap-1.5 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] text-green">
                               <PinIcon size={11} />
                               {day.tag}
                             </span>
@@ -565,7 +565,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
                         </div>
                         <div>
                           <h3 className="font-serif text-base text-forest sm:text-lg">{day.title}</h3>
-                          <p className="mt-1.5 text-[15px] leading-[1.55] text-muted">{day.description}</p>
+                          <p className="mt-1.5 text-[0.9375rem] leading-[1.55] text-muted">{day.description}</p>
                         </div>
                       </div>
                     </Reveal>
@@ -631,7 +631,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
       <section className="relative w-full overflow-hidden bg-cream text-center section-y">
         <div className="mx-auto w-full max-w-2xl px-5 sm:px-6 lg:px-8">
           <Reveal>
-            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">
+            <div className="mx-auto mb-5 flex w-fit items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">
               <span className="h-px w-8 bg-muted/60" />
               {tour.ctaEyebrow}
               <span className="h-px w-8 bg-muted/60" />
@@ -639,7 +639,7 @@ export default function TourDetailPage({ tour }: { tour: TourDetail }) {
             <h2 className="font-serif text-3xl leading-[1.1] tracking-tight text-forest sm:text-4xl">
               {tour.ctaHeading}
             </h2>
-            <p className="mt-4 text-[15px] leading-relaxed text-muted sm:text-base">{tour.ctaText}</p>
+            <p className="mt-4 text-[0.9375rem] leading-relaxed text-muted sm:text-base">{tour.ctaText}</p>
             <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <LinkButton href={`/book?tour=${tour.slug}`} variant="primary" className="group gap-2">
                 Reserve Your Spot

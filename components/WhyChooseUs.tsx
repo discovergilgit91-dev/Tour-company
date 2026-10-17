@@ -179,11 +179,11 @@ function Panel({
     <article
       onMouseEnter={onActivate}
       className={[
-        "relative isolate overflow-hidden rounded-[24px] bg-forest",
+        "relative isolate overflow-hidden rounded-[1.5rem] bg-forest",
         "transition-[flex,height,box-shadow] duration-700 ease-[cubic-bezier(.2,.7,.2,1)] motion-reduce:transition-none",
         active
-          ? "h-[340px] shadow-[0_24px_55px_rgba(20,35,31,0.28)] ring-1 ring-gold/50 lg:h-full lg:flex-[3.4]"
-          : "h-[76px] shadow-[0_2px_18px_rgba(18,36,28,0.10)] lg:h-full lg:flex-1",
+          ? "h-[21.25rem] shadow-[0_1.5rem_3.4375rem_rgba(20,35,31,0.28)] ring-1 ring-gold/50 lg:h-full lg:flex-[3.4]"
+          : "h-[4.75rem] shadow-[0_0.125rem_1.125rem_rgba(18,36,28,0.10)] lg:h-full lg:flex-1",
       ].join(" ")}
     >
       {/* one photo per card — the source files are collages, so crop to a single tile */}
@@ -240,7 +240,7 @@ function Panel({
           active ? "opacity-100 duration-300 delay-[650ms]" : "pointer-events-none opacity-0 duration-150"
         }`}
       >
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-white/30 bg-black/35 px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-white">
           <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden="true">
             <path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Z" />
             <circle cx="12" cy="9.5" r="2.3" />
@@ -249,7 +249,7 @@ function Panel({
         </span>
 
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">{reason.title}</h3>
-        <p className="mt-2 max-w-md text-[15px] leading-[1.5] text-white/90">{reason.description}</p>
+        <p className="mt-2 max-w-md text-[0.9375rem] leading-[1.5] text-white/90">{reason.description}</p>
       </div>
 
       {/* one button covers the panel: click, tap or keyboard focus opens it */}
@@ -259,7 +259,7 @@ function Panel({
         aria-expanded={active}
         onClick={onActivate}
         onFocus={onActivate}
-        className="absolute inset-0 z-20 rounded-[24px] outline-none focus-visible:ring-2 focus-visible:ring-gold"
+        className="absolute inset-0 z-20 rounded-[1.5rem] outline-none focus-visible:ring-2 focus-visible:ring-gold"
       />
     </article>
   );
@@ -276,7 +276,7 @@ export default function WhyChooseUs() {
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-40 bottom-0 h-[460px] w-[460px] rounded-full bg-gold/5 blur-3xl"
+        className="pointer-events-none absolute -left-40 bottom-0 h-[28.75rem] w-[28.75rem] rounded-full bg-gold/5 blur-3xl"
       />
 
       {/* shared page container: same width and side padding as every other section */}
@@ -294,7 +294,7 @@ export default function WhyChooseUs() {
 
         <div
           ref={ref}
-          className={`flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:h-[440px] lg:flex-row ${
+          className={`flex flex-col gap-3 transition-all duration-700 ease-out motion-reduce:transition-none lg:h-[27.5rem] lg:flex-row ${
             visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >

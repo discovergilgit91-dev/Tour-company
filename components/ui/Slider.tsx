@@ -62,7 +62,7 @@ export default function Slider({
   };
 
   const arrow =
-    "absolute top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-forest/10 bg-cream text-forest shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-colors duration-300 hover:bg-green hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green";
+    "absolute top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-forest/10 bg-cream text-forest shadow-[0_0.375rem_1.25rem_rgba(0,0,0,0.18)] transition-colors duration-300 hover:bg-green hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green";
 
   return (
     <div className={`slider relative ${spaced ? "head-gap" : ""}`}>

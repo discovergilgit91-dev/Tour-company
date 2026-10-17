@@ -90,12 +90,12 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
   return (
     <div className="relative mx-auto w-full max-w-7xl px-5 pb-16 pt-10 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8 lg:pb-24 lg:pt-14">
       {/* ---------------- Category filter + search ---------------- */}
-      <div className="flex flex-col gap-4 rounded-[22px] border border-forest/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5 head-gap-b">
+      <div className="flex flex-col gap-4 rounded-[1.375rem] border border-forest/10 bg-white p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5 head-gap-b">
         <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => setActiveCategory("all")}
-            className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-semibold lg:min-h-0 transition-colors duration-200 ${
+            className={`min-h-11 rounded-full px-4 py-2 text-[0.8125rem] font-semibold lg:min-h-0 transition-colors duration-200 ${
               activeCategory === "all" ? "bg-green text-white" : "bg-forest/[0.05] text-muted hover:text-forest"
             }`}
           >
@@ -106,7 +106,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`min-h-11 rounded-full px-4 py-2 text-[13px] font-medium lg:min-h-0 transition-colors duration-200 ${
+              className={`min-h-11 rounded-full px-4 py-2 text-[0.8125rem] font-medium lg:min-h-0 transition-colors duration-200 ${
                 activeCategory === category ? "bg-green text-white" : "bg-forest/[0.05] text-muted hover:text-forest"
               }`}
             >
@@ -153,7 +153,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
                 setActiveCategory("all");
                 setSearch("");
               }}
-              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-green hover:text-green-dark"
+              className="inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold text-green hover:text-green-dark"
             >
               Clear filters
               <CloseIcon size={12} />
@@ -173,7 +173,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center rounded-[22px] border border-dashed border-forest/15 bg-white py-16 text-center">
+            <div className="flex flex-col items-center justify-center rounded-[1.375rem] border border-dashed border-forest/15 bg-white py-16 text-center">
               <p className="font-serif text-xl text-forest">No destinations match that search</p>
               <p className="mt-2 max-w-sm text-sm text-muted">
                 Try a different category or search term — or clear the filters to browse everything by region.
@@ -182,10 +182,10 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr] lg:gap-14">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[16.25rem_1fr] lg:gap-14">
           {/* ---------------- left sidebar: sticky region nav + quick facts ---------------- */}
           <aside className="lg:sticky lg:top-28 lg:self-start">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted">Explore by region</p>
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted">Explore by region</p>
 
             <nav className="mt-4 flex flex-wrap gap-2 lg:flex-col lg:flex-nowrap lg:gap-1.5">
               {regions.map((region) => {
@@ -210,7 +210,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
             </nav>
 
             <div className="mt-6 rounded-2xl border border-forest/10 bg-white p-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">At a glance</p>
+              <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-muted">At a glance</p>
               <dl className="mt-4 space-y-3 text-sm">
                 <div className="flex items-center justify-between gap-3">
                   <dt className="text-muted">Destinations</dt>
@@ -240,7 +240,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
             <LinkButton
               href="/plan-your-trip"
               variant="dark"
-              className="group mt-5 w-full justify-center gap-2 text-[11px] uppercase tracking-[0.12em]"
+              className="group mt-5 w-full justify-center gap-2 text-[0.6875rem] uppercase tracking-[0.12em]"
             >
               Need help choosing?
               <span className="transition-transform duration-300 ease-out group-hover:translate-x-1">
@@ -297,24 +297,24 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
       )}
 
       {/* ---------------- Closing stats banner ---------------- */}
-      <div className="relative mt-16 overflow-hidden rounded-[26px] bg-forest px-6 py-10 sm:mt-20 sm:px-10 sm:py-12 lg:mt-24">
+      <div className="relative mt-16 overflow-hidden rounded-[1.625rem] bg-forest px-6 py-10 sm:mt-20 sm:px-10 sm:py-12 lg:mt-24">
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 h-[320px] w-[320px] rounded-full bg-gold/10 blur-3xl"
+          className="pointer-events-none absolute -right-24 -top-24 h-[20rem] w-[20rem] rounded-full bg-gold/10 blur-3xl"
         />
         <div
           aria-hidden
-          className="pointer-events-none absolute -bottom-24 -left-16 h-[280px] w-[280px] rounded-full bg-green/15 blur-3xl"
+          className="pointer-events-none absolute -bottom-24 -left-16 h-[17.5rem] w-[17.5rem] rounded-full bg-green/15 blur-3xl"
         />
         <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-md">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+            <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">
               Your next adventure awaits
             </p>
             <h2 className="mt-3 font-serif text-3xl leading-[1.1] tracking-tight text-cream sm:text-4xl">
               Explore All Destinations
             </h2>
-            <p className="mt-3 text-[15px] leading-[1.55] text-cream/65">
+            <p className="mt-3 text-[0.9375rem] leading-[1.55] text-cream/65">
               From iconic mountains to hidden valleys, plan your journey through the most beautiful places in
               Gilgit-Baltistan.
             </p>
@@ -332,7 +332,7 @@ export default function LandsExplorer({ destinations, regions }: { destinations:
               { label: "Seasons of Beauty", value: "4" },
               { label: "Memories", value: "Endless" },
             ].map(({ label, value }) => (
-              <div key={label} className="min-w-[120px] shrink-0 grow">
+              <div key={label} className="min-w-[7.5rem] shrink-0 grow">
                 <span className="flex h-9 w-9 items-center justify-center rounded-full bg-cream/[0.08] text-gold">
                   <CompassIcon size={16} />
                 </span>

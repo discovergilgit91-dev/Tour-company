@@ -25,7 +25,7 @@ export default function FeaturedEvent() {
         <div
           ref={ref}
           style={{ transitionDelay: visible ? "80ms" : "0ms" }}
-          className={`grid grid-cols-1 overflow-hidden rounded-[26px] bg-forest shadow-[0_24px_60px_-24px_rgba(18,36,28,0.4)] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:grid-cols-2 ${
+          className={`grid grid-cols-1 overflow-hidden rounded-[1.625rem] bg-forest shadow-[0_1.5rem_3.75rem_-1.5rem_rgba(18,36,28,0.4)] transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none lg:grid-cols-2 ${
             visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
           }`}
         >
@@ -40,7 +40,7 @@ export default function FeaturedEvent() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest/70 via-forest/10 to-transparent" />
             <span className="absolute left-5 top-5 flex flex-col items-center rounded-2xl bg-cream px-4 py-2.5 leading-none shadow-lg">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-green">
+              <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.12em] text-green">
                 {FEATURED_EVENT.month}
               </span>
               <span className="mt-1 font-serif text-2xl text-forest">{FEATURED_EVENT.day}</span>
@@ -48,7 +48,7 @@ export default function FeaturedEvent() {
           </div>
 
           <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
-            <div className="mb-4 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gold">
+            <div className="mb-4 flex items-center gap-3 text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-gold">
               <span className="h-px w-8 bg-gold/60" />
               Featured Event
             </div>
@@ -68,7 +68,7 @@ export default function FeaturedEvent() {
               </span>
             </div>
 
-            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-cream/70 sm:text-base">
+            <p className="mt-5 max-w-md text-[0.9375rem] leading-relaxed text-cream/70 sm:text-base">
               {FEATURED_EVENT.description}
             </p>
 

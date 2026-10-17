@@ -40,7 +40,7 @@ export default function BlogPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-forest/75 via-forest/35 to-transparent sm:from-forest/70 sm:via-forest/25" />
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-24 top-10 h-[380px] w-[380px] rounded-full bg-gold/10 blur-3xl"
+            className="pointer-events-none absolute -right-24 top-10 h-[23.75rem] w-[23.75rem] rounded-full bg-gold/10 blur-3xl"
           />
           <PeaksMotif className="absolute inset-x-0 bottom-0 h-[55%] w-full text-cream/[0.05]" />
           <div className="absolute inset-0 bg-gradient-to-t from-forest/55 via-transparent to-forest/10" />
@@ -48,15 +48,15 @@ export default function BlogPage() {
 
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 pb-16 pt-32 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pb-24 lg:pt-44">
           <div className="max-w-2xl">
-            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[11px] font-semibold tracking-wide text-green sm:text-xs">
+            <span className="mb-7 inline-flex items-center gap-2 rounded-full bg-cream/95 px-4 py-1.5 text-[0.6875rem] font-semibold tracking-wide text-green sm:text-xs">
               THE JOURNAL
             </span>
 
-            <h1 className="font-serif text-[34px] font-semibold leading-[1.1] tracking-tight text-cream sm:text-5xl lg:text-6xl">
+            <h1 className="font-serif text-[2.125rem] font-semibold leading-[1.1] tracking-tight text-cream sm:text-5xl lg:text-6xl">
               Stories from the <span className="heading-accent">high country.</span>
             </h1>
 
-            <p className="mt-5 max-w-xl text-[13.5px] leading-relaxed text-cream/85 sm:text-base md:text-lg">
+            <p className="mt-5 max-w-xl text-[0.8438rem] leading-relaxed text-cream/85 sm:text-base md:text-lg">
               Planning guides, trek notes and good-to-know basics from the local guides who call these mountains home.
             </p>
 
@@ -64,7 +64,7 @@ export default function BlogPage() {
               {stats.map((stat) => (
                 <li key={stat.label}>
                   <p className="font-serif text-2xl text-gold sm:text-3xl">{stat.value}</p>
-                  <p className="mt-1 text-[11px] leading-snug text-cream/60">{stat.label}</p>
+                  <p className="mt-1 text-[0.6875rem] leading-snug text-cream/60">{stat.label}</p>
                 </li>
               ))}
             </ul>
