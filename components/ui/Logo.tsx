@@ -2,24 +2,32 @@ import Image from "next/image";
 import Link from "next/link";
 
 /**
+ * `light` is the cream-and-sage artwork, for dark or photographic
+ * backgrounds; `dark` is the forest-and-green artwork, for cream ones.
+ * Both are the supplied logo with its background removed.
+ */
+export type LogoTone = "light" | "dark";
+
+/**
  * Small inline accent for use next to text or inside a decorative ring —
- * the same logo-icon.png artwork the header/footer wordmark uses, not a
- * generic placeholder mountain glyph.
+ * the crest (mountain emblem) from the company logo, without the wordmark.
  */
 export function LogoIcon({
   className = "h-5 w-6",
   sizes = "48px",
   quality,
+  tone = "dark",
 }: {
   className?: string;
   /** Hint for the rendered width — raise it when the icon is shown larger than ~48px so a sharper source is picked. */
   sizes?: string;
   quality?: number;
+  tone?: LogoTone;
 }) {
   return (
     <span className={`relative inline-block shrink-0 ${className}`}>
       <Image
-        src="/Images/tours/logo-icon.png"
+        src={`/Images/tours/crest-${tone}.png`}
         alt=""
         aria-hidden
         fill
@@ -34,52 +42,34 @@ export function LogoIcon({
 export function Logo({
   className = "",
   compact = false,
+  tone = "light",
 }: {
   className?: string;
   /** Smaller mark for the scrolled header, so the bar doesn't grow taller than it needs to. */
   compact?: boolean;
+  tone?: LogoTone;
 }) {
-  // The icon (mountain emblem) and the "Discover Gilgit-Baltistan" wordmark
-  // are two separate crops of the original artwork, stacked with a real
-  // margin between them — not one flattened image. The source image has
-  // its own internal gap between the two, but that gap is a fixed fraction
-  // of the whole canvas: shrunk down to this component's actual on-page
-  // size (as small as 56px), it collapses to a sub-pixel sliver that
-  // anti-aliasing (and the drop-shadow below) blurs into what reads as the
-  // wordmark overlapping the icon. Laying them out as two elements with an
-  // explicit `mt` gives a gap in real CSS pixels that can't shrink away.
-  const iconSize = compact ? "h-11 w-14 sm:h-[3.125rem] sm:w-16" : "h-16 w-20 sm:h-[4.75rem] sm:w-24";
-  const textSize = compact ? "h-3.5 w-14 sm:h-4 sm:w-16" : "h-5 w-20 sm:h-6 sm:w-24";
+  // The full lockup (crest + "Discover Gilgit-Baltistan") is one image, so
+  // it only needs a height; the width follows from its 900:668 ratio.
+  const size = compact ? "h-[4.25rem] sm:h-[4.75rem]" : "h-[5.5rem] sm:h-[6.5rem]";
 
   return (
     <Link
       href="/"
       aria-label="Discover Gilgit-Baltistan — home"
-      className={`group inline-flex shrink-0 flex-col items-center ${className}`}
+      className={`group inline-flex shrink-0 items-center ${className}`}
     >
-      {/* Just the artwork itself, no background at all — a drop-shadow
-          (follows each crop's own silhouette, not a box) is the only thing
-          keeping it readable over a photo or the footer's dark bg. */}
-      <span className={`relative block shrink-0 transition-all duration-300 ${iconSize}`}>
+      <span className={`relative block aspect-[900/668] shrink-0 transition-all duration-300 ${size}`}>
         <Image
-          src="/Images/tours/logo-icon.png"
-          alt=""
-          aria-hidden
+          src={`/Images/tours/logo-${tone}.png`}
+          alt="Discover Gilgit-Baltistan"
           fill
           priority
           quality={90}
-          sizes="96px"
-          className="object-contain drop-shadow-[0_0.1875rem_0.5rem_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105"
-        />
-      </span>
-      <span className={`relative mt-1.5 block shrink-0 ${textSize}`}>
-        <Image
-          src="/Images/tours/logo-text.png"
-          alt="Discover Gilgit-Baltistan"
-          fill
-          quality={90}
-          sizes="96px"
-          className="object-contain drop-shadow-[0_0.125rem_0.375rem_rgba(0,0,0,0.5)]"
+          sizes="140px"
+          className={`object-contain transition-transform duration-300 group-hover:scale-105 ${
+            tone === "light" ? "drop-shadow-[0_0.125rem_0.5rem_rgba(0,0,0,0.45)]" : ""
+          }`}
         />
       </span>
     </Link>
